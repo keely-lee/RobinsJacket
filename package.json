@@ -22,7 +22,8 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
-    "webpack": "webpack -w --mode=development"
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -41,5 +42,9 @@
   "bugs": {
     "url": "https://github.com/keely-lee/RobinsJacket/issues"
   },
-  "homepage": "https://github.com/keely-lee/RobinsJacket#readme"
+  "homepage": "https://github.com/keely-lee/RobinsJacket#readme",
+  "engines": {
+    "node": "13.8.0",
+    "npm": "6.13.7"
+  }
 }
