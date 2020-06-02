@@ -14,17 +14,18 @@
 #
 class User < ApplicationRecord
   attr_reader :password
-  validates :email, :password_digest, :session_token, :fname, :lname, :funds_available, uniqueness: true, presence: true
+  validates :email, :password_digest, :session_token, uniqueness: true, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
+  validates :fname, :lname, :funds_available, presence: true
   after_initialize :ensure_session_token
 
   has_one :portfolio,
-  class_name: :Portfolio,
-  dependent: :destroy
+  class_name: :Portfolio#,
+ # dependent: :destroy
   
   has_one :watchlist,
-  class_name: :Watchlist,
-  dependent: :destroy
+  class_name: :Watchlist#,
+ # dependent: :destroy
 
 
   def self.find_by_credentials(username, password)
@@ -44,7 +45,7 @@ class User < ApplicationRecord
 
   def password=(password)
     @password = password
-    password_digest = BCrypt::Password.create(password)
+    self.password_digest = BCrypt::Password.create(password)
   end
 
   def ensure_session_token

@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
         login_user!(@user)
-      #  redirect_to user_url(@user)
+        render "/api/users/show"
     else
         flash[:errors] = @user.error.full_messages
         render :new

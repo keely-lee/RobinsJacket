@@ -8,16 +8,19 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(user_params[:email], user_params[:password])
     if @user
       login!(@user)
-      render "api/users/show"
-      # redirect_to user_url(@user) 
+      render "api/users/show" #remove later
     else
       render json: @user.errors.full_messages, status: 422
     end
   end
 
   def delete
-    logout!
-    render {} #error if no current user
+    if current_user
+      logout!
+      render {} #error if no current user
+    else
+      render json: @user.errors.full_messages, status: 404
+    end
   end
   
   def user_params

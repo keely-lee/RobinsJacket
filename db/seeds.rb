@@ -9,6 +9,5 @@
 
 #ASK ABOUT DROPPING TABLES
 
-hermione = User.create(email: "hgranger@gmail.com", password: "password1")
-harry = User.create(email: "hpotter@gmail.com", password: "password2")
-ron = User.create(email: "rweasley@gmail.com", password: "password3")
+carnegie = User.create!(email: "acarnegie@gmail.com", password: "password1",fname: "Andrew", lname: "Carnegie", funds_available: 99999999)
+gatsby = User.create!(email: "jgatsby@gmail.com", password: "password2",fname: "James", lname: "Gatsby", funds_available: 98750000)
