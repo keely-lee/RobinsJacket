@@ -27,7 +27,7 @@ export const receiveErrors = (errors) => {
 
 export const login = user => dispatch => {
   return APIUtil.loginUser(user)
-    .then(user => dispatch(APIUtil.receiveCurrentUser(user)))
+    .then(user => dispatch(receiveCurrentUser(user)))
 }
 
 export const logout = () => dispatch => {
