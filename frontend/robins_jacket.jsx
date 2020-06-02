@@ -1,16 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import configureStore from './store/store'
-import * as APIUtil from './util/session_api_util';
+import configureStore from "./store/store"
+import * as APIUtil from "./util/session_api_util";
+import Root from "./components/root"
 
-const Root = () => {
-  return (
-    <div>
-      <h2>RobinsJacket! Let's Get Started</h2>
-    </div>
-  )
-};
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -21,10 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.logout = APIUtil.logoutUser;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-
-
-
-
 
 
 
