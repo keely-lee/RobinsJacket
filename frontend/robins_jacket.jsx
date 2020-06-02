@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const store = configureStore();
 
   window.createUser = APIUtil.createUser; //
-  window.login = APIUtil.loginUser; //
-  window.logout = APIUtil.logoutUser;
+  window.loginUser = APIUtil.loginUser; //
+  window.logoutUser = APIUtil.logoutUser;
+
+
+
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-
 
 
   ReactDOM.render(<Root store={store}/>, root)

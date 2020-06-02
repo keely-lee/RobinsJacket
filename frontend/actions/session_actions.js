@@ -35,7 +35,7 @@ export const logout = () => dispatch => {
     .then(() => dispatch(logoutCurrentUser()))
 }
 
-export const signup = user => dipsatch => {
+export const signup = user => dispatch => {
   return APIUtil.createUser(user)
     .then(user => dispatch(receiveCurrentUser(user))) 
 } //catch(errors???)
