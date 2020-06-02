@@ -7,7 +7,7 @@ import * as APIUtil from './util/session_api_util';
 const Root = () => {
   return (
     <div>
-      <h2>RobbinsJacket! Let's Get Started</h2>
+      <h2>RobinsJacket! Let's Get Started</h2>
     </div>
   )
 };
@@ -15,9 +15,18 @@ const Root = () => {
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   const store = configureStore();
+
   window.createUser = APIUtil.createUser; //
   window.login = APIUtil.loginUser; //
   window.logout = APIUtil.logoutUser;
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+
+
+
+
+
+
 
   ReactDOM.render(<Root store={store}/>, root)
 })

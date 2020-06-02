@@ -1,9 +1,8 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 //this reducer keeps track of current_user
-initialState = { currentUserId: null}
 
-const SessionReducer = (oldState = initialState, action) => {
+const SessionReducer = (oldState = { currentUserId: null }, action) => {
   Object.freeze(oldState);
   let newState = Object.assign({}, oldState);
 

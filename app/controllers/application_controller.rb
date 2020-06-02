@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_user
-    redirect_to new_api_session_url unless logged_in? #update??
+    redirect_to new_api_session_url unless logged_in? #update?? RERENDER INSTEAD
   end
 
   def login!(user)
