@@ -15,8 +15,8 @@ class Greeting extends React.Component {
         </div>
       ) : (
         <div>
-          <Link to={"/api/users"}>Sign Up</Link><br />
-          <Link to={"/api/session"}>Login</Link><br />
+          <Link to={"/signup"}>Sign Up</Link><br />
+          <Link to={"/login"}>Sign In</Link><br />
         </div>
       )
     )

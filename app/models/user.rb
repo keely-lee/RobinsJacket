@@ -59,6 +59,6 @@ class User < ApplicationRecord
   end
 
   def funds
-    self.funds_available ||= 0
+    self.funds_available ||= 0.0
   end
 end
