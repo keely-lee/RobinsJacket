@@ -3,3 +3,20 @@
 Navbar link Colors: Black
 
 */
+
+.cf:after, .cf:before {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* grid css?? */
+.col-1-2 {
+  display: flex;
+  width: 50%;
+}
+
+.col-2-2 {
+  display: flex;
+  width: 50%;
+}
