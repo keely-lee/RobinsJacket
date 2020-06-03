@@ -2,10 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import configureStore from "./store/store"
-import * as APIUtil from "./util/session_api_util";
+import * as APIUtil from "./util/session_api_util"; //remove
 import Root from "./components/root"; 
-
-import { login, logout, signup } from "./actions/session_actions"
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -23,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } 
   else { store = configureStore(); }
 
-  window.getState = store.getState;
+  window.getState = store.getState; //remove
 
   ReactDOM.render(<Root store={store}/>, root)
 })
