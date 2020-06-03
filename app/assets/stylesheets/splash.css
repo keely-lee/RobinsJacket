@@ -1,0 +1,40 @@
+/* Splash */
+
+.navbar-main {
+  display: flex;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 64px;
+}
+
+.navbar-main > .navbar-right-links {
+  width: 100%; /*temporary until I can shift to the right*/
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: right;
+  font-weight: bold;
+  padding-right: 24px 
+}
+
+#navbar-signup {
+  display: inline-flex;
+  padding: 0 16px;
+  margin-left: 30px;
+  background-color: #00C805;
+  color: black;
+  border-radius: 24px;
+  height: 48px;
+  width: 144px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  /* white-space: nowrap; */
+}
+
+#navbar-login {
+  color: black;
+  text-decoration: none;
+
+}
