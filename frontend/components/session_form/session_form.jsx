@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props){
@@ -24,33 +25,54 @@ class SessionForm extends React.Component {
   }
 
   render(){
-    if (this.props.formType === 'login') let otherLink = "signup";
-    else let otherLink = "login";
+    let otherLink;
+    if (this.props.formType === 'login') {
+      otherLink = "signup"; }
+    else { otherLink = "login"; }
 
+    // if (errors) {
+    //   <ul>
+    //     <p>Here are some errors: </p>
+    //     { this.props.errors.map((error, i) => {
+    //       return <li key={i}>{error}</li>
+    //     })}
+    //   </ul>
+    // } render errors on page later
+    
     return (
       <div>
         <form onSubmit={ this.handleSubmit }>
           <h2>{this.props.formType}</h2>
+          <Link to={`/${otherLink}`}>{otherLink}</Link><br/>
 
+          <input type="text"
+            value={this.state.email} 
+            placeholder="email"
+            onChange={this.update("email")}/>
+          <br/>
+          
+          <input type="password" 
+            value={this.state.password} 
+            placeholder="password"
+            onChange={this.update("password")}/>
+          <br/>
+          
+          { this.props.formType === 'signup' ? (
+            <div> 
+              <input type="text"
+                value={ this.state.fname }
+                placeholder="first name"
+                onChange={this.update("fname")}/><br/>
+
+              <input type="text"
+                value={this.state.lname}
+                placeholder="last name"
+                onChange={this.update("lname")}/><br/>
+            </div>
+          ) : ("") }
+          <button>{this.props.formType}</button>
+          {/* <input type="submit" value={this.props.formType} /> */}
         </form>
-          <Link to={`/${otherLink}`}></Link>
-
-          <ul>
-            <p>Here are some errors: </p>
-            { this.props.errors.map ( (error, i) => {
-              <li key={i}>{error}</li>
-            } ) } 
-        </ul>
-
-        <label for="email">Email: </label>
-        <input type="text" id="email" value={this.state.email} onChange={this.update("email")}/>
-        <br/>
-
-        <label for="password">Password: </label>
-        <input type="password" id="password" value={this.state.password} onChange={this.update("password")}/>
-        <br />
-        
-        <button value={this.props.formType}></button>
       </div>
     )
   }

@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :email, :password_digest, :session_token, uniqueness: true, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :fname, :lname, :funds_available, presence: true
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :funds
 
   has_one :portfolio,
   class_name: :Portfolio#,
@@ -58,4 +58,7 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  def funds
+    self.funds_available ||= 0
+  end
 end
