@@ -1,11 +1,43 @@
 /* Splash */
 
+/* .main {
+  margin: 0;
+  padding: 0;
+} */
+.splash {
+  /* position: relative; */
+  background-color: white;
+}
+
 .navbar-main {
   display: flex;
   background-color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   height: 64px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
 }
+
+.navbar-home {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/*.navbar-home-logo {
+  display: block;
+  position: absolute;
+  /* object-fit: cover; */
+  /* height: 64px; */
+  /* top: -500px;
+  left: -175px; */
+/*  clip: rect(0px,120px, 64px,0px); 
+  /* measure from 0,0: top, right, bottom, left */
+/*} */
+
 
 .navbar-main > .navbar-right-links {
   width: 100%; /*temporary until I can shift to the right*/
@@ -14,53 +46,150 @@
   align-items: center;
   justify-content: right;
   font-weight: bold;
-  padding-right: 24px 
-}
-
-#navbar-signup {
-  display: inline-flex;
-  padding: 0 16px;
-  margin-left: 30px;
-  background-color: #00C805;
-  color: black;
-  border-radius: 24px;
-  height: 48px;
-  width: 144px;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-
-  /* white-space: nowrap; */
-}
-
-#navbar-login {
-  color: black;
-  text-decoration: none;
+  padding-right: 24px;
 }
 
 .splash-1 {
   display: flex;
-  background-color: rgba(195,245,60,1);
-  box-sizing: border-box;
+  background: rgba(195,245,60,1);
+  /* box-sizing: border-box; */
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   height: 552px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  /* position: relative; */
 }
 
+/* #container {
+  display: block;
+  width: 100%;
+  position: relative;
+  height: 150px;
+  border: 1px solid;
+  text-align: center;
+  box-sizing: border-box;
+} */
+
+
 .splash-comp-one {
-  max-width: 1024px;
+  width: 1024px;
   display: flex;
 }
 
-.phone-img > img {
+.splash-c1-right > img {
   max-width: 400px;
   max-height: 400px;
 }
 
-.phone-img {
-  justify-content: center;
+.splash-c1-right {
+  /* justify-content: center; */
   align-items: center;
 }
 
+.splash-c1-left {
+  display: block;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
 
+.splash-c1-left > h1 {
+  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 72px;
+    color: black;
+}
 
+.splash-c1-left > span{
+  display: block;
+  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: black;
+}
+
+.splash-c1-left > a {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.splash-2 {
+  display: flex;
+  justify-content: center;
+  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  height: 414px;
+  border-bottom: 1px solid black;
+  width: 100%;
+  color: black;
+  align-items: center;
+}
+
+.splash-comp-two {
+  width: 443px;
+}
+
+.splash-comp-two > h2 {
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  color: inherit;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  /* line-height: 44px;
+  letter-spacing: -0.36px;
+  margin: 0px;
+  text-decoration: unset; */
+}
+
+.splash-comp-two > span {
+  display: block;
+  font-family: inherit;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  color: inherit;
+  text-align: center;
+  line-height: 24px;
+  padding-bottom: 16px;
+
+    /* margin: 0;
+    -webkit-text-decoration: unset;
+    text-decoration: unset; */
+}
+
+.splash-two-disclosure {
+  display: inline-flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.splash-two-disclosure > button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgb(111, 120, 126);
+
+  /* letter-spacing: -0.25px;
+  margin: 0px;
+  text-decoration: unset; */
+}
+
+.splash-two-disclosure > button:hover {
+  color: #00C805;
+}

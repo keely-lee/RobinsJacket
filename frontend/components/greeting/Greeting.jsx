@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import SplashCompOne from '../splash/splash_comp_one'
+import SplashCompTwo from '../splash/splash_comp_two';
 
 class Greeting extends React.Component {
   constructor(props){
@@ -17,15 +18,24 @@ class Greeting extends React.Component {
         </div>
       ) : (
         <div className="splash">
-          <nav className="navbar-main" >
+          <nav className="navbar-main cf" >
+            <div className="navbar-home">
+              <Link to="/" className="button-black">
+                HOME
+              </Link>
+            </div>
+
             <div className="navbar-right-links">
-              <Link id="navbar-signup" to={"/signup"}>Sign Up</Link><br />
-              <Link id="navbar-login" to={"/login"}>Sign In</Link><br />
+                <Link className="button-green" to={"/signup"}>Sign Up</Link>
+                <Link className="link-plain" to={"/login"}>Sign In</Link>
             </div>
           </nav>
 
           <div className="splash-1">
             <SplashCompOne />
+          </div>
+          <div className="splash-2">
+            <SplashCompTwo />
           </div>
         </div>
       )

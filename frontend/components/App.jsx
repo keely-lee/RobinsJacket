@@ -9,7 +9,8 @@ const App = () => {
   return (
     <div>
       <header>
-        <h3>RobinsJacket, let's get started!</h3>
+        {/* <h3>RobinsJacket, let's get started!</h3> */}
+
         <GreetingContainer />
       </header>
 
