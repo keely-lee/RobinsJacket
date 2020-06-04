@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//ARRAY OF SAMPLE USERS FOR DEMO //
+
 class SessionForm extends React.Component {
   constructor(props){
     super(props);
@@ -9,10 +11,12 @@ class SessionForm extends React.Component {
       password: "",
       fname: "",
       lname: "",
+      funds_available: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.displayErrors = this.displayErrors.bind(this);
+    // this.demoUser = this.demoUser.bind(this);
   };
 
   handleSubmit(e){
@@ -28,7 +32,17 @@ class SessionForm extends React.Component {
     }
   }
 
-  displayErrors (){
+  demoUser(e) {
+    // if (formType === 'signup') this.props.destroyDemo(); NEED TO CREATE THIS FUNCTION OR ELSE DEMO DOES NOT WORK ON SIGN UP!!
+
+    const user = { email: "hiringmanager@outlook.com", password: "password", funds_available: 99999999, fname: "Keely", lname: "Lee" }
+
+    return () => {
+      this.setState(user)
+    }
+  }
+
+  displayErrors(){
     return (
       <ul className="login-error-list">
         { this.props.errors.map ((error, idx) => {
@@ -37,6 +51,7 @@ class SessionForm extends React.Component {
       </ul>
     )
   }
+
 
   render(){
     let otherLink;
@@ -80,7 +95,8 @@ class SessionForm extends React.Component {
                 onChange={this.update("lname")}/><br/>
             </div>
           ) : ("") }
-          <button>{this.props.formType}</button>
+          <button className="session-submit button-green">{this.props.formType}</button>
+          <button className="button-green" onClick={this.demoUser()}>Demo User</button>
           { this.props.errors ? this.displayErrors() : "" }
           {/* <input type="submit" value={this.props.formType} /> */}
         </form>

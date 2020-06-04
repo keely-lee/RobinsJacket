@@ -11,8 +11,9 @@ const App = () => {
     <div>
       <header>
         {/* <h3>RobinsJacket, let's get started!</h3> */}
+        {/* Need to remove Greeting Container Nav Later!!!! */}
         <GreetingContainer />
-      </header>
+      </header> 
 
       {/* <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} /> */}
