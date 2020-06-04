@@ -17,7 +17,9 @@ class User < ApplicationRecord
   validates :email, :password_digest, :session_token, uniqueness: true, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :fname, :lname, :funds_available, presence: true
+  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   after_initialize :ensure_session_token, :funds
+
 
   has_one :portfolio,
   class_name: :Portfolio#,

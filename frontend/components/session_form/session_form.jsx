@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
     return (
       <ul className="login-error-list">
         { this.props.errors.map ((error, idx) => {
-          <li key={`error #${idx}`}>{error}</li>
+          return <li key={`error #${idx}`}>{error}</li>
         }) }
       </ul>
     )
@@ -44,15 +44,6 @@ class SessionForm extends React.Component {
       otherLink = "signup"; }
     else { otherLink = "login"; }
 
-    // if (errors) {
-    //   <ul>
-    //     <p>Here are some errors: </p>
-    //     { this.props.errors.map((error, i) => {
-    //       return <li key={i}>{error}</li>
-    //     })}
-    //   </ul>
-    // } render errors on page later
-    
     return (
       <div>
         <form onSubmit={ this.handleSubmit }>
@@ -90,8 +81,7 @@ class SessionForm extends React.Component {
             </div>
           ) : ("") }
           <button>{this.props.formType}</button>
-          { this.props.errors ? displayErrors() : "" }
-          
+          { this.props.errors ? this.displayErrors() : "" }
           {/* <input type="submit" value={this.props.formType} /> */}
         </form>
       </div>

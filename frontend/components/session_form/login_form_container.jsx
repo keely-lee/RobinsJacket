@@ -4,7 +4,7 @@ import { login } from "../../actions/session_actions"
 
 const mapStateToProps = (state, ownProps) => ({
  formType: 'login',
- errors: state.errors, 
+ errors: state.errors.session, 
 });
 
 const mapDispatchToProps = dispatch => ({
