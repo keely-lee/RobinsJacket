@@ -45,8 +45,11 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: right;
-  font-weight: bold;
   padding-right: 24px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -.25px;
+  line-height: 28px;
 }
 
 .splash-1 {
@@ -54,27 +57,16 @@
   background: rgba(195,245,60,1);
   /* box-sizing: border-box; */
   justify-content: center;
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  height: 552px;
+  min-height: 552px;
   width: 100%;
   border-bottom: 1px solid black;
   /* position: relative; */
 }
 
-/* #container {
-  display: block;
-  width: 100%;
-  position: relative;
-  height: 150px;
-  border: 1px solid;
-  text-align: center;
-  box-sizing: border-box;
-} */
-
-
 .splash-comp-one {
-  width: 1024px;
+  width: 904px;
   display: flex;
+  padding: 0px 60px;
 }
 
 .splash-c1-right > img {
@@ -91,6 +83,7 @@
   display: block;
   padding-top: 100px;
   padding-bottom: 100px;
+  padding-left: 10px;
 }
 
 .splash-c1-left > h1 {
@@ -102,7 +95,7 @@
     color: black;
 }
 
-.splash-c1-left > span{
+.splash-c1-left > span {
   display: block;
   font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 24px;
@@ -121,7 +114,7 @@
   display: flex;
   justify-content: center;
   font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  height: 414px;
+  min-height: 414px;
   border-bottom: 1px solid black;
   width: 100%;
   color: black;
@@ -167,29 +160,178 @@
     text-decoration: unset; */
 }
 
-.splash-two-disclosure {
-  display: inline-flex;
-  box-sizing: border-box;
-  justify-content: center;
+.splash-3 {
+  display: flex;
+  min-height: 605px;
   align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid black;
+}
+
+.splash-comp-three {
+  display: flex;
   width: 100%;
 }
 
-.splash-two-disclosure > button {
-  border: none;
-  background: none;
-  font-family: inherit;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
-  color: rgb(111, 120, 126);
+.splash-comp-three-image {
+  display: flex;
+}
+  
+.splash-comp-three-image > img {
+  max-width: 410px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* deal with image overflow */
+}
 
-  /* letter-spacing: -0.25px;
+.splash-comp-three-left {
+  display: flex;
+  flex-direction: column;
+  width: 827px;
+  padding-left: 60px;
+  padding-right: 40px;
+  margin: auto;
+}
+
+.splash-comp-three-left > h2 {
+  display: flex;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
   margin: 0px;
+
+    /* letter-spacing: -0.36px; */
+    /* color: rgb(4, 13, 20); */
+    /* text-decoration: unset; */
+}
+
+.splash-comp-three-left > span {
+  display: block;
+  color: #6F787E;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+  margin-top: 16px;
+  margin-bottom: 48px; 
+  max-height: 40px;
+
+  /* margin: 0;
+  -webkit-letter-spacing: -0.1px;
+  -moz-letter-spacing: -0.1px;
+  -ms-letter-spacing: -0.1px;
+  letter-spacing: -0.1px;
+  -webkit-text-decoration: unset;
   text-decoration: unset; */
 }
 
-.splash-two-disclosure > button:hover {
-  color: #00C805;
+.splash-comp-three-spans {
+  display: flex;
 }
+
+.splash-comp-three-spans > [class^="section"] {
+  padding-right: 32px;
+  margin-bottom: 40px;
+  width: 180px;
+}
+
+.splash-three-header {
+  margin-top: 0px;
+  margin-bottom: 8px; 
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  width: 180px;
+
+  /* -webkit-letter-spacing: -0.1px;
+  -moz-letter-spacing: -0.1px;
+  -ms-letter-spacing: -0.1px;
+  letter-spacing: -0.1px;
+  -webkit-text-decoration: unset;
+  text-decoration: unset; */
+}
+
+.splash-three-blurb {
+  /* margin: 0; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+  display: block;
+    /* -webkit-letter-spacing: -0.1px;
+    -moz-letter-spacing: -0.1px;
+    -ms-letter-spacing: -0.1px;
+    letter-spacing: -0.1px;
+    -webkit-text-decoration: unset;
+    text-decoration: unset; */
+}
+
+.add-email-form {
+  display: flex;
+  align-items: center;
+  background: #f5f8fa;
+  border-radius: 32px;
+  box-sizing: border-box;
+  cursor: text;
+  width: 468px;
+  height: 64px;
+  padding-right: 12px;
+}
+
+.add-email-input {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+  border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  height: 64px;
+  margin-right: 12px;
+  min-width: 0;
+  padding-left: 36px;
+  width: 300px;
+  
+    /* letter-spacing: -0.1px;
+    text-decoration: unset;
+    flex-grow: 1; */
+}
+
+.add-email-form:hover {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+  /* need to fix item shift on hover */
+
+  /* outline-color: rgba(229, 151, 0, 255);
+  outline-color: #0xFF7DADD9;
+  outline: black;
+  outline-style: auto;
+  outline-width: 5px; */
+} 
+
+/* input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+} */
+
+.add-email-input:focus {
+  outline: none;
+}
+
+
+
+.shift-left {
+  margin-top: 36px;
+  justify-content: left;
+}
+
+
+
+
+
+

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //no props, just sign up link
-class SplashCompOne extends React.Component {
+const SplashCompOne = () => {
 
-  render(){
+  // render() => {
     return (
       <div className="splash-comp-one">
         <div className="col-1-2 splash-c1-left">
@@ -17,7 +17,7 @@ class SplashCompOne extends React.Component {
         </div>
       </div>
     )
-  }
+  // }
 }
 
 export default SplashCompOne;
