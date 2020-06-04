@@ -12,6 +12,7 @@ class SessionForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.displayErrors = this.displayErrors.bind(this);
   };
 
   handleSubmit(e){
@@ -25,6 +26,16 @@ class SessionForm extends React.Component {
     return e => {
       this.setState({[field]: e.currentTarget.value})
     }
+  }
+
+  displayErrors (){
+    return (
+      <ul className="login-error-list">
+        { this.props.errors.map ((error, idx) => {
+          <li key={`error #${idx}`}>{error}</li>
+        }) }
+      </ul>
+    )
   }
 
   render(){
@@ -59,8 +70,13 @@ class SessionForm extends React.Component {
             placeholder="password"
             onChange={this.update("password")}/>
           <br/>
-          
-          { this.props.formType === 'signup' ? (
+          { this.props.formType === 'login' ? (
+            <div>
+              <Link to="" className="link-plain">Forgot your username or password?</Link>
+            </div>
+          ) : ("") }
+
+          { this.props.formType === 'signup' ? ( 
             <div> 
               <input type="text"
                 value={ this.state.fname }
@@ -74,6 +90,8 @@ class SessionForm extends React.Component {
             </div>
           ) : ("") }
           <button>{this.props.formType}</button>
+          { this.props.errors ? displayErrors() : "" }
+          
           {/* <input type="submit" value={this.props.formType} /> */}
         </form>
       </div>
