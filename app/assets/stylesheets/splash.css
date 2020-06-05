@@ -156,7 +156,6 @@
   padding-bottom: 16px;
 
     /* margin: 0;
-    -webkit-text-decoration: unset;
     text-decoration: unset; */
 }
 
@@ -218,11 +217,6 @@
   max-height: 40px;
 
   /* margin: 0;
-  -webkit-letter-spacing: -0.1px;
-  -moz-letter-spacing: -0.1px;
-  -ms-letter-spacing: -0.1px;
-  letter-spacing: -0.1px;
-  -webkit-text-decoration: unset;
   text-decoration: unset; */
 }
 
@@ -245,11 +239,7 @@
   line-height: 24px;
   width: 180px;
 
-  /* -webkit-letter-spacing: -0.1px;
-  -moz-letter-spacing: -0.1px;
-  -ms-letter-spacing: -0.1px;
-  letter-spacing: -0.1px;
-  -webkit-text-decoration: unset;
+  /* letter-spacing: -0.1px;
   text-decoration: unset; */
 }
 
@@ -260,12 +250,7 @@
   font-weight: normal;
   line-height: 24px;
   display: block;
-    /* -webkit-letter-spacing: -0.1px;
-    -moz-letter-spacing: -0.1px;
-    -ms-letter-spacing: -0.1px;
-    letter-spacing: -0.1px;
-    -webkit-text-decoration: unset;
-    text-decoration: unset; */
+    /* letter-spacing: -0.1px; */
 }
 
 .add-email-form {

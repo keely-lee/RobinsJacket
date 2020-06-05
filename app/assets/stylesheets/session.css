@@ -2,6 +2,8 @@
 
 .link-lgreen-only {
   color: rgb(164, 194, 182);
+  text-decoration: none;
+  /* display: inline-block; */
 }
 
 .button-lgreen {
@@ -15,13 +17,21 @@
   background-color: rgb(164, 194, 182); 
   text-decoration: none; 
   color: white; 
-  /* border-radius: 24px;  */
+  border-radius: 6px; 
+  border: none;
   font: inherit;
-  font-weight: bold; 
+  font-weight: 400px;
+  font-size: 13px; 
+  /* letter-spacing: -1px; */
+}
+
+.button-lgreen:hover {
+  cursor: pointer;
+  background-color: rgb(127, 164, 128);
 }
 
 /* stop scroll */
-.session-form {
+/* .session-form { */
   /* display: flex;
   flex-direction: row-reverse; */
 
@@ -32,7 +42,7 @@
   /* display: grid;
   grid-template-columns: 50% 50%;
   height: 100%; */
-}
+/* } */
 
 .div-wrap {
   /* overflow: hidden; */
@@ -107,7 +117,7 @@
 }
 
 .login-input:focus {
-  outline-color: rgb(52, 63, 58);
+  outline-color: rgb(164, 194, 182); 
   /* border: none; */
 }
 
@@ -120,18 +130,30 @@
   /* display: block; */
 }
 
+.session-login-buttons {
+  display: flex;
+  /* justify-content: space-evenly; */
+}
+
+.login-submit {
+  margin-right: 45px;
+}
+
 .forgot {
+  display: block;
   height: 20px;
   padding-top: 14px;
   padding-bottom: 14px;
   font-size: 14px;
-  text-decoration: none;
-  display: block;
 }
 
-
-button {
+.other-link-div {
   display: inline-flex;
+}
+
+.other-link-text {
+  font-family: inherit;
+  
 }
 
 

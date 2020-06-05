@@ -35,7 +35,7 @@ class SessionForm extends React.Component {
   demoUser(e) {
     // if (formType === 'signup') this.props.destroyDemo(); NEED TO CREATE THIS FUNCTION OR ELSE DEMO DOES NOT WORK ON SIGN UP!!
 
-    const user = { email: "hiringmanager@outlook.com", password: "password", funds_available: 99999999, fname: "Keely", lname: "Lee" }
+    const user = { email: "hiringmanager@gmail.com", password: "password4", funds_available: 99999999, fname: "Keely", lname: "Lee" }
 
     return () => {
       this.setState(user)
@@ -57,6 +57,7 @@ class SessionForm extends React.Component {
     // shared items, value change on signup/login
     let session = this.props.formType;
     let otherLink;
+    let otherLinkText;
     let sessionHeader;
     let imgSrc;
     let submitButton;
@@ -78,6 +79,7 @@ class SessionForm extends React.Component {
       labelPW = "Password"
       placeholderEmail = "";
       placeholderPW = "";
+      otherLinkText = "Get started: "
     }
     else {
       otherLink = "login";
@@ -87,6 +89,7 @@ class SessionForm extends React.Component {
       baseColor = "";
       placeholderEmail = "Email";
       placeholderPW = "Password (min. 10 characters)";
+      otherLinkText = "Already a member?"
     }
 
     return (
@@ -140,11 +143,16 @@ class SessionForm extends React.Component {
                 
 
               {/* shared between signup/login  */}
-                  
-                <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
-                <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
-                <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>
-                { this.props.errors ? this.displayErrors() : "" } 
+                <div className={`session-${session}-buttons`}>
+                  <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
+                  <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
+                </div>  
+
+                  <div className="other-link-div">
+                    <span className="other-link-text">{otherLinkText}</span>
+                    <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>
+                    { this.props.errors ? this.displayErrors() : "" } 
+                  </div>
               </div>
             </div>
 
