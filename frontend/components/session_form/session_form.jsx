@@ -97,7 +97,7 @@ class SessionForm extends React.Component {
 
     return (
 
-      <div className="session-form">
+      <div className={`${session}-form`}>
         <form onSubmit={ this.handleSubmit }>
 
           {/* <div className="div-wrap"> */}
