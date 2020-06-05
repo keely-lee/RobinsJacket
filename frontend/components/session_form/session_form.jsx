@@ -61,6 +61,10 @@ class SessionForm extends React.Component {
     let imgSrc;
     let submitButton;
     let baseColor;
+    let placeholderEmail;
+    let placeholderPW;
+    let labelEmail;
+    let labelPW;
     if (this.props.formType === 'login') {
       otherLink = "signup";
       sessionHeader = "Welcome to Robinhood";
@@ -70,6 +74,10 @@ class SessionForm extends React.Component {
 
       submitButton = "Sign In";
       baseColor = "lgreen";
+      labelEmail = "Email or username";
+      labelPW = "Password"
+      placeholderEmail = "";
+      placeholderPW = "";
     }
     else {
       otherLink = "login";
@@ -77,6 +85,8 @@ class SessionForm extends React.Component {
       imgSrc = "";
       submitButton = "Continue";
       baseColor = "";
+      placeholderEmail = "Email";
+      placeholderPW = "Password (min. 10 characters)";
     }
 
     return (
@@ -90,17 +100,21 @@ class SessionForm extends React.Component {
                 {/* shared between signup/login  */}
                 <h2 className={`${session}-header`}>{sessionHeader}</h2>
 
-                <input type="text"
-                  value={this.state.email} 
-                  placeholder="email"
-                  onChange={this.update("email")}
-                  className={`${session}-input ${session}-email`}/>
+                <p className={`${session}-labelEmail`}>{labelEmail}
+                </p>
+                  <input type="text"
+                    value={this.state.email} 
+                    placeholder={`${placeholderEmail}`}
+                    onChange={this.update("email")}
+                    className={`${session}-input ${session}-email`}/>
                 
-                <input type="password" 
-                  value={this.state.password} 
-                  placeholder="password"
-                  onChange={this.update("password")}
-                  className={`${session}-input ${session}-password`}/>
+                <p className={`${session}-labelPW`}>{labelPW}
+                </p>
+                  <input type="password" 
+                    value={this.state.password} 
+                    placeholder={`${placeholderPW}`}
+                    onChange={this.update("password")}
+                    className={`${session}-input ${session}-password`}/>
                 {/* shared between signup/login ends here */}
 
                 {/* this section for new users */}
@@ -126,6 +140,7 @@ class SessionForm extends React.Component {
                 
 
               {/* shared between signup/login  */}
+                  
                 <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
                 <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
                 <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>

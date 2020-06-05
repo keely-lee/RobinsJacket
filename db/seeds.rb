@@ -11,3 +11,5 @@
 
 carnegie = User.create!(email: "acarnegie@gmail.com", password: "password1",fname: "Andrew", lname: "Carnegie", funds_available: 99999999)
 gatsby = User.create!(email: "jgatsby@gmail.com", password: "password2",fname: "James", lname: "Gatsby", funds_available: 98750000)
+buffett = User.create!(email: "wbuffett@gmail.com", password: "password3", fname: "Warren", lname: "Buffett", funds_available: 8000000)
+demo = User.create!(email: "hiringmanager@gmail.com", password: "password4", fname: "Keely", lname: "Lee")
