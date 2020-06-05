@@ -1,10 +1,10 @@
 /* For login & signup forms */
 
-.link-pink-only {
-  color: rgb(212, 141, 168);
+.link-lgreen-only {
+  color: rgb(164, 194, 182);
 }
 
-.button-pink {
+.button-lgreen {
   display: inline-flex; 
   align-items: center; 
   /* box-sizing: border-box; */
@@ -12,7 +12,7 @@
   text-align: center;
   height: 48px; 
   width: 144px; 
-  background-color: rgb(212, 141, 168); 
+  background-color: rgb(164, 194, 182); 
   text-decoration: none; 
   color: white; 
   /* border-radius: 24px;  */
@@ -36,38 +36,63 @@
 
 .div-wrap {
   /* overflow: hidden; */
-  display: grid;
+  display: flex;
   flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
 }
 
 .login-image {
+  display: block;
   overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
 
   max-width: 50%;
+  height: 100%;
   margin: 0;
 }
 
 .div-other {
   display: flex;
+  flex-direction: row;
   max-width: 50%;
-  position: absolute;
-  float:right;
+  max-height: 100%;
+  /* position: absolute; */
+  /* float:right; */
+  justify-content: center;
+  /* align-items: center; */
 }
 
-.login-input {
-  width: 380px;
-  height: 16px;
-  padding: 15px 20px;
+.div-inside {
+  display: block;
+  width: 412px;
+  margin-left: 52px;
+}
+
+.login-header {
   font-family: inherit;
-  position: absolute;
-  left: 800px;
+  font-size: 41px;
+  
 }
 
 /* login inputs */
 
+.login-input {
+  display: block;
+  width: 380px;
+  height: 16px;
+  padding: 15px 20px;
+  font-family: inherit;
+  /* position: absolute; */
+  /* left: 800px; */
+}
+
+button {
+  display: inline-flex;
+}
 
 
 

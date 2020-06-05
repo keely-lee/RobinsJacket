@@ -64,9 +64,12 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'login') {
       otherLink = "signup";
       sessionHeader = "Welcome to Robinhood";
-      imgSrc = "https://cdn.pixabay.com/photo/2015/10/04/11/14/pink-970854_1280.jpg";
+      imgSrc = "https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg";
+      
+      // "https://cdn.pixabay.com/photo/2015/10/04/11/14/pink-970854_1280.jpg";
+
       submitButton = "Sign In";
-      baseColor = "pink";
+      baseColor = "lgreen";
     }
     else {
       otherLink = "login";
@@ -82,55 +85,57 @@ class SessionForm extends React.Component {
         <form onSubmit={ this.handleSubmit }>
 
           <div className="div-wrap">
-          <div className="div-other">
-            {/* shared between signup/login  */}
-            <h2 className={`${session}-header`}>{sessionHeader}</h2>
-
-            <input type="text"
-              value={this.state.email} 
-              placeholder="email"
-              onChange={this.update("email")}
-              className={`${session}-input ${session}-email`}/>
-            
-            <input type="password" 
-              value={this.state.password} 
-              placeholder="password"
-              onChange={this.update("password")}
-              className={`${session}-input ${session}-password`}/>
-            {/* shared between signup/login ends here */}
-
-            {/* this section for new users */}
-            { this.props.formType === 'signup' ? ( 
-              <div>
-                <input type="text"
-                  value={ this.state.fname }
-                  placeholder="first name"
-                  onChange={this.update("fname")}
-                  className={`${session}-input ${session}-fname`}/>
+            <div className="div-other">
+              <div className="div-inside">
+                {/* shared between signup/login  */}
+                <h2 className={`${session}-header`}>{sessionHeader}</h2>
 
                 <input type="text"
-                  value={this.state.lname}
-                  placeholder="last name"
-                  onChange={this.update("lname")}
-                  className={`${session}-input ${session}-lname`}/>
+                  value={this.state.email} 
+                  placeholder="email"
+                  onChange={this.update("email")}
+                  className={`${session}-input ${session}-email`}/>
+                
+                <input type="password" 
+                  value={this.state.password} 
+                  placeholder="password"
+                  onChange={this.update("password")}
+                  className={`${session}-input ${session}-password`}/>
+                {/* shared between signup/login ends here */}
 
-                <p className={`${session}-paragraph`}>RobinsJacket lets you invest in companies you trust, commission-free.</p>
+                {/* this section for new users */}
+                { this.props.formType === 'signup' ? ( 
+                  <div>
+                    <input type="text"
+                      value={ this.state.fname }
+                      placeholder="first name"
+                      onChange={this.update("fname")}
+                      className={`${session}-input ${session}-fname`}/>
+
+                    <input type="text"
+                      value={this.state.lname}
+                      placeholder="last name"
+                      onChange={this.update("lname")}
+                      className={`${session}-input ${session}-lname`}/>
+
+                    <p className={`${session}-paragraph`}>RobinsJacket lets you invest in companies you trust, commission-free.</p>
+                  </div>
+                ) /* section for new users ends here */ : /*section for login users begins here */ (
+                    <Link to="" className={`link-${baseColor}-only forgot`}>Forgot your username or password?</Link>
+                ) }
+                
+
+              {/* shared between signup/login  */}
+                <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
+                <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
+                <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>
+                { this.props.errors ? this.displayErrors() : "" } 
               </div>
-            ) /* section for new users ends here */ : /*section for login users begins here */ (
-                <Link to="" className={`link-${baseColor}-only forgot`}>Forgot your username or password?</Link>
-            ) }
-            
+            </div>
 
-          {/* shared between signup/login  */}
-            <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
-            <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
-            <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>
-            { this.props.errors ? this.displayErrors() : "" } 
-          </div>
-
-          <div className="div-img">
-            <img src={imgSrc} draggable="false" className={`${session}-image`}/>
-          </div>
+            <div className="div-img">
+              <img src={imgSrc} draggable="false" className={`${session}-image`}/>
+            </div>
           </div> {/*div wrap*/}
 
         {/* shared between signup/login ends here */}
