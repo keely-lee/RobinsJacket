@@ -44,17 +44,19 @@
   height: 100%; */
 /* } */
 
-.div-wrap {
+.session-form {
+/* .div-wrap { */
   /* overflow: hidden; */
   display: flex;
   flex-direction: row-reverse;
-  justify-content: flex-start;
-  align-items: center;
+  /* justify-content: flex-start; */
+  align-items: center; /*NOT WORKING!!!*/
   max-width: 100%;
+  height: 100%;
 }
 
 .login-image {
-  display: block;
+  display: flex;
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -65,21 +67,25 @@
   margin: 0;
 }
 
-.div-other {
+.div-other-login {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   max-width: 50%;
-  max-height: 100%;
+  /* height: 385px; */
+  height: 100%;
   /* position: absolute; */
   /* float:right; */
-  justify-content: center;
-  /* align-items: center; */
+  justify-content: flex-end;
+  align-items: space-between; /*NOT WORKING*/
+  padding-top: 200px; /*temporary fix vertical center*/
+  padding-bottom: 200px; /*temporary fix vertical center*/
 }
 
-.div-inside {
+.div-inside-login {
   display: block;
   width: 412px;
   margin-left: 52px;
+  
 }
 
 .login-header {
@@ -152,8 +158,27 @@
 }
 
 .other-link-text {
-  font-family: inherit;
-  
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px;
+  font-weight: 5;
+  color: rgb(204, 218, 226);
+  height: 21px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  margin-top: 24px;
+  letter-spacing: .25px;
+}
+
+.other-link {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px;
+  font-weight: 5;
+  height: 21px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 24px;
+  text-decoration: underline;
 }
 
 

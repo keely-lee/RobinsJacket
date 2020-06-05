@@ -58,6 +58,7 @@ class SessionForm extends React.Component {
     let session = this.props.formType;
     let otherLink;
     let otherLinkText;
+    let otherLinkLinkText;
     let sessionHeader;
     let imgSrc;
     let submitButton;
@@ -79,7 +80,8 @@ class SessionForm extends React.Component {
       labelPW = "Password"
       placeholderEmail = "";
       placeholderPW = "";
-      otherLinkText = "Get started: "
+      otherLinkText = "Get started ";
+      otherLinkLinkText = "Create an account today";
     }
     else {
       otherLink = "login";
@@ -89,7 +91,8 @@ class SessionForm extends React.Component {
       baseColor = "";
       placeholderEmail = "Email";
       placeholderPW = "Password (min. 10 characters)";
-      otherLinkText = "Already a member?"
+      otherLinkText = "Already a member?";
+      otherLinkLinkText = "Log In to Get Started";
     }
 
     return (
@@ -97,9 +100,9 @@ class SessionForm extends React.Component {
       <div className="session-form">
         <form onSubmit={ this.handleSubmit }>
 
-          <div className="div-wrap">
-            <div className="div-other">
-              <div className="div-inside">
+          {/* <div className="div-wrap"> */}
+            <div className={`div-other-${session}`}>
+              <div className={`div-inside-${session}`}>
                 {/* shared between signup/login  */}
                 <h2 className={`${session}-header`}>{sessionHeader}</h2>
 
@@ -150,7 +153,7 @@ class SessionForm extends React.Component {
 
                   <div className="other-link-div">
                     <span className="other-link-text">{otherLinkText}</span>
-                    <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLink}</Link>
+                    <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLinkLinkText}</Link>
                     { this.props.errors ? this.displayErrors() : "" } 
                   </div>
               </div>
@@ -159,7 +162,7 @@ class SessionForm extends React.Component {
             <div className="div-img">
               <img src={imgSrc} draggable="false" className={`${session}-image`}/>
             </div>
-          </div> {/*div wrap*/}
+          {/* </div> div wrap */}
 
         {/* shared between signup/login ends here */}
 
