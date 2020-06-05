@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserHomeContainer from '../user_home/user_home_container';
 
 class Greeting extends React.Component {
   constructor(props){
@@ -12,23 +13,13 @@ class Greeting extends React.Component {
         <div>
           <h2>Welcome {this.props.currentUser.fname}!</h2>
           <button onClick={ () => {this.props.logout()} }>Logout</button>
+
+          <UserHomeContainer/>
         </div>
       ) : (
-        <div className="splash">
-          <nav className="navbar-main cf" >
-            <div className="navbar-home">
-              <Link to="/" className="button-black">
-                HOME
-              </Link>
-            </div>
 
-            <div className="navbar-right-links">
-                <Link className="button-green" to={"/signup"}>Sign Up</Link>
-                <Link className="link-plain" to={"/login"}>Sign In</Link>
-            </div>
-          </nav>
-
-        </div>
+        // insert what we want to stick if not logged
+        <div></div>
       )
     )
   }

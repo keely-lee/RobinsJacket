@@ -1,0 +1,74 @@
+/* For login & signup forms */
+
+.link-pink-only {
+  color: rgb(212, 141, 168);
+}
+
+.button-pink {
+  display: inline-flex; 
+  align-items: center; 
+  /* box-sizing: border-box; */
+  justify-content: center; 
+  text-align: center;
+  height: 48px; 
+  width: 144px; 
+  background-color: rgb(212, 141, 168); 
+  text-decoration: none; 
+  color: white; 
+  /* border-radius: 24px;  */
+  font: inherit;
+  font-weight: bold; 
+}
+
+/* stop scroll */
+.session-form {
+  /* display: flex;
+  flex-direction: row-reverse; */
+
+  /* position: fixed; 
+  overflow-y: hidden;
+  top: 0; right: 0; bottom: 0; left: 0;  */
+
+  /* display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%; */
+}
+
+.div-wrap {
+  /* overflow: hidden; */
+  display: grid;
+  flex-direction: row-reverse;
+}
+
+.login-image {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  max-width: 50%;
+  margin: 0;
+}
+
+.div-other {
+  display: flex;
+  max-width: 50%;
+  position: absolute;
+  float:right;
+}
+
+.login-input {
+  width: 380px;
+  height: 16px;
+  padding: 15px 20px;
+  font-family: inherit;
+  position: absolute;
+  left: 800px;
+}
+
+/* login inputs */
+
+
+
+
+/* signup inputs */

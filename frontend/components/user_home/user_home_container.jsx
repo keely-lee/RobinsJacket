@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import WatchlistComp from './watchlist_comp'
+import UserHome from './user_home'
 
 const mSTP = state => ({
 
@@ -10,5 +10,5 @@ const mDTP = dispatch => ({
 
 })
 
-const UserHomeContainer = connect(mSTP, mDTP)(WatchlistComp);
+const UserHomeContainer = connect(mSTP, mDTP)(UserHome);
 export default UserHomeContainer;

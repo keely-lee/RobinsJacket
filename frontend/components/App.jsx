@@ -5,18 +5,16 @@ import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import { AuthRoute } from "../util/route_util"
 import SplashContainer from './splash/splash_container'
+import UserHomeContainer from './user_home/user_home_container';
 
 const App = () => {
   return (
     <div>
       <header>
         {/* <h3>RobinsJacket, let's get started!</h3> */}
-        {/* Need to remove Greeting Container Nav Later!!!! */}
         <GreetingContainer />
       </header> 
 
-      {/* <AuthRoute path="/login" component={LoginFormContainer} />
-      <AuthRoute path="/signup" component={SignupFormContainer} /> */}
       <Switch>
         <AuthRoute exact path="/" component={SplashContainer} /> 
         <AuthRoute path="/login" component={LoginFormContainer} />
