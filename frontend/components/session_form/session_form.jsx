@@ -16,6 +16,7 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.displayErrors = this.displayErrors.bind(this);
+    this.displayHidden = this.displayHidden.bind(this); //may need to consider compDidMount!
     // this.demoUser = this.demoUser.bind(this);
   };
 
@@ -40,6 +41,10 @@ class SessionForm extends React.Component {
     return () => {
       this.setState(user)
     }
+  }
+
+  displayHidden(e){
+    e.preventDefault();
   }
 
   displayErrors(){
@@ -87,17 +92,17 @@ class SessionForm extends React.Component {
       placeholderEmail = "Email";
       placeholderPW = "Password (min. 8 characters)";
       otherLinkText = "Already a member?";
-      otherLinkLinkText = "Log In to Get Started";
+      otherLinkLinkText = "Log In to start trading";
     }
 
     return (
 
-      <div className={`${session}-form`}>
+      <div className={`${session}-main-div`}>
 
         {this.props.formType === "signup" ? (
           <div className="signup-nav-bar">
             {/* <img src="" draggable="false" className="logo-small" /> */}
-            <button className="logo-small">TEMP BUTTON</button>
+            <Link className="logo-small" to="">TEMP BUTTON</Link>
             <div className="signup-nav-text">
               <span className="signup-nav-txt-account">Account</span>
               <span className="signup-nav-txt-basic">Basic Info</span>
@@ -156,32 +161,54 @@ class SessionForm extends React.Component {
                     <Link to="" className={`link-${baseColor}-only forgot`}>Forgot your username or password?</Link>
                 ) }
 
-                {/* shared between signup/login  */}
-                <div className={`session-${session}-buttons`}>
-                  <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
-                  <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
-                </div>  
+              {/* shared between signup/login  */}
+              <div className={`session-${session}-buttons`}>
+                <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
+                <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
+              </div>  
 
-                <div className="other-link-div">
+              <div className="other-link-div">
                   <span className="other-link-text">{otherLinkText}</span>
                   <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLinkLinkText}</Link>
                   { this.props.errors ? this.displayErrors() : "" } 
                 </div>
-              </div> 
+            </div> 
           </div> 
 
           <div className={`${session}-img`}>
             { this.props.formType === "login" ? (
             <img src="https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg" draggable="false" className={`${session}-image`}/> 
             ) : (
-            <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`}>
-              <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4"></source>
-            </video> ) }
+            <div className="right-nav-video">
+              <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`} width="315" height="175">
+                <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4" ></source>
+              </video> 
+              
+              <div className="signup-after-vid">
+                <p className="video-text">We’ve cut the fat that makes other brokerages costly, like manual account management and hundreds of storefront locations, so we can offer zero commission trading.</p>
+
+                <button className="video-button link-sblue-only" type="button" onClick={() => { this.displayHidden }}>View commission disclosures</button>
+
+                <p className="video-text-hidden">commission-free trading refers to $0 commissions for RobinsJacket Inc self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or the web. Relevant SEC <br/> &amp; FINRA fees may apply. Please <br/> see our <span className="link-sblue-only">Fee Schedule.</span></p>
+              </div>
+            </div>
+            ) }
           </div>
 
           {/* </div> div wrap */}
           {/* shared between signup/login ends here */}
         </form>
+
+        { this.props.formType === 'signup' ? (
+          <div className={`${session}-footer`}>
+            <p>All investments involve risk and the past performance of a security, or financial product does not guarantee future results or returns. Keep in mind that while diversification may help spread risk it does not assure a profit, or protect against loss, in a down market. There is always the potential of losing money when you invest in securities, or other financial products. Investors should consider their investment objectives and risks carefully before investing.</p>
+            <p>All securities and investments are offered to self-directed customers by RobinsJacket Incorporated, member <Link to="" className="link-sblue-only">FINRA</Link> &amp; <Link to="" className="link-sblue-only">SIPC.</Link> Additional information about your broker can be found by clicking <Link to="" className="link-sblue-only">here</Link>. RobinsJacket Incorporated is a wholly owned subsidiary of RobinsMarkets, Inc.</p>
+            <p>Check the background of RobinsJacket Incorporated and RobinsJacket Securities, LLC on <Link to="" className="link-sblue-only">FINRA's BrokerCheck</Link>.</p>
+            <p><Link to="" className="footer-link link-sblue-only">RobinsJacket Terms &amp; Conditions</Link><Link to="" className="footer-link link-sblue-only">Disclosure Library</Link><Link to="" className="footer-link link-sblue-only">Contact Us</Link><Link to="" className="footer-link link-sblue-only">FAQ</Link></p>
+            <p>© March 2020 RobinsJacket. All rights reserved.</p>
+          </div>
+          ) : ""
+        }
       </div> //first div
     ) //close return
   }

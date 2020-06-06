@@ -196,15 +196,33 @@
   background-color: rgb(54, 112, 196);
 }
 
+.link-sblue-only {
+  color: rgb(77, 143, 220);
+  text-decoration: none;
+}
+
 .session-signup-buttons {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  margin-top: 30px;
+}
+
+.signup-submit {
+  margin-right: 20px;
+}
+
+.signup-main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 10px;
 }
 
 .signup-nav-bar {
   display: flex;
   flex-direction: row;
-  width: 1045px;
+  width: 1030px;
   /* width: 100%; */
   /* padding-left: 60px; */
   height: 78px;
@@ -253,6 +271,7 @@
 .signup-paragraph {
   font-family: inherit;
   font-size: 24px;
+  margin-bottom: 28px;
 }
 
 .signup-input {
@@ -269,27 +288,102 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 12px;
 }
 
 .signup-email, .signup-password{
   width: 100%;
   box-sizing: border-box;
   height: 44px;
+  margin-top: 12px;
 }
 
-.div-other-signup {
-  width: 1045px;
-  margin-top: 40px;
-  padding-top: 10px;
+/* .div-other-signup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 0;
-  margin-right: 0;
-}
+} */
 
 .div-inside-signup {
   width: 655px;
 }
 
+.signup-form-tag {
+  display: flex;
+  justify-content: space-between;
+  width: 1030px; 
+  margin-top: 30px;
+}
 
+.signup-video {
+  /* box-shadow: 2px 2px 20px gray; */
+  border-radius: 10px;
+  /* padding: 20px 20px */
+  margin: 20px 20px;
+}
+
+.signup-after-vid > div {
+  display: block;
+  align-self: center;
+  margin: 0;
+}
+
+.signup-after-vid {
+  width: 300px;
+  margin-top: 20px;
+  /* margin-right: 60; */
+  font-size: 14px;
+  color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: wrap;
+}
+
+.video-button {
+  border: none;
+  background-color: white;
+}
+
+.video-button:focus {
+  color: red;
+  outline: none;
+}
+
+.video-text-hidden {
+  display: none;
+}
+
+.video-text, .video-button {
+  position: relative;
+  transform: translateY(0px);
+  animation: slide-down 4s ease;
+  /* animation-delay: 700ms; */
+  /* animation-duration: 500ms; */
+} /* FIX IMMEDIATE RENDER*/
+
+@keyframes slide-down {
+  from {top: -50px;}
+  to {top: 0px;}
+}
+
+.signup-footer {
+  width: 1030px; 
+  color: lightgray;
+  font-size: 12px;
+  text-align: justify;
+  border-top: 1px solid lightgray;
+  margin-top: 179px;
+}
+
+.footer-link {
+  padding-right: 10px;
+}
+
+.right-nav-video {
+  display:flex;
+  flex-direction: column;
+  width: 380px;
+}
