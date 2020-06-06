@@ -1,5 +1,7 @@
 /* For login & signup forms */
 
+
+/* login CSS */
 .link-lgreen-only {
   color: rgb(164, 194, 182);
   text-decoration: none;
@@ -76,9 +78,10 @@
   /* position: absolute; */
   /* float:right; */
   justify-content: flex-end;
-  align-items: space-between; /*NOT WORKING*/
-  padding-top: 200px; /*temporary fix vertical center*/
-  padding-bottom: 200px; /*temporary fix vertical center*/
+  align-items: space-between; /* NOT WORKING*/
+  padding-top: 200px; /* temporary fix vertical center*/
+  padding-bottom: 200px; /* temporary fix vertical center*/
+  /* align-self: center; */
 }
 
 .div-inside-login {
@@ -182,5 +185,100 @@
 }
 
 
+/* ************************************ */
 
-/* signup inputs */
+
+/* signup CSS */
+
+.button-sblue {
+  background-color: rgb(77, 143, 220);
+  color: white;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  /* height: 26px;  */
+  width: 300px; 
+  text-decoration: none; 
+  border-radius: 4px; 
+  border: none;
+  font: inherit;
+  font-weight: 50;
+  font-size: 18px; 
+  padding: 10px 16px;
+}
+
+.button-sblue:hover {
+  cursor: pointer;
+  background-color: rgb(54, 112, 196);
+}
+
+.session-signup-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.signup-nav-bar {
+  display: flex;
+  flex-direction: row;
+  width: 1045px;
+  /* width: 100%; */
+  padding-left: 60px;
+  height: 78px;
+  margin: 0;
+}
+
+.logo-small {
+  /* display: block; */
+  height: 58px;
+  width: 58px;
+  padding-bottom: 20px;
+  /* align-self: center; */
+}
+
+.signup-nav-text {
+  display: flex;
+  justify-content: space-evenly;
+  width: 927px;
+  height: 78px; 
+  padding-left: 60px;
+}
+
+[class*="signup-nav-txt-"] {
+  height: 21px;
+  width: 185.125px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid rgb(180, 189, 194);
+  display: block;
+  text-align: center;
+}
+
+.signup-nav-txt-account {
+  border-bottom: 3px solid rgb(77, 143, 220)
+}
+
+.signup-header {
+  font-family: inherit; 
+  font-size: 48px;
+  height: 57px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 50;
+}
+
+.signup-paragraph {
+  font-family: inherit;
+  font-size: 24px;
+}
+
+.div-other-signup {
+  width: 1045px;
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.div-inside-signup {
+  width: 655px;
+}
+
+

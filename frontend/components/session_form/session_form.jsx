@@ -60,7 +60,6 @@ class SessionForm extends React.Component {
     let otherLinkText;
     let otherLinkLinkText;
     let sessionHeader;
-    let imgSrc;
     let submitButton;
     let baseColor;
     let placeholderEmail;
@@ -69,10 +68,7 @@ class SessionForm extends React.Component {
     let labelPW;
     if (this.props.formType === 'login') {
       otherLink = "signup";
-      sessionHeader = "Welcome to Robinhood";
-      imgSrc = "https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg";
-      
-      // "https://cdn.pixabay.com/photo/2015/10/04/11/14/pink-970854_1280.jpg";
+      sessionHeader = "Welcome to RobinsJacket";
 
       submitButton = "Sign In";
       baseColor = "lgreen";
@@ -86,11 +82,10 @@ class SessionForm extends React.Component {
     else {
       otherLink = "login";
       sessionHeader = "Make Your Money Move";
-      imgSrc = "";
       submitButton = "Continue";
-      baseColor = "";
+      baseColor = "sblue";
       placeholderEmail = "Email";
-      placeholderPW = "Password (min. 10 characters)";
+      placeholderPW = "Password (min. 8 characters)";
       otherLinkText = "Already a member?";
       otherLinkLinkText = "Log In to Get Started";
     }
@@ -100,8 +95,25 @@ class SessionForm extends React.Component {
       <div className={`${session}-form`}>
         <form onSubmit={ this.handleSubmit }>
 
+
           {/* <div className="div-wrap"> */}
             <div className={`div-other-${session}`}>
+
+            {this.props.formType === "signup" ? (
+              <div className="signup-nav-bar">
+                {/* <img src="" draggable="false" className="logo-small" /> */}
+                <button className="logo-small">TEMP BUTTON</button>
+                <div className="signup-nav-text">
+                  <span className="signup-nav-txt-account">Account</span>
+                  <span className="signup-nav-txt-basic">Basic Info</span>
+                  <span className="signup-nav-txt-identity">Identity</span>
+                  <span className="signup-nav-txt-funding">Funding</span>
+                  <span className="signup-nav-txt-submit">Submit</span>
+                </div>
+              </div>
+
+            ) : ""}
+
               <div className={`div-inside-${session}`}>
                 {/* shared between signup/login  */}
                 <h2 className={`${session}-header`}>{sessionHeader}</h2>
@@ -128,13 +140,13 @@ class SessionForm extends React.Component {
                   <div>
                     <input type="text"
                       value={ this.state.fname }
-                      placeholder="first name"
+                      placeholder="First name"
                       onChange={this.update("fname")}
                       className={`${session}-input ${session}-fname`}/>
 
                     <input type="text"
                       value={this.state.lname}
-                      placeholder="last name"
+                      placeholder="Last name"
                       onChange={this.update("lname")}
                       className={`${session}-input ${session}-lname`}/>
 
@@ -160,7 +172,22 @@ class SessionForm extends React.Component {
             </div>
 
             <div className="div-img">
-              <img src={imgSrc} draggable="false" className={`${session}-image`}/>
+              { this.props.formType === "login" ? (
+              <img src="https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg" draggable="false" className={`${session}-image`}/> 
+              ) : (
+                <div className="video-div">
+                  <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`}>
+                    <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4"></source>
+                  </video>
+                </div>
+
+
+
+
+
+
+
+              ) }
             </div>
           {/* </div> div wrap */}
 
