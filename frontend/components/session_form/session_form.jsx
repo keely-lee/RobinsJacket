@@ -93,112 +93,98 @@ class SessionForm extends React.Component {
     return (
 
       <div className={`${session}-form`}>
-        <form onSubmit={ this.handleSubmit }>
 
+        {this.props.formType === "signup" ? (
+          <div className="signup-nav-bar">
+            {/* <img src="" draggable="false" className="logo-small" /> */}
+            <button className="logo-small">TEMP BUTTON</button>
+            <div className="signup-nav-text">
+              <span className="signup-nav-txt-account">Account</span>
+              <span className="signup-nav-txt-basic">Basic Info</span>
+              <span className="signup-nav-txt-identity">Identity</span>
+              <span className="signup-nav-txt-funding">Funding</span>
+              <span className="signup-nav-txt-submit">Submit</span>
+            </div>
+          </div>
+        ) : ""}
+
+        <form onSubmit={ this.handleSubmit } className={`${session}-form-tag`}>
 
           {/* <div className="div-wrap"> */}
-            <div className={`div-other-${session}`}>
+          <div className={`div-other-${session}`}>
 
-            {this.props.formType === "signup" ? (
-              <div className="signup-nav-bar">
-                {/* <img src="" draggable="false" className="logo-small" /> */}
-                <button className="logo-small">TEMP BUTTON</button>
-                <div className="signup-nav-text">
-                  <span className="signup-nav-txt-account">Account</span>
-                  <span className="signup-nav-txt-basic">Basic Info</span>
-                  <span className="signup-nav-txt-identity">Identity</span>
-                  <span className="signup-nav-txt-funding">Funding</span>
-                  <span className="signup-nav-txt-submit">Submit</span>
-                </div>
-              </div>
+            <div className={`div-inside-${session}`}>
+              {/* shared between signup/login*/}
+              <h2 className={`${session}-header`}>{sessionHeader}</h2>
 
-            ) : ""}
-
-              <div className={`div-inside-${session}`}>
-                {/* shared between signup/login  */}
-                <h2 className={`${session}-header`}>{sessionHeader}</h2>
-
-                <p className={`${session}-labelEmail`}>{labelEmail}
-                </p>
-                  <input type="text"
-                    value={this.state.email} 
-                    placeholder={`${placeholderEmail}`}
-                    onChange={this.update("email")}
-                    className={`${session}-input ${session}-email`}/>
-                
-                <p className={`${session}-labelPW`}>{labelPW}
-                </p>
-                  <input type="password" 
-                    value={this.state.password} 
-                    placeholder={`${placeholderPW}`}
-                    onChange={this.update("password")}
-                    className={`${session}-input ${session}-password`}/>
-                {/* shared between signup/login ends here */}
-
-                {/* this section for new users */}
-                { this.props.formType === 'signup' ? ( 
-                  <div>
+              { this.props.formType === 'signup' ? (
+                <div className="signup-top">
+                  <p className={`${session}-paragraph`}>RobinsJacket lets you invest in companies you trust, commission-free.</p> 
+                  
+                  <div className={`${session}-names`}>
                     <input type="text"
-                      value={ this.state.fname }
+                      value={this.state.fname}
                       placeholder="First name"
                       onChange={this.update("fname")}
-                      className={`${session}-input ${session}-fname`}/>
+                      className={`${session}-input ${session}-fname`} />
 
                     <input type="text"
                       value={this.state.lname}
                       placeholder="Last name"
                       onChange={this.update("lname")}
-                      className={`${session}-input ${session}-lname`}/>
-
-                    <p className={`${session}-paragraph`}>RobinsJacket lets you invest in companies you trust, commission-free.</p>
+                      className={`${session}-input ${session}-lname`} />
                   </div>
-                ) /* section for new users ends here */ : /*section for login users begins here */ (
+                </div>
+              ) : "" }
+
+              <p className={`${session}-labelEmail`}>{labelEmail}</p>
+                <input type="text"
+                  value={this.state.email} 
+                  placeholder={`${placeholderEmail}`}
+                  onChange={this.update("email")}
+                  className={`${session}-input ${session}-email`}/>
+                
+              <p className={`${session}-labelPW`}>{labelPW}</p>
+                <input type="password" 
+                  value={this.state.password} 
+                  placeholder={`${placeholderPW}`}
+                  onChange={this.update("password")}
+                  className={`${session}-input ${session}-password`}/>
+              {/* shared between signup/login ends here */}
+
+                { this.props.formType === 'signup' ? "" : (
                     <Link to="" className={`link-${baseColor}-only forgot`}>Forgot your username or password?</Link>
                 ) }
-                
 
-              {/* shared between signup/login  */}
+                {/* shared between signup/login  */}
                 <div className={`session-${session}-buttons`}>
                   <button className={`button-${baseColor} ${session}-submit`}>{submitButton}</button>
                   <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
                 </div>  
 
-                  <div className="other-link-div">
-                    <span className="other-link-text">{otherLinkText}</span>
-                    <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLinkLinkText}</Link>
-                    { this.props.errors ? this.displayErrors() : "" } 
-                  </div>
-              </div>
-            </div>
-
-            <div className="div-img">
-              { this.props.formType === "login" ? (
-              <img src="https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg" draggable="false" className={`${session}-image`}/> 
-              ) : (
-                <div className="video-div">
-                  <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`}>
-                    <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4"></source>
-                  </video>
+                <div className="other-link-div">
+                  <span className="other-link-text">{otherLinkText}</span>
+                  <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLinkLinkText}</Link>
+                  { this.props.errors ? this.displayErrors() : "" } 
                 </div>
+              </div> 
+          </div> 
 
+          <div className={`${session}-img`}>
+            { this.props.formType === "login" ? (
+            <img src="https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg" draggable="false" className={`${session}-image`}/> 
+            ) : (
+            <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`}>
+              <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4"></source>
+            </video> ) }
+          </div>
 
-
-
-
-
-
-              ) }
-            </div>
           {/* </div> div wrap */}
-
-        {/* shared between signup/login ends here */}
-
+          {/* shared between signup/login ends here */}
         </form>
-      </div>
-    )
+      </div> //first div
+    ) //close return
   }
 }
-
-
 
 export default SessionForm;
