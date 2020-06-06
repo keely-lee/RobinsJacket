@@ -6,6 +6,7 @@ import SignupFormContainer from './session_form/signup_form_container';
 import { AuthRoute } from "../util/route_util"
 import SplashContainer from './splash/splash_container'
 import UserHomeContainer from './user_home/user_home_container';
+import LoremIpsum from './splash/lorem_ipsum';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
         <AuthRoute exact path="/" component={SplashContainer} /> 
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
+        <AuthRoute exact path="/loremips" component={LoremIpsum} />
+
       </Switch>
     </div>
   )

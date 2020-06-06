@@ -288,6 +288,12 @@
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
+  /* padding-right: -1px; */
+  /* padding-top: -1px; */
+  margin-top: -.25px;
+  margin-bottom: -.25px;
+  margin-left: -1px;
+  margin-right: -1px;
   /* need to fix item shift on hover */
 
   /* outline-color: rgba(229, 151, 0, 255);
