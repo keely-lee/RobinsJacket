@@ -21,7 +21,7 @@ class Splash extends React.Component {
           <SplashCompOne />
         </div>
         <div className="splash-2">
-          <SplashCompTwo />
+          <SplashCompTwo disclosure={this.props.otherForm}/>
         </div>
         <div className="splash-3">
           <SplashCompThree />

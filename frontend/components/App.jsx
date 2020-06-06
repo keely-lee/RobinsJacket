@@ -7,10 +7,12 @@ import { AuthRoute } from "../util/route_util"
 import SplashContainer from './splash/splash_container'
 import UserHomeContainer from './user_home/user_home_container';
 import LoremIpsum from './splash/lorem_ipsum';
+import Modal from './modal/modal';
 
 const App = () => {
   return (
     <div>
+      <Modal/>
       <header>
         {/* <h3>RobinsJacket, let's get started!</h3> */}
         <GreetingContainer />
