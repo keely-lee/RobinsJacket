@@ -194,6 +194,8 @@ class SessionForm extends React.Component {
             </div>
             ) }
           </div>
+            
+             {/* { document.getElementsByClassName("video-text-hidden")} */}
 
           {/* </div> div wrap */}
           {/* shared between signup/login ends here */}
