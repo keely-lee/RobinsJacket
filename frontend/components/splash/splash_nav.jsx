@@ -7,9 +7,6 @@ const SplashNav = () => {
       <nav className="navbar-main cf" >
         <div className="navbar-home">
           <Link to="/"><img src={window.logo} className="main-logo"/></Link>
-          {/* <Link to="/" className="button-black">
-            HOME
-              </Link> */}
         </div>
 
         <div className="navbar-right-links">

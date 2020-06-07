@@ -37,6 +37,8 @@ class Splash extends React.Component {
           <SplashCompFour 
           />
         </div>
+        <video src={window.splash_vid} draggable="false" className=""/>
+        <p>test video</p>
       </div>
     )
   }

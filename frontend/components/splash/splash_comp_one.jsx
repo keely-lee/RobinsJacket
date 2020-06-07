@@ -15,6 +15,7 @@ const SplashCompOne = () => {
         </div>
         <div className="splash-c1-right">
           <img src={window.splash_phone} draggable="false" alt="RJ" className="splash-phone"/>
+          {/* <img src={window.splash_vid} draggable="false" className=""/> */}
         </div>
       </div>
     )
