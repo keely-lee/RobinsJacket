@@ -44,12 +44,21 @@
   width: 150px;
   text-align: center;
   margin-right: 10px;
+  position: relative;
+}
+
+.navbar-dropdown:hover {
+  color: #00C805;
+}
+
+.navbar-dropdown:focus {
+  outline: none;
 }
 
 .linkedin, .github {
   font-size: 40px;
   color: black;
-  padding-right: 25px;
+  padding-right: 30px;
 }
 
 .linkedin:hover, .github:hover {
