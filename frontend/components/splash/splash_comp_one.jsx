@@ -7,13 +7,14 @@ const SplashCompOne = () => {
   // render() => {
     return (
       <div className="splash-comp-one">
-        <div className="col-1-2 splash-c1-left">
-          <h1>Investing for All</h1>
+        <div className="splash-c1-left">
+          <p>Investing for </p>
+          <p>All</p>
           <span>RobinsJacket, a leader in commission-free investing, offers you infinite ways to make your money work for you</span>
           <Link to={"/signup"} className="button-black">Sign Up</Link>
         </div>
-        <div className="col-2-2 splash-c1-right">
-          <img src="https://cdn.robinhood.com/assets/robinhood/brand/350f48095cefa5b4a8139e5797e5232d-1x.png" draggable="false" alt="RJ" />
+        <div className="splash-c1-right">
+          <img src={window.splash_phone} draggable="false" alt="RJ" className="splash-phone"/>
         </div>
       </div>
     )

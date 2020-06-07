@@ -16,8 +16,8 @@ const mDTP = dispatch => ({
     </div> 
   ),
   fractional: (
-    <div className="disclosure-modal" >
-      <button onClick={() => dispatch(openModal('fractionalDisclosure'))}  >
+    <div className="disclosure-modal shift-left" >
+      <button onClick={() => dispatch(openModal('fractionalDisclosure'))} className="fractional-button" >
         {'\u24D8'} Fractional Shares Disclosure
       </button> 
     </div>
