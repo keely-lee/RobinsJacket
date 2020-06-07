@@ -27,17 +27,9 @@
   margin-left: 20px;
 }
 
-/*.navbar-home-logo {
-  display: block;
-  position: absolute;
-  /* object-fit: cover; */
-  /* height: 64px; */
-  /* top: -500px;
-  left: -175px; */
-/*  clip: rect(0px,120px, 64px,0px); 
-  /* measure from 0,0: top, right, bottom, left */
-/*} */
-
+.main-logo {
+  height: 64px;
+}
 
 .navbar-main > .navbar-right-links {
   width: 100%; /*temporary until I can shift to the right*/
@@ -67,12 +59,13 @@
   /* width: 904px; */
   display: flex;
   /* box-sizing: content-box; */
+  overflow: hidden;
 }
 
 .splash-c1-right > img {
   /* padding-right: 128px; */
   padding-top: 90px;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* position: absolute; */
   max-height: 618px;
 }
@@ -128,6 +121,7 @@
   width: 100%;
   color: black;
   align-items: center;
+  position: relative;
 }
 
 .splash-comp-two {

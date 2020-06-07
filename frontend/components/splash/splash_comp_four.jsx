@@ -9,6 +9,10 @@ class SplashCompFour extends React.Component {
     this.interval();
   }
 
+  componentDidMount(){
+    // this.chooseBenefit(choice)
+  }
+
   chooseBenefit(choice) {
     this.setState({selected: choice})
   }

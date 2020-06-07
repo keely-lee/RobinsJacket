@@ -6,9 +6,10 @@ const SplashNav = () => {
     <div className="splash">
       <nav className="navbar-main cf" >
         <div className="navbar-home">
-          <Link to="/" className="button-black">
+          <Link to="/"><img src={window.logo} className="main-logo"/></Link>
+          {/* <Link to="/" className="button-black">
             HOME
-                  </Link>
+              </Link> */}
         </div>
 
         <div className="navbar-right-links">
