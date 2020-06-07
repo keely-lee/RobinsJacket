@@ -7,14 +7,22 @@ const mSTP = state => ({
 
 });
 
-const mDTP = dispatch => ({
-  otherForm: (
+const mDTP = dispatch => ({ 
+  commissions: (
     <div className="disclosure-modal" >
       <button onClick={() => dispatch(openModal('commissionsDisclosure'))}  >
         {'\u24D8'} Commissions Disclosure
       </button>
+    </div> 
+  ),
+  fractional: (
+    <div className="disclosure-modal" >
+      <button onClick={() => dispatch(openModal('fractionalDisclosure'))}  >
+        {'\u24D8'} Fractional Shares Disclosure
+      </button> 
     </div>
   ),
+  closeModal: () => dispatch(closeModal()),
 });
 
 const SplashContainer = connect(mSTP, mDTP)(Splash);

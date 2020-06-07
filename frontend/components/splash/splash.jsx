@@ -21,10 +21,16 @@ class Splash extends React.Component {
           <SplashCompOne />
         </div>
         <div className="splash-2">
-          <SplashCompTwo disclosure={this.props.otherForm}/>
+          <SplashCompTwo 
+            // disclosure={this.props.otherForm}
+            disclosure={this.props.commissions}
+            closeModal={this.props.closeModal}/>
         </div>
         <div className="splash-3">
-          <SplashCompThree />
+          <SplashCompThree 
+            disclosure={this.props.fractional}
+            closeModal={this.props.closeModal}
+          />
         </div>
       </div>
     )

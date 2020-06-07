@@ -45,12 +45,7 @@ class SplashCompThree extends React.Component{
             </form>
           </div>
 
-          <div className="disclosure-modal shift-left">
-            {/* disclosure-modal from comp-two, centered. figure out how to shift */}
-            {/* <div className="shift-left"> */}
-            <button>{'\u24D8'} Fractional Shares Disclosure</button> 
-            {/* </div> */}
-          </div>
+          {this.props.disclosure}
         </section> 
 
         <div className="splash-comp-three-image">

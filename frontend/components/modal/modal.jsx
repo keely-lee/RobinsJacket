@@ -1,22 +1,23 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import CommissionsDisclosure from './commission_disclosure';
+import { CommissionsDisclosure, 
+          FractionalDisclosure } from './splash_modals';
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
-    // debugger
     return null;
   }
   let component;
   // debugger
+  console.log(modal)
   switch (modal) {
     case 'commissionsDisclosure':
-      component = <CommissionsDisclosure />;
+      component = <CommissionsDisclosure closeModal={closeModal}/>;
       break;
-    // case 'signup':
-    //   component = <SignupFormContainer />;
-    //   break;
+    case 'fractionalDisclosure':
+      component = <FractionalDisclosure closeModal={closeModal} />;
+      break;
     default:
       return null;
   }
