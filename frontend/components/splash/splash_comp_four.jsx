@@ -6,13 +6,14 @@ class SplashCompFour extends React.Component {
     this.state = {selected: 0}
     this.chooseBenefit = this.chooseBenefit.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.interval();
   }
 
   chooseBenefit(choice) {
     this.setState({selected: choice})
   }
 
-  toggle(direction) {
+  toggle(direction){
     if (this.state.selected === 2 && direction === 1)
       this.setState({selected: 0})
     else if (this.state.selected === 0 && direction === -1)
@@ -21,10 +22,18 @@ class SplashCompFour extends React.Component {
       this.setState({selected: this.state.selected + direction});
   }
 
+  interval(){
+    setInterval( () => {
+      this.toggle(1);
+    }, 5000 )
+  }
+
+
   render(){
 
     const panes = [
-      { benefit: 'Learn', content: <img src={window.splashlearn}/>, 
+      { benefit: 'Learn', 
+        content: <img src={window.splashlearn} className="splash-four-img"/>, 
         text: (
           <div className="splash-four-div">
             <h2 className="splash-four-header">Learn As You Grow</h2>
@@ -32,7 +41,8 @@ class SplashCompFour extends React.Component {
           </div>
         )
       },
-      { benefit: 'Manage', content: <img src={window.splashmanage}/>,
+      { benefit: 'Manage', 
+        content: <img src={window.splashmanage} className="splash-four-img"/>,
         text: (
           <div className="splash-four-div">
             <h2 className="splash-four-header">Manage Your Portfolio</h2>
@@ -40,7 +50,8 @@ class SplashCompFour extends React.Component {
           </div>
         )
       },
-      { benefit: 'Customize', content: <img src={window.splashcustomize}/>,
+      {
+        benefit: 'Customize', content: <img src={window.splashcustomize} className="splash-four-img"/>,
         text: (
           <div className="splash-four-div">
             <h2 className="splash-four-header">Keep An Eye on Your Money</h2>
@@ -50,33 +61,60 @@ class SplashCompFour extends React.Component {
       }
     ];
     const pane = panes[this.state.selected];
+    let zero = "";
+    let one = "";
+    let two = "";
+    switch (this.state.selected) {
+      case 0:
+        zero = "current";
+        one = "";
+        two = "";
+        break;
+      case 1:
+        one = "current";
+        zero = "";
+        two = "";
+        break;
+      case 2:
+        two = "current";
+        zero = "";
+        one = "";
+        break;
+    }
+
+    // console.log(zero)
+    // console.log(one)
+    // console.log(two)
+    // console.log(this.state.selected)
 
     return (
-      <div className="splash-comp-two">
-        <ul className="splash-four-ul">
-          <h3 onClick={() => this.toggle(-1)}>
-            {'\u2191'}
-          </h3>
-          <h3 onClick={() => this.chooseBenefit(0)}>
-            {panes[0].benefit}
-          </h3>
-          <h3 onClick={() => this.chooseBenefit(1)}>
-            {panes[1].benefit}
-          </h3>
-          <h3 onClick={() => this.chooseBenefit(2)}>
-            {panes[2].benefit}
-          </h3>
-          <h3 onClick={() => this.toggle(1)}>
-            {'\u2193'}
-          </h3>
-        </ul>
+      <div className="splash-comp-four">
+        <div className="splash-comp-four-inside">
+          <ul className="splash-four-ul">
+            <h3 onClick={() => this.toggle(-1)} className={`splash-label`}>
+              {'\u2191'}
+            </h3>
+            <h3 onClick={() => this.chooseBenefit(0)} className={`splash-label-${zero}`}>
+              {panes[0].benefit}
+            </h3>
+            <h3 onClick={() => this.chooseBenefit(1)} className={`splash-label-${one}`}>
+              {panes[1].benefit}
+            </h3>
+            <h3 onClick={() => this.chooseBenefit(2)} className={`splash-label-${two}`}>
+              {panes[2].benefit}
+            </h3>
+            <h3 onClick={() => this.toggle(1)} className={`splash-label`}>
+              {'\u2193'}
+            </h3>
+          </ul>
 
-        <div className="splash-four-right">
-          <div className="splash-four-img-div">
-            {pane.content}
-          </div>
-          <div className="splash-four-text-div">
-            {pane.text}
+          <div className="splash-four-right">
+            <div className="splash-four-img-div">
+              {pane.content}
+            </div>
+            <div className="splash-four-text-div">
+              {pane.text}
+            </div>
           </div>
         </div>
       </div>

@@ -355,9 +355,79 @@
   margin-top: 60px;
 }
 
-/* .modal-child > h2 {
 
-} */
+/* SPLASH FOUR */
+.splash-4 {
+  height: 680px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+}
+
+.splash-comp-four {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.splash-comp-four-inside {
+  display: flex;
+  height: 100%;
+}
+
+.splash-four-img {
+  width: 250px;
+  height: 500px;
+}
+
+[class*="splash-label"] {
+  color: rgb(76, 76, 76);
+}
+
+[class*="splash-label"]:hover {
+  color: #00C805;
+  cursor: pointer; 
+}
+
+.splash-label-current {
+  color: rgb(241, 244, 246);
+}
+
+.splash-label-current:hover {
+  color: rgb(241, 244, 246);
+}
+
+.splash-four-ul {
+  padding-left: 200px;
+  padding-right: 75px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 50;
+}
+
+.splash-four-right {
+  display: flex;
+}
+
+.splash-four-header {
+  color: white;
+  font-size: 60px;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.splash-four-p {
+  color: white;
+  font-size: 16px;
+}
+
+.splash-four-text-div {
+  padding-left: 95px;
+  width: 480px;
+  padding-top: 115px;
+}
 
 
 
