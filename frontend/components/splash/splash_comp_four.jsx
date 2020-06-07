@@ -29,7 +29,7 @@ class SplashCompFour extends React.Component {
   interval(){
     setInterval( () => {
       this.toggle(1);
-    }, 5000 )
+    }, 4000 )
   }
 
 

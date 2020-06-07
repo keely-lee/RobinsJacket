@@ -14,8 +14,9 @@ const SplashCompOne = () => {
           <Link to={"/signup"} className="button-black">Sign Up</Link>
         </div>
         <div className="splash-c1-right">
+          <video src={window.splash_vid} draggable="false" className="splash-video" autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto"/>
           <img src={window.splash_phone} draggable="false" alt="RJ" className="splash-phone"/>
-          {/* <img src={window.splash_vid} draggable="false" className=""/> */}
+          {/* <img src={window.splash_phone} draggable="false" alt="RJ" className="splash-phone-2" /> */}
         </div>
       </div>
     )
