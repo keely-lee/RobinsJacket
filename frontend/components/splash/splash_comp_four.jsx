@@ -4,30 +4,80 @@ class SplashCompFour extends React.Component {
   constructor(props){
     super(props);
     this.state = {selected: 0}
-
-    this.chooseBenefit = this.choose
+    this.chooseBenefit = this.chooseBenefit.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   chooseBenefit(choice) {
-    this.setState = ({ selected: choice });
+    this.setState({selected: choice})
   }
 
   toggle(direction) {
-    this.setState = ({ selected: this.state[selected] + direction });
+    if (this.state.selected === 2 && direction === 1)
+      this.setState({selected: 0})
+    else if (this.state.selected === 0 && direction === -1)
+      this.setState({selected: 2})
+    else
+      this.setState({selected: this.state.selected + direction});
   }
 
   render(){
+
+    const panes = [
+      { benefit: 'Learn', content: <img src={window.splashlearn}/>, 
+        text: (
+          <div className="splash-four-div">
+            <h2 className="splash-four-header">Learn As You Grow</h2>
+            <p className="splash-four-p">Our goal at RobinsJacket is to make investing in financial markets more affordable, more intuitive, and more fun, no matter how much experience you have (or don’t have).</p>
+          </div>
+        )
+      },
+      { benefit: 'Manage', content: <img src={window.splashmanage}/>,
+        text: (
+          <div className="splash-four-div">
+            <h2 className="splash-four-header">Manage Your Portfolio</h2>
+            <p className="splash-four-p">Manage your portfolio in your pocket. Everything you need to increase your assets is available in a single app.</p>
+          </div>
+        )
+      },
+      { benefit: 'Customize', content: <img src={window.splashcustomize}/>,
+        text: (
+          <div className="splash-four-div">
+            <h2 className="splash-four-header">Keep An Eye on Your Money</h2>
+            <p className="splash-four-p">Setting up customized news and notifications to stay on top of your assets has never been easier! Controlling the flow of info is up to you.</p>
+          </div>
+        )
+      }
+    ];
+    const pane = panes[this.state.selected];
+
     return (
-      <div>
-        <ul>
-          <h3 onClick={() => this.toggle(-1)}>{'\u1F815'}</h3>
-          <h3 onClick={() => this.chooseBenefit(0)}>{this.props.benefit[0]}</h3>
-          <h3 onClick={() => this.chooseBenefit(1)}>{this.props.benefit[1]}</h3>
-          <h3 onClick={() => this.chooseBenefit(2)}>{this.props.benefit[2]}</h3>
-          <h3 onClick={() => this.toggle(1)}>{'\u1F817'}</h3>
+      <div className="splash-comp-two">
+        <ul className="splash-four-ul">
+          <h3 onClick={() => this.toggle(-1)}>
+            {'\u2191'}
+          </h3>
+          <h3 onClick={() => this.chooseBenefit(0)}>
+            {panes[0].benefit}
+          </h3>
+          <h3 onClick={() => this.chooseBenefit(1)}>
+            {panes[1].benefit}
+          </h3>
+          <h3 onClick={() => this.chooseBenefit(2)}>
+            {panes[2].benefit}
+          </h3>
+          <h3 onClick={() => this.toggle(1)}>
+            {'\u2193'}
+          </h3>
         </ul>
-        <div>
-          {this.props.image}
+
+        <div className="splash-four-right">
+          <div className="splash-four-img-div">
+            {pane.content}
+          </div>
+          <div className="splash-four-text-div">
+            {pane.text}
+          </div>
         </div>
       </div>
     )

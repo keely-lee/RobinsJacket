@@ -5,6 +5,7 @@ import SplashCompOne from '../splash/splash_comp_one'
 import SplashCompTwo from '../splash/splash_comp_two';
 import SplashCompThree from '../splash/splash_comp_three';
 import SplashNav from './splash_nav';
+import SplashCompFour from './splash_comp_four';
 
 class Splash extends React.Component {
   constructor(props){
@@ -30,6 +31,10 @@ class Splash extends React.Component {
           <SplashCompThree 
             disclosure={this.props.fractional}
             closeModal={this.props.closeModal}
+          />
+        </div>
+        <div className="splash-4">
+          <SplashCompFour 
           />
         </div>
       </div>
