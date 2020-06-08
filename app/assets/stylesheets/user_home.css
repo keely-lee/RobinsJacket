@@ -1,0 +1,225 @@
+
+
+
+
+
+
+/* navbar */
+
+.home-navbar-main {
+  display: flex;
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  background-color: rgb(30, 30, 30);
+}
+
+.home-logo {
+  /* current details from logo small on sessions page */
+  margin-left: 50px; 
+  padding-bottom: 0;
+}
+
+.home-nav-button {
+  color: rgb(238, 103, 065);
+  /* background-color: rgb(30, 30, 30); */
+  background-color: transparent;
+  margin-right: 30px;
+  outline: none;
+  padding: 2px 6px;
+  border: none;
+}
+
+.home-nav-button:focus {
+  text-decoration: underline;
+  font-weight: 600;
+  margin-left: -2.5px;
+}
+
+.home-nav-account {
+  margin-right: 50px;
+}
+
+.account-dropdown {
+  width: 298px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 51px;
+  top: 50px;
+  /* border: 1px solid black; */
+  text-align: left;
+  background-color: rgb(49, 49, 49);
+}
+
+.account-dropdown-user {
+  height: 32px;
+  padding-left: 30px;
+  /* width: 100%; */
+  color: white;
+  border-bottom: 1px solid whitesmoke;
+  margin: 0;
+  padding-top: 16px;
+}
+
+.account-dropdown > button {
+  padding-left: 30px;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  height: 48px;
+  width: 100%;
+  color: white;
+}
+
+.account-dropdown > button:hover {
+  /* color: rgb(238, 103, 065); */
+  background-color: rgb(240, 121, 88);
+}
+
+.account-dropdown > button:focus {
+  outline: none;
+  /* transition: 0.4s ease-in-out; */
+}
+
+.contact-div {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-left: 55px;
+  font-family: inherit;
+  font-size: 13px; 
+  /* padding-right:  */
+}
+
+.contact-name {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.contact-more {
+  color: rgb(238, 103, 065);
+  /* text-decoration: none; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.contact-more:hover {
+  color: rgb(255, 76, 27);
+}
+
+.contact-email {
+  color: white;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-bottom: 5px;}
+
+.contact-email:hover {
+  color: rgb(238, 103, 065);
+}
+
+/* .home-logout {
+  outline: 1px solid white;
+}  */
+
+.home-icon {
+  padding-right: 10px;
+}
+
+.user-search-wrap {
+  width: 480px;
+  height: 35px; 
+  border: 1px solid rgb(47, 47, 47);
+  display: flex;
+  color: lightgray;
+  display: flex;
+  align-items: center;
+}
+
+.user-search-wrap:hover {
+  /* background-color: #F5F8FA; */
+  background-color: rgb(49, 49, 49);
+  box-shadow: 2px 1px 2px 4px rgb(52, 52, 52);
+  transition: border-color 300ms ease 0s, box-shadow 300ms ease 0s;
+}
+
+.user-search-wrap:focus {
+  background-color: rgb(49, 49, 49);
+  color: lightgray;
+}
+
+.fa-search {
+  margin-left: 20px;
+}
+
+.navbar-stock-search {
+  height: 95%;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 440px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.navbar-stock-search, select, textarea{
+  color: whitesmoke;
+}
+
+.messages-dropdown {
+  width: 350px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 100px;
+  top: 50px;
+  /* border: 1px solid black; */
+  text-align: left;
+  background-color: rgb(49, 49, 49);
+}
+
+.messages-dropdown-label {
+  height: 32px;
+  padding-left: 30px;
+  /* width: 100%; */
+  color: white;
+  margin: 0;
+  padding-top: 16px;
+}
+
+.home-msg {
+  width: 100%;
+  display: grid;
+
+}
+
+.messages-dropdown > button {
+  padding-left: 30px;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  height: 48px;
+  width: 100%;
+  color: white;
+}
+
+.messages-dropdown > button:hover {
+  background-color: rgb(240, 121, 88);
+}
+
+.messages-dropdown > button:focus {
+  outline: none;
+}
+
+
+
+.home-msg-img {
+  box-sizing: border-box;
+  width: 40%;
+  height: 40%;
+}

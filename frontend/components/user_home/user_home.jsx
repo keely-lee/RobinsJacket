@@ -1,5 +1,6 @@
 import React from 'react';
 import WatchlistComp from './watchlist_comp'
+import UserHomeNav from './user_home_nav';
 
 class UserHome extends React.Component {
   constructor(props){
@@ -9,8 +10,11 @@ class UserHome extends React.Component {
   render(){
     return (
       <div>
+        <nav>
+          <UserHomeNav currentUser={this.props.currentUser} logout={this.props.logout}/>
+        </nav>
         <aside>
-          <WatchlistComp />
+          {/* <WatchlistComp /> */}
         </aside>
       </div>
     )

@@ -9,8 +9,8 @@ class SplashCompFour extends React.Component {
     this.interval();
   }
 
-  componentDidMount(){
-    // this.chooseBenefit(choice)
+  componentWillUnmount(){
+    clearInterval(this.intervalId)
   }
 
   chooseBenefit(choice) {
@@ -26,8 +26,8 @@ class SplashCompFour extends React.Component {
       this.setState({selected: this.state.selected + direction});
   }
 
-  interval(){
-    setInterval( () => {
+  interval(){ //setTimeOut
+    this.intervalId = setInterval( () => {
       this.toggle(1);
     }, 4000 )
   }
@@ -85,11 +85,6 @@ class SplashCompFour extends React.Component {
         one = "";
         break;
     }
-
-    // console.log(zero)
-    // console.log(one)
-    // console.log(two)
-    // console.log(this.state.selected)
 
     return (
       <div className="splash-comp-four">

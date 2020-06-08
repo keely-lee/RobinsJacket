@@ -6,7 +6,7 @@ class SplashNav extends React.Component {
     super(props);
     this.state = { productDropdown: false };
     this.handleProductDropdown = this.handleProductDropdown.bind(this);
-    this.handleProductRemove = this.handleProductRemove.bind(this);
+    // this.handleProductRemove = this.handleProductRemove.bind(this);
   }
 
   handleProductDropdown(){
@@ -17,11 +17,11 @@ class SplashNav extends React.Component {
     }
   }
 
-  handleProductRemove(){
-    if (this.state.productDropdown) {
-      this.setState({ productDropdown: false })
-    }
-  }
+  // handleProductRemove(){
+  //   if (this.state.productDropdown) {
+  //     this.setState({ productDropdown: false })
+  //   }
+  // }
 
   render (){
 
@@ -35,7 +35,7 @@ class SplashNav extends React.Component {
     return (
       <div className="splash">
         <nav className="navbar-main cf" >
-          <div className="navbar-home">
+          <div className="navbar-splash">
             <Link to="/"><img src={window.logo} className="main-logo"/></Link>
             <button type="button" className="navbar-dropdown"
             onClick={ () => this.handleProductDropdown() }>

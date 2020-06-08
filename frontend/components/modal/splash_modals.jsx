@@ -20,7 +20,7 @@ export const FractionalDisclosure = ({closeModal}) => {
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         <div className="commissions-disclose-div">
           <h2>Fractional Shares Disclosure</h2>
-          <span>Fractional shares are illiquid outside of Robinhood and not transferable. For a complete explanation of conditions, restrictions and limitations associated with fractional shares, see our <Link to="/loremips" className="link-green-only" onClick={() => (closeModal())}>Customer Agreement</Link> related to fractional shares.</span>
+          <span>Fractional shares are illiquid outside of RobinsJacket and not transferable. For a complete explanation of conditions, restrictions and limitations associated with fractional shares, see our <Link to="/loremips" className="link-green-only" onClick={() => (closeModal())}>Customer Agreement</Link> related to fractional shares.</span>
         </div>
       </div>
     </div>
