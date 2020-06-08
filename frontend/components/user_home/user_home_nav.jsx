@@ -118,14 +118,14 @@ class UserHomeNav extends React.Component {
             <span className="messages-dropdown-label">
               Messages
             </span>
-            <button type="button">
+            <button type="button" className="home-msg-button">
               <div className="home-msg">
                 <img src={window.home_msg} draggable="false" className="home-msg-img"/>
-                <h6>Announcements</h6>
+                <h4>Announcements</h4>
                 <span className="home-msg-text"><i className="fas fa-hand-point-right"></i> Hi there! Welcome to RobinsJacket, let's get you started</span>
               </div>
             </button>
-            <button type="button">
+            <button type="button" className="home-view-all">
               View All Messages
             </button>
           </div>

@@ -184,7 +184,7 @@
 }
 
 .messages-dropdown-label {
-  height: 32px;
+  height: 30px;
   padding-left: 30px;
   /* width: 100%; */
   color: white;
@@ -192,34 +192,52 @@
   padding-top: 16px;
 }
 
-.home-msg {
-  width: 100%;
-  display: grid;
-
-}
-
 .messages-dropdown > button {
   padding-left: 30px;
-  text-align: left;
+  /* text-align: left; */
   border: none;
   background-color: transparent;
-  height: 48px;
   width: 100%;
   color: white;
-}
-
-.messages-dropdown > button:hover {
-  background-color: rgb(240, 121, 88);
 }
 
 .messages-dropdown > button:focus {
   outline: none;
 }
 
+/* .messages-drop */
 
+/* .messages-dropdown > button:hover { */
+.messages-dropdown button:first-of-type:hover{
+  background-color: rgb(240, 121, 88);
+}
+
+.home-msg {
+  width: 100%;
+  display: flex;
+  height: 60px;
+
+}
+
+.home-view-all {
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  /* border-top: 1px solid white; */
+  /* justify-content: center; */
+  margin: auto;
+}
+
+.home-view-all:hover {
+  color: rgb(240, 121, 88);
+  /* background-color: red; */
+}
 
 .home-msg-img {
-  box-sizing: border-box;
-  width: 40%;
-  height: 40%;
+  /* box-sizing: border-box; */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* display: none; */
 }
