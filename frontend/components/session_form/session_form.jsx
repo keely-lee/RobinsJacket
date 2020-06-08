@@ -48,10 +48,12 @@ class SessionForm extends React.Component {
   }
 
   displayErrors(){
+    let session = this.props.formType;
+
     return (
-      <ul className="login-error-list">
+      <ul className={`${session}-error-list`}>
         { this.props.errors.map ((error, idx) => {
-          return <li key={`error #${idx}`}>{error}</li>
+          return <li key={`error-${idx}`} id={`error-${idx}`}>{error}</li>
         }) }
       </ul>
     )
@@ -167,21 +169,23 @@ class SessionForm extends React.Component {
                 <button className={`button-${baseColor}`} onClick={this.demoUser()}>Demo User</button>
               </div>  
 
+              <div className={`${session}-errors-div`}>
+                {this.props.errors ? this.displayErrors() : ""} 
+              </div>
               <div className="other-link-div">
                   <span className="other-link-text">{otherLinkText}</span>
                   <Link to={`/${otherLink}`} className={`link-${baseColor}-only other-link`}>{otherLinkLinkText}</Link>
-                  { this.props.errors ? this.displayErrors() : "" } 
                 </div>
             </div> 
           </div> 
 
           <div className={`${session}-img`}>
             { this.props.formType === "login" ? (
-            <img src="https://cdn.pixabay.com/photo/2017/02/22/18/00/ribbon-2090118_1280.jpg" draggable="false" className={`${session}-image`}/> 
+            <img src={window.login_page} draggable="false" className={`${session}-image`}/> 
             ) : (
             <div className="right-nav-video">
               <video autoPlay controlsList="nodownload nofullscreen noremoteplayback" loop muted playsInline preload="auto" className={`${session}-video`} width="315" height="175">
-                <source src="https://static.videezy.com/system/resources/previews/000/019/008/original/ICON-VERSION6.mp4" type="video/mp4" ></source>
+                <source src={window.signup_video} type="video/mp4" ></source>
               </video> 
               
               <div className="signup-after-vid">
