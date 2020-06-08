@@ -109,7 +109,7 @@ body {
   border: none;
   background: none;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
@@ -122,4 +122,5 @@ body {
 
 .disclosure-modal > button:hover {
   color: #00C805;
+  cursor: pointer;
 }

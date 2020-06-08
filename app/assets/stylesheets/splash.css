@@ -22,6 +22,35 @@
   z-index: 4;
 }
 
+.dropdown {
+  position: absolute;
+  top: 64px;
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+}
+
+.navbar-dropdown-ul {
+  padding-left: 290px;
+}
+
+.navbar-list {
+  padding-right: 26px;
+}
+
+.navbar-list:hover {
+  color: #00c805;
+  cursor: pointer;
+}
+
+.navbar-cash {
+  padding-right: 13px;
+  border-right: 1px solid black;
+}
+
+.navbar-crypto {
+  color: rgb(240, 128, 156);
+  padding-left: 13px;
+}
+
 .navbar-home {
   display: flex;
   align-items: center;
@@ -180,7 +209,7 @@
   display: flex;
   justify-content: center;
   font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  min-height: 414px;
+  min-height: 348px;
   border-bottom: 1px solid black;
   width: 100%;
   color: black;
@@ -191,7 +220,7 @@
 }
 
 .splash-comp-two {
-  width: 443px;
+  width: 591px;
 }
 
 .splash-comp-two > h2 {
@@ -205,7 +234,7 @@
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 0px;
   margin-bottom: 16px;
   /* line-height: 44px;
   letter-spacing: -0.36px;
@@ -222,7 +251,7 @@
   color: inherit;
   text-align: center;
   line-height: 24px;
-  padding-bottom: 16px;
+  padding-bottom: 42px;
 
     /* margin: 0;
     text-decoration: unset; */
@@ -230,7 +259,7 @@
 
 .splash-3 {
   display: flex;
-  min-height: 605px;
+  height: 560px;
   align-items: center;
   justify-content: flex-end;
   border-bottom: 1px solid black;
@@ -255,8 +284,8 @@
 .splash-comp-three-left {
   display: flex;
   flex-direction: column;
-  width: 827px;
-  padding-left: 60px;
+  /* width: 827px; */
+  padding-left: 120px;
   padding-right: 40px;
   margin: auto;
 }
@@ -294,9 +323,10 @@
 }
 
 .splash-comp-three-spans > [class^="section"] {
-  padding-right: 32px;
+  margin-right: 20px;
   margin-bottom: 40px;
-  width: 180px;
+  width: 253px;
+  padding-right: 33px;
 }
 
 .splash-three-header {
@@ -475,6 +505,12 @@
   text-align: right;
   font-size: 20px;
   font-weight: 50;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .splash-four-right {

@@ -49,7 +49,7 @@ class SplashCompThree extends React.Component{
         </section> 
 
         <div className="splash-comp-three-image">
-          <img src="https://cdn.robinhood.com/assets/robinhood/brand/9bf2eedf2bf4ef27c963df3c01f7d16e-3x.png" draggable="false"/>
+          <img src={window.splash_shapes} draggable="false"/>
 
         {/* {/https://cdn.robinhood.com/assets/robinhood/brand/0fb7985440ef7ab6794b97c64814f049-1x.png)} */}
         </div>
