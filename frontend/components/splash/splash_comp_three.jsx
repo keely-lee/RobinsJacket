@@ -41,7 +41,7 @@ class SplashCompThree extends React.Component{
             <form onClick={this.handleSubmit} className="add-email-form" >
               {/* add on change eventually for email submit */}
               <input type="text" className="add-email-input" placeholder="name@email.com" />
-              <Link className="button-green" to={""}>Get Access Now</Link>
+              <Link className="button-green access-button" to={""}>Get Access Now</Link>
             </form>
           </div>
 
@@ -51,7 +51,7 @@ class SplashCompThree extends React.Component{
         <div className="splash-comp-three-image">
           <img src={window.splash_shapes} draggable="false"/>
 
-        {/* {/https://cdn.robinhood.com/assets/robinhood/brand/0fb7985440ef7ab6794b97c64814f049-1x.png)} */}
+          {/* {/https://cdn.robinhood.com/assets/robinhood/brand/0fb7985440ef7ab6794b97c64814f049-1x.png)} */}
         </div>
 
       </div>

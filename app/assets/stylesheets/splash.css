@@ -260,7 +260,7 @@
 .splash-3 {
   display: flex;
   height: 560px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: flex-end;
   border-bottom: 1px solid black;
 }
@@ -272,13 +272,15 @@
 
 .splash-comp-three-image {
   display: flex;
+  align-items: center;
+  justify-content: end;
 }
   
 .splash-comp-three-image > img {
-  max-width: 410px;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* deal with image overflow */
+  width: 375px;
+  height: 440px;
+  /* padding-left: 20px;
+  padding-right: 20px; */
 }
 
 .splash-comp-three-left {
@@ -286,8 +288,9 @@
   flex-direction: column;
   /* width: 827px; */
   padding-left: 120px;
-  padding-right: 40px;
-  margin: auto;
+  padding-right: 20px;
+  /* margin: auto; */
+  padding-top: 50px;
 }
 
 .splash-comp-three-left > h2 {
@@ -376,23 +379,27 @@
   margin-right: 12px;
   min-width: 0;
   padding-left: 36px;
-  width: 300px;
+  width: 255px;
   
     /* letter-spacing: -0.1px;
     text-decoration: unset;
     flex-grow: 1; */
 }
 
+.access-button {
+  width: 197px;
+  margin-left: 260px;
+  position: absolute;
+}
+
 .add-email-form:hover {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
-  /* padding-right: -1px; */
-  /* padding-top: -1px; */
   margin-top: -.25px;
   margin-bottom: -.25px;
   margin-left: -1px;
-  margin-right: -1px;
+  /* margin-right: -1px; */
   /* need to fix item shift on hover */
 
   /* outline-color: rgba(229, 151, 0, 255);
@@ -413,10 +420,15 @@
   outline: none;
 }
 
+.add-email-input:hover {
+  margin-left: -1px;
+  padding-right: 3px;
+}
+
 .shift-left {
   display: flex;
   justify-content: left;
-  padding-top: 45px;
+  padding-top: 37px;
 }
 
 .modal-background {
