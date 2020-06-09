@@ -230,10 +230,18 @@
 
 .logo-small {
   /* display: block; */
-  height: 58px;
-  width: 58px;
+  max-height: 48px;
+  max-width: 48px;
+  /* max-height: 90%;
+  max-width: 90%; */
+  object-fit: contain;
   padding-bottom: 20px;
+  margin-left: 5px;
   /* align-self: center; */
+}
+
+.signup-logo:hover {
+  filter: invert(61%) sepia(12%) saturate(6556%) hue-rotate(189deg) brightness(88%) contrast(95%);
 }
 
 .signup-nav-text {
@@ -313,6 +321,10 @@
   margin-top: 30px;
 }
 
+.signup-img {
+  display: flex;
+}
+
 .signup-video {
   /* box-shadow: 2px 2px 20px gray; */
   border-radius: 10px;
@@ -320,24 +332,18 @@
   margin: 20px 20px;
 }
 
-.signup-after-vid > div {
-  display: block;
-  align-self: center;
-  margin: 0;
-}
-
 .signup-after-vid {
   width: 300px;
   margin-top: 20px;
-  /* margin-right: 60; */
+  margin-left: 60;
   font-size: 14px;
   color: lightgray;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   text-align: center;
-  flex-flow: wrap;
+  /* flex-flow: wrap; */
 }
 
 .video-button {
@@ -381,18 +387,11 @@
 }
 
 .right-nav-video {
-  display:flex;
+  display: flex;
   flex-direction: column;
   width: 380px;
+  align-items: center;
 }
-
-
-
-
-
-
-
-
 
 .loremIpsDiv {
   text-align: center;

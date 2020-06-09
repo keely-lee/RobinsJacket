@@ -13,10 +13,17 @@
   background-color: rgb(30, 30, 30);
 }
 
-.home-logo {
+ .home-logo { 
   /* current details from logo small on sessions page */
   margin-left: 50px; 
   padding-bottom: 0;
+  object-fit: contain;
+  /* color: rgb(238, 103, 065); */
+  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg) brightness(96%) contrast(94%);
+}
+
+.home-logo:hover {
+  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg) brightness(114%) contrast(92%);
 }
 
 .home-navbar-right {
@@ -32,6 +39,7 @@
   padding: 2px 6px;
   border: none;
   height: 100%;
+  cursor: pointer;
 }
 
 .home-nav-button:focus {
@@ -55,6 +63,7 @@
   /* border: 1px solid black; */
   text-align: left;
   background-color: rgb(49, 49, 49);
+  /* z-index: 5; */
 }
 
 .account-dropdown-user {
@@ -268,6 +277,7 @@
   border-radius: 6px;
   color: whitesmoke;
   background-color: rgb(49, 49, 49);
+  /* z-index: 2; */
   
 }
 
@@ -307,11 +317,11 @@ td > p {
 
 /*COLUMN DETAILS TEMP CLASS NAMES */
 .col-1 {
-
+  text-align: left;
 }
 
 .col-2 {
-
+  text-align: center;
 }
 
 .col-3 {

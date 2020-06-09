@@ -110,7 +110,7 @@ class SessionForm extends React.Component {
         {this.props.formType === "signup" ? (
           <div className="signup-nav-bar">
             {/* <img src="" draggable="false" className="logo-small" /> */}
-            <Link className="logo-small" to="">TEMP BUTTON</Link>
+            <Link className="logo-small signup-logo" to=""><img src={window.small_logo} className="logo-small signup-logo" draggable="false" /></Link>
             <div className="signup-nav-text">
               <span className="signup-nav-txt-account">Account</span>
               <span className="signup-nav-txt-basic">Basic Info</span>

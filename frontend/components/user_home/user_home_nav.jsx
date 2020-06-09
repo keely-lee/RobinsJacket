@@ -70,7 +70,7 @@ class UserHomeNav extends React.Component {
 
     return (
       <div className="home-navbar-main">
-        <Link className="logo-small home-logo" to="/">TEMP BUTTON</Link>
+        <Link to="/" className="home-logo-link"><img src={window.small_logo} className="logo-small home-logo" draggable="false"/></Link>
 
         <div className="user-search-wrap">
           <i className="fa fa-search" aria-hidden="true"></i>
