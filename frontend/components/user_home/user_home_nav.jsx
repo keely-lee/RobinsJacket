@@ -121,8 +121,10 @@ class UserHomeNav extends React.Component {
             <button type="button" className="home-msg-button">
               <div className="home-msg">
                 <img src={window.home_msg} draggable="false" className="home-msg-img"/>
-                <h4>Announcements</h4>
-                <span className="home-msg-text"><i className="fas fa-hand-point-right"></i> Hi there! Welcome to RobinsJacket, let's get you started</span>
+                <div className="home-msg-text">
+                  <h4>Announcements</h4>
+                  <span><i className="fas fa-hand-point-right"></i> Hi there! Welcome to RobinsJacket, let's get you started</span>
+                </div>
               </div>
             </button>
             <button type="button" className="home-view-all">

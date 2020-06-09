@@ -1,9 +1,5 @@
 
 
-
-
-
-
 /* navbar */
 
 .home-navbar-main {
@@ -23,6 +19,10 @@
   padding-bottom: 0;
 }
 
+.home-navbar-right {
+  height: 100%;
+}
+
 .home-nav-button {
   color: rgb(238, 103, 065);
   /* background-color: rgb(30, 30, 30); */
@@ -31,6 +31,7 @@
   outline: none;
   padding: 2px 6px;
   border: none;
+  height: 100%;
 }
 
 .home-nav-button:focus {
@@ -171,7 +172,7 @@
 }
 
 .messages-dropdown {
-  width: 350px;
+  width: 375px;
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -190,6 +191,7 @@
   color: white;
   margin: 0;
   padding-top: 16px;
+  border-bottom: 1px solid whitesmoke;
 }
 
 .messages-dropdown > button {
@@ -215,8 +217,9 @@
 .home-msg {
   width: 100%;
   display: flex;
-  height: 60px;
-
+  height: 100px;
+  padding-left: 0;
+  margin-left: -15px;
 }
 
 .home-view-all {
@@ -226,7 +229,7 @@
   text-align: center;
   /* border-top: 1px solid white; */
   /* justify-content: center; */
-  margin: auto;
+  margin-left: -12px;
 }
 
 .home-view-all:hover {
@@ -240,4 +243,14 @@
   max-height: 100%;
   object-fit: contain;
   /* display: none; */
+}
+
+.home-msg-text {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.home-msg-text > h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
