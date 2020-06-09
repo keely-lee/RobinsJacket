@@ -1,7 +1,6 @@
 import React from 'react';
 
 class SplashCompTwo extends React.Component {
-  //NEEDS A MODAL for the link!
 
   render(){
     return (

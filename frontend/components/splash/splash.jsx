@@ -6,6 +6,7 @@ import SplashCompTwo from '../splash/splash_comp_two';
 import SplashCompThree from '../splash/splash_comp_three';
 import SplashNav from './splash_nav';
 import SplashCompFour from './splash_comp_four';
+import SplashCompSix from './splash_comp_six';
 
 class Splash extends React.Component {
   constructor(props){
@@ -34,8 +35,11 @@ class Splash extends React.Component {
           />
         </div>
         <div className="splash-4">
-          <SplashCompFour 
-          />
+          <SplashCompFour/>
+        </div>
+        {/* SPLASH COMP FIVE */}
+        <div className="splash-6">
+          <SplashCompSix/>
         </div>
       </div>
     )
