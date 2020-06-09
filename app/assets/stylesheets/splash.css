@@ -568,6 +568,8 @@
 .splash-comp-six-top {
   border-bottom: 1px solid rgb(111, 132, 138);
   height: 490px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .splash-comp-six-top-left {
@@ -624,13 +626,67 @@
   color: rgb(239, 124, 153)
 }
 
-
-
 .splash-comp-six-bottom {
   color: rgb(111, 132, 138);
   font-family: inherit;
   font-size: 15px;
 }
+
+.splash-comp-six-top-right {
+  width: 490px;
+  color: whitesmoke;
+}
+
+.splash-comp-six-top-right-top {
+  height: 256px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} 
+
+.splash-comp-six-top-right-top > h4 {
+  margin: 0;
+  font-size: 40px;
+  height: 54px;
+}
+
+.splash-comp-six-top-right-top > p {
+  margin-top: 16px;
+  margin-bottom: 13px;
+}
+
+
+
+.splash-six-top-link-green-right {
+  text-align: right;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: whitesmoke;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+
+.splash-comp-six-right-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 13px;
+  padding-top: 28px;
+}
+
+.splash-six-top-link-green-right:hover {
+  color: #00C805;
+}
+
 
 /* splash-six-bottom */
 .splash-comp-six-bottom > p {
