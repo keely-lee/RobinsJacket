@@ -14,7 +14,7 @@ class UserHome extends React.Component {
           <UserHomeNav currentUser={this.props.currentUser} logout={this.props.logout}/>
         </nav>
         <aside>
-          {/* <WatchlistComp /> */}
+          <WatchlistComp />
         </aside>
       </div>
     )

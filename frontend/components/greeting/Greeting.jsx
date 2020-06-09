@@ -11,11 +11,9 @@ class Greeting extends React.Component {
     return (
       this.props.currentUser ? (
         <div>
-          <h2>Welcome {this.props.currentUser.fname}!</h2>
-          {/* <button onClick={ () => {this.props.logout()} }>Logout</button> */}
+          {/* <h2>Welcome {this.props.currentUser.fname}!</h2> */}
 
           <UserHomeContainer/>
-          {/* <UserHomeContainer currentUser={this.props.currentUser} logout={this.props.logout}/> */}
         </div>
       ) : (
 

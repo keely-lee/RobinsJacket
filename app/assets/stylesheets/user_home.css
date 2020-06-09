@@ -1,6 +1,6 @@
 
-
-/* navbar */
+/***********************************/
+/* NAVBAR */
 
 .home-navbar-main {
   display: flex;
@@ -207,10 +207,7 @@
   outline: none;
 }
 
-/* .messages-drop */
-
-/* .messages-dropdown > button:hover { */
-.messages-dropdown button:first-of-type:hover{
+.messages-dropdown button:first-of-type:hover {
   background-color: rgb(240, 121, 88);
 }
 
@@ -253,4 +250,76 @@
 .home-msg-text > h4 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+
+/***********************************/
+/*  WATCHLIST COMPONENT  */
+
+.watchlist {
+  position: absolute;
+  right: 210px;
+  top: 94px;
+  width: 225px;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 80vh;
+  border: 1px solid rgb(66, 73, 78);
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: rgb(49, 49, 49);
+  
+}
+
+.watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid rgb(66, 73, 78);
+}
+
+/* td {
+  padding: 0;
+} */
+
+td > p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: inherit;
+  font-size: 13px; 
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.watchlist-header {
+  width: 100%;
+  margin: auto;
+  border-bottom: rgb(66, 73, 78);
+}
+
+.watchlist-header-title {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+}
+
+/*COLUMN DETAILS TEMP CLASS NAMES */
+.col-1 {
+
+}
+
+.col-2 {
+
+}
+
+.col-3 {
+  text-align: right;
+  /* margin: / */
+}
+/*COLUMN DETAILS TEMP CLASS NAMES */
+
+[class*="stock-row-"]:hover {
+  background-color: rgb(31, 33, 36); 
 }

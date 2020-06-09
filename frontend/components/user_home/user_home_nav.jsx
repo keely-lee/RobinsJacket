@@ -11,9 +11,9 @@ class UserHomeNav extends React.Component {
      };
     //will need state for searchbar
 
-    this.handleSearch = this.handleSearch.bind(this);
-    this.renderContact = this.renderContact.bind(this);
-    // this.handleClose = this.handleClose.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
+    // this.renderContact = this.renderContact.bind(this);
+    // this.handleCloseNavs = this.handleCloseNavs.bind(this);
   }
 
   handleDropdown(dropdown){
@@ -37,6 +37,14 @@ class UserHomeNav extends React.Component {
         contact: false,
       })
     } 
+  }
+
+  handleCloseNavs(){
+    this.setState( {
+      accountDropdown: false,
+      messageDropdown: false,
+      contact: false,
+    })
   }
 
   renderContact(){
@@ -67,12 +75,12 @@ class UserHomeNav extends React.Component {
         <div className="user-search-wrap">
           <i className="fa fa-search" aria-hidden="true"></i>
           <input type="text" className="navbar-stock-search" placeholder="Search"
-          onChange={ () => this.handleSearch() }/>
+          onChange={ () => { this.handleSearch(); this.handleCloseNavs() } }/>
         </div>
 
         <div className="home-navbar-right">
-          <button type="button" className="home-nav-button home-nav-portfolio">Portfolio</button>
-          <button type="button" className="home-nav-button home-nav-cash">Cash</button>
+          <button type="button" className="home-nav-button home-nav-portfolio" onClick={ () => this.handleCloseNavs() }>Portfolio</button>
+          <button type="button" className="home-nav-button home-nav-cash" onClick={() => this.handleCloseNavs()}>Cash</button>
           <button type="button" className="home-nav-button home-nav-messages" onClick={ () => this.handleDropdown('messageDropdown') }>Messages</button>
           <button type="button" className="home-nav-button home-nav-account" onClick={ () => this.handleDropdown('accountDropdown') }>Account</button>
         </div>
@@ -112,7 +120,7 @@ class UserHomeNav extends React.Component {
         ) : null }
 
 
-        {/* ACCOUNT DROPDOWN */}
+        {/* MESSAGES DROPDOWN */}
         { this.state.messageDropdown ? (
           <div className="messages-dropdown">
             <span className="messages-dropdown-label">
