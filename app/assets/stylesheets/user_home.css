@@ -334,3 +334,9 @@ td > p {
 [class*="stock-row-"]:hover {
   background-color: rgb(31, 33, 36); 
 }
+
+/* GRAPH */
+.user-home-graph-container {
+  border: 1px solid black;
+  
+}

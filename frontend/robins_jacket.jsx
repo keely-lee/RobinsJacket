@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import configureStore from "./store/store"
-import * as APIUtil from "./util/session_api_util"; //remove
 import Root from "./components/root"; 
+import { receiveStocks, receiveStock } from "./util/stock_api_util"
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -21,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } 
   else { store = configureStore(); }
 
-  window.getState = store.getState; //remove
+  //remove eventually
+  window.getState = store.getState;
+  window.grabStocks = receiveStocks;
+  window.grabStock = receiveStock;
 
   ReactDOM.render(<Root store={store}/>, root)
 })
