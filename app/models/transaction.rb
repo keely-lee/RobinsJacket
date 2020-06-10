@@ -13,4 +13,11 @@
 #  updated_at       :datetime         not null
 #
 class Transaction < ApplicationRecord
+  validates :transaction_date, :transaction_type, :shares, :price, :portfolio_id, :stock_id, :created_at, :updated_at, presence: true
+
+
+  def make_transaction(type)
+    
+  end
+  
 end

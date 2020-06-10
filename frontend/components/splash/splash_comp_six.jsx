@@ -50,7 +50,7 @@ class SplashCompSix extends React.Component {
 
               <section className="splash-comp-six-right-buttons">
                 <button type="button" className="splash-six-top-link-green-right">Check the background of the firm on FINRA’s Broker Check</button>
-                <button type="button" className="splash-six-top-link-green-right">Robinhood Terms &amp; Conditions</button>
+                <button type="button" className="splash-six-top-link-green-right">RobinsJacket Terms &amp; Conditions</button>
                 <button type="button" className="splash-six-top-link-green-right">Disclosure Library</button>
                 <button type="button" className="splash-six-top-link-green-right">Privacy</button>
               </section>
