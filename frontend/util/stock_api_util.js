@@ -3,28 +3,22 @@ export const receiveStocks = (sym) => {
   
   return $.ajax({
     method: "GET",
-
     url: `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=chart&range=1m&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`
   }) 
-};  //USING SANDBOX TOKEN!!!
+};  //USING SANDBOX TOKEN & SANDBOX BASE URL!!!
 
 // export const receiveStocks = () => {
   // return $.ajax({
   // method: "GET",
     // url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,tsla,goog,amzn&types=quote,news,chart&range=1m&last=5&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
-    // url: `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,tsla,goog,amzn&types=quote,news,chart&range=1m&last=5&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
 //   })
 // };
 
 
 export const receiveStock = ticker => {
-  let formatTicker = ticker.toUpperCase();
-
   return $.ajax({
     method: "GET",
-    // url: `/api/stock/${stockId}`,
-    url: `https://sandbox.iexapis.com/stable/stock/${formatTicker}/batch?types=chart&range=1m&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
-    // url: `https://sandbox.iexapis.com/stable/stock/${formatTicker}/quote?token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`
+    url: `https://sandbox.iexapis.com/stable/stock/${ticker}/batch?types=quote,chart&range=1m&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
   })
 };
 
