@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :email, :password_digest, :session_token, uniqueness: true, presence: true
   validates :password, length: {minimum: 8, allow_nil: true}
   validates :fname, :lname, :funds_available, presence: true
-  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   after_initialize :ensure_session_token, :funds
 
 
@@ -28,7 +28,6 @@ class User < ApplicationRecord
   has_one :watchlist,
   class_name: :Watchlist#,
  # dependent: :destroy
-
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(email: username)
@@ -64,3 +63,9 @@ class User < ApplicationRecord
     self.funds_available ||= 0.0
   end
 end
+
+#errors
+def name 
+
+end
+

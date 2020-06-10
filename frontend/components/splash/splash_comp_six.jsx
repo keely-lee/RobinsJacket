@@ -40,11 +40,10 @@ class SplashCompSix extends React.Component {
                 <h4>RobinSnacks</h4>
                 <p>The 3-minute newsletter with fresh takes on the financial news you need to start your day.</p>
 
-                {/* CHANGE THESE DETAILS */}
-                <form onClick={this.handleSubmit} className="add-email-form" >
+                <form onClick={this.handleSubmit} className="add-email-form-dark" >
                   {/* add on change eventually for email submit */}
                   <input type="text" className="add-email-input" placeholder="name@email.com" />
-                  <Link className="button-green access-button" to={""}>Get Access Now</Link>
+                  <Link className="button-green access-button" to={""}>Subscribe</Link>
                 </form>
               </section>
 
