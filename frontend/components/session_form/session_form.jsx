@@ -11,26 +11,24 @@ class SessionForm extends React.Component {
       password: "",
       fname: "",
       lname: "",
-      funds_available: ""
+      funds_available: "",
+      displayHidden: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.displayErrors = this.displayErrors.bind(this);
-    this.displayHidden = this.displayHidden.bind(this); //may need to consider compDidMount!
-    // this.demoUser = this.demoUser.bind(this);
   };
 
   componentWillUnmount(){
     this.props.clearErrors();
+    
   }
-  //clearErrors action creator
-  //component will unmount to clear errors
 
   handleSubmit(e){
     e.preventDefault();
     const user = Object.assign({}, this.state)
-    this.props.processForm(user)
-      // .then(() => {this.props.history.push("/")}) //quickfix
+    if (this.props.formType === "signup" && user.email === "hiringmanager@gmail.com") this.props.demoUser(user)
+    else this.props.processForm(user)
   }
 
   update(field){
@@ -40,8 +38,6 @@ class SessionForm extends React.Component {
   }
 
   demoUser(e) {
-    // if (formType === 'signup') this.props.destroyDemo(); NEED TO CREATE THIS FUNCTION OR ELSE DEMO DOES NOT WORK ON SIGN UP!!
-
     const user = { email: "hiringmanager@gmail.com", password: "password4", funds_available: 99999999, fname: "Keely", lname: "Lee" }
 
     return () => {
@@ -49,8 +45,9 @@ class SessionForm extends React.Component {
     }
   }
 
-  displayHidden(e){
-    e.preventDefault();
+  displayHidden(){
+    console.log("DISPLAYING HIDDEN")
+    this.setState({displayHidden: true})
   }
 
   displayErrors(){
@@ -197,16 +194,16 @@ class SessionForm extends React.Component {
               <div className="signup-after-vid">
                 <p className="video-text">We’ve cut the fat that makes other brokerages costly, like manual account management and hundreds of storefront locations, so we can offer zero commission trading.</p>
 
-                <button className="video-button link-sblue-only" type="button" onClick={() => { this.displayHidden }}>View commission disclosures</button>
+                <button className="video-button link-sblue-only" type="button" onClick={() => {console.log("CLICK"); this.displayHidden()}}>View commission disclosures</button>
 
-                <p className="video-text-hidden">commission-free trading refers to $0 commissions for RobinsJacket Inc self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or the web. Relevant SEC <br/> &amp; FINRA fees may apply. Please <br/> see our <span className="link-sblue-only">Fee Schedule.</span></p>
+                { this.state.displayHidden ? (
+                  <p className="video-text-hidden">commission-free trading refers to $0 commissions for RobinsJacket Inc self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or the web. Relevant SEC <br/> &amp; FINRA fees may apply. Please <br/> see our <span className="link-sblue-only">Fee Schedule.</span></p>
+                ) : null }
               </div>
             </div>
             ) }
           </div>
             
-             {/* { document.getElementsByClassName("video-text-hidden")} */}
-
           {/* </div> div wrap */}
           {/* shared between signup/login ends here */}
         </form>

@@ -14,7 +14,7 @@ class Api::TransactionsController < ApplicationController
     if @transaction
       render "/api/transactions/show"
     else
-      render json: @transaction.errors.full_messages, status: 422
+      render json: @transaction.errors.full_messages, status: 404
     end
   end
 

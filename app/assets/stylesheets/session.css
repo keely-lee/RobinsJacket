@@ -197,6 +197,7 @@
 .link-sblue-only {
   color: rgb(77, 143, 220);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .session-signup-buttons {
@@ -352,13 +353,11 @@
 }
 
 .video-button:focus {
-  color: red;
   outline: none;
 }
 
-.video-text-hidden {
-  display: none;
-}
+/* .video-text-hidden {
+} */
 
 .video-text, .video-button {
   position: relative;
