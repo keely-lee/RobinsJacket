@@ -394,6 +394,14 @@ td > p {
 /***************************************/
 /* NEWS */
 
+.user-home-news-container > h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 26;
+  color: whitesmoke;
+  width: 680px;
+  margin-left: 205px;
+}
+
 .user-news-div {
   height: 156px;
   border-top: 1px solid rgb(66, 73, 78);

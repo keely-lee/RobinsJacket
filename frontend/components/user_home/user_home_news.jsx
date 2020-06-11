@@ -16,7 +16,7 @@ class UserHomeNews extends React.Component {
       return (
         articles.map((article, idx) => (
           <div className="user-news-div" key={`div1-${idx}`}>
-            <a href={article.url} className={`news-img-${idx}`} key={`img-${idx}`}>
+            <a href={article.url} className={`news-a-${idx}`} key={`a-${idx}`}>
               <div className="user-inner-news-div" key={`div2-${idx}`}>
                 <section className="user-news-left" key={`sec1-${idx}`}>
                   <h6 className={`source-name-${idx}`} key={`name-${idx}`}>{article.source.name}</h6>
@@ -38,6 +38,7 @@ class UserHomeNews extends React.Component {
   render(){
     return (
       <div className="user-home-news-container">
+        <h1>News</h1>
         {this.mapNews()}
       </div>
     )
