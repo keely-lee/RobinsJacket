@@ -32,7 +32,7 @@ class UserHomeGraph extends React.Component {
             </linearGradient>
           </defs>
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <Tooltip/>
+          <Tooltip className="tooltip"/>
 
           <XAxis dataKey="date" tick={{ fill: 'white' }}/>
           <YAxis type="number" domain={['dataMin-5', 'dataMax+5']} tick={{ fill: 'white' }}/>
@@ -47,7 +47,7 @@ class UserHomeGraph extends React.Component {
   }
 
   render(){
-    let symbol;
+    let symbol = "";
     let change = "pos";
     let diff = 0;
     if (Object.values(this.props.stocks).length) {
@@ -56,7 +56,6 @@ class UserHomeGraph extends React.Component {
         symbol = "+";
         change = "pos"
       } else {
-        symbol = "-"
         change = "neg"
       }
     }
@@ -66,10 +65,10 @@ class UserHomeGraph extends React.Component {
         <h2>Welcome to RobinsJacket!</h2>
         {(Object.values(this.props.stocks).length) ? (
         <div className="user-home-graph-wrapper">
-          <h6>{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</h6>
-          <span className="current-price">{this.props.stocks.quote.iexRealtimePrice}</span>
+          <span className="company-name">{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</span>
+          <span className="current-price">${this.props.stocks.quote.iexRealtimePrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
-          {this.mapCharts()}
+            <div className="graph-div">{this.mapCharts()}</div>
         </div>
         ) : null }
       </div>

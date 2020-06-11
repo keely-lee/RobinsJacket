@@ -354,9 +354,38 @@ td > p {
   margin-left: 205px;
   background-color: transparent;
   color: whitesmoke;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .user-home-graph-container > h2 {
   margin-top: 0;
+  margin-bottom: 10px;
   font-size: 32px;
+  font-weight: 700;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.company-name {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  padding-right: 8px;
+  font-weight: 500;
+}
+
+.current-price {
+  font-family: inherit;
+  font-size: 18px;
+  padding-right: 6px;
+}
+
+.pos-prev-close {
+  color: #00C805;
+}
+
+.neg-prev-close {
+  color: red;
+}
+
+.graph-div {
+  padding-top: 10px;
 }
