@@ -8,12 +8,13 @@ class UserHomeNav extends React.Component {
       accountDropdown: false,
       messageDropdown: false,
       contact: false,
+      ticker: "MSFT",
      };
-    //will need state for searchbar
 
+    this.handleGraph = this.handleGraph.bind(this);
+    this.handleCloseNavs = this.handleCloseNavs.bind(this);
     // this.handleSearch = this.handleSearch.bind(this);
     // this.renderContact = this.renderContact.bind(this);
-    // this.handleCloseNavs = this.handleCloseNavs.bind(this);
   }
 
   handleDropdown(dropdown){
@@ -52,19 +53,28 @@ class UserHomeNav extends React.Component {
     else this.setState({contact: false})
   }
 
-  // handleClose(dropdown){
-  //   this.setState({
-  //     accountDropdown: false,
-  //     messageDropdown: false,
-  //     contact: false,
-
-  //     [dropdown]: true,
-  //   })
+  //handleSearch dropdown stocks
+  // handleSearch(){
   // }
 
-  //handleSearch dropdown stocks
-  handleSearch(){
+  componentDidMount(){
+    this.props.getStock(this.state.ticker)
   }
+
+  updateField(field){
+    // this.handleCloseNavs();
+
+    return e => {
+      this.setState({ ticker: e.currentTarget.value })
+    }
+  }
+
+  handleGraph(e){
+    e.preventDefault();
+    this.props.getStock(this.state.ticker);
+  }
+
+
 
   render(){
 
@@ -73,9 +83,13 @@ class UserHomeNav extends React.Component {
         <Link to="/" className="home-logo-link"><img src={window.small_logo} className="logo-small home-logo" draggable="false"/></Link>
 
         <div className="user-search-wrap">
-          <i className="fa fa-search" aria-hidden="true"></i>
-          <input type="text" className="navbar-stock-search" placeholder="Search"
-          onChange={ () => { this.handleSearch(); this.handleCloseNavs() } }/>
+          <form onSubmit={ this.handleGraph }>
+            <i className="fa fa-search" aria-hidden="true"></i>
+            {/* <input type="text" className="navbar-stock-search" placeholder="Search" */}
+            <input type="text" className="navbar-stock-search" placeholder="Enter Ticker"
+            onChange={ this.updateField() }/>
+            <button className="home-nav-submit-button">Search</button>
+          </form>
         </div>
 
         <div className="home-navbar-right">
@@ -140,9 +154,6 @@ class UserHomeNav extends React.Component {
             </button>
           </div>
         ) : null }
-
-
-
       </div>
     )
   }

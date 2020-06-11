@@ -10,15 +10,15 @@ class UserHome extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="user-home-main">
         <nav>
-          {/* <UserHomeNav currentUser={this.props.currentUser} logout={this.props.logout}/> */}
+          <UserHomeNav currentUser={this.props.currentUser} logout={this.props.logout} getStock={this.props.getStock}/>
         </nav>
         <section>
           <UserHomeGraph stocks={this.props.stocks} getStock={this.props.getStock}/>
         </section>
         <aside>
-          <WatchlistComp />
+          <WatchlistComp/>
         </aside>
       </div>
     )

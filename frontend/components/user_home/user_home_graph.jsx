@@ -9,64 +9,69 @@ class UserHomeGraph extends React.Component {
 
   mapCharts(){
     if(Object.values(this.props.stocks).length){
-      // const data = this.props.stocks.chart.map( (day) => {
-      //     <div>
-      //       <li>{day.date}</li>
-      //       <li>{day.open}</li>
-      //       <li>{day.high}</li>
-      //       <li>{day.low}</li>
-      //       <li>{day.close}</li>
-      //     </div>
-      // }) 
-      
       const data = this.props.stocks.chart;
+
       return (
-      // <AreaChart width={730} height={250} data={data}>
-      //   <XAxis dataKey="date"/>
-      //   <YAxis/>
-      //   <Area type='monotone' dataKey='close' stroke='#8884d8' fill='#8884d8' />
-      //     <Area type='monotone' dataKey='open' stroke='#8884d8' fill='#387908' />
-      // </AreaChart>
-
         <AreaChart width={675} height={300} data={data}>
-
           <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            <linearGradient id="colorOpen" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#ff9a7e" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ff9a7e" stopOpacity={0} />
             </linearGradient>
-            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+            <linearGradient id="colorHigh" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#9adaf7" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#9adaf7" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorLow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#ee6741" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ee6741" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorClose" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#64bfe8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#64bfe8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" />
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <Tooltip/>
 
-          <XAxis dataKey="date"/>
-          <YAxis/>
+          <XAxis dataKey="date" tick={{ fill: 'white' }}/>
+          <YAxis type="number" domain={['dataMin-5', 'dataMax+5']} tick={{ fill: 'white' }}/>
 
-          <Area type="monotone" dataKey="open" stroke="#8884d8" fillOpacity={1} fill="url(#colorUV)"/>
-          <Area type="monotone" dataKey="high" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
+          <Area type="monotone" dataKey="open" stroke="#ff9a7e" fillOpacity={1} fill="url(#colorOpen)"/>
+          <Area type="monotone" dataKey="high" stroke="#9adaf7" fillOpacity={1} fill="url(#colorHigh)"/>
+          <Area type="monotone" dataKey="low" stroke="#ee6741" fillOpacity={1} fill="url(#colorLow)"/>
+          <Area type="monotone" dataKey="close" stroke="#64bfe8" fillOpacity={1} fill="url(#colorClose)"/>
         </AreaChart>
-      
       )
-
-      
     }
   }
 
-
-
   render(){
-    // let TEST = this.props.getStock("AAPL");
-    // let TESTTWO = TEST["chart"]
+    let symbol;
+    let change = "pos";
+    let diff = 0;
+    if (Object.values(this.props.stocks).length) {
+      diff = (this.props.stocks.quote.iexRealtimePrice - this.props.stocks.quote.previousClose).toFixed(2);
+      if (diff > 0) {
+        symbol = "+";
+        change = "pos"
+      } else {
+        symbol = "-"
+        change = "neg"
+      }
+    }
+
     return (
       <div className="user-home-graph-container">
-        <button type="button" onClick={() => this.props.getStock("AAPL")}>GRAB STOCK</button>
-
-        {this.mapCharts()}
-
+        <h2>Welcome to RobinsJacket!</h2>
+        {(Object.values(this.props.stocks).length) ? (
+        <div className="user-home-graph-wrapper">
+          <h6>{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</h6>
+          <span className="current-price">{this.props.stocks.quote.iexRealtimePrice}</span>
+          <span className={`${change}-prev-close`}>{symbol}{diff}</span>
+          {this.mapCharts()}
+        </div>
+        ) : null }
       </div>
     )
   }

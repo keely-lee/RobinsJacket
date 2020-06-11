@@ -1,3 +1,7 @@
+.user-home-main {
+  background-color: rgb(30, 30, 30);
+}
+
 
 /***********************************/
 /* NAVBAR */
@@ -147,6 +151,12 @@
   border: 1px solid rgb(47, 47, 47);
   display: flex;
   color: lightgray;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+}
+
+.user-search-wrap > form {
   display: flex;
   align-items: center;
 }
@@ -335,8 +345,18 @@ td > p {
   background-color: rgb(31, 33, 36); 
 }
 
+/******************************/
 /* GRAPH */
 .user-home-graph-container {
-  border: 1px solid black;
-  
+  padding-top: 110px;
+  /* border: 1px solid black; */
+  width: 680px;
+  margin-left: 205px;
+  background-color: transparent;
+  color: whitesmoke;
+}
+
+.user-home-graph-container > h2 {
+  margin-top: 0;
+  font-size: 32px;
 }

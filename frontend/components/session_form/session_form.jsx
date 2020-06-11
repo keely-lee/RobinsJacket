@@ -46,7 +46,6 @@ class SessionForm extends React.Component {
   }
 
   displayHidden(){
-    console.log("DISPLAYING HIDDEN")
     this.setState({displayHidden: true})
   }
 
