@@ -24,8 +24,6 @@ const App = () => {
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <Route exact path="/loremips" component={LoremIpsum} />
 
-        <Protected Route path="" />
-
       </Switch>
     </div>
   )

@@ -8,7 +8,7 @@ class UserHomeNav extends React.Component {
       accountDropdown: false,
       messageDropdown: false,
       contact: false,
-      ticker: "MSFT",
+      ticker: "NDAQ",
      };
 
     this.handleGraph = this.handleGraph.bind(this);
@@ -58,7 +58,8 @@ class UserHomeNav extends React.Component {
   // }
 
   componentDidMount(){
-    this.props.getStock(this.state.ticker)
+    // this.props.getStocks();
+    this.props.getStock(this.state.ticker);
   }
 
   updateField(field){
@@ -73,7 +74,6 @@ class UserHomeNav extends React.Component {
     e.preventDefault();
     this.props.getStock(this.state.ticker);
   }
-
 
 
   render(){

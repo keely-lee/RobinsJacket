@@ -6,11 +6,10 @@ const StocksReducer = (oldState = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_STOCKS:
-      // newState = Object.assign({}, oldState, action.stocks);
+      newState = Object.assign({}, oldState, action.stocks);
       return newState;
     case RECEIVE_STOCK:
-      let fullState = action.stock;
-      newState = fullState;
+      let newState = action.stock;
       return newState;
     default:
       return oldState;

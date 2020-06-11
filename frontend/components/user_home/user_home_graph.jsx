@@ -34,8 +34,8 @@ class UserHomeGraph extends React.Component {
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <Tooltip className="tooltip"/>
 
-          <XAxis dataKey="date" tick={{ fill: 'white' }}/>
-          <YAxis type="number" domain={['dataMin-5', 'dataMax+5']} tick={{ fill: 'white' }}/>
+          <XAxis dataKey="date" tick={{ fill: 'white', fontSize: 12 }}/>
+          <YAxis type="number" domain={['dataMin-5', 'dataMax+5']} tick={{ fill: 'white', fontSize: 12 }}/>
 
           <Area type="monotone" dataKey="open" stroke="#ff9a7e" fillOpacity={1} fill="url(#colorOpen)"/>
           <Area type="monotone" dataKey="high" stroke="#9adaf7" fillOpacity={1} fill="url(#colorHigh)"/>
@@ -68,7 +68,10 @@ class UserHomeGraph extends React.Component {
           <span className="company-name">{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</span>
           <span className="current-price">${this.props.stocks.quote.iexRealtimePrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
-            <div className="graph-div">{this.mapCharts()}</div>
+
+          <div className="graph-div">
+            {this.mapCharts()}
+          </div>
         </div>
         ) : null }
       </div>
