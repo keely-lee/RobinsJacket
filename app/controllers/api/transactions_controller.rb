@@ -24,6 +24,7 @@ class Api::TransactionsController < ApplicationController
       # render "/api/transactions/show"
     else
       render json: @transaction.errors.full_messages, status: 400
+    end
   end
 
 
