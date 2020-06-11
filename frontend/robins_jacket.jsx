@@ -22,13 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
   } 
   else { store = configureStore(); }
 
-  //remove eventually
-  window.getState = store.getState;
-  window.grabStocks = receiveStocks;
-  window.grabStock = receiveStock;
-  window.grabNews = receiveNews;
-  // receiveNews();
-  // console.log(store.getState())
-
   ReactDOM.render(<Root store={store}/>, root)
 })
