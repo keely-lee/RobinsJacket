@@ -17,7 +17,7 @@ class UserHome extends React.Component {
 
     return (
       <div className="user-home-main">
-        {/* <nav>
+        <nav>
           <UserHomeNav 
             currentUser={currentUser} 
             logout={this.props.logout} 
@@ -27,7 +27,7 @@ class UserHome extends React.Component {
           <UserHomeGraph 
             stocks={stocks} 
             getStock={getStock}/>
-        </section> */}
+        </section>
         <section>
           <UserHomeNews 
             news={this.props.news} 

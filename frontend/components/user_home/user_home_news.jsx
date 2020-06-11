@@ -15,18 +15,20 @@ class UserHomeNews extends React.Component {
 
       return (
         articles.map((article, idx) => (
-          <div className="user-news-div">
-            <h6 key={`source-name-${idx}`}>{article.source.name}</h6>
-            <a href={article.url}>...</a>
-            <h6 key={`news-title-${idx}`}>{article.title}</h6>
-            <span key={`news-des-${idx}`}>{article.description}</span>
-            <img src={article.urlToImage} key={`news-pic-${idx}`}draggable="false"/>
-            
-            {/* // article.source.name
-            // article.title,
-            // article.description
-            // article.url
-            // article.urlToImage */}
+          <div className="user-news-div" key={`div1-${idx}`}>
+            <a href={article.url} className={`news-img-${idx}`} key={`img-${idx}`}>
+              <div className="user-inner-news-div" key={`div2-${idx}`}>
+                <section className="user-news-left" key={`sec1-${idx}`}>
+                  <h6 className={`source-name-${idx}`} key={`name-${idx}`}>{article.source.name}</h6>
+                  <h6 className={`news-title-${idx}`} key={`title-${idx}`}>{article.title}</h6>
+                  <span className={`news-des-${idx}`} key={`des-${idx}`}>{article.description}</span>
+                </section>
+                <section className="user-news-right" key={`sec2-${idx}`}>
+                  {/* <a href={article.url} className={`news-img-${idx}`} key={`img-${idx}`}>...</a> */}
+                  <img src={article.urlToImage} className={`news-pic-${idx}`} key={`src-${idx}`} draggable="false"/>
+                </section>
+              </div>
+            </a>
           </div>
         ))
       )
