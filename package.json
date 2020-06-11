@@ -26,7 +26,7 @@
   "scripts": {
     "webpack": "webpack --watch --mode=development",
     "postinstall": "webpack",
-    "start": "robins_jacket.jsx"
+    "start": "bundle.js"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
