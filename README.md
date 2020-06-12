@@ -6,7 +6,7 @@ RobinsJacket is a single page app clone of Robinhood Markets. On home, the user 
 
 When a user is signed in, they are greeted with a stock graph and trending news. The graph pulls live market data defaulted to a three month period (obtained by <a href="https://iexcloud.io/">IEX Cloud</a> )
 
-![](./app/assets/images/RJ_Graph2.gif)
+![](./app/assets/images/RJ_Graph.gif)
 
 
 Hurdles:
