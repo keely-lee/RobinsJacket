@@ -7,14 +7,6 @@ export const receiveStocks = (sym) => {
   }) 
 };  //USING SANDBOX TOKEN & SANDBOX BASE URL!!!
 
-// export const receiveStocks = () => {
-  // return $.ajax({
-  // method: "GET",
-    // url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,tsla,goog,amzn&types=quote,news,chart&range=1m&last=5&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
-//   })
-// };
-
-
 export const receiveStock = ticker => {
   return $.ajax({
     method: "GET",

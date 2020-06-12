@@ -14,7 +14,6 @@ class UserHomeNav extends React.Component {
     this.handleGraph = this.handleGraph.bind(this);
     this.handleCloseNavs = this.handleCloseNavs.bind(this);
     // this.handleSearch = this.handleSearch.bind(this);
-    // this.renderContact = this.renderContact.bind(this);
   }
 
   handleDropdown(dropdown){
