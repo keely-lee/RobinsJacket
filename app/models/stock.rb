@@ -8,4 +8,5 @@
 #
 class Stock < ApplicationRecord
   validates :ticker, :company_name, presence: true
+
 end

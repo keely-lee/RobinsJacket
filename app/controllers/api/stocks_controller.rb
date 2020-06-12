@@ -1,7 +1,17 @@
 class Api::StocksController < ApplicationController 
-  def index
-    @stocks = Stock.all
-    render :index
+
+  # def index
+  #   @stocks = Stock.all
+  #   render :index
+  # end
+
+  def create
+    @stock = Stock.new(stock_params)
+    if @stock.save
+      render json: @stock
+    else
+      @stock.errors.full_messages, status: 422
+    end
   end
 
   def show
@@ -13,4 +23,14 @@ class Api::StocksController < ApplicationController
     end
   end
 
+  def destroy
+    @stock = Stock.find_by(ticker: params[:ticker])
+    @stock.destroy
+    render json: @stock
+  end
+
+  protected
+  def stock_params
+    params.require(:stock).permit(:ticker, :company_name)
+  end
 end

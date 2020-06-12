@@ -13,3 +13,9 @@ carnegie = User.create!(email: "acarnegie@gmail.com", password: "password1",fnam
 gatsby = User.create!(email: "jgatsby@gmail.com", password: "password2",fname: "James", lname: "Gatsby", funds_available: 98750000)
 buffett = User.create!(email: "wbuffett@gmail.com", password: "password3", fname: "Warren", lname: "Buffett", funds_available: 8000000)
 demo = User.create!(email: "hiringmanager@gmail.com", password: "password4", fname: "Keely", lname: "Lee")
+
+
+
+# big_five = Watchlist.create!(user_id: carnegie.id)
+# nyc = Watchlist.create!(user_id: buffett.id)
+# cali = Watchlist.create!(user_id: gatsby.id)
