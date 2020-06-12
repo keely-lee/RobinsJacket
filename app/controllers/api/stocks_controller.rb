@@ -10,7 +10,7 @@ class Api::StocksController < ApplicationController
     if @stock.save
       render json: @stock
     else
-      @stock.errors.full_messages, status: 422
+      render json: @stock.errors.full_messages, status: 422
     end
   end
 
@@ -19,7 +19,7 @@ class Api::StocksController < ApplicationController
     if @stock
       render :show
     else
-      render @stock.errors.full_messages, status: 422
+      render json: @stock.errors.full_messages, status: 422
     end
   end
 
