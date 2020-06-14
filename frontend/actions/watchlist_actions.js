@@ -1,17 +1,16 @@
-import { updateWatchlist } from "../util/watchlist_api_util";
+import { updateUser } from "../util/session_api_util";
 
-export const RECEIVE_WATCHLIST = "RECEIVE_WATCHLIST";
-// export const REMOVE_STOCK = "REMOVE_STOCK";
+export const UPDATE_WATCHLIST = "UPDATE_WATCHLIST";
 
-export const receiveWatchlist = (watchlist) => {
+export const receiveWatchlist = (user) => {
   return {
-    type: RECEIVE_WATCHLIST,
-    watchlist
+    type: UPDATE_WATCHLIST,
+    user
   }
 }
 
 
-export const updateWatchlist = watchlist => dispatch => {
-  return updateWatchlist(watchlist)
-    .then(watchlist => dispatch(receiveWatchlist(watchlist)))
+export const update = user => dispatch => {
+  return updateUser(user)
+    .then(user => dispatch(receiveWatchlist(user)))
 }

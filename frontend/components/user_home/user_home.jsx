@@ -36,7 +36,10 @@ class UserHome extends React.Component {
         </section>
         <aside>
           <WatchlistComp
-            stocks={stocks}/>
+            stocks={stocks}
+            currentUser={currentUser}
+            getStocks={this.props.getStocks}
+            update={this.props.update}/>
         </aside>
       </div>
     )

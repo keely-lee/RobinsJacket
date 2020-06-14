@@ -9,4 +9,10 @@
 class Stock < ApplicationRecord
   validates :ticker, :company_name, presence: true
 
+  has_many :stocks_watchlist,
+  class_name: :StocksWatchlist
+
+  has_many :watchlists,
+  through: :stocks_watchlist
+
 end

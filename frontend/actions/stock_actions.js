@@ -8,7 +8,7 @@ export const receiveStocks = (stocks) => {
     type: RECEIVE_STOCKS,
     stocks
   }
-}
+} //goes to user
 
 export const receiveStock = (stock) => {
   return {
@@ -18,8 +18,8 @@ export const receiveStock = (stock) => {
 }
 
 
-export const displayStocks = () => dispatch => {
-  return StockAPIUtil.receiveStocks()
+export const displayStocks = (stocks) => dispatch => {
+  return StockAPIUtil.receiveStocks(stocks)
     .then(stocks => dispatch(receiveStocks(stocks)))
 }
 

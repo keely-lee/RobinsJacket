@@ -466,7 +466,7 @@ td > p {
 
 [class*="news-pic-"] {
   width: 130px;
-  height: 75px;
+  height: auto;
   border-radius: 4px;
 }
 

@@ -14,8 +14,14 @@ gatsby = User.create!(email: "jgatsby@gmail.com", password: "password2",fname: "
 buffett = User.create!(email: "wbuffett@gmail.com", password: "password3", fname: "Warren", lname: "Buffett", funds_available: 8000000)
 demo = User.create!(email: "hiringmanager@gmail.com", password: "password4", fname: "Keely", lname: "Lee")
 
+aapl = Stock.create!(ticker: "AAPL", company_name: "Apple, Inc.")
+msft = Stock.create!(ticker: "MSFT", company_name: "Microsoft Corp.")
+
+big_five = Watchlist.create!(user_id: carnegie.id)
+
+one = StocksWatchlist.create!(stock_id: aapl.id, watchlist_id: big_five.id)
+two = StocksWatchlist.create!(stock_id: msft.id, watchlist_id: big_five.id)
 
 
-# big_five = Watchlist.create!(user_id: carnegie.id)
 # nyc = Watchlist.create!(user_id: buffett.id)
 # cali = Watchlist.create!(user_id: gatsby.id)

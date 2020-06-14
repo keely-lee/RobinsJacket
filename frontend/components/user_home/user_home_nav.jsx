@@ -19,7 +19,6 @@ class UserHomeNav extends React.Component {
   handleDropdown(dropdown){
     if (this.state[dropdown] === false) {
       this.setState({ [dropdown]: true})
-      console.log(this.state)
     } else {
       this.setState( { [dropdown]: false })
     }

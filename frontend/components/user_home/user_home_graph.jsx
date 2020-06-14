@@ -4,7 +4,6 @@ import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
-    // this.state = this.props.stocks //stocks is an object | chart is an array of k/v pairs
   } 
 
   mapCharts(){
@@ -51,7 +50,7 @@ class UserHomeGraph extends React.Component {
     let change = "pos";
     let diff = 0;
     if (Object.values(this.props.stocks).length) {
-      diff = (this.props.stocks.quote.iexRealtimePrice - this.props.stocks.quote.previousClose).toFixed(2);
+      diff = (this.props.stocks.quote.latestPrice - this.props.stocks.quote.previousClose).toFixed(2);
       if (diff > 0) {
         symbol = "+";
         change = "pos"
@@ -66,7 +65,7 @@ class UserHomeGraph extends React.Component {
         {(Object.values(this.props.stocks).length) ? (
         <div className="user-home-graph-wrapper">
           <span className="company-name">{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</span>
-          <span className="current-price">${this.props.stocks.quote.iexRealtimePrice}</span>
+          <span className="current-price">${this.props.stocks.quote.latestPrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
 
           <div className="graph-div">
