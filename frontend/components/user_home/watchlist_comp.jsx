@@ -1,4 +1,5 @@
 import React from 'react';
+import { LineChart, Line, XAxis, YAxis, ReferenceDot } from 'recharts';
 import { receiveStocks } from '../../util/stock_api_util';
 
 class WatchlistComp extends React.Component{
@@ -24,6 +25,8 @@ class WatchlistComp extends React.Component{
   }
 
   handleGetStocks(){
+    let val;
+
     if (this.props.currentUser.watched_stocks.length && this.state.stocks){
       const watchedStocks = Object.values(this.state.stocks)
       if (watchedStocks){
@@ -35,34 +38,29 @@ class WatchlistComp extends React.Component{
                   <th className="watchlist-header-title">Watchlist</th>
                 </tr>
 
-                          {/* {this.props.currentUser.watched_stocks.map( (stock) => (
-                            <tr className="stock-row-1">
-                              <td className="stock-name col-1">
-                                <p>{stock.ticker}</p>
-                                <p>{stock.company_name}</p>
-                              </td>
-                              <td className="graph col-2">
-                                GRAPH
-                              </td> */}
+                { watchedStocks.map((stock, idx) => {
+                  stock.chart[0].open < stock.chart[6].close ? (val='#00C805') : (val='#ff0000');
+                  return (
+                    <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
+                      <td className={`stock-col-name-${idx}`}>
+                        <p>{stock.quote.symbol}</p>
+                        <p>{stock.quote.companyName}</p>
+                      </td>
 
-                {console.log("TEST")}
-                {console.log(watchedStocks)}
-                { watchedStocks.map((stock, idx) => (
-                  <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
-                    <td className={`stock-col-name-${idx}`}>
-                      <p>{stock.quote.symbol}</p>
-                      <p>{stock.quote.companyName}</p>
-                    </td>
-                    <td className={`stock-col-graph-${idx}`}>
-                      GRAPH
-                    </td>
-            
-                    <td className={`stock-col-fin-${idx}`}>
-                      <p className="currPrice">${stock.quote.latestPrice}</p>
-                      <p className="marketCap">${((stock.quote.marketCap) / 1000000000).toFixed(2)}B</p>
-                    </td>
-                  </tr> 
-                )) }
+                      <td className={`stock-col-graph-${idx}`}>
+                      { <LineChart width={65} height={35} data={stock.chart}>
+                            <YAxis width={0} type="number" domain={['dataMin', 'dataMax']} tick={false} axisLine={false}/>
+                            <Line type='monotone' dataKey='close' stroke={val} strokeWidth={1} dot={false}/>
+                        </LineChart> }
+                      </td>
+              
+                      <td className={`stock-col-fin-${idx}`}>
+                        <p className="currPrice">${stock.quote.latestPrice}</p>
+                        <p className="marketCap">${((stock.quote.marketCap) / 1000000000).toFixed(2)}B</p>
+                      </td>
+                    </tr> 
+                  )
+                }) }
               </tbody>
             </table>
           </div>

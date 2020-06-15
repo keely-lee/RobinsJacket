@@ -56,7 +56,6 @@ class UserHomeNav extends React.Component {
   // }
 
   componentDidMount(){
-    // this.props.getStocks();
     this.props.getStock(this.state.ticker);
   }
 

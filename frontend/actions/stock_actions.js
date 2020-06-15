@@ -8,7 +8,7 @@ export const receiveStocks = (stocks) => {
     type: RECEIVE_STOCKS,
     stocks
   }
-} //goes to user
+} 
 
 export const receiveStock = (stock) => {
   return {

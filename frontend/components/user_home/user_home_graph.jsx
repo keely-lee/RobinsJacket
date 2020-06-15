@@ -1,9 +1,11 @@
 import React from 'react';
-import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient } from 'recharts';
 
 class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
+    this.state = props.currentUser;
+    console.log(this.state)
   } 
 
   mapCharts(){
@@ -45,6 +47,11 @@ class UserHomeGraph extends React.Component {
     }
   }
 
+  updateUser(){
+    // const newWatches = (this.state.watched_stocks).concat([this.props.stocks.quote])
+    // this.setState({ watched_stocks: newWatches})
+  }
+
   render(){
     let symbol = "";
     let change = "pos";
@@ -67,7 +74,7 @@ class UserHomeGraph extends React.Component {
           <span className="company-name">{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</span>
           <span className="current-price">${this.props.stocks.quote.latestPrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
-
+          <button type="button" className="add-watchlist" onClick={this.updateUser}>Add to watchlist</button>
           <div className="graph-div">
             {this.mapCharts()}
           </div>

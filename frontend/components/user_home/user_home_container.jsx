@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UserHome from './user_home';
-import { logout, update } from '../../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { displayNews } from '../../actions/news_actions';
-// import { update } from '../../actions/watchlist_actions';
+import { update } from '../../actions/watchlist_actions';
 
 //usercontainer receive currentUser, f(logout)
 
@@ -16,7 +16,6 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
-  getStocks: (stocks) => dispatch(displayStocks(stocks)),
   getStock: (ticker) => dispatch(displayStock(ticker)),
   getNews: () => dispatch(displayNews()),
   update: (user) => dispatch(update(user)),

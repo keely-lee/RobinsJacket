@@ -11,7 +11,6 @@ class UserHome extends React.Component {
 
   render(){
     const currentUser = this.props.currentUser;
-    // const getStocks = this.props.getStocks;
     const getStock = this.props.getStock;
     const stocks = this.props.stocks
 
@@ -25,8 +24,10 @@ class UserHome extends React.Component {
         </nav>
         <section>
           <UserHomeGraph 
+            currentUser={currentUser}
             stocks={stocks} 
-            getStock={getStock}/>
+            getStock={getStock}
+            update={this.props.update}/>
         </section>
         <section>
           <UserHomeNews 
@@ -36,10 +37,7 @@ class UserHome extends React.Component {
         </section>
         <aside>
           <WatchlistComp
-            stocks={stocks}
-            currentUser={currentUser}
-            getStocks={this.props.getStocks}
-            update={this.props.update}/>
+            currentUser={currentUser}/>
         </aside>
       </div>
     )

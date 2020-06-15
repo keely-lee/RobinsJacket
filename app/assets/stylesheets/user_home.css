@@ -280,9 +280,9 @@
   position: fixed;
   right: 210px;
   top: 94px;
-  width: 225px;
-  padding-left: 25px;
-  padding-right: 25px;
+  width: 250px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 80vh;
   border: 1px solid rgb(66, 73, 78);
   border-radius: 6px;
@@ -326,24 +326,23 @@ td > p {
   text-align: left;
 }
 
-/*COLUMN DETAILS TEMP CLASS NAMES */
-.col-1 {
+[class*='stock-col-name-'] {
   text-align: left;
 }
 
-.col-2 {
-  text-align: center;
+[class*='stock-col-graph-'] {
+  margin: auto;
 }
 
-.col-3 {
+[class*='stock-col-fin'] {
   text-align: right;
   /* margin: / */
 }
-/*COLUMN DETAILS TEMP CLASS NAMES */
 
 [class*="stock-row-"]:hover {
   background-color: rgb(31, 33, 36); 
 }
+
 
 /******************************/
 /* GRAPH */
