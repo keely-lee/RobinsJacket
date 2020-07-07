@@ -5,11 +5,12 @@ class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
     this.state = props.currentUser;
-    console.log(this.state)
   } 
 
   mapCharts(){
     if(Object.values(this.props.stocks).length){
+      console.log(this.props.stocks)
+      console.log("MAPCHARTS")
       const data = this.props.stocks.chart;
 
       return (

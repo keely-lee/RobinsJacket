@@ -29,6 +29,7 @@ class WatchlistComp extends React.Component{
 
     if (this.props.currentUser.watched_stocks.length && this.state.stocks){
       const watchedStocks = Object.values(this.state.stocks)
+      // debugger
       if (watchedStocks){
         return (
           <div className="watchlist">
@@ -39,7 +40,7 @@ class WatchlistComp extends React.Component{
                 </tr>
 
                 { watchedStocks.map((stock, idx) => {
-                  stock.chart[0].open < stock.chart[6].close ? (val='#00C805') : (val='#ff0000');
+                  stock.chart[0].open < stock.chart[stock.chart.length-1].close ? (val='#00C805') : (val='#ff0000');
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
                       <td className={`stock-col-name-${idx}`}>
