@@ -17,4 +17,10 @@ class Watchlist < ApplicationRecord
   has_many :stocks,
   through: :stocks_watchlist
 
+  def add_stock(ticker, name)
+    @stock = Stock.new(ticker, name)
+    @watch = StocksWatchlist.new(stock.id, self.id)
+    return @watch
+  end
+
 end
