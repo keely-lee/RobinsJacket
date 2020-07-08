@@ -5,6 +5,7 @@ class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
     this.state = props.currentUser;
+    this.updateUser = this.updateUser.bind(this)
   } 
 
   mapCharts(){
@@ -51,14 +52,19 @@ class UserHomeGraph extends React.Component {
   updateUser(){
     // const newWatches = (this.state.watched_stocks).concat([this.props.stocks.quote])
     // this.setState({ watched_stocks: newWatches})
+
+    // users || id || email fname funds_available id lname watched_stocks || [ 0: {stock} 1: {stock} ]
   }
+
+
 
   render(){
     let symbol = "";
     let change = "pos";
     let diff = 0;
-    if (Object.values(this.props.stocks).length) {
-      diff = (this.props.stocks.quote.latestPrice - this.props.stocks.quote.previousClose).toFixed(2);
+    let stocks = this.props.stocks;
+    if (Object.values(stocks).length) {
+      diff = (stocks.quote.latestPrice - stocks.quote.previousClose).toFixed(2);
       if (diff > 0) {
         symbol = "+";
         change = "pos"
@@ -70,10 +76,10 @@ class UserHomeGraph extends React.Component {
     return (
       <div className="user-home-graph-container">
         <h2>Welcome to RobinsJacket!</h2>
-        {(Object.values(this.props.stocks).length) ? (
+        {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
-          <span className="company-name">{this.props.stocks.quote.companyName} ({this.props.stocks.quote.symbol})</span>
-          <span className="current-price">${this.props.stocks.quote.latestPrice}</span>
+          <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>
+          <span className="current-price">${stocks.quote.latestPrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
           <button type="button" className="add-watchlist" onClick={this.updateUser}>Add to watchlist</button>
           <div className="graph-div">
