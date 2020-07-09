@@ -35,21 +35,6 @@ export const receiveWatchlist = watchlist => {
 }
 
 export const createWatch = stock => dispatch => {
-  debugger
   return StocksWatchlistUtil.postWatch(stock)
-    .then(user => {
-      debugger
-      dispatch(receiveCurrentUser(user))
-      debugger
-    })
-  //   .then(watchlist => {
-  //     debugger
-  //       dispatch(receiveWatchlist(watchlist))
-  //   })
-  //   .fail(err => {
-  //     debugger
-  //     dispatch(receiveErrors(err.responseJSON))
-  //   })
-
-
+    .then(user => dispatch(receiveCurrentUser(user)))
 }

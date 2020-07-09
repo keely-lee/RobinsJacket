@@ -2,19 +2,18 @@ class Api::StocksWatchlistsController < ApplicationController
   def create
     # debugger
     @stock = Stock.new(stocks_params)
-    debugger
+    # debugger
     unless @stock.save
       render json: @stock.errors.full_messages, status: 404
     end
-    debugger
+    # debugger
 
     @watchlist = current_user.watchlist
     @stock_watch = StocksWatchlist.new(stock_id: @stock.id, watchlist_id: @watchlist.id)
-    debugger
+    # debugger
     if @stock_watch.save
       @user = current_user
       render "/api/users/show"
-      # render json: @watchlist
     else
       render json: @stock_watch.errors.full_messages, status: 422
     end
