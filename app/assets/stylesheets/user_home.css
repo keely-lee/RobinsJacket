@@ -293,12 +293,13 @@
   color: whitesmoke;
   background-color: rgb(49, 49, 49);
   z-index: 2;
-  
+  overflow: auto;
 }
 
 .watchlist-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 48px;
 }
 
 tr {
@@ -319,9 +320,12 @@ td > p {
 }
 
 .watchlist-header {
-  width: 100%;
+  width: 250px;
   margin: auto;
   border-bottom: rgb(66, 73, 78);
+  position: fixed;
+  top: 96px;
+  background-color: rgb(49, 49, 49);
 }
 
 .watchlist-header-title {

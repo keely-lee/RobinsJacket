@@ -4,7 +4,11 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient }
 class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
-    this.state = props.currentUser;
+    // this.state = {
+    //   // currentUser: props.currentUser,
+    //   added: false,
+    // };
+    // this.updateUser = this.updateUser.bind(this);
   } 
 
   mapCharts(){
@@ -48,6 +52,11 @@ class UserHomeGraph extends React.Component {
     }
   }
 
+  // updateUser() {
+  //   let stock = this.props.stocks.quote;
+  //   return this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
+  // }
+
   render(){
     let symbol = "";
     let change = "pos";
@@ -65,6 +74,11 @@ class UserHomeGraph extends React.Component {
 
     return (
       <div className="user-home-graph-container">
+        {/* {(!this.state.added) ?
+          <button type="button" className="add-watchlist" onClick={this.updateUser}>
+            Add to watchlist
+            </button>
+          : null} */}
         <h2>Welcome to RobinsJacket!</h2>
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
@@ -79,8 +93,6 @@ class UserHomeGraph extends React.Component {
       </div>
     )
   }
-
-
 
 }
 

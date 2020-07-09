@@ -19,6 +19,7 @@ class WatchlistComp extends React.Component{
         tickers = tickers + stock.ticker + ","
       ))
 
+      //alphabetize
       receiveStocks(tickers)
         .then(res => this.setState({stocks: res}, () => console.log(this.state) ))
     }

@@ -5,3 +5,11 @@ export const postWatch = stock => {
     data: { stock }
   })
 }
+
+export const deleteWatch = stockid => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/stocks_watchlists/${stockid}`,
+    // data: { stock }
+  })
+}
