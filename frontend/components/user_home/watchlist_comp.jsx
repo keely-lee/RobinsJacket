@@ -9,7 +9,7 @@ class WatchlistComp extends React.Component{
   }
 
   componentDidMount(){
-    this.grabTickers()
+    this.grabTickers();
   }
 
   grabTickers(){

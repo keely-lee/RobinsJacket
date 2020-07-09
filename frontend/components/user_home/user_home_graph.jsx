@@ -5,7 +5,6 @@ class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
     this.state = props.currentUser;
-    this.updateUser = this.updateUser.bind(this)
   } 
 
   mapCharts(){
@@ -49,18 +48,6 @@ class UserHomeGraph extends React.Component {
     }
   }
 
-  updateUser(){
-    // const newWatches = (this.state.watched_stocks).concat([this.props.stocks.quote])
-    // this.setState({ watched_stocks: newWatches})
-
-    // users || id || email fname funds_available id lname watched_stocks || [ 0: {stock} 1: {stock} ]
-
-    let stock = this.props.stocks.quote;
-    return this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
-  }
-
-
-
   render(){
     let symbol = "";
     let change = "pos";
@@ -84,7 +71,6 @@ class UserHomeGraph extends React.Component {
           <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>
           <span className="current-price">${stocks.quote.latestPrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
-          <button type="button" className="add-watchlist" onClick={this.updateUser}>Add to watchlist</button>
           <div className="graph-div">
             {this.mapCharts()}
           </div>

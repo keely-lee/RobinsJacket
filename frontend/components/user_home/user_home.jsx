@@ -7,6 +7,19 @@ import UserHomeNews from './user_home_news';
 class UserHome extends React.Component {
   constructor(props){
     super(props)
+    this.updateUser = this.updateUser.bind(this)
+    console.log(this.props.currentUser)
+  }
+
+  // componentDidUpdate(prevProps){
+  //   if (this.props.currentUser.watchedStocks.length != prevProps.currentUser.watchedStocks.length){
+      
+  //   }
+  // }
+
+  updateUser(){
+    let stock = this.props.stocks.quote;
+    return this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
   }
 
   render(){
@@ -29,7 +42,10 @@ class UserHome extends React.Component {
             getStock={getStock}
             update={this.props.update}
             createWatch={this.props.createWatch}
-            />
+          />
+          <button type="button" className="add-watchlist" onClick={this.updateUser}>
+            Add to watchlist
+          </button>
         </section>
         <section>
           <UserHomeNews 

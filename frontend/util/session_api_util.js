@@ -1,7 +1,6 @@
 //Grab user for new, session login, session logout
 
 export const createUser = user => {
-  debugger
   return $.ajax ({
     method: "POST",
     url: "/api/users",
@@ -10,7 +9,6 @@ export const createUser = user => {
 };
 
 export const loginUser = user => {  
-  debugger
   return $.ajax ({
     method: "POST",
     url: "/api/session",

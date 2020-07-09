@@ -2,6 +2,10 @@
   background-color: rgb(30, 30, 30);
 }
 
+.add-watchlist {
+  position: absolute;
+  top: 110px;
+}
 
 /***********************************/
 /* NAVBAR */
