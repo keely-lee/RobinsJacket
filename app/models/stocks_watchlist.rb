@@ -18,4 +18,10 @@ class StocksWatchlist < ApplicationRecord
   belongs_to :stock,
   class_name: :Stock
 
+  #   def add_stock(ticker, name)
+  #   @stock = Stock.new(ticker, name)
+  #   @watch = StocksWatchlist.new(stock.id, self.id)
+  #   return @watch
+  # end
+
 end

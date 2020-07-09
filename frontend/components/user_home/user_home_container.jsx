@@ -4,7 +4,7 @@ import UserHome from './user_home';
 import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { displayNews } from '../../actions/news_actions';
-import { update } from '../../actions/watchlist_actions';
+import { update, createWatch } from '../../actions/watchlist_actions';
 
 //usercontainer receive currentUser, f(logout)
 
@@ -19,6 +19,7 @@ const mDTP = dispatch => ({
   getStock: (ticker) => dispatch(displayStock(ticker)),
   getNews: () => dispatch(displayNews()),
   update: (user) => dispatch(update(user)),
+  createWatch: (stock) => dispatch(createWatch(stock))
 })
 
 const UserHomeContainer = connect(mSTP, mDTP)(UserHome);

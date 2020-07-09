@@ -27,7 +27,9 @@ class UserHome extends React.Component {
             currentUser={currentUser}
             stocks={stocks} 
             getStock={getStock}
-            update={this.props.update}/>
+            update={this.props.update}
+            createWatch={this.props.createWatch}
+            />
         </section>
         <section>
           <UserHomeNews 

@@ -19,28 +19,28 @@ class Api::WatchlistsController < ApplicationController
       render "/api/watchlists/show"
       #render json: @watchlist
     else
-      render json: watchlist.errors.full_messages, status: 422
+      render json: @watchlist.errors.full_messages, status: 422
     end
   end
 
-  def update
-    @watchlist = current_user.watchlist
+  # def update
+  #   @watchlist = current_user.watchlist
 
-    if @watchlist.save(watchlist_params)
-      render "/api/watchlists/show"
-      #render json: @watchlist
-    else
-      render json: watchlist.errors.full_messages, status: 422
-    end
-  end
+  #   if @watchlist.add_stock(stocks_params[:ticker], stocks_params[:company_name])
+  #     # render "/api/watchlists/show"
+  #     render json: @watchlist
+  #   else
+  #     render json: @watchlist.errors.full_messages, status: 422
+  #   end
+  # end
 
   protected
   # def watchlist_params
   #   params.require(:watchlist).permit(:stocks)
   # end
 
-  def stocks_watchlist_params
-    params.require(:stocks_watchlist).permit(:stock_id, :watchlist_id)
-  end
+  # def stocks_params
+  #   params.require(:stocks).permit(:ticker, :company_name)
+  # end
 
 end

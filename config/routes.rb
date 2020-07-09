@@ -8,10 +8,11 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     
     
-    resources :watchlists, only: [:update, :destroy]
+    resources :watchlists, only: [:show, :update, :destroy]
     resources :transactions, only: [:index, :show, :create]
     resources :stocks, only: [:index, :show]
     resources :portfolios, only: [:index]
+    resources :stocks_watchlists, only: [:create, :destroy]
   end
   
 end
