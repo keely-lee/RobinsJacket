@@ -9,9 +9,10 @@ class Api::StocksWatchlistsController < ApplicationController
     debugger
 
     @watchlist = current_user.watchlist
-    @stock_watch = StocksWatchlist.new(@stock.id, @watchlist.id)
-    # debugger
+    @stock_watch = StocksWatchlist.new(stock_id: @stock.id, watchlist_id: @watchlist.id)
+    debugger
     if @stock_watch.save
+      @user = current_user
       render "/api/users/show"
       # render json: @watchlist
     else

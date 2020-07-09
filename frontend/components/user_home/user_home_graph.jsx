@@ -55,7 +55,7 @@ class UserHomeGraph extends React.Component {
 
     // users || id || email fname funds_available id lname watched_stocks || [ 0: {stock} 1: {stock} ]
 
-    return this.props.createWatch({ticker: "test1", company_name: "test_company1"})
+    return this.props.createWatch({ticker: "test6", company_name: "test_company6"})
   }
 
 
