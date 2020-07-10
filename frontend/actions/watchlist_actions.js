@@ -29,7 +29,7 @@ export const createWatch = stock => dispatch => {
     .then(user => dispatch(receiveCurrentUser(user)))
 }
 
-export const deleteWatch = stock => dispatch => {
-  return StocksWatchlistUtil.deleteWatch(stock)
+export const deleteWatch = stockid => dispatch => {
+  return StocksWatchlistUtil.deleteWatch(stockid)
     .then(user => dispatch(receiveCurrentUser(user)))
 }

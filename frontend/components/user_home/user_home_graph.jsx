@@ -13,8 +13,8 @@ class UserHomeGraph extends React.Component {
 
   mapCharts(){
     if(Object.values(this.props.stocks).length){
-      console.log(this.props.stocks)
-      console.log("MAPCHARTS")
+      // console.log(this.props.stocks)
+      // console.log("MAPCHARTS")
       const data = this.props.stocks.chart;
 
       return (

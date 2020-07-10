@@ -19,6 +19,20 @@ class Api::StocksWatchlistsController < ApplicationController
     end
   end
 
+  def destroy
+    @stock_watch = StocksWatchlist.find(stock_id: params[:id], watchlist_id: current_user.watchlist.id)
+    debugger
+
+    if @stock_watch
+      @stock_watch.destroy
+      @user = current_user
+      render "/api/users/show"
+    else
+      render json: @stock_watch.errors.full_messages, status: 422
+    end
+  end
+
+
   protected
   def stocks_params
     params.require(:stock).permit(:ticker, :company_name)

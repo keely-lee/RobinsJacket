@@ -15,9 +15,12 @@ class WatchlistComp extends React.Component{
   grabTickers(){
     if ( this.props.currentUser.watched_stocks.length ) {
       let tickers = "";
-      this.props.currentUser.watched_stocks.map( (stock) => (
+      this.props.currentUser.watched_stocks.map( (stock) => {
+        console.log(stock)
         tickers = tickers + stock.ticker + ","
-      ))
+      })
+
+      console.log(this.props.currentUser)
 
       //alphabetize
       receiveStocks(tickers)
@@ -25,11 +28,21 @@ class WatchlistComp extends React.Component{
     }
   }
 
+  // deleteWatch(id){
+  //   this
+  // }
+
   handleGetStocks(){
     let val;
 
     if (this.props.currentUser.watched_stocks.length && this.state.stocks){
       const watchedStocks = Object.values(this.state.stocks)
+
+      // console.log(this.props.currentUser)
+      // console.log(watchedStocks)
+      // console.log(this.state.stocks)
+      // console.log("user, watchedStocks, state.Stocks")
+
       // debugger
       if (watchedStocks){
         return (
@@ -47,6 +60,8 @@ class WatchlistComp extends React.Component{
                       <td className={`stock-col-name-${idx}`}>
                         <p>{stock.quote.symbol}</p>
                         <p>{stock.quote.companyName}</p>
+                        {/* <button onClick={() => this.props.deleteWatch(stock.id)}>delete</button> */}
+                        {/* <button onClick={() => console.log(stock)}>delete</button> */}
                       </td>
 
                       <td className={`stock-col-graph-${idx}`}>

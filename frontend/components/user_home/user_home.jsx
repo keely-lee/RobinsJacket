@@ -36,7 +36,6 @@ class UserHome extends React.Component {
     const getStock = this.props.getStock;
     const stocks = this.props.stocks
 
-    console.log("RENDERING IN HOME")
     return (
       <div className="user-home-main">
         <nav>
@@ -67,7 +66,8 @@ class UserHome extends React.Component {
         </section>
         <aside>
           <WatchlistComp
-            currentUser={currentUser}/>
+            currentUser={currentUser}
+            deleteWatch={this.props.deleteWatch}/>
         </aside>
       </div>
     )
