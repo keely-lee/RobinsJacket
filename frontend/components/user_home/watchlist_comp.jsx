@@ -5,7 +5,9 @@ import { receiveStocks } from '../../util/stock_api_util';
 class WatchlistComp extends React.Component{
   constructor(props){
     super(props)
-    this.state = {};
+    this.state = {
+      watches: {}
+    };
   }
 
   componentDidMount(){
@@ -15,12 +17,14 @@ class WatchlistComp extends React.Component{
   grabTickers(){
     if ( this.props.currentUser.watched_stocks.length ) {
       let tickers = "";
+      let watches = {};
       this.props.currentUser.watched_stocks.map( (stock) => {
         console.log(stock)
         tickers = tickers + stock.ticker + ","
+        watches[stock.ticker] = stock.id
       })
-
-      console.log(this.props.currentUser)
+      this.setState({watches})
+      // console.log(this.props.currentUser)
 
       //alphabetize
       receiveStocks(tickers)
@@ -60,8 +64,7 @@ class WatchlistComp extends React.Component{
                       <td className={`stock-col-name-${idx}`}>
                         <p>{stock.quote.symbol}</p>
                         <p>{stock.quote.companyName}</p>
-                        {/* <button onClick={() => this.props.deleteWatch(stock.id)}>delete</button> */}
-                        {/* <button onClick={() => console.log(stock)}>delete</button> */}
+                        <button onClick={() => this.props.deleteWatch(this.state.watches[stock.quote.symbol])}>delete</button>
                       </td>
 
                       <td className={`stock-col-graph-${idx}`}>

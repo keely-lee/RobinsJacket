@@ -20,8 +20,7 @@ class Api::StocksWatchlistsController < ApplicationController
   end
 
   def destroy
-    @stock_watch = StocksWatchlist.find(stock_id: params[:id], watchlist_id: current_user.watchlist.id)
-    debugger
+    @stock_watch = StocksWatchlist.find_by(stock_id: params[:id], watchlist_id: current_user.watchlist.id)
 
     if @stock_watch
       @stock_watch.destroy
