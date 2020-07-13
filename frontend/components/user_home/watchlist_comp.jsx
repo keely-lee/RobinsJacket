@@ -7,7 +7,8 @@ class WatchlistComp extends React.Component{
     super(props)
     this.state = {
       watches: {}
-    };
+    }
+
   }
 
   componentDidMount(){
@@ -24,7 +25,6 @@ class WatchlistComp extends React.Component{
         watches[stock.ticker] = stock.id
       })
       this.setState({watches})
-      // console.log(this.props.currentUser)
 
       //alphabetize
       receiveStocks(tickers)
@@ -32,22 +32,18 @@ class WatchlistComp extends React.Component{
     }
   }
 
-  // deleteWatch(id){
-  //   this
-  // }
+  deleteWatch(id){
+    return (this.props.deleteWatch(id))
+        // .then(this.setState({}))
+  }
 
   handleGetStocks(){
     let val;
-
+    console.log("HANDLE GET STOCKS")
+    console.log(this.state)
     if (this.props.currentUser.watched_stocks.length && this.state.stocks){
       const watchedStocks = Object.values(this.state.stocks)
-
-      // console.log(this.props.currentUser)
-      // console.log(watchedStocks)
-      // console.log(this.state.stocks)
-      // console.log("user, watchedStocks, state.Stocks")
-
-      // debugger
+      console.log(this.state.stocks)
       if (watchedStocks){
         return (
           <div className="watchlist">
@@ -64,7 +60,7 @@ class WatchlistComp extends React.Component{
                       <td className={`stock-col-name-${idx}`}>
                         <p>{stock.quote.symbol}</p>
                         <p>{stock.quote.companyName}</p>
-                        <button onClick={() => this.props.deleteWatch(this.state.watches[stock.quote.symbol])}>delete</button>
+                        <button onClick={() => this.deleteWatch(this.state.watches[stock.quote.symbol])}>delete</button>
                       </td>
 
                       <td className={`stock-col-graph-${idx}`}>
@@ -92,6 +88,7 @@ class WatchlistComp extends React.Component{
   render(){
     return (
       <div>
+        <h1>I AM IN THE WATCHLIST HEADER</h1>
         {this.handleGetStocks()}
       </div>
     )
