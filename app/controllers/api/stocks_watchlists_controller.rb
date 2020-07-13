@@ -1,16 +1,14 @@
 class Api::StocksWatchlistsController < ApplicationController
   def create
-    # debugger
-    @stock = Stock.new(stocks_params)
-    # debugger
+    @stock = Stock.find_by(ticker: stocks_params[:ticker])
+    @stock ||= Stock.new(stocks_params)
+    
     unless @stock.save
       render json: @stock.errors.full_messages, status: 404
     end
-    # debugger
 
     @watchlist = current_user.watchlist
     @stock_watch = StocksWatchlist.new(stock_id: @stock.id, watchlist_id: @watchlist.id)
-    # debugger
     if @stock_watch.save
       @user = current_user
       render "/api/users/show"
