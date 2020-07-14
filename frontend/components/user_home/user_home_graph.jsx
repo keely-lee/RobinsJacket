@@ -4,17 +4,10 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient }
 class UserHomeGraph extends React.Component {
   constructor(props){
     super(props)
-    // this.state = {
-    //   // currentUser: props.currentUser,
-    //   added: false,
-    // };
-    // this.updateUser = this.updateUser.bind(this);
   } 
 
   mapCharts(){
     if(Object.values(this.props.stocks).length){
-      // console.log(this.props.stocks)
-      // console.log("MAPCHARTS")
       const data = this.props.stocks.chart;
 
       return (
@@ -41,7 +34,12 @@ class UserHomeGraph extends React.Component {
           <Tooltip className="tooltip"/>
 
           <XAxis dataKey="date" tick={{ fill: 'white', fontSize: 12 }}/>
-          <YAxis type="number" domain={['dataMin-5', 'dataMax+5']} tick={{ fill: 'white', fontSize: 12 }}/>
+          <YAxis type="number" tick={{ fill: 'white', fontSize: 12 }} 
+            domain={[dataMin => {
+              if (dataMin - 5 < 0) return 0;
+              else return parseFloat(dataMin.toFixed(2)) - 5;
+            }, dataMax => parseFloat(dataMax.toFixed(2)) + 5
+          ]}/>
 
           <Area type="monotone" dataKey="open" stroke="#ff9a7e" fillOpacity={1} fill="url(#colorOpen)"/>
           <Area type="monotone" dataKey="high" stroke="#9adaf7" fillOpacity={1} fill="url(#colorHigh)"/>
@@ -51,11 +49,6 @@ class UserHomeGraph extends React.Component {
       )
     }
   }
-
-  // updateUser() {
-  //   let stock = this.props.stocks.quote;
-  //   return this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
-  // }
 
   render(){
     let symbol = "";
@@ -74,11 +67,6 @@ class UserHomeGraph extends React.Component {
 
     return (
       <div className="user-home-graph-container">
-        {/* {(!this.state.added) ?
-          <button type="button" className="add-watchlist" onClick={this.updateUser}>
-            Add to watchlist
-            </button>
-          : null} */}
         <h2>Welcome to RobinsJacket!</h2>
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">

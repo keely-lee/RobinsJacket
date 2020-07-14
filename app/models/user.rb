@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :fname, :lname, :funds_available, presence: true
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   after_initialize :ensure_session_token, :funds
-  #after_save :watchlist_create
+  after_save :watchlist_create
 
 
   has_one :portfolio,
@@ -69,8 +69,8 @@ class User < ApplicationRecord
     self.funds_available ||= 0.0
   end
   
-#  def watchlist_create
-#    self.watchlist ||= Watchlist.create!(user_id: self.id)
-#  end
+ def watchlist_create
+   self.watchlist ||= Watchlist.create!(user_id: self.id)
+ end
 
 end

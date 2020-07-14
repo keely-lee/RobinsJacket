@@ -22,11 +22,7 @@ class UserHome extends React.Component {
   updateUser(){
     let stock = this.props.stocks.quote;
     this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
-      .then(res => {
-        console.log(res);
-        console.log("I AM RES")
-      })
-      // .catch(() => console.log("NO GO"))
+      .fail((err) => console.log(err.responseJSON[0]))
   }
 
   toggleButton(){
