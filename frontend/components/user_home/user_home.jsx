@@ -7,16 +7,20 @@ import UserHomeNews from './user_home_news';
 class UserHome extends React.Component {
   constructor(props){
     super(props)
-    this.state = { 
-      added: false,
-    }
-
     this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount(){
+
   }
 
   updateUser(){
     let stock = this.props.stocks.quote;
     this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
+      .then(res => {
+        console.log(res);
+        console.log("I AM RES")
+      })
   }
 
   render(){
@@ -39,12 +43,18 @@ class UserHome extends React.Component {
             update={this.props.update}
             createWatch={this.props.createWatch}
           />
-          { //(currentUser.watched_stocks.filter(stock => stock.ticker )) ?
-            <button type="button" className="add-watchlist" onClick={this.updateUser}>
-              Add to watchlist
-            </button> 
-          // : null }
-  }
+          { console.log(stocks.quote) }
+          { console.log("RENDER HOME") }
+          { stocks.quote ? (
+            // (currentUser.watched_stocks.filter(stock => stock.ticker === stocks.quote.symbol)) ? null : (
+            //   <button type="button" className="add-watchlist" onClick={this.updateUser}>
+            //     Add to watchlist
+            //   </button> 
+            currentUser.watched_stocks.filter(stock => console.log(stock.ticker))
+            // console.log(currentUser.watched_stocks) 
+          ) : null }
+          {// )) : null } 
+          }
         </section>
         <section>
           <UserHomeNews 

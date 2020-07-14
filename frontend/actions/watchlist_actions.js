@@ -1,5 +1,5 @@
 import * as StocksWatchlistUtil from "../util/stocks_watchlist_api_util";
-import { receiveCurrentUser, receiveErrors } from "./session_actions";
+import { receiveCurrentUser } from "./session_actions";
 
 // import { updateUser } from "../util/session_api_util";
 // export const update = user => dispatch => {
@@ -7,11 +7,15 @@ import { receiveCurrentUser, receiveErrors } from "./session_actions";
 //     .then(user => dispatch(receiveCurrentUser(user)))
 // }
 
+// export const receiveErrors = err => {
+//   type: RECEIVE
+// }
 
 export const createWatch = stock => dispatch => {
   return StocksWatchlistUtil.postWatch(stock)
     .then(user => dispatch(receiveCurrentUser(user)))
-    .fail(err => dispatch(receiveErrors(err)))
+    // .fail(err => dispatch(receiveErrors(err)))
+    // .fail(err => console.log(err))
 }
 
 export const deleteWatch = stockid => dispatch => {
