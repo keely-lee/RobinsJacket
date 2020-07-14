@@ -11,6 +11,7 @@ class StocksWatchlist < ApplicationRecord
   self.table_name = "stocks_watchlists"
 
   validates :stock_id, :watchlist_id, presence: true
+  validates :stock_id, uniqueness: { scope: :watchlist_id, message: "Already added" }
   
   belongs_to :watchlist,
   class_name: :Watchlist

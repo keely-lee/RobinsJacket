@@ -3,7 +3,7 @@ export const receiveStocks = (sym) => {
   
   return $.ajax({
     method: "GET",
-    url: `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=quote,chart&range=1d&chartInterval=60&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`
+    url: `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${tickers}&types=quote,chart&range=5d&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`
   }) 
 };  //USING SANDBOX TOKEN & SANDBOX BASE URL!!!
 
