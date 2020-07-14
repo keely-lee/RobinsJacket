@@ -27,8 +27,8 @@ class User < ApplicationRecord
  # dependent: :destroy
   
   has_one :watchlist,
-  class_name: :Watchlist#,
-  #dependent: :destroy
+  class_name: :Watchlist,
+  dependent: :destroy
 
   has_many :watched_stocks,
   through: :watchlist,

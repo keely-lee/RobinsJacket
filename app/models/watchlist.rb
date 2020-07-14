@@ -12,7 +12,8 @@ class Watchlist < ApplicationRecord
   class_name: :User
 
   has_many :stocks_watchlist,
-  class_name: :StocksWatchlist
+  class_name: :StocksWatchlist,
+  dependent: :destroy
   
   has_many :stocks,
   through: :stocks_watchlist

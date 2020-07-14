@@ -23,5 +23,5 @@ one = StocksWatchlist.create!(stock_id: aapl.id, watchlist_id: big_five.id)
 two = StocksWatchlist.create!(stock_id: msft.id, watchlist_id: big_five.id)
 
 
-# nyc = Watchlist.create!(user_id: buffett.id)
-# cali = Watchlist.create!(user_id: gatsby.id)
+nyc = Watchlist.create!(user_id: buffett.id)
+cali = Watchlist.create!(user_id: gatsby.id)
