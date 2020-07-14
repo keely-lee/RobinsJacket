@@ -7,11 +7,16 @@ import UserHomeNews from './user_home_news';
 class UserHome extends React.Component {
   constructor(props){
     super(props)
+    this.state = { watched: false }
+
     this.updateUser = this.updateUser.bind(this)
+    this.toggleButton = this.toggleButton.bind(this)
   }
 
-  componentDidMount(){
-
+  componentDidUpdate(prevProps){
+    if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
+      this.toggleButton()
+    }
   }
 
   updateUser(){
@@ -21,6 +26,13 @@ class UserHome extends React.Component {
         console.log(res);
         console.log("I AM RES")
       })
+      // .catch(() => console.log("NO GO"))
+  }
+
+  toggleButton(){
+    let watching = this.props.currentUser.watched_stocks.some( obj => obj.ticker === this.props.stocks.quote.symbol )
+    if (watching) this.setState({ watched: true })
+    else this.setState({ watched: false })
   }
 
   render(){
@@ -43,18 +55,11 @@ class UserHome extends React.Component {
             update={this.props.update}
             createWatch={this.props.createWatch}
           />
-          { console.log(stocks.quote) }
-          { console.log("RENDER HOME") }
-          { stocks.quote ? (
-            // (currentUser.watched_stocks.filter(stock => stock.ticker === stocks.quote.symbol)) ? null : (
-            //   <button type="button" className="add-watchlist" onClick={this.updateUser}>
-            //     Add to watchlist
-            //   </button> 
-            currentUser.watched_stocks.filter(stock => console.log(stock.ticker))
-            // console.log(currentUser.watched_stocks) 
+          { !this.state.watched ? (
+            <button type="button" className="add-watchlist" onClick={this.updateUser}>
+              Add to watchlist
+            </button> 
           ) : null }
-          {// )) : null } 
-          }
         </section>
         <section>
           <UserHomeNews 
