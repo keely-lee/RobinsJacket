@@ -18,10 +18,8 @@ aapl = Stock.create!(ticker: "AAPL", company_name: "Apple, Inc.")
 msft = Stock.create!(ticker: "MSFT", company_name: "Microsoft Corp.")
 
 big_five = Watchlist.create!(user_id: carnegie.id)
+nyc = Watchlist.create!(user_id: buffett.id)
+cali = Watchlist.create!(user_id: gatsby.id)
 
 one = StocksWatchlist.create!(stock_id: aapl.id, watchlist_id: big_five.id)
 two = StocksWatchlist.create!(stock_id: msft.id, watchlist_id: big_five.id)
-
-
-nyc = Watchlist.create!(user_id: buffett.id)
-cali = Watchlist.create!(user_id: gatsby.id)
