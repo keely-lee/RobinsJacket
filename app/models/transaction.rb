@@ -18,6 +18,8 @@ class Transaction < ApplicationRecord
   belongs_to :portfolio
   class_name: :Portfolio
 
+  def check_enough_funds
+  end
 
   # def make_transaction(type)
   # end

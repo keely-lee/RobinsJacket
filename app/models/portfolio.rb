@@ -8,6 +8,10 @@ class Portfolio < ApplicationRecord
   class_name: :Transaction,
   dependent: :destroy
 
-  
+  has_many :stocks,
+  through: :transactions
+
+  # def all_owned
+  # end
   
 end

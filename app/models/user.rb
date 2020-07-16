@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :fname, :lname, :funds_available, presence: true
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   after_initialize :ensure_session_token, :funds
-  after_save :watchlist_create
+  after_save :watchlist_create, :portfolio_create
 
 
   has_one :portfolio,
@@ -34,6 +34,10 @@ class User < ApplicationRecord
   through: :watchlist,
   source: :stocks,
   class_name: :Stock
+
+  # has_many :transactions,
+  # through: :portfolio,
+  # source: :transactions
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(email: username)
@@ -71,6 +75,10 @@ class User < ApplicationRecord
   
  def watchlist_create
    self.watchlist ||= Watchlist.create!(user_id: self.id)
+ end
+
+ def portfolio_create
+  self.portfolio ||= Portfolio.create!(user_id: self.id)
  end
 
 end
