@@ -15,4 +15,7 @@ class Stock < ApplicationRecord
   has_many :watchlists,
   through: :stocks_watchlist
 
+  has_many :transactions,
+  class_name: :Transaction
+
 end

@@ -19,9 +19,9 @@ class Api::TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Transaction.new(transaction_params, portfolio_id: current_user.portfolio.id)
     if @transaction.save
-      # render "/api/transactions/show"
+      render "/api/transactions/show"
     else
       render json: @transaction.errors.full_messages, status: 400
     end
@@ -30,7 +30,7 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:portfolio_id).permit(:transaction_date, :transaction_type, :shares, :price, :stock_id, )
+    params.require(:portfolio_id).permit(:transaction_date, :transaction_type, :shares, :price, :stock_id)
   end
   
 end

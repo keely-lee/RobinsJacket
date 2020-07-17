@@ -11,7 +11,14 @@ class Portfolio < ApplicationRecord
   has_many :stocks,
   through: :transactions
 
-  # def all_owned
-  # end
+  def all_owned
+    #iterate and sum
+  end
+
+  def num_shares(stock_id)
+    #sum all owned
+    # Transaction.sum(:shares).
+
+  end
   
 end
