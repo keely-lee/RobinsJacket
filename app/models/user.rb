@@ -35,9 +35,9 @@ class User < ApplicationRecord
   source: :stocks,
   class_name: :Stock
 
-  # has_many :transactions,
-  # through: :portfolio,
-  # source: :transactions
+  has_many :transactions,
+  through: :portfolio,
+  source: :transactions
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(email: username)

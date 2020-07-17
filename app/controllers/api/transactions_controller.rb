@@ -30,7 +30,7 @@ class Api::TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.require(:portfolio_id).permit(:transaction_date, :transaction_type, :shares, :price, :stock_id)
+    params.require(:transaction).permit(:transaction_date, :transaction_type, :shares, :price, :stock_id)
   end
   
 end
