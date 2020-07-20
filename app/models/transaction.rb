@@ -46,9 +46,9 @@ class Transaction < ApplicationRecord
       owner.funds_available -= (self.shares * self.price)
       owner.save!
     else
-      
+      owner.funds_available += (self.shares * self.price)
+      owner.save!
     end
-
   end
   
 end
