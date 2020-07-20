@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-function UserPortfolioStock(ownProps){
-  // const dispatch = useDispatch();
-  // const ownP = useSelector(ownProps => ownProps)
-  // const testState = useSelector(state => state.stocks)
+function UserPortfolioStock(props){
+  const dispatch = useDispatch();
+  const { match } = props
+  const testState = useSelector(state => state)
+  // const [stock, ]
 
-  // console.log(ownP)
-  // console.log(testState)
+  console.log(match.params)
+  console.log(testState)
 
   return (
     <div className="stock-comp-main-div">
