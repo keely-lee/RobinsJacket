@@ -12,18 +12,12 @@ const App = () => {
   return (
     <div>
       <Modal/>
-      {/* <header> */}
-        {/* <h3>RobinsJacket, let's get started!</h3> */}
-        {/* <GreetingContainer /> */}
-      {/* </header>  */}
-
       <Switch>
-        <AuthRoute exact path="/" component={GreetingContainer} /> 
+        <Route exact path="/" component={GreetingContainer} /> 
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <Route exact path="/loremips" component={LoremIpsum} />
         <Route path="/stock/:id" component={UserPortfolioStock} />
-
       </Switch>
     </div>
   )

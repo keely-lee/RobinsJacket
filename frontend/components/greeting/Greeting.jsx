@@ -10,15 +10,7 @@ class Greeting extends React.Component {
 
   render(){
     return (
-      this.props.currentUser ? (
-        <div>
-          <UserHomeContainer/>
-        </div>
-      ) : (
-        <div>
-          <SplashContainer/>
-        </div>
-      )
+      this.props.currentUser ? <UserHomeContainer/> : <SplashContainer/>
     )
   }
 }
