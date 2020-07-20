@@ -17,7 +17,7 @@ class Portfolio < ApplicationRecord
 
   def num_shares(stock_id)
     #sum all owned
-    # Transaction.sum(:shares).
+    Transaction.sum(:shares).where(stock_id: stock_id, portfolio_id: self.id).order(transaction_date: :desc )
 
   end
   
