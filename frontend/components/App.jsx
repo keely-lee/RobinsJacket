@@ -7,20 +7,22 @@ import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import LoremIpsum from './splash/lorem_ipsum';
 import UserPortfolioStock from './user_portfolio/user_portfolio_stock';
+import UserPortfolioHomeMain from './user_portfolio/user_portfolio_home_main';
 
 const App = () => {
   return (
     <div>
-      <Modal/>
+      <Modal />
       <Switch>
-        <Route exact path="/" component={GreetingContainer} /> 
+        <Route exact path="/" component={GreetingContainer} />
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <Route exact path="/loremips" component={LoremIpsum} />
         <Route path="/stock/:id" component={UserPortfolioStock} />
+        <Route exact path="/portfolio" component={UserPortfolioHomeMain} />
       </Switch>
     </div>
-  )
+  );
 }
 
 export default App;
