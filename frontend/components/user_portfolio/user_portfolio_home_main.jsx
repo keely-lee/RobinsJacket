@@ -8,12 +8,14 @@ import { receivePortfolio } from '../../actions/portfolio_actions';
 function UserPortfolioHomeMain(){
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const dispatch = useDispatch();
-  const portfolio = receivePortfolio();
+  let portfolio;
 
-  // useEffect(() => { portfolio = receivePortfolio() });
+  useEffect(() => { 
+    receivePortfolio().then(res => { portfolio = useState(res)})
+  });
 
   // const currentState = useSelector(state => state) //
-  console.log(currentUser) //
+  console.log(currentUser)
   console.log(portfolio) //
   console.log("portfolio") //
 
