@@ -6,7 +6,7 @@ const StocksReducer = (oldState = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_STOCK:
-      let newState = action.stock;
+      newState = action.stock;
       return newState;
     default:
       return oldState;

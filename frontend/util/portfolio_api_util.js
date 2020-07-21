@@ -5,8 +5,6 @@ export const receivePortfolio = () => {
   })
 }
 
-
-
 export const createTransaction = transaction => {
   return $.ajax({
     method: "POST",

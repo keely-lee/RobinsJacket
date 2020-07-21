@@ -3,19 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import UserHomeNav from '../user_home/user_home_nav';
 import { logout } from '../../actions/session_actions';
 import { displayStock } from '../../actions/stock_actions';
-import { receivePortfolio } from '../../actions/portfolio_actions';
+import { grabPortfolio } from '../../actions/portfolio_actions';
 
 function UserPortfolioHomeMain(){
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
+  const state = useSelector(state => state)
+  const portfolio = useSelector(state => state.entities.portfolios)
   const dispatch = useDispatch();
-  let portfolio;
 
   useEffect(() => { 
-    receivePortfolio().then(res => { portfolio = useState(res)})
-  });
+    dispatch(grabPortfolio());
+  }, [1]); //temporary fix to stop infinite compDidMount
 
-  // const currentState = useSelector(state => state) //
-  console.log(currentUser)
+  console.log(state) //
+  console.log(currentUser) //
   console.log(portfolio) //
   console.log("portfolio") //
 
