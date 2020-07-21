@@ -1,3 +1,12 @@
+export const receivePortfolio = () => {
+  return $.ajax({
+    method: "GET",
+    url: "/api/portfolios/id"
+  })
+}
+
+
+
 export const createTransaction = transaction => {
   return $.ajax({
     method: "POST",
@@ -13,9 +22,12 @@ export const receiveTransactions = () => {
   })
 }
 
-export const receiveTransaction = id => {
-  return $.ajax({
-    method: "GET",
-    url: `/api/transactions/${id}`
-  })
-}
+
+
+
+// export const receiveTransaction = id => {
+//   return $.ajax({
+//     method: "GET",
+//     url: `/api/transactions/${id}`
+//   })
+// }

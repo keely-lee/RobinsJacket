@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import UserHomeNav from '../user_home/user_home_nav';
 import { logout } from '../../actions/session_actions';
 import { displayStock } from '../../actions/stock_actions';
+import { receivePortfolio } from '../../actions/portfolio_actions';
 
 function UserPortfolioHomeMain(){
-  const currentUser = useSelector(state => state.entities.users[state.session.currentUserId])
-  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
+  const dispatch = useDispatch();
+  const portfolio = receivePortfolio();
 
-  const currentState = useSelector(state => state)
-  console.log(currentUser)
+  // useEffect(() => { portfolio = receivePortfolio() });
+
+  // const currentState = useSelector(state => state) //
+  console.log(currentUser) //
+  console.log(portfolio) //
+  console.log("portfolio") //
 
   return (
     <div className="user-portfolio-home">
