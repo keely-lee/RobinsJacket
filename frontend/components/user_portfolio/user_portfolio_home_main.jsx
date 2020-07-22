@@ -6,31 +6,26 @@ import { displayStock } from '../../actions/stock_actions';
 import { grabPortfolio } from '../../actions/portfolio_actions';
 
 function UserPortfolioHomeMain(){
+  const state = useSelector(state => state) //
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
-  const state = useSelector(state => state)
   const portfolio = useSelector(state => state.entities.portfolios)
   const dispatch = useDispatch();
 
-  let portVal = currentUser.funds_available;
+  let portfolioValue = currentUser.funds_available;
+
+
 
   useEffect(() => { 
-    dispatch(grabPortfolio());
+    dispatch(grabPortfolio())
+      .then((res) => {
+        res.portfolio.portfolio.forEach((trans) => {
+          portfolioValue += trans.total_amt;
 
-    if (portfolio.length) {
-      portfolio.portfolio.forEach((trans) => {
-        portVal += trans[total_amount];
-      });
-      console.log(portVal);
-      console.log("portVal");
-    }
-
-    console.log(portVal)
-    console.log("portVal second")
+          console.log(trans.total_amt)
+          console.log("total_amt")
+        });
+      })
   }, [Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
-
-  console.log(portfolio)
-  console.log("portfolio")
-
 
   return (
     <div className="user-portfolio-home">
@@ -45,8 +40,8 @@ function UserPortfolioHomeMain(){
       <h1>My Account: Positions</h1>
       <section className="user-portfolio-home-summary">
         <div className="uph-summary-1">
-          <span>{currentUser.fname} {currentUser.lname} account value:</span>
-          <span>VALUE</span>
+          <span className="uph-">{currentUser.fname} {currentUser.lname} account value:</span>
+          <span className="uph-portfolio-value">{portfolioValue}</span>
           <span>VALUE DIFF</span>
         </div>
         <div className="uph-summary-2">
@@ -59,7 +54,7 @@ function UserPortfolioHomeMain(){
         </div>
         <div className="uph-summary-4">
           <span>Today's GAIN/LOSS</span>
-          <span>GAIN/LOSS AMOUNT</span>
+          <span>GAIN/LOSS AMOUNT</span> {/* (shares owned * purchase price) - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
         </div>
       </section>
     </div>
