@@ -28,13 +28,12 @@ function UserPortfolioHomeMain(){
   useEffect(() => { 
     dispatch(grabPortfolio())
       .then((res) => {
+        console.log(res)
+        console.log("res")
         res.portfolio.portfolio.forEach((trans) => {
-          portfolioValue += trans.total_amt;
-
-          console.log(trans.total_amt)
           console.log("total_amt")
 
-          
+
         });
       })
   }, [Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
