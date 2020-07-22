@@ -11,14 +11,26 @@ function UserPortfolioHomeMain(){
   const portfolio = useSelector(state => state.entities.portfolios)
   const dispatch = useDispatch();
 
+  let portVal = currentUser.funds_available;
+
   useEffect(() => { 
     dispatch(grabPortfolio());
-  }, [1]); //temporary fix to stop infinite compDidMount
 
-  console.log(state) //
-  console.log(currentUser) //
-  console.log(portfolio) //
-  console.log("portfolio") //
+    if (portfolio.length) {
+      portfolio.portfolio.forEach((trans) => {
+        portVal += trans[total_amount];
+      });
+      console.log(portVal);
+      console.log("portVal");
+    }
+
+    console.log(portVal)
+    console.log("portVal second")
+  }, [Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
+
+  console.log(portfolio)
+  console.log("portfolio")
+
 
   return (
     <div className="user-portfolio-home">
@@ -29,10 +41,11 @@ function UserPortfolioHomeMain(){
           getStock={ (ticker) => dispatch(displayStock(ticker))}
           />
       </nav>
+
       <h1>My Account: Positions</h1>
       <section className="user-portfolio-home-summary">
         <div className="uph-summary-1">
-          <span>ACCOUNTNAME value</span>
+          <span>{currentUser.fname} {currentUser.lname} account value:</span>
           <span>VALUE</span>
           <span>VALUE DIFF</span>
         </div>
