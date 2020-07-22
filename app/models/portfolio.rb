@@ -14,7 +14,9 @@ class Portfolio < ApplicationRecord
   #stocks will return stocks previously owned
 
   def all_owned
-    Transaction.select("sum(shares * price) AS total, sum(shares) AS shares, transactions.stock_id").where(portfolio_id: self.id).group(:stock_id).having('sum(shares) > 0')
+    Transaction.select("sum(shares * price) AS total, sum(shares) AS shares, transactions.stock_id, transactions.stock.ticker AS ticker").where(portfolio_id: self.id).group(:stock_id).having('sum(shares) > 0')
+
+    # JOINS TABLE WITH STOCKS & TRANS TO GET EVERYTHING 
   end
 
   def num_shares(stock_id)

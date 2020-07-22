@@ -2,6 +2,7 @@ class Api::PortfoliosController < ApplicationController
   
   def show
     @portfolio = current_user.portfolio
+    debugger
     if @portfolio
       render "/api/portfolios/show"
       # render api_portfolio_url(@portfolio)
