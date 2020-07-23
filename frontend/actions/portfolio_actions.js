@@ -18,5 +18,5 @@ export const grabPortfolio = () => dispatch => {
 
 export const createTransaction = transaction => dispatch => {
   return PortfoliosUtil.createTransaction(transaction)
-    // .then(user => dispatch(receiveCurrentUser(user)))
+    // .then(portfolio => dispatch(receivePortfolio(portfolios)))
 }

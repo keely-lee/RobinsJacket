@@ -31,6 +31,7 @@ function UserPortfolioHomeMain(){
         console.log(res)
         console.log("res")
         res.portfolio.portfolio.forEach((trans) => {
+          
           console.log("total_amt")
 
 
