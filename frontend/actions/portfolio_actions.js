@@ -11,6 +11,7 @@ const receivePortfolio = portfolio => {
 }
 
 export const grabPortfolio = () => dispatch => {
+// export const grabPortfolio = () => {
   return PortfoliosUtil.receivePortfolio()
     .then(portfolio => dispatch(receivePortfolio(portfolio)))
     // .fail()
