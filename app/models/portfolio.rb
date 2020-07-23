@@ -17,6 +17,9 @@ class Portfolio < ApplicationRecord
     curr_owned = Transaction.where(portfolio_id: self.id).group(:stock_id).having('sum(shares) > 0').pluck(:stock_id)
     
     Transaction.select("transactions.*, stocks.ticker").joins(:stock).where(["portfolio_id = ? AND stocks.id IN (?)", self.id, curr_owned])
+
+
+    #calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
   end
 
   def num_shares(stock_id)

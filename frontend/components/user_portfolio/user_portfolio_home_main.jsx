@@ -19,6 +19,7 @@ function UserPortfolioHomeMain(){
   //DIV VARS FOR RETURN
   let totalGL; //class name for gain/loss
   let todayGL; //class name for gain/loss
+  const currOwned = {};
   
   //VARS FOR SUMMARY CALC
   let portfolioValue = currentUser.funds_available;
@@ -30,12 +31,39 @@ function UserPortfolioHomeMain(){
       .then((res) => {
         console.log(res)
         console.log("res")
-        res.portfolio.portfolio.forEach((trans) => {
-          
-          console.log("total_amt")
 
+        let offSet = 0; //offSet = negShares (iterate backwards over array)
+        let adjustedCost = 0;
+        const transactions = res.portfolio.portfolio;
 
-        });
+        for (let i = transactions.length; i > 0; --i) {
+
+          //////////calc for cost //////
+          //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
+          if (transactions[i].trans_type === 'sale' ) {
+            offSet += transactions[i].shares
+          } else {
+            //......PURCHASES ONLY
+            if (offSet < 0){
+              if (offSet < transactions[i].shares) {
+
+                //currentCost = (trans.shares - offSet) * price
+                //offSet = 0
+              } else {  //.....(offSet is greater than purchased shares)
+                offSet += shares
+              }
+            }
+          }
+
+          // always currOwned[ticker].shares += shares
+          // if sale, no change to cost
+
+          if (currOwned[transactions[i].ticker]){
+            currOwned[transactions[i].ticker].shares += transactions.shares;
+          } else {
+
+          }
+        };
       })
   }, [Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
 
