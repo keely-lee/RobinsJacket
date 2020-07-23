@@ -7,19 +7,24 @@ import { grabPortfolio } from '../../actions/portfolio_actions';
 
 
 function UserPortfolioHomeMain(){
+  // debugger
   const state = useSelector(state => state) //
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const portfolio = useSelector(state => state.entities.portfolios)
   const stocks = useSelector(state => state.entities.stocks)
   const dispatch = useDispatch();
 
-  console.log(stocks)
-  console.log("stocks")
+  // console.log(stocks)
+  // console.log("stocks")
   
   //DIV VARS FOR RETURN
   let totalGL; //class name for gain/loss
   let todayGL; //class name for gain/loss
+  console.log(currOwned)
+  console.log("currOwned PREFIRST ONE")
   const currOwned = {};
+  console.log(currOwned)
+  console.log("currOwned FIRST ONE")
   
   //VARS FOR SUMMARY CALC
   let portfolioValue = currentUser.funds_available;
@@ -27,53 +32,61 @@ function UserPortfolioHomeMain(){
   let todayGLAmt = 0;
 
   useEffect(() => { 
+    // debugger
     dispatch(grabPortfolio())
       .then((res) => {
+        // debugger
         console.log(res)
         console.log("res")
 
-        let offSet = 0; //offSet = negShares (iterate backwards over array)
-        let adjustedCost = 0;
         const transactions = res.portfolio.portfolio;
+        let offSet = 0; //offSet = negShares (iterate backwards over array)
+        let lifoCost = 0;
 
-        for (let i = transactions.length; i > 0; --i) {
-
-          //////////calc for cost //////
+        //////////calc for cost //////
+        for (let i = transactions.length-1; i >= 0; i--) {
           //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
-          if (transactions[i].trans_type === 'sale' ) {
+          if (transactions[i].trans_type === 'sale' ){
+            lifoCost = 0;
             offSet += transactions[i].shares
           } else {
-            //......PURCHASES ONLY
+            //......PURCHASES
             if (offSet < 0){
-              if (offSet < transactions[i].shares) {
-
-                //currentCost = (trans.shares - offSet) * price
-                //offSet = 0
+              if (offSet < transactions[i].shares){
+                lifoCost = (transactions[i].shares + offSet) * transactions[i].price;
+                offSet = 0;
               } else {  //.....(offSet is greater than purchased shares)
-                offSet += shares
-              }
+                lifoCost = 0;
+                offSet += shares;
+              } 
+            } else {
+              lifoCost = transactions[i].shares * transactions[i].price;
             }
           }
 
-          // always currOwned[ticker].shares += shares
-          // if sale, no change to cost
-
           if (currOwned[transactions[i].ticker]){
-            currOwned[transactions[i].ticker].shares += transactions.shares;
+            currOwned[transactions[i].ticker].shares += transactions[i].shares;
+            currOwned[transactions[i].ticker].cost += lifoCost;
           } else {
-
+            currOwned[transactions[i].ticker] = {
+              shares: transactions[i].shares,
+              cost: lifoCost
+            }
           }
-        };
+        }
       })
   }, [Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
-
+    
+  console.log(currOwned)
+  console.log("currOwned")
+  // debugger
   return (
     <div className="user-portfolio-home">
       <nav>
         <UserHomeNav 
-          currentUser={currentUser}
-          logout={ () => dispatch(logout())}
-          getStock={ (ticker) => dispatch(displayStock(ticker))}
+          currentUser={ currentUser }
+          logout={ () => dispatch(logout()) }
+          getStock={ (ticker) => dispatch(displayStock(ticker)) }
           />
       </nav>
 
