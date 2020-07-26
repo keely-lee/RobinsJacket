@@ -39,6 +39,8 @@ function UserPortfolioHomeMain(){
     dispatch(grabPortfolio())
     // grabPortfolio()
       .then((res) => {
+        console.log(portfolio)
+        console.log("portfolio")
         // currOwned = {};
         console.log(currOwned)
         console.log("THEN 39")
