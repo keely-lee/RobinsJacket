@@ -7,19 +7,13 @@ import { grabPortfolio } from '../../actions/portfolio_actions';
 
 
 function UserPortfolioHomeMain(){
-  const currOwned = {};
-  console.log(currOwned);
-  console.log("currOwned SECOND ONE");
-
-  // debugger
-  const state = useSelector(state => state) //
+  
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const portfolio = useSelector(state => state.entities.portfolios);
   const stocks = useSelector(state => state.entities.stocks);
   const dispatch = useDispatch();
-
-  // dispatch(grabPortfolio());
-
+  
+  const owned = Object.keys(portfolio).length ? calcOwned(portfolio.portfolio) : {};
   // console.log(stocks)
   // console.log("stocks")
   
@@ -34,68 +28,52 @@ function UserPortfolioHomeMain(){
   let todayGLAmt = 0;
 
   useEffect(() => { 
-    // debugger
-    console.log("USE EFFECT 36")
     dispatch(grabPortfolio())
-    // grabPortfolio()
-      .then((res) => {
-        console.log(portfolio)
-        console.log("portfolio")
-        // currOwned = {};
-        console.log(currOwned)
-        console.log("THEN 39")
-        // debugger
-        console.log(portfolio)
-        console.log(res)
-        console.log("res")
+  }, [1]) //[Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
 
-        const transactions = portfolio.portfolio;
-        // const transactions = res.portfolio;
-        let offSet = 0; //offSet = negShares (iterate backwards over array)
-        let lifoCost = 0;
+  function calcOwned(transactions){ //array of transactions
+    debugger
+    let offSet = 0; //offSet = negShares (iterate backwards over array)
+    let lifoCost = 0;
+    const currOwned = {};
 
-        //////////calc for cost //////
-        for (let i = transactions.length-1; i >= 0; i--){
-          //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
-          if (transactions[i].trans_type === 'sale'){
+    for (let i = transactions.length - 1; i >= 0; i--) {
+      //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
+      if (transactions[i].trans_type === 'sale') {
+        lifoCost = 0;
+        offSet += transactions[i].shares
+      } else {
+        //......PURCHASES
+        if (offSet < 0) {
+          if (offSet < transactions[i].shares) {
+            lifoCost = (transactions[i].shares + offSet) * transactions[i].price;
+            offSet = 0;
+          } else {  //.....(offSet is greater than purchased shares)
             lifoCost = 0;
-            offSet += transactions[i].shares
-          } else {
-            //......PURCHASES
-            if (offSet < 0){
-              if (offSet < transactions[i].shares){
-                lifoCost = (transactions[i].shares + offSet) * transactions[i].price;
-                offSet = 0;
-              } else {  //.....(offSet is greater than purchased shares)
-                lifoCost = 0;
-                offSet += shares;
-              } 
-            } else {
-              lifoCost = transactions[i].shares * transactions[i].price;
-            }
+            offSet += shares;
           }
-
-          if (currOwned[transactions[i].ticker]){
-            currOwned[transactions[i].ticker].shares += transactions[i].shares;
-            currOwned[transactions[i].ticker].cost += lifoCost;
-          } else {
-            currOwned[transactions[i].ticker] = {
-              shares: transactions[i].shares,
-              cost: lifoCost
-            }
-          }
+        } else {
+          lifoCost = transactions[i].shares * transactions[i].price;
         }
-        console.log(currOwned)
-        console.log("THEN 81")
-      })
-      console.log(currOwned)
-      console.log("USE EFFECT 84")
-  }, [1])//[Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
-    
-  console.log(portfolio)
-  console.log(currOwned)
+      }
+
+      if (currOwned[transactions[i].ticker]) {
+        currOwned[transactions[i].ticker].shares += transactions[i].shares;
+        currOwned[transactions[i].ticker].cost += lifoCost;
+      } else {
+        currOwned[transactions[i].ticker] = {
+          shares: transactions[i].shares,
+          cost: lifoCost
+        }
+      }
+    }
+
+    return currOwned;
+  }
+
+  console.log(owned)
   console.log("currOwned")
-  // debugger
+
   return (
     <div className="user-portfolio-home">
       <nav>
@@ -126,7 +104,7 @@ function UserPortfolioHomeMain(){
           <span className={todayGL}>{todayGLAmt}</span> { /* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
         </div>
       </section>
-      {console.log(currOwned)}
+      {console.log(owned)}
       {console.log("IN RETURN")}
       {/* <span>{currOwned["AAPL"][shares]}</span> */}
     </div>
