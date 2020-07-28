@@ -5,23 +5,23 @@ import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { grabPortfolio } from '../../actions/portfolio_actions';
 
-
 function UserPortfolioHomeMain(){
   
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const portfolio = useSelector(state => state.entities.portfolios);
   const stocks = useSelector(state => state.entities.stocks);
-  const dispatch = useDispatch();
+  const state = useSelector(state => state);
   
   const owned = Object.keys(portfolio).length ? calcOwned(portfolio.portfolio) : {};
-  // console.log(stocks)
-  // console.log("stocks")
+  console.log(state)
+  console.log(stocks)
+  console.log("stocks")
   
   //DIV VARS FOR RETURN
   let totalGL; //class name for gain/loss
   let todayGL; //class name for gain/loss
 
-  
   //VARS FOR SUMMARY CALC
   let portfolioValue = currentUser.funds_available;
   let totalGLAmt = 0;
@@ -32,7 +32,6 @@ function UserPortfolioHomeMain(){
   }, [1]) //[Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
 
   function calcOwned(transactions){ //array of transactions
-    debugger
     let offSet = 0; //offSet = negShares (iterate backwards over array)
     let lifoCost = 0;
     const currOwned = {};
@@ -71,18 +70,24 @@ function UserPortfolioHomeMain(){
     return currOwned;
   }
 
+  //
+  if (Object.keys(owned).length) {
+    dispatch(displayStocks(Object.keys(owned).join(",")))
+  }
+  //
+
   console.log(owned)
   console.log("currOwned")
 
   return (
     <div className="user-portfolio-home">
-      <nav>
+      {/* <nav>
         <UserHomeNav 
           currentUser={ currentUser }
           logout={ () => dispatch(logout()) }
           getStock={ (ticker) => dispatch(displayStock(ticker)) }
           />
-      </nav>
+      </nav> */}
 
       <h1>My Account: Positions</h1>
       <section className="user-portfolio-home-summary">
