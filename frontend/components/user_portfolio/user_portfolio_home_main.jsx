@@ -71,8 +71,8 @@ function UserPortfolioHomeMain(){
     
   }
 
-  console.log(owned)
-  console.log("owned")
+  // console.log(owned)
+  // console.log("owned")
 
   return (
     <div className="user-portfolio-home">
@@ -125,11 +125,21 @@ function UserPortfolioHomeMain(){
               <td>Gain (%)</td>
             </tr>
 
-            {Object.keys(owned) ? (Object.keys(stocks)).forEach(ticker => {
-              // console.log(ticker)
+            {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
+            {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? (Object.keys(owned)).map(ticker => {
+              // console.log(Object.keys(owned))
+              // console.log(Object.keys(stocks))
+              // console.log("KEYS")
+
+              const current = owned[ticker];
+              const market = stocks[ticker];
               return (
-                <tr><td>{ticker}</td>
-                <td>TICKERS</td>
+                <tr>
+                  <td>{ticker}</td>
+                  <td>{current['shares']}</td>
+                  <td>{stocks[ticker]['quote']['latestPrice']}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
+                  <td>{(stocks[ticker]['quote']['previousClose'] - stocks[ticker]['quote']['latestPrice']).toFixed(4)}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
+                  {/* <td>{(current['quote']['previousClose'] - stocks[ticker]['quote']['latestPrice']).toFixed(4)}</td> CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS */}
                 </tr>
               )
             }) : console.log("EMPTY") }
@@ -137,7 +147,6 @@ function UserPortfolioHomeMain(){
 
         </table>
       </section>
-      {/* <span>{currOwned["AAPL"][shares]}</span> */}
     </div>
 
   );
