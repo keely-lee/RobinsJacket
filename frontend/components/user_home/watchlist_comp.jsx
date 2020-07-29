@@ -59,10 +59,7 @@ class WatchlistComp extends React.Component {
                 </tr>
 
                 {watchedStocks.map((stock, idx) => {
-                  stock.chart[0].open <
-                  stock.chart[stock.chart.length - 1].close
-                    ? (val = "#00C805")
-                    : (val = "#ff0000");
+                  stock.chart[0].open < stock.chart[stock.chart.length - 1].close ? (val = "#00C805") : (val = "#ff0000");
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
                       <td className={`stock-col-name-${idx}`}>

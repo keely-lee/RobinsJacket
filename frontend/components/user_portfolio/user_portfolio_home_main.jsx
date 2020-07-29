@@ -6,18 +6,14 @@ import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { grabPortfolio } from '../../actions/portfolio_actions';
 
 function UserPortfolioHomeMain(){
-  
+
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const portfolio = useSelector(state => state.entities.portfolios);
   const stocks = useSelector(state => state.entities.stocks);
-  const state = useSelector(state => state);
-  
+
   const owned = Object.keys(portfolio).length ? calcOwned(portfolio.portfolio) : {};
-  console.log(state)
-  console.log(stocks)
-  console.log("stocks")
-  
+
   //DIV VARS FOR RETURN
   let totalGL; //class name for gain/loss
   let todayGL; //class name for gain/loss
@@ -27,9 +23,10 @@ function UserPortfolioHomeMain(){
   let totalGLAmt = 0;
   let todayGLAmt = 0;
 
-  useEffect(() => { 
-    dispatch(grabPortfolio())
-  }, [1]) //[Object.values(portfolio).length]); //temporary fix to stop infinite compDidMount
+  useEffect(() => {
+    dispatch(grabPortfolio());
+    dispatch(displayStocks(Object.keys(owned).join(",")));
+  }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
 
   function calcOwned(transactions){ //array of transactions
     let offSet = 0; //offSet = negShares (iterate backwards over array)
@@ -70,24 +67,22 @@ function UserPortfolioHomeMain(){
     return currOwned;
   }
 
-  //
-  if (Object.keys(owned).length) {
-    dispatch(displayStocks(Object.keys(owned).join(",")))
+  function summaryCalc(){
+    
   }
-  //
 
   console.log(owned)
-  console.log("currOwned")
+  console.log("owned")
 
   return (
     <div className="user-portfolio-home">
-      {/* <nav>
-        <UserHomeNav 
+      <nav>
+        <UserHomeNav
           currentUser={ currentUser }
           logout={ () => dispatch(logout()) }
           getStock={ (ticker) => dispatch(displayStock(ticker)) }
-          />
-      </nav> */}
+        />
+      </nav>
 
       <h1>My Account: Positions</h1>
       <section className="user-portfolio-home-summary">
@@ -109,8 +104,39 @@ function UserPortfolioHomeMain(){
           <span className={todayGL}>{todayGLAmt}</span> { /* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
         </div>
       </section>
+
       {console.log(owned)}
       {console.log("IN RETURN")}
+
+      <section className="user-portfolio-home-chart">
+        <table>
+          <thead>
+            <tr><th>Stocks</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Symbol</td>
+              <td>Quantity</td>
+              <td>Mkt Price</td>
+              <td>Change ($)</td>
+              <td>Cost</td>
+              <td>Mkt Value</td>
+              <td>Gain ($)</td>
+              <td>Gain (%)</td>
+            </tr>
+
+            {Object.keys(owned) ? (Object.keys(stocks)).forEach(ticker => {
+              // console.log(ticker)
+              return (
+                <tr><td>{ticker}</td>
+                <td>TICKERS</td>
+                </tr>
+              )
+            }) : console.log("EMPTY") }
+          </tbody>
+
+        </table>
+      </section>
       {/* <span>{currOwned["AAPL"][shares]}</span> */}
     </div>
 
