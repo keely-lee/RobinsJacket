@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 import UserHomeNav from '../user_home/user_home_nav';
 import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
@@ -59,7 +60,8 @@ function UserPortfolioHomeMain(){
       } else {
         currOwned[transactions[i].ticker] = {
           shares: transactions[i].shares,
-          cost: lifoCost
+          cost: lifoCost,
+          id: transactions[i].stock_id
         }
       }
     }
@@ -129,30 +131,23 @@ function UserPortfolioHomeMain(){
 
             {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
             {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? (Object.keys(owned)).map((ticker, idx) => {
-              // console.log(Object.keys(owned))
-              // console.log(Object.keys(stocks))
-              // console.log("KEYS")
 
-              
               const current = owned[ticker];
               const market = stocks[ticker]['quote'];
-
               return (
                 <tr className={`uph-tr-${idx}`}>
-                  <td>{ticker}</td>
+                  <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
                   <td>{current['shares']}</td>
                   <td>{formatComma(market['latestPrice'])}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
                   <td>{(market['previousClose'] - market['latestPrice']).toFixed(4)}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
                   <td>{formatComma(current['cost'].toFixed(2))}</td>
                   <td>{formatComma((current['shares'] * market['latestPrice']).toFixed(2))}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS */}
                   <td>{formatComma(((current['shares'] * market['latestPrice']) - current['cost']).toFixed(2))}</td> 
-                  <td>{( (current['shares'] * market['latestPrice'] - current['cost']) / (current['shares'] * market['latestPrice']) * 100).toFixed(2) + "%"}</td> 
-                  {/* GAIN AMOUNT / COST => to percent */}
+                  <td>{((current['shares'] * market['latestPrice'] - current['cost']) / (current['shares'] * market['latestPrice']) * 100).toFixed(2) + "%"}</td> 
                 </tr>
               )
-            }) : console.log("EMPTY") }
+            }) : console.log("EMPTY")}
           </tbody>
-
         </table>
       </section>
     </div>
