@@ -1,4 +1,28 @@
-[class*="uph-tr-"] {
-  font-family: 'Barlow', sans-serif;
+.user-portfolio-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+[class*="uph-"] {
+  font-family: 'Varta', sans-serif;  
+}
+
+.uph-table {
+  width: 80vw;
+}
+
+/* [class*="uph-"] > td {
+  font-family: 'Varta', sans-serif;  
   color: green
+} */
+
+
+
+.uph-table > tbody > tr > td, .uph-table > tbody > tr > td > a {
+  font-family: 'Varta', sans-serif;  
+}
+
+.uph-table > tbody > tr:hover {
+  /* font-size: 20px; */
 }

@@ -113,7 +113,7 @@ function UserPortfolioHomeMain(){
       {console.log("IN RETURN")}
 
       <section className="user-portfolio-home-chart">
-        <table>
+        <table className="uph-table">
           <thead>
             <tr><th>Stocks</th></tr>
           </thead>
