@@ -82,76 +82,99 @@ function UserPortfolioHomeMain(){
     <div className="user-portfolio-home">
       <nav>
         <UserHomeNav
-          currentUser={ currentUser }
-          logout={ () => dispatch(logout()) }
-          getStock={ (ticker) => dispatch(displayStock(ticker)) }
+          currentUser={currentUser}
+          logout={() => dispatch(logout())}
+          getStock={(ticker) => dispatch(displayStock(ticker))}
         />
       </nav>
 
-      <h1>My Account: Positions</h1>
-      <section className="user-portfolio-home-summary">
-        <div className="uph-summary-1">
-          <span>{currentUser.fname} {currentUser.lname} account value:</span>
-          <span className="uph-portfolio-value">{portfolioValue}</span>
-          <span>VALUE DIFF</span> { /* SOME CALCULATION WITH TRANSACTIONS!!! -- INCLUDE CURRENT SHARES OWNED?? */}
-        </div>
-        <div className="uph-summary-2">
-          <span>Stock Buying Power</span>
-          <span>{currentUser.funds_available}</span>
-        </div>
-        <div className="uph-summary-3">
-          <span>total gain/loss</span>
-          <span className={totalGL}>{totalGLAmt}</span> {/* total_amt - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
-        </div>
-        <div className="uph-summary-4">
-          <span>today's gain/loss</span>
-          <span className={todayGL}>{todayGLAmt}</span> { /* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
-        </div>
-      </section>
+      <div className="uph-div-wrapper">
+        <div className="user-portfolio-home-div">
+          <h1>My Account: Positions</h1>
+          <section className="user-portfolio-home-summary">
+            <div className="uph-summary-1">
+              <span>
+                {currentUser.fname} {currentUser.lname} account value:
+              </span>
+              <span className="uph-portfolio-value">{portfolioValue}</span>
+              <span>VALUE DIFF</span>{" "}
+              {/* SOME CALCULATION WITH TRANSACTIONS!!! -- INCLUDE CURRENT SHARES OWNED?? */}
+            </div>
+            <div className="uph-summary-2">
+              <span>Stock Buying Power</span>
+              <span>{currentUser.funds_available}</span>
+            </div>
+            <div className="uph-summary-3">
+              <span>total gain/loss</span>
+              <span className={totalGL}>{totalGLAmt}</span>{" "}
+              {/* total_amt - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
+            </div>
+            <div className="uph-summary-4">
+              <span>today's gain/loss</span>
+              <span className={todayGL}>{todayGLAmt}</span>{" "}
+              {/* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
+            </div>
+          </section>
 
-      {console.log(owned)}
-      {console.log("IN RETURN")}
 
-      <section className="user-portfolio-home-chart">
-        <table className="uph-table">
-          <thead>
-            <tr><th>Stocks</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Symbol</td>
-              <td>Quantity</td>
-              <td>Mkt Price</td>
-              <td>Change ($)</td>
-              <td>Cost</td>
-              <td>Mkt Value</td>
-              <td>Gain ($)</td>
-              <td>Gain (%)</td>
-            </tr>
 
-            {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
-            {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? (Object.keys(owned)).map((ticker, idx) => {
 
-              const current = owned[ticker];
-              const market = stocks[ticker]['quote'];
-              return (
-                <tr className={`uph-tr-${idx}`}>
-                  <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
-                  <td>{current['shares']}</td>
-                  <td>{formatComma(market['latestPrice'])}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
-                  <td>{(market['previousClose'] - market['latestPrice']).toFixed(4)}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
-                  <td>{formatComma(current['cost'].toFixed(2))}</td>
-                  <td>{formatComma((current['shares'] * market['latestPrice']).toFixed(2))}</td> {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS */}
-                  <td>{formatComma(((current['shares'] * market['latestPrice']) - current['cost']).toFixed(2))}</td> 
-                  <td>{((current['shares'] * market['latestPrice'] - current['cost']) / (current['shares'] * market['latestPrice']) * 100).toFixed(2) + "%"}</td> 
+
+          {console.log(owned)}
+          {console.log("IN RETURN")}
+
+
+
+
+
+
+
+          <section className="user-portfolio-home-chart">
+            <table className="uph-table">
+              {/* <thead>
+                <tr> */}
+                  <h3>Stocks</h3>
+                {/* </tr>
+              </thead> */}
+              <tbody>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Quantity</th>
+                  <th>Mkt Price</th>
+                  <th>Change ($)</th>
+                  <th>Cost</th>
+                  <th>Mkt Value</th>
+                  <th>Gain ($)</th>
+                  <th>Gain (%)</th>
                 </tr>
-              )
-            }) : console.log("EMPTY")}
-          </tbody>
-        </table>
-      </section>
-    </div>
 
+                {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
+                {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? Object.keys(owned).map((ticker, idx) => {
+
+                  const current = owned[ticker];
+                  const market = stocks[ticker]["quote"];
+                  return (
+                    <tr className={`uph-tr-${idx}`}>
+                      <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
+                      <td>{current["shares"]}</td>
+                      <td>{formatComma(market["latestPrice"])}</td>
+                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
+                      <td>{( market["previousClose"] - market["latestPrice"] ).toFixed(4)}</td>
+                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
+                      <td>{formatComma(current["cost"].toFixed(2))}</td>
+                      <td>{formatComma((current["shares"] * market["latestPrice"]).toFixed(2))}</td>
+                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS */}
+                      <td>{formatComma((current["shares"] * market["latestPrice"] - current["cost"]).toFixed(2))}</td>
+                      <td>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
+                    </tr>
+                  )
+                }) : console.log("EMPTY")}
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }
 

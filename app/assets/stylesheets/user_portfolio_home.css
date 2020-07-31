@@ -1,7 +1,14 @@
-.user-portfolio-home {
+.user-portfolio-home-div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90vw;
+}
+
+.uph-div-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
 }
 
 [class*="uph-"] {
@@ -10,19 +17,48 @@
 
 .uph-table {
   width: 80vw;
+  margin-top: 25px;
 }
 
-/* [class*="uph-"] > td {
+.uph-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #98c9a3;
+  /* color: white; */
+  /* border: 1px solid #ddd; */
+  padding: 6px;
   font-family: 'Varta', sans-serif;  
-  color: green
-} */
-
-
-
-.uph-table > tbody > tr > td, .uph-table > tbody > tr > td > a {
-  font-family: 'Varta', sans-serif;  
+  font-size: 14px;
+  font-weight: bolder;
 }
 
-.uph-table > tbody > tr:hover {
-  /* font-size: 20px; */
+.uph-table > tbody > tr > td {
+  font-family: 'Varta', sans-serif;  
+  font-size: 14px;
+  padding: 6px;
+}
+
+.uph-table > tbody > tr > td > a {
+  font-family: 'Varta', sans-serif;  
+  font-size: 14px;
+  color: black;
+}
+
+.uph-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.uph-table tr:hover {
+  background-color: #edeec9;
+}
+
+.user-portfolio-home-div > h1 {
+  align-self: start;
+  width: 80vw;
+  padding-bottom: 6px;
+  border-bottom: 3px solid #f2f2f2;
+  margin-left: auto;
+  margin-right: auto;
+  /* color: red; */
 }
