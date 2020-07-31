@@ -15,19 +15,34 @@
   font-family: 'Varta', sans-serif;  
 }
 
+.user-portfolio-home-div > h1 {
+  align-self: start;
+  width: 80vw;
+  padding-bottom: 6px;
+  border-bottom: 3px solid #f2f2f2;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+
+
+
+
 .uph-table {
   width: 80vw;
-  margin-top: 25px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
 }
 
 .uph-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
+  text-align: right;
   background-color: #98c9a3;
-  /* color: white; */
-  /* border: 1px solid #ddd; */
-  padding: 6px;
+  border: 1px solid #ddd;
+  padding: 6px 6px 6px 20px;
   font-family: 'Varta', sans-serif;  
   font-size: 14px;
   font-weight: bolder;
@@ -36,7 +51,9 @@
 .uph-table > tbody > tr > td {
   font-family: 'Varta', sans-serif;  
   font-size: 14px;
-  padding: 6px;
+  padding: 6px 6px 6px 20px;
+  border: 1px solid #ddd;
+  text-align: right;
 }
 
 .uph-table > tbody > tr > td > a {
@@ -53,12 +70,14 @@
   background-color: #edeec9;
 }
 
-.user-portfolio-home-div > h1 {
-  align-self: start;
-  width: 80vw;
-  padding-bottom: 6px;
-  border-bottom: 3px solid #f2f2f2;
-  margin-left: auto;
-  margin-right: auto;
-  /* color: red; */
+[class*="uph-tr-"] > *:first-child {
+  text-align: left;
+  border-right: 1px solid rgb(189, 183, 183);
+  padding-left: 6px;
+  padding-right: 20px;
+}
+
+[class*="uph-tr-"] > *:nth-child(2) {
+  padding-left: 0;
+  padding-right: 6px;
 }

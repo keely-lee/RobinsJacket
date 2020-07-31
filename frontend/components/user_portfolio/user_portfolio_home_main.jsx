@@ -130,14 +130,10 @@ function UserPortfolioHomeMain(){
 
 
           <section className="user-portfolio-home-chart">
+            <h3>Stocks</h3>
             <table className="uph-table">
-              {/* <thead>
-                <tr> */}
-                  <h3>Stocks</h3>
-                {/* </tr>
-              </thead> */}
               <tbody>
-                <tr>
+                <tr className="uph-tr-header">
                   <th>Symbol</th>
                   <th>Quantity</th>
                   <th>Mkt Price</th>
