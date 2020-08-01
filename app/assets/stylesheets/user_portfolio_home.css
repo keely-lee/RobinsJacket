@@ -42,7 +42,7 @@
   text-align: right;
   background-color: #98c9a3;
   border: 1px solid #ddd;
-  padding: 6px 6px 6px 20px;
+  padding: 7px 6px 6px 20px;
   font-family: 'Varta', sans-serif;  
   font-size: 14px;
   font-weight: bolder;
@@ -51,7 +51,7 @@
 .uph-table > tbody > tr > td {
   font-family: 'Varta', sans-serif;  
   font-size: 14px;
-  padding: 6px 6px 6px 20px;
+  padding: 7px 6px 6px 20px;
   border: 1px solid #ddd;
   text-align: right;
 }
