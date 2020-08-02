@@ -13,6 +13,12 @@ class UserHome extends React.Component {
     this.toggleButton = this.toggleButton.bind(this)
   }
 
+  componentDidMount(){
+    console.log(this.props.stocks)
+    console.log("STOCKS - USERHOME")
+    // this.props.getStock("AAPL")
+  }
+
   componentDidUpdate(prevProps){
     if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
       this.toggleButton()
@@ -43,20 +49,19 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
-        <section>
+        {/* <section>
           <UserHomeGraph 
             currentUser={currentUser}
             stocks={stocks} 
             getStock={getStock}
             update={this.props.update}
-            createWatch={this.props.createWatch}
-          />
+            createWatch={this.props.createWatch}/>
           { !this.state.watched ? (
             <button type="button" className="add-watchlist" onClick={this.updateUser}>
               Add to watchlist
             </button> 
           ) : null }
-        </section>
+        </section> */}
         <section>
           <UserHomeNews 
             news={this.props.news} 
