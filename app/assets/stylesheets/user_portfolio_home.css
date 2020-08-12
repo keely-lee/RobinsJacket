@@ -8,6 +8,7 @@
 .uph-div-wrapper {
   display: flex;
   padding-top: 70px;
+  justify-content: center;
 }
 
 [class*="uph-"] {
@@ -26,13 +27,31 @@
 
 .user-portfolio-home-summary {
   display: flex;
+  justify-content: center;
   width: 90vw;
 }
 
-.uph-summary-1 {
+[class*="uph-summary-"] {
   display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 18vw;
+  line-height: 125%;
+  border-top: 1px solid rgb(189, 183, 183);
+  border-bottom: 1px solid rgb(189, 183, 183);
+  border-right: 1px solid rgb(189, 183, 183);
+  padding-left: 10px;
 }
 
+.uph-summary-1 {
+  border-left: 1px solid rgb(189, 183, 183);
+  padding-right: 5px;
+}
+
+[class*="uph-summary-"] > span {
+  font-family: 'Varta', sans-serif;  
+}
 
 
 

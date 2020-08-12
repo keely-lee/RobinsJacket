@@ -91,18 +91,19 @@ function UserPortfolioHomeMain(){
       <div className="uph-div-wrapper">
         <div className="user-portfolio-home-div">
           <h1>My Account: Positions</h1>
+
           <section className="user-portfolio-home-summary">
             <div className="uph-summary-1">
               <span>
                 {currentUser.fname} {currentUser.lname} account value:
               </span>
-              <span className="uph-portfolio-value">{portfolioValue}</span>
-              <span>VALUE DIFF</span>{" "}
+              <span className="uph-portfolio-value">$ {formatComma(portfolioValue.toFixed(2))}</span>
+              <span>---- VALUE DIFF ----</span>{" "}
               {/* SOME CALCULATION WITH TRANSACTIONS!!! -- INCLUDE CURRENT SHARES OWNED?? */}
             </div>
             <div className="uph-summary-2">
               <span>Stock Buying Power</span>
-              <span>{currentUser.funds_available}</span>
+              <span>$ {formatComma(currentUser.funds_available.toFixed(2))}</span>
             </div>
             <div className="uph-summary-3">
               <span>total gain/loss</span>

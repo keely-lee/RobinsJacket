@@ -49,7 +49,7 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
-        {/* <section>
+        <section>
           <UserHomeGraph 
             currentUser={currentUser}
             stocks={stocks} 
@@ -61,7 +61,7 @@ class UserHome extends React.Component {
               Add to watchlist
             </button> 
           ) : null }
-        </section> */}
+        </section>
         <section>
           <UserHomeNews 
             news={this.props.news} 
