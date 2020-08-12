@@ -117,19 +117,6 @@ function UserPortfolioHomeMain(){
             </div>
           </section>
 
-
-
-
-
-          {console.log(owned)}
-          {console.log("IN RETURN")}
-
-
-
-
-
-
-
           <section className="user-portfolio-home-chart">
             <h3>Stocks</h3>
             <table className="uph-table">
@@ -150,6 +137,13 @@ function UserPortfolioHomeMain(){
 
                   const current = owned[ticker];
                   const market = stocks[ticker]["quote"];
+
+                  totalGLAmt += (current["shares"] * market["latestPrice"] - current["cost"]);
+                  todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
+
+                  console.log(totalGLAmt)
+                  console.log(todayGLAmt)
+
                   return (
                     <tr className={`uph-tr-${idx}`}>
                       <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>

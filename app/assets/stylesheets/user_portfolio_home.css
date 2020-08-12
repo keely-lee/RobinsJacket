@@ -29,6 +29,8 @@
   display: flex;
   justify-content: center;
   width: 90vw;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 [class*="uph-summary-"] {
@@ -48,6 +50,11 @@
   border-left: 1px solid rgb(189, 183, 183);
   padding-right: 5px;
 }
+
+[class*="uph-summary-"] > span:first-of-type {
+  font-weight: bold;
+}
+
 
 [class*="uph-summary-"] > span {
   font-family: 'Varta', sans-serif;  
