@@ -164,7 +164,7 @@ function UserPortfolioHomeMain(){
                       <td>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
                     </tr>
                   )
-                }) : console.log("EMPTY")}
+                }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" */}
               </tbody>
             </table>
           </section>
