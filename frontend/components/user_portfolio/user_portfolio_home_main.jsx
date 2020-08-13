@@ -18,6 +18,7 @@ function UserPortfolioHomeMain(){
   //DIV VARS FOR RETURN
   let totalGL; //class name for gain/loss
   let todayGL; //class name for gain/loss
+  const uphPvDiff = stateTotalGL < 0 ? "uph-minus" : "uph-plus"
 
   //VARS FOR SUMMARY CALC
   let portfolioValue = currentUser.funds_available;
@@ -104,7 +105,7 @@ function UserPortfolioHomeMain(){
                 {currentUser.fname} {currentUser.lname} account value:
               </span>
               <span>$ {formatComma((portfolioValue + stateTotalGL).toFixed(2))}</span>
-              <span className="uph-pv-diff-plus">$ {formatComma(portfolioValue.toFixed(2))}</span>
+              <span className={`uph-pv-diff ${uphPvDiff}`}>$ {formatComma(portfolioValue.toFixed(2))}</span>
             </div>
             <div className="uph-summary-2">
               <span>Stock Buying Power</span>
