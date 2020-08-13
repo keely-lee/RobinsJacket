@@ -24,9 +24,15 @@ function UserPortfolioHomeMain(){
   let totalGLAmt = 0;
   let todayGLAmt = 0;
 
+  const [stateTotalGL, setTotalGL] = useState(0)
+  const [stateTodayGL, setTodayGL] = useState(0)
+
   useEffect(() => {
     dispatch(grabPortfolio());
     dispatch(displayStocks(Object.keys(owned).join(",")));
+
+    setTotalGL(totalGLAmt);
+    setTodayGL(todayGLAmt);
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
 
   function calcOwned(transactions){ //array of transactions
@@ -97,9 +103,8 @@ function UserPortfolioHomeMain(){
               <span>
                 {currentUser.fname} {currentUser.lname} account value:
               </span>
-              <span className="uph-portfolio-value">$ {formatComma(portfolioValue.toFixed(2))}</span>
-              <span>---- VALUE DIFF ----</span>{" "}
-              {/* SOME CALCULATION WITH TRANSACTIONS!!! -- INCLUDE CURRENT SHARES OWNED?? */}
+              <span>$ {formatComma((portfolioValue + stateTotalGL).toFixed(2))}</span>
+              <span className="uph-pv-diff-plus">$ {formatComma(portfolioValue.toFixed(2))}</span>
             </div>
             <div className="uph-summary-2">
               <span>Stock Buying Power</span>
@@ -107,12 +112,12 @@ function UserPortfolioHomeMain(){
             </div>
             <div className="uph-summary-3">
               <span>total gain/loss</span>
-              <span className={totalGL}>{totalGLAmt}</span>{" "}
+              <span className={totalGL}>$ {formatComma(stateTotalGL.toFixed(2))}</span>
               {/* total_amt - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
             </div>
             <div className="uph-summary-4">
               <span>today's gain/loss</span>
-              <span className={todayGL}>{todayGLAmt}</span>{" "}
+              <span className={todayGL}>$ {formatComma(stateTodayGL.toFixed(2))}</span>
               {/* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
             </div>
           </section>
@@ -141,9 +146,6 @@ function UserPortfolioHomeMain(){
                   totalGLAmt += (current["shares"] * market["latestPrice"] - current["cost"]);
                   todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
 
-                  console.log(totalGLAmt)
-                  console.log(todayGLAmt)
-
                   return (
                     <tr className={`uph-tr-${idx}`}>
                       <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
@@ -159,7 +161,7 @@ function UserPortfolioHomeMain(){
                       <td>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
                     </tr>
                   )
-                }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" */}
+                }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" IF EMPTY*/}
               </tbody>
             </table>
           </section>

@@ -60,9 +60,15 @@
   font-family: 'Varta', sans-serif;  
 }
 
+.uph-pv-diff-plus {
+  font-size: 13px;
+  color: #98c9a3
+}
 
-
-
+.uph-pv-diff-minus {
+  font-size: 13px;
+  color: #98c9a3
+}
 
 .uph-table {
   width: 80vw;
