@@ -16,7 +16,6 @@ const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
   getStock: (ticker) => dispatch(displayStock(ticker)),
   getNews: () => dispatch(displayNews()),
-  // update: (user) => dispatch(update(user)),
   createWatch: (stock) => dispatch(createWatch(stock)),
   deleteWatch: (stockid) => dispatch(deleteWatch(stockid)),
 })
