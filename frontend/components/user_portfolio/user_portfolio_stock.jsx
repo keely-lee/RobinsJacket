@@ -4,13 +4,15 @@ import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
 import { displayStock } from '../../actions/stock_actions';
+import { createWatch, deleteWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
-  const { match } = props
+  const stocks = useSelector(state => state.entities.stocks)
 
+  const { match } = props
   const testState = useSelector(state => state)
 
   console.log(match.params)
@@ -21,10 +23,21 @@ function UserPortfolioStock(props){
       <nav>
         <UserHomeNav
           currentUser={currentUser}
+          currPage={match.params.id}
           logout={() => dispatch(logout())}
           getStock={ticker => dispatch(displayStock(ticker))}
         />
       </nav>
+
+      <section>
+        <UserHomeGraph
+          currentUser={currentUser}
+          stocks={stocks}
+          getStock={ticker => dispatch(displayStock(ticker))}
+          createWatch={stock => dispatch(createWatch(stock))}
+        />
+      </section>
+
 
       <section className="stock-comp-body"></section>
       <section className="stock-comp-trans">

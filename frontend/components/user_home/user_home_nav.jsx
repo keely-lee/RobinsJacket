@@ -57,6 +57,7 @@ class UserHomeNav extends React.Component {
 
   componentDidMount(){
     this.props.getStock(this.state.ticker);
+    if (this.props.currPage) { console.log(this.props.currPage) }
   }
 
   updateField(field){
