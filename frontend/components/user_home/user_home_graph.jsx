@@ -7,9 +7,8 @@ class UserHomeGraph extends React.Component {
   } 
 
   mapCharts(){
-    if(Object.values(this.props.stocks).length){
+    if (Object.keys(this.props.stocks).length){
       const data = this.props.stocks[Object.keys(this.props.stocks)[0]].chart;
-      // const data = this.props.stocks.chart;
 
       return (
         <AreaChart width={675} height={300} data={data}>
@@ -31,7 +30,7 @@ class UserHomeGraph extends React.Component {
               <stop offset="95%" stopColor="#64bfe8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          {/* <CartesianGrid strokeDasharray="3 3" /> */ }
           <Tooltip className="tooltip"/>
 
           <XAxis dataKey="date" tick={{ fill: 'white', fontSize: 12 }}/>
@@ -52,13 +51,17 @@ class UserHomeGraph extends React.Component {
   }
 
   render(){
-    /*
+    console.log(this.props.stocks)
+    console.log("stocks USER HOME GRAPH LINE 55")
+
+    if (!Object.keys(this.props.stocks).length) return null;
+
     let symbol = "";
     let change = "pos";
     let diff = 0;
+
+    
     let stocks = this.props.stocks[Object.keys(this.props.stocks)[0]];
-    console.log(Object.values(stocks).length)
-    console.log("BEEPITY BEEP")
     if (Object.values(stocks).length) {
       diff = (stocks.quote.latestPrice - stocks.quote.previousClose).toFixed(2);
       if (diff > 0) {
@@ -68,12 +71,10 @@ class UserHomeGraph extends React.Component {
         change = "neg"
       }
     }
-    */
 
     return (
       <div className="user-home-graph-container">
         <h2>Welcome to RobinsJacket!</h2>
-        {/*}
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
           <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>
@@ -84,7 +85,6 @@ class UserHomeGraph extends React.Component {
           </div>
         </div>
         ) : null }
-        */}
       </div>
     )
   }

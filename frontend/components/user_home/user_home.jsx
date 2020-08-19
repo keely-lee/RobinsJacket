@@ -13,28 +13,28 @@ class UserHome extends React.Component {
     this.toggleButton = this.toggleButton.bind(this)
   }
 
-  componentDidMount(){
-    console.log(this.props.stocks)
-    console.log("STOCKS - USERHOME")
-    // this.props.getStock("AAPL")
-  }
+  // componentDidMount(){
+  //   console.log(this.props.stocks)
+  //   console.log("STOCKS - USERHOME")
+  //   // this.props.getStock("AAPL")
+  // }
 
-  /*
   componentDidUpdate(prevProps){
     if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
       this.toggleButton()
     }
+    console.log(prevProps)
+    console.log("prevProps")
   }
-  */
 
   updateUser(){
-    let stock = this.props.stocks(Object.keys(this.props.stocks)[0]).quote;
+    let stock = this.props.stocks[Object.keys(this.props.stocks)[0]].quote;
     this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
       .fail((err) => console.log(err.responseJSON[0]))
   }
 
   toggleButton(){
-    let watching = this.props.currentUser.watched_stocks.some( obj => obj.ticker === this.props.stocks.quote.symbol )
+    let watching = this.props.currentUser.watched_stocks.some( obj => obj.ticker === this.props.stocks[Object.keys(this.props.stocks)[0]].quote.symbol )
     if (watching) this.setState({ watched: true })
     else this.setState({ watched: false })
   }
@@ -51,7 +51,6 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
-        {/*}
         <section>
           <UserHomeGraph 
             currentUser={currentUser}
@@ -64,7 +63,6 @@ class UserHome extends React.Component {
             </button> 
           ) : null }
         </section>
-          */}
         <section>
           <UserHomeNews 
             news={this.props.news} 

@@ -138,12 +138,7 @@ function UserPortfolioHomeMain(){
                   <th>Gain (%)</th>
                 </tr>
 
-                {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
-                {/* {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? Object.keys(owned).map((ticker, idx) => { */}
                 {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
-                  console.log(stocks)
-                  console.log("INSIDE HUSERHOMEMAIN L146")
-
                   if (!stocks[ticker]) return;
 
                   const current = owned[ticker];
@@ -153,17 +148,13 @@ function UserPortfolioHomeMain(){
                   todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
 
                   return (
-                    
                     <tr className={`uph-tr-${idx}`}>
                       <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
                       <td>{current["shares"]}</td>
                       <td>{formatComma(market["latestPrice"])}</td>
-                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
                       <td>{( market["previousClose"] - market["latestPrice"] ).toFixed(4)}</td>
-                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS*/}
                       <td>{formatComma(current["cost"].toFixed(2))}</td>
                       <td>{formatComma((current["shares"] * market["latestPrice"]).toFixed(2))}</td>
-                      {/* CHECK IF LATEST PRICE MAINTAINS ON WEEKENDS & NIGHTS */}
                       <td>{formatComma((current["shares"] * market["latestPrice"] - current["cost"]).toFixed(2))}</td>
                       <td>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
                     </tr>

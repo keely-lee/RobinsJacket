@@ -51,6 +51,11 @@
   cursor: pointer;
 }
 
+.home-nav-portfolio {
+  text-decoration: none;
+  font-size: 14px;
+}
+
 .home-nav-button:focus {
   text-decoration: underline;
   font-weight: 600;

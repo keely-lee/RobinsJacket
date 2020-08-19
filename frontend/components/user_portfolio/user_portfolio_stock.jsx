@@ -20,9 +20,9 @@ function UserPortfolioStock(props){
   console.log(testState)
 
 
-  useLayoutEffect(() => {
-    dispatch(displayByURL(match.params.id))
-  }, [Object.values(stocks).length])
+  // useLayoutEffect(() => {
+  //   dispatch(displayByURL(match.params.id))
+  // }, [Object.values(stocks).length])
 
   return (
     <div className="stock-comp-main-div">
@@ -36,7 +36,6 @@ function UserPortfolioStock(props){
         />
       </nav>
 
-{/*
       <section>
         <UserHomeGraph
           currentUser={currentUser}
@@ -45,7 +44,6 @@ function UserPortfolioStock(props){
           createWatch={stock => dispatch(createWatch(stock))}
         />
       </section>
-*/}
 
       <section className="stock-comp-body"></section>
 

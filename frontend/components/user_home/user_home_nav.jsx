@@ -91,7 +91,7 @@ class UserHomeNav extends React.Component {
 
         <div className="home-navbar-right">
           <Link type="button" className="home-nav-button home-nav-portfolio" to="/portfolio">Portfolio</Link>
-          <button type="button" className="home-nav-button home-nav-cash" onClick={() => this.handleCloseNavs()}>Cash</button>
+          {/* <button type="button" className="home-nav-button home-nav-cash" onClick={() => this.handleCloseNavs()}>Cash</button> */}
           <button type="button" className="home-nav-button home-nav-messages" onClick={ () => this.handleDropdown('messageDropdown') }>Messages</button>
           <button type="button" className="home-nav-button home-nav-account" onClick={ () => this.handleDropdown('accountDropdown') }>Account</button>
         </div>
