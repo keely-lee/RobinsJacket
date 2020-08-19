@@ -19,14 +19,16 @@ class UserHome extends React.Component {
     // this.props.getStock("AAPL")
   }
 
+  /*
   componentDidUpdate(prevProps){
     if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
       this.toggleButton()
     }
   }
+  */
 
   updateUser(){
-    let stock = this.props.stocks.quote;
+    let stock = this.props.stocks(Object.keys(this.props.stocks)[0]).quote;
     this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
       .fail((err) => console.log(err.responseJSON[0]))
   }
@@ -49,6 +51,7 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
+        {/*}
         <section>
           <UserHomeGraph 
             currentUser={currentUser}
@@ -61,6 +64,7 @@ class UserHome extends React.Component {
             </button> 
           ) : null }
         </section>
+          */}
         <section>
           <UserHomeNews 
             news={this.props.news} 

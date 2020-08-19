@@ -139,7 +139,12 @@ function UserPortfolioHomeMain(){
                 </tr>
 
                 {/* TEMPORARY FIX UNTIL I FIGURE OUT A BETTER WAY TO EXCLUDE STOCK(NASDAQ) & EMPTY STOCK */}
-                {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? Object.keys(owned).map((ticker, idx) => {
+                {/* {Object.keys(owned) && Object.keys(stocks).length && !Object.keys(stocks).includes("quote") ? Object.keys(owned).map((ticker, idx) => { */}
+                {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
+                  console.log(stocks)
+                  console.log("INSIDE HUSERHOMEMAIN L146")
+
+                  if (!stocks[ticker]) return;
 
                   const current = owned[ticker];
                   const market = stocks[ticker]["quote"];
@@ -148,6 +153,7 @@ function UserPortfolioHomeMain(){
                   todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
 
                   return (
+                    
                     <tr className={`uph-tr-${idx}`}>
                       <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
                       <td>{current["shares"]}</td>

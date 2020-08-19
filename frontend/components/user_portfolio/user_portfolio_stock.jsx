@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
@@ -15,13 +15,13 @@ function UserPortfolioStock(props){
   const { match } = props
   const testState = useSelector(state => state)
 
-  console.log(match.params)
+  // console.log(match.params)
+  console.log("testState")
   console.log(testState)
 
-  useEffect(() => {
-    console.log("USER PORTFOLIO STOCK USE")
-    dispatch(displayByURL(match.params.id));
-    console.log("USER PORTFOLIO STOCK USE 2")
+
+  useLayoutEffect(() => {
+    dispatch(displayByURL(match.params.id))
   }, [Object.values(stocks).length])
 
   return (
@@ -29,13 +29,14 @@ function UserPortfolioStock(props){
       <nav>
         <UserHomeNav
           currentUser={currentUser}
-          // currPage={match.params.id}
-          // getByURL={id => dispatch(displayByURL(id))}
+          currPage={match.params.id}
+          getByURL={id => dispatch(displayByURL(id))}
           logout={() => dispatch(logout())}
           getStock={ticker => dispatch(displayStock(ticker))}
         />
       </nav>
 
+{/*
       <section>
         <UserHomeGraph
           currentUser={currentUser}
@@ -44,7 +45,7 @@ function UserPortfolioStock(props){
           createWatch={stock => dispatch(createWatch(stock))}
         />
       </section>
-
+*/}
 
       <section className="stock-comp-body"></section>
 

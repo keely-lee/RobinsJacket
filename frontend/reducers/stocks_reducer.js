@@ -9,7 +9,7 @@ const StocksReducer = (oldState = {}, action) => {
       newState = action.stocks;
       return newState;
     case RECEIVE_STOCK:
-      newState = action.stock;
+      newState = {[action.stock.quote.symbol]: action.stock};
       return newState;
     default:
       return oldState;

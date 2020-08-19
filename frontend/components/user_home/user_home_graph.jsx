@@ -8,7 +8,8 @@ class UserHomeGraph extends React.Component {
 
   mapCharts(){
     if(Object.values(this.props.stocks).length){
-      const data = this.props.stocks.chart;
+      const data = this.props.stocks[Object.keys(this.props.stocks)[0]].chart;
+      // const data = this.props.stocks.chart;
 
       return (
         <AreaChart width={675} height={300} data={data}>
@@ -51,10 +52,13 @@ class UserHomeGraph extends React.Component {
   }
 
   render(){
+    /*
     let symbol = "";
     let change = "pos";
     let diff = 0;
-    let stocks = this.props.stocks;
+    let stocks = this.props.stocks[Object.keys(this.props.stocks)[0]];
+    console.log(Object.values(stocks).length)
+    console.log("BEEPITY BEEP")
     if (Object.values(stocks).length) {
       diff = (stocks.quote.latestPrice - stocks.quote.previousClose).toFixed(2);
       if (diff > 0) {
@@ -64,10 +68,12 @@ class UserHomeGraph extends React.Component {
         change = "neg"
       }
     }
+    */
 
     return (
       <div className="user-home-graph-container">
         <h2>Welcome to RobinsJacket!</h2>
+        {/*}
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
           <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>
@@ -78,6 +84,7 @@ class UserHomeGraph extends React.Component {
           </div>
         </div>
         ) : null }
+        */}
       </div>
     )
   }
