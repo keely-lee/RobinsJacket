@@ -19,7 +19,6 @@ export const receiveStock = (stock) => {
 
 
 export const displayStocks = (stocks) => dispatch => {
-  debugger
   return StockAPIUtil.receiveStocks(stocks)
     .then(stocks => dispatch(receiveStocks(stocks)))
 }

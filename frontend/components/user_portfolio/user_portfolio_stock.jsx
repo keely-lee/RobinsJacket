@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
@@ -18,13 +18,19 @@ function UserPortfolioStock(props){
   console.log(match.params)
   console.log(testState)
 
+  useEffect(() => {
+    console.log("USER PORTFOLIO STOCK USE")
+    dispatch(displayByURL(match.params.id));
+    console.log("USER PORTFOLIO STOCK USE 2")
+  }, [Object.values(stocks).length])
+
   return (
     <div className="stock-comp-main-div">
       <nav>
         <UserHomeNav
           currentUser={currentUser}
-          currPage={match.params.id}
-          getByURL={id => dispatch(displayByURL(id))}
+          // currPage={match.params.id}
+          // getByURL={id => dispatch(displayByURL(id))}
           logout={() => dispatch(logout())}
           getStock={ticker => dispatch(displayStock(ticker))}
         />
@@ -41,6 +47,7 @@ function UserPortfolioStock(props){
 
 
       <section className="stock-comp-body"></section>
+
       <section className="stock-comp-trans">
         <div className="stock-comp-options">
           {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
