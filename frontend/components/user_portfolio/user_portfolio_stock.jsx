@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
-import { displayStock } from '../../actions/stock_actions';
+import { displayStock, displayByURL } from '../../actions/stock_actions';
 import { createWatch, deleteWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioStock(props){
@@ -24,6 +24,7 @@ function UserPortfolioStock(props){
         <UserHomeNav
           currentUser={currentUser}
           currPage={match.params.id}
+          getByURL={id => dispatch(displayByURL(id))}
           logout={() => dispatch(logout())}
           getStock={ticker => dispatch(displayStock(ticker))}
         />

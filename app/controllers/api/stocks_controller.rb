@@ -1,3 +1,5 @@
+    require "byebug"
+
 class Api::StocksController < ApplicationController 
 
   # def index
@@ -15,7 +17,7 @@ class Api::StocksController < ApplicationController
   end
 
   def show
-    @stock = Stock.find_by_id(id)
+    @stock = Stock.find_by_id(params[:id])
     if @stock
       render :show
     else

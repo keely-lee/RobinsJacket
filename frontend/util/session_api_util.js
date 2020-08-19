@@ -29,4 +29,4 @@ export const updateUser = user => {
     url: `/api/user/${user.id}`,
     data: { user }
   })
-}
+} 

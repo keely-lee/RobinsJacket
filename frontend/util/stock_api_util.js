@@ -14,3 +14,9 @@ export const receiveStock = ticker => {
   })
 };
 
+export const getTicker = id => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/stocks/${id}`
+  })
+}
