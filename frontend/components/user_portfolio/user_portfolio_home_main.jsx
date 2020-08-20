@@ -95,8 +95,6 @@ function UserPortfolioHomeMain(){
         />
       </nav>
 
-      <h2>ONE STOP STOCK VIEW</h2>
-
       <div className="uph-div-wrapper">
         <div className="user-portfolio-home-div">
           <h1>My Account: Positions</h1>

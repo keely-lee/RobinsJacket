@@ -2,12 +2,6 @@
   background-color: rgb(30, 30, 30);
 }
 
-.add-watchlist {
-  position: absolute;
-  top: 110px;
-  right: 40vw;
-}
-
 /***********************************/
 /* NAVBAR */
 
@@ -377,25 +371,46 @@ td > p {
 /******************************/
 /* GRAPH */
 .user-home-graph-container {
-  padding-top: 110px;
-  /* border: 1px solid black; */
   width: 680px;
   margin-left: 15vw;
   background-color: transparent;
   color: whitesmoke;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-bottom: 30px;
+  /* border-bottom: 3px solid whitesmoke; */
 }
 
 .user-home-main > h2 {
   padding-top: 100px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 15vw;
   font-size: 32px;
   font-weight: 700;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  /* text-align: center; */
   color: whitesmoke;
   width: 680px;
-  margin-left: 15vw;
+}
+
+.add-watchlist {
+  position: absolute;
+  top: 110px;
+  right: 40vw;
+  background-color: transparent;
+  color: whitesmoke;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.add-watchlist:hover {
+  box-shadow: 1px 1px 2px 1px rgb(52, 52, 52);
+  /* box-shadow: 2px 1px 2px 4px rgb(52, 52, 52); */
+  border: none;
+  margin-top: 1px;
+  margin-right: 1px;
+  transition: border-color 400ms ease-in-out 400ms, box-shadow 300ms ease 0s;
+  color: rgb(238, 103, 065)
 }
 
 .company-name {

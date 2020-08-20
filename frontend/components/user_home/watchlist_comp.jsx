@@ -67,7 +67,7 @@ class WatchlistComp extends React.Component {
                       <td>
                         <button onClick={() => this.deleteWatch(stock.quote.symbol)} className="fa-minus-button">
                           {/* <i class="fas fa-eye-slash"></i> */}
-                          <i class="far fa-eye-slash"></i>
+                          <i className="far fa-eye-slash"></i>
                         </button>
                       </td>
                       <td className={`stock-col-name-${idx}`}>

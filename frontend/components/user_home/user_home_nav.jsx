@@ -60,8 +60,6 @@ class UserHomeNav extends React.Component {
   }
 
   updateField(field){
-    // this.handleCloseNavs();
-
     return e => {
       this.setState({ ticker: e.currentTarget.value })
     }
@@ -92,8 +90,8 @@ class UserHomeNav extends React.Component {
         <div className="home-navbar-right">
           <Link type="button" className="home-nav-button home-nav-portfolio" to="/portfolio">Portfolio</Link>
           {/* <button type="button" className="home-nav-button home-nav-cash" onClick={() => this.handleCloseNavs()}>Cash</button> */}
-          <button type="button" className="home-nav-button home-nav-messages" onClick={ () => this.handleDropdown('messageDropdown') }>Messages</button>
-          <button type="button" className="home-nav-button home-nav-account" onClick={ () => this.handleDropdown('accountDropdown') }>Account</button>
+          <button type="button" className="home-nav-button home-nav-messages" onClick={ () => this.handleDropdown('messageDropdown') } onBlur={() => this.handleCloseNavs()}>Messages</button>
+          <button type="button" className="home-nav-button home-nav-account" onClick={() => this.handleDropdown('accountDropdown')} >Account</button>
         </div>
 
         {/* ACCOUNT DROPDOWN */}
@@ -114,7 +112,7 @@ class UserHomeNav extends React.Component {
                 <span className="contact-name">Keely Lee</span>
 
                 <a href="mailto:keely_lee@outlook.com" className="contact-email">keely_lee@outlook.com</a>
-                <a href="https://www.linkedin.com/in/keely-lee1/" className="contact-more">
+                <a href="https://www.linkedin.com/in/keely-lee1/" className="contact-more" target="_blank" rel="noopener noreferrer">
                   More Info
                 </a>
                 { /* MAKE RESUME MODAL*/}

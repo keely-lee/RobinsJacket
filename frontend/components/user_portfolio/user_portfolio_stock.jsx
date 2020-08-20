@@ -36,6 +36,8 @@ function UserPortfolioStock(props){
         />
       </nav>
 
+      <h2>ONE STOP STOCK VIEW</h2>
+
       <section>
         <UserHomeGraph
           currentUser={currentUser}
