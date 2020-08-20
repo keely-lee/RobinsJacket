@@ -76,7 +76,6 @@ class UserHomeGraph extends React.Component {
 
     return (
       <div className="user-home-graph-container">
-        <h2>Welcome to RobinsJacket!</h2>
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
           <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>

@@ -386,12 +386,16 @@ td > p {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.user-home-graph-container > h2 {
-  margin-top: 0;
+.user-home-main > h2 {
+  padding-top: 100px;
   margin-bottom: 10px;
   font-size: 32px;
   font-weight: 700;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* text-align: center; */
+  color: whitesmoke;
+  width: 680px;
+  margin-left: 15vw;
 }
 
 .company-name {

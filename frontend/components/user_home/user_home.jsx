@@ -51,6 +51,9 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
+        
+        <h2>Welcome to RobinsJacket!</h2>
+
         <section>
           <UserHomeGraph 
             currentUser={currentUser}
