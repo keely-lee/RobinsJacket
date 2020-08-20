@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, linearGradient, ResponsiveContainer } from 'recharts';
 
 class UserHomeGraph extends React.Component {
   constructor(props){
@@ -11,7 +11,8 @@ class UserHomeGraph extends React.Component {
       const data = this.props.stocks[Object.keys(this.props.stocks)[0]].chart;
 
       return (
-        <AreaChart width={675} height={300} data={data}>
+        <ResponsiveContainer width="100%" height = {300} >
+        <AreaChart data={data}>
           <defs>
             <linearGradient id="colorOpen" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#ff9a7e" stopOpacity={0.8} />
@@ -46,6 +47,7 @@ class UserHomeGraph extends React.Component {
           <Area type="monotone" dataKey="low" stroke="#ee6741" fillOpacity={1} fill="url(#colorLow)"/>
           <Area type="monotone" dataKey="close" stroke="#64bfe8" fillOpacity={1} fill="url(#colorClose)"/>
         </AreaChart>
+        </ResponsiveContainer>
       )
     }
   }

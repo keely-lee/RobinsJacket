@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, ReferenceDot } from 'recharts';
 import { receiveStocks } from '../../util/stock_api_util';
 
@@ -62,14 +63,16 @@ class WatchlistComp extends React.Component {
                   stock.chart[0].open < stock.chart[stock.chart.length - 1].close ? (val = "#00C805") : (val = "#ff0000");
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
+                      {/* <Link to="/stock/30"> */}
+                      <td>
+                        <button onClick={() => this.deleteWatch(stock.quote.symbol)} className="fa-minus-button">
+                          {/* <i class="fas fa-eye-slash"></i> */}
+                          <i class="far fa-eye-slash"></i>
+                        </button>
+                      </td>
                       <td className={`stock-col-name-${idx}`}>
                         <p>{stock.quote.symbol}</p>
                         <p>{stock.quote.companyName}</p>
-                        <button
-                          onClick={() => this.deleteWatch(stock.quote.symbol)}
-                        >
-                          delete
-                        </button>
                       </td>
 
                       <td className={`stock-col-graph-${idx}`}>
@@ -99,6 +102,7 @@ class WatchlistComp extends React.Component {
                           ${(stock.quote.marketCap / 1000000000).toFixed(2)}B
                         </p>
                       </td>
+                      {/* </Link> */}
                     </tr>
                   );
                 })}

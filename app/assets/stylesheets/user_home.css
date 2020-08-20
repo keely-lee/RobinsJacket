@@ -5,6 +5,7 @@
 .add-watchlist {
   position: absolute;
   top: 110px;
+  right: 40vw;
 }
 
 /***********************************/
@@ -287,9 +288,9 @@
 
 .watchlist {
   position: fixed;
-  right: 210px;
+  right: 10vw;
   top: 94px;
-  width: 250px;
+  width: 285px;
   padding-left: 20px;
   padding-right: 20px;
   height: 80vh;
@@ -316,12 +317,14 @@ tr {
 } */
 
 td > p {
+/* td > a > p { */
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: inherit;
-  font-size: 13px; 
+  font-size: 12px; 
   margin-left: 0;
   margin-right: 0;
+
 }
 
 .watchlist-header {
@@ -339,6 +342,20 @@ td > p {
   text-align: left;
 }
 
+.fa-minus-button {
+  background-color: transparent;
+  color: whitesmoke;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.fa-minus-button:hover {
+  color:  #ff0000;
+}
+
 [class*='stock-col-name-'] {
   text-align: left;
 }
@@ -349,7 +366,7 @@ td > p {
 
 [class*='stock-col-fin'] {
   text-align: right;
-  /* margin: / */
+  padding-left: 5px;
 }
 
 [class*="stock-row-"]:hover {
@@ -363,7 +380,7 @@ td > p {
   padding-top: 110px;
   /* border: 1px solid black; */
   width: 680px;
-  margin-left: 205px;
+  margin-left: 15vw;
   background-color: transparent;
   color: whitesmoke;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
