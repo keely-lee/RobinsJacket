@@ -47,7 +47,9 @@ class WatchlistComp extends React.Component {
   }
 
   handleGetStocks() {
-    let val;
+    let val; //graph color
+    let stockId;
+
     if (this.props.currentUser.watched_stocks.length && this.state.stocks) {
       const watchedStocks = Object.values(this.state.stocks);
       if (watchedStocks) {
@@ -61,22 +63,27 @@ class WatchlistComp extends React.Component {
 
                 {watchedStocks.map((stock, idx) => {
                   stock.chart[0].open < stock.chart[stock.chart.length - 1].close ? (val = "#00C805") : (val = "#ff0000");
+                  stockId = this.state.watches[stock.quote.symbol]
+
+                  // console.log(this.state.watches)
+                  // console.log(stock)
+                  // console.log("WATCHLISTCOMP LINE 66")
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
-                      {/* <Link to="/stock/30"> */}
                       <td>
                         <button onClick={() => this.deleteWatch(stock.quote.symbol)} className="fa-minus-button">
-                          {/* <i class="fas fa-eye-slash"></i> */}
+                          {/* <i className="fas fa-eye-slash"></i> */}
                           <i className="far fa-eye-slash"></i>
                         </button>
                       </td>
+                      
+                      <Link to={`/stock/${stockId}`}>
                       <td className={`stock-col-name-${idx}`}>
                         <p>{stock.quote.symbol}</p>
                         <p>{stock.quote.companyName}</p>
                       </td>
 
                       <td className={`stock-col-graph-${idx}`}>
-                        {
                           <LineChart width={65} height={35} data={stock.chart}>
                             <YAxis
                               width={0}
@@ -93,7 +100,6 @@ class WatchlistComp extends React.Component {
                               dot={false}
                             />
                           </LineChart>
-                        }
                       </td>
 
                       <td className={`stock-col-fin-${idx}`}>
@@ -102,7 +108,7 @@ class WatchlistComp extends React.Component {
                           ${(stock.quote.marketCap / 1000000000).toFixed(2)}B
                         </p>
                       </td>
-                      {/* </Link> */}
+                      </Link>
                     </tr>
                   );
                 })}

@@ -1,0 +1,16 @@
+/* stocks home */
+.ups-main-div {
+  display: flex;
+  
+}
+
+.stock-comp-main-div > h2{
+  padding-top: 100px;
+  margin: 0;
+}
+
+.ups-main-trans {
+  width: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+}

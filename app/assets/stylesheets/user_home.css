@@ -306,19 +306,14 @@ tr {
   border-bottom: 1px solid rgb(66, 73, 78);
 }
 
-/* td {
-  padding: 0;
-} */
-
-td > p {
-/* td > a > p { */
-  margin-top: 5px;
-  margin-bottom: 5px;
+a > td > p {
+  margin-top: 8px;
+  margin-bottom: 8px;
   font-family: inherit;
   font-size: 12px; 
   margin-left: 0;
   margin-right: 0;
-
+  color: whitesmoke;
 }
 
 .watchlist-header {
@@ -352,15 +347,26 @@ td > p {
 
 [class*='stock-col-name-'] {
   text-align: left;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 50%;
 }
 
 [class*='stock-col-graph-'] {
   margin: auto;
+  vertical-align: middle;
+  width: 25%;
 }
 
 [class*='stock-col-fin'] {
   text-align: right;
   padding-left: 5px;
+  width: 25%;
+}
+
+[class*="stock-row-"] > a {
+  text-decoration: none;
 }
 
 [class*="stock-row-"]:hover {

@@ -8,15 +8,21 @@ import { createWatch, deleteWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
-
+  
+  const { match } = props
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks)
+  const watching = currentUser.watched_stocks.some(obj => {
+    obj.id === match.params.id
+  })
+  console.log(watching)
 
-  const { match } = props
+  console.log(currentUser)
+  console.log("currentUser LINE 16")
+
   const testState = useSelector(state => state)
 
-  // console.log(match.params)
-  console.log("testState")
+  console.log("testState LINE 18")
   console.log(testState)
 
 
@@ -38,37 +44,42 @@ function UserPortfolioStock(props){
 
       <h2>ONE STOP STOCK VIEW</h2>
 
-      <section>
-        <UserHomeGraph
-          currentUser={currentUser}
-          stocks={stocks}
-          getStock={ticker => dispatch(displayStock(ticker))}
-          createWatch={stock => dispatch(createWatch(stock))}
-        />
-      </section>
+      <div className="ups-main-div">
+        <section className="ups-main-stats">
+          <span>ITEM ONE</span>
+          <span>ITEM TWO</span>
+        </section>
 
-      <section className="stock-comp-body"></section>
+        <section className="ups-main-mid">
+          <UserHomeGraph
+            currentUser={currentUser}
+            stocks={stocks}
+            getStock={ticker => dispatch(displayStock(ticker))}
+            createWatch={stock => dispatch(createWatch(stock))}
+          />
+        </section>
 
-      <section className="stock-comp-trans">
-        <div className="stock-comp-options">
-          {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
-          <h4>Trade </h4>
-        </div>
-        <div className="stock-comp-trade-details">
-          <span>Shares</span>
-          <input type="text"/>
-          <span>Market Price</span>
-          <span>PRICE$$</span>
-        </div>
-        <div className="stock-comp-trade-confirm">
-          <span>Estimated COST/CREDIT</span>
-          <span>COST$$</span>
-          <button>BUY/SELL Button</button>
-        </div>
-        <div className="stock-comp-portfolio-details">
-          MONEY$$ BUY/SELL Power Available
-        </div>
-      </section>
+        <section className="ups-main-trans">
+          <div className="stock-comp-options">
+            {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
+            <h4>Trade </h4>
+          </div>
+          <div className="stock-comp-trade-details">
+            <span>Shares</span>
+            <input type="text"/>
+            <span>Market Price</span>
+            <span>PRICE$$</span>
+          </div>
+          <div className="stock-comp-trade-confirm">
+            <span>Estimated COST/CREDIT</span>
+            <span>COST$$</span>
+            <button>BUY/SELL Button</button>
+          </div>
+          <div className="stock-comp-portfolio-details">
+            MONEY$$ BUY/SELL Power Available
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
