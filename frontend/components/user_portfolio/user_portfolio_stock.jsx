@@ -12,9 +12,7 @@ function UserPortfolioStock(props){
   const { match } = props
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks)
-  const watching = currentUser.watched_stocks.some(obj => {
-    obj.id === match.params.id
-  })
+  const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id))
   console.log(watching)
 
   console.log(currentUser)
@@ -22,8 +20,8 @@ function UserPortfolioStock(props){
 
   const testState = useSelector(state => state)
 
-  console.log("testState LINE 18")
-  console.log(testState)
+  // console.log("testState LINE 18")
+  // console.log(testState)
 
 
   // useLayoutEffect(() => {
