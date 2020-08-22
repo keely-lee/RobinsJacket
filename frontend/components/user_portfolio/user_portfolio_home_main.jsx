@@ -5,7 +5,7 @@ import UserHomeNav from '../user_home/user_home_nav';
 import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { grabPortfolio } from '../../actions/portfolio_actions';
-import { deleteWatch } from '../../actions/watchlist_actions';
+// import { deleteWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioHomeMain(){
 
@@ -28,8 +28,6 @@ function UserPortfolioHomeMain(){
 
   const [stateTotalGL, setTotalGL] = useState(0)
   const [stateTodayGL, setTodayGL] = useState(0)
-
-  // dispatch(deleteWatch())
 
   useEffect(() => {
     dispatch(grabPortfolio());
