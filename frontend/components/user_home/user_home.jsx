@@ -13,12 +13,6 @@ class UserHome extends React.Component {
     this.toggleButton = this.toggleButton.bind(this)
   }
 
-  // componentDidMount(){
-  //   console.log(this.props.stocks)
-  //   console.log("STOCKS - USERHOME")
-  //   // this.props.getStock("AAPL")
-  // }
-
   componentDidUpdate(prevProps){
     if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
       this.toggleButton()
@@ -51,7 +45,7 @@ class UserHome extends React.Component {
             logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
-        
+
         <h2>Welcome to RobinsJacket!</h2>
 
         <section>

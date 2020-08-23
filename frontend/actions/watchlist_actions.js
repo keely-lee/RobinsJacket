@@ -15,7 +15,7 @@ export const createWatch = stock => dispatch => {
   return StocksWatchlistUtil.postWatch(stock)
     .then(user => dispatch(receiveCurrentUser(user)))
     // .fail(err => dispatch(receiveErrors(err)))
-    // .fail(err => console.log(err))
+    .fail(err => console.log(err))
 }
 
 export const deleteWatch = stockid => dispatch => {

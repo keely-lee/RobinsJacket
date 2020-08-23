@@ -11,22 +11,26 @@ function UserPortfolioStock(props){
   
   const { match } = props
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
-  const stocks = useSelector(state => state.entities.stocks)
-  const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id))
-  console.log(watching)
+  const stocks = useSelector(state => state.entities.stocks);
+  const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
 
+  // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
+
+  console.log(watching)
   console.log(currentUser)
+  console.log(stocks)
   console.log("currentUser LINE 16")
 
-  const testState = useSelector(state => state)
+  // const testState = useSelector(state => state);
 
   // console.log("testState LINE 18")
   // console.log(testState)
 
-
-  // useLayoutEffect(() => {
-  //   dispatch(displayByURL(match.params.id))
-  // }, [Object.values(stocks).length])
+  function updateUser(){
+    const stock = stocks[Object.keys(stocks)[0]].quote;
+    dispatch(createWatch({ ticker: stock.symbol, company_name: stock.companyName }))
+      .fail((err) => console.log(err.responseJSON[0]))
+  }
 
   return (
     <div className="stock-comp-main-div">
@@ -53,8 +57,12 @@ function UserPortfolioStock(props){
             currentUser={currentUser}
             stocks={stocks}
             getStock={ticker => dispatch(displayStock(ticker))}
-            createWatch={stock => dispatch(createWatch(stock))}
-          />
+            createWatch={stock => dispatch(createWatch(stock))}/>
+          { watching ? null : 
+            <button type="button" className="add-watchlist" onClick={updateUser}>
+              Add to watchlist
+            </button> }
+          {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
         </section>
 
         <section className="ups-main-trans">
