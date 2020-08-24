@@ -14,7 +14,7 @@ function UserPortfolioStock(props){
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
-  const buySell, setBuySell = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
+  const [buySell, setBuySell] = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
 
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
 
