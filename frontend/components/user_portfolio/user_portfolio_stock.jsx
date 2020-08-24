@@ -15,6 +15,7 @@ function UserPortfolioStock(props){
   const stocks = useSelector(state => state.entities.stocks);
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
   const [buySell, setBuySell] = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
+  const transButton = buySell === 0 ? "Purchase" : "Sale"
 
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
 
@@ -74,8 +75,10 @@ function UserPortfolioStock(props){
         <section className="ups-main-trans">
           <div className="stock-comp-options">
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
-            <h4>Trade </h4>
+            <h4>Transaction</h4>
+            <span>Current Shares Owned: [GRAB DATA]</span>
           </div>
+          {/* IF SHARES OWNED (SELL TAB) LOGIC HERE::::: */}
           <div className="stock-comp-trade-details">
             <span>Shares</span>
             <input type="text"/>
@@ -85,7 +88,7 @@ function UserPortfolioStock(props){
           <div className="stock-comp-trade-confirm">
             <span>Estimated COST/CREDIT</span>
             <span>COST$$</span>
-            <button>BUY/SELL Button</button>
+            <button>Confirm {transButton}</button>
           </div>
           <div className="stock-comp-portfolio-details">
             MONEY$$ BUY/SELL Power Available
