@@ -39,6 +39,10 @@ function UserPortfolioStock(props){
       .fail((err) => console.log(err.responseJSON[0]))
   }
 
+  function handleSubmit(e){
+
+  }
+
   return (
     <div className="stock-comp-main-div">
       <nav>
@@ -54,10 +58,10 @@ function UserPortfolioStock(props){
       <h2>ONE STOP STOCK VIEW</h2>
 
       <div className="ups-main-div">
-        <section className="ups-main-stats">
+        {/* <section className="ups-main-stats">
           <span>ITEM ONE</span>
           <span>ITEM TWO</span>
-        </section>
+        </section> */}
 
         <section className="ups-main-mid">
           <UserHomeGraph
@@ -80,18 +84,18 @@ function UserPortfolioStock(props){
           </div>
           {/* IF SHARES OWNED (SELL TAB) LOGIC HERE::::: */}
           <div className="stock-comp-trade-details">
-            <span>Shares</span>
-            <input type="text"/>
-            <span>Market Price</span>
-            <span>PRICE$$</span>
+            <span>Quantity</span>
+            <input type="number" min="1" step="1"/>
+            {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
+            <span>Last: {Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : ""}</span>
           </div>
           <div className="stock-comp-trade-confirm">
             <span>Estimated COST/CREDIT</span>
             <span>COST$$</span>
-            <button>Confirm {transButton}</button>
+            <button>Confirm {transButton} Order</button>
           </div>
           <div className="stock-comp-portfolio-details">
-            MONEY$$ BUY/SELL Power Available
+            Cash Available
           </div>
         </section>
       </div>
