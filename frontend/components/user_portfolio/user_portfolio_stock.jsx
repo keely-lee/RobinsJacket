@@ -1,10 +1,11 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
 import { displayStock, displayByURL } from '../../actions/stock_actions';
 import { createWatch } from '../../actions/watchlist_actions';
+import { grabPortfolio } from '../../actions/portfolio_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function UserPortfolioStock(props){
   console.log(currentUser)
   console.log(stocks)
   console.log("currentUser LINE 16")
+
+  useEffect(() => {
+    dispatch(grabPortfolio());
+  }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
 
   // const testState = useSelector(state => state);
 
