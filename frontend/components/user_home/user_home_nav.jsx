@@ -83,7 +83,7 @@ class UserHomeNav extends React.Component {
             {/* <input type="text" className="navbar-stock-search" placeholder="Search" */}
             <input type="text" className="navbar-stock-search" placeholder="Enter Ticker"
             onChange={ this.updateField() }/>
-            <button className="home-nav-submit-button">Search</button>
+            <button className="home-nav-submit-button"><i className="fas fa-arrow-right"></i></button>
           </form>
         </div>
 

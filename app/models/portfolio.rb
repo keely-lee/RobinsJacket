@@ -11,7 +11,7 @@ class Portfolio < ApplicationRecord
 
   has_many :stocks,
   through: :transactions
-  #stocks will return stocks previously owned
+  #stocks will include stocks previously owned
 
   def current_owned
     curr_owned = Transaction.where(portfolio_id: self.id).group(:stock_id).having('sum(shares) > 0').pluck(:stock_id)
@@ -19,7 +19,6 @@ class Portfolio < ApplicationRecord
     Transaction.select("transactions.*, stocks.ticker").joins(:stock).where(["portfolio_id = ? AND stocks.id IN (?)", self.id, curr_owned]).order("stocks.ticker DESC, transaction_date")
 
 
-    # Stock.select("transactions.*, stocks.ticker").where("stock.id IN (?)", curr_owned)
     #calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
   end
 

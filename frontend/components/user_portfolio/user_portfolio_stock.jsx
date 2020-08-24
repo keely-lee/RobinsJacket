@@ -4,7 +4,7 @@ import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
 import { displayStock, displayByURL } from '../../actions/stock_actions';
-import { createWatch, deleteWatch } from '../../actions/watchlist_actions';
+import { createWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ function UserPortfolioStock(props){
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
+  const buySell, setBuySell = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
 
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
 

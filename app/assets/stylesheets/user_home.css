@@ -184,15 +184,29 @@
 .navbar-stock-search {
   height: 95%;
   margin-left: 10px;
-  margin-right: 10px;
-  width: 440px;
+  /* margin-right: 10px; */
+  width: 437px;
+  /* width: 432px; */
   border: none;
   outline: none;
   background-color: transparent;
 }
 
-.navbar-stock-search, select, textarea{
+.navbar-stock-search, select, textarea {
   color: whitesmoke;
+}
+
+.home-nav-submit-button {
+  background-color: black;
+  color: rgb(238, 103, 065);
+  border: 1px solid black;
+  /* border: none; */
+  cursor: pointer;
+  height: 99%;
+  /* background-color: transparent; */
+
+  padding-left: 13px;
+  padding-right: 13px;
 }
 
 .messages-dropdown {
