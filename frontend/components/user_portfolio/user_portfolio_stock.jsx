@@ -13,6 +13,13 @@ function UserPortfolioStock(props){
   const { match } = props
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
+  const portfolio = useSelector(state => state.entities.portfolios);
+
+  const owned = Object.keys(portfolio).length ? portfolio.portfolio.some(obj => obj.stock_id === parseInt(match.params.id)) : false;
+  // console.log(portfolio)
+  // console.log("portfolio line 20")
+
+
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
   const [buySell, setBuySell] = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
   const transButton = buySell === 0 ? "Purchase" : "Sale"
@@ -27,11 +34,6 @@ function UserPortfolioStock(props){
   useEffect(() => {
     dispatch(grabPortfolio());
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
-
-  // const testState = useSelector(state => state);
-
-  // console.log("testState LINE 18")
-  // console.log(testState)
 
   function updateUser(){
     const stock = stocks[Object.keys(stocks)[0]].quote;
@@ -71,7 +73,7 @@ function UserPortfolioStock(props){
             createWatch={stock => dispatch(createWatch(stock))}/>
           { watching ? null : 
             <button type="button" className="add-watchlist" onClick={updateUser}>
-              Add to watchlist
+              Add to watchlistx
             </button> }
           {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
         </section>

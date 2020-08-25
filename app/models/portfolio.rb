@@ -19,7 +19,7 @@ class Portfolio < ApplicationRecord
     Transaction.select("transactions.*, stocks.ticker").joins(:stock).where(["portfolio_id = ? AND stocks.id IN (?)", self.id, curr_owned]).order("stocks.ticker DESC, transaction_date")
 
 
-    #calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
+    #calc notes: transactions must be sorted by stock, then date-ascending (iterate backwards)
   end
 
   def num_shares(stock_id)
