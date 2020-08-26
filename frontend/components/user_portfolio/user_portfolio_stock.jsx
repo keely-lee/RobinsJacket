@@ -15,9 +15,18 @@ function UserPortfolioStock(props){
   const stocks = useSelector(state => state.entities.stocks);
   const portfolio = useSelector(state => state.entities.portfolios);
 
-  const owned = Object.keys(portfolio).length ? portfolio.portfolio.some(obj => obj.stock_id === parseInt(match.params.id)) : false;
-  // console.log(portfolio)
-  // console.log("portfolio line 20")
+  let owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((obj, add) => {
+    return obj + add.shares
+    console.log("I AM THE total")
+    console.log(obj)
+    // console.log(add)
+    console.log(typeof obj)
+    console.log("INSIDE LOOP")
+    // return parseInt(total) + (curr.stock_id === parseInt(match.params.id) ? curr.shares : 0)
+    // return obj.stock_id === parseInt(match.params.id) ? obj.shares : 0;
+  }) : 0;
+  console.log(owned)
+  console.log("OWNED line 20")
 
 
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
