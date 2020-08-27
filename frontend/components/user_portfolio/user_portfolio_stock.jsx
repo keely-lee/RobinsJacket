@@ -15,31 +15,27 @@ function UserPortfolioStock(props){
   const stocks = useSelector(state => state.entities.stocks);
   const portfolio = useSelector(state => state.entities.portfolios);
 
-  let owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((obj, add) => {
-    return obj + add.shares
-    console.log("I AM THE total")
-    console.log(obj)
-    // console.log(add)
-    console.log(typeof obj)
-    console.log("INSIDE LOOP")
-    // return parseInt(total) + (curr.stock_id === parseInt(match.params.id) ? curr.shares : 0)
-    // return obj.stock_id === parseInt(match.params.id) ? obj.shares : 0;
-  }) : 0;
-  console.log(owned)
-  console.log("OWNED line 20")
-
-
+  const owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((acc, add) => {
+    return (add.stock_id === parseInt(match.params.id)) ? acc + add.shares : acc + 0;
+  }, 0) : 0;
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
-  const [buySell, setBuySell] = useState(0) //USE WHEN TABS ARE SET UP, NO NEED FOR FUNC SETBIYSELL
-  const transButton = buySell === 0 ? "Purchase" : "Sale"
-
+  const [buySell, setBuySell] = useState(0);
+  const [transShares, setTransShares] = useState(0);
+  
+  const totalPrice = formatNumber(transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
-
-  console.log(watching)
-  console.log(currentUser)
-  console.log(stocks)
-  console.log("currentUser LINE 16")
-
+  
+  // console.log(watching)
+  // console.log(currentUser)
+  // console.log(stocks)
+  // console.log("currentUser LINE 16")
+  // console.log(transShares);
+  // console.log("transShares line 35");
+  
+  //tab vars
+  const transButton = buySell === 0 ? "Purchase" : "Sale";
+  const costProceed = buySell === 0 ? "Cost" : "Proceeds";
+  
   useEffect(() => {
     dispatch(grabPortfolio());
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
@@ -51,7 +47,12 @@ function UserPortfolioStock(props){
   }
 
   function handleSubmit(e){
+  }
 
+  function formatNumber(num){
+    const [dollar, cents] = num.toFixed(2).toString().split(".")
+    const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return (cents ? newDollar + "." + cents : newDollar)
   }
 
   return (
@@ -82,7 +83,7 @@ function UserPortfolioStock(props){
             createWatch={stock => dispatch(createWatch(stock))}/>
           { watching ? null : 
             <button type="button" className="add-watchlist" onClick={updateUser}>
-              Add to watchlistx
+              Add to watchlist
             </button> }
           {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
         </section>
@@ -91,18 +92,24 @@ function UserPortfolioStock(props){
           <div className="stock-comp-options">
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
             <h4>Transaction</h4>
-            <span>Current Shares Owned: [GRAB DATA]</span>
+            <div className="buy-sell-tabs">
+              <span>Buy</span>
+              <span>Sell</span>
+            </div>
+            <span>Current Shares Owned: {owned}</span>
           </div>
           {/* IF SHARES OWNED (SELL TAB) LOGIC HERE::::: */}
           <div className="stock-comp-trade-details">
             <span>Quantity</span>
-            <input type="number" min="1" step="1"/>
+            <input type="number" min="1" step="1" 
+              onChange={(e) => setTransShares(e.currentTarget.value)}
+            />
             {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
-            <span>Last: {Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : ""}</span>
+            <span>Last: {Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4) : ""}</span>
           </div>
           <div className="stock-comp-trade-confirm">
-            <span>Estimated COST/CREDIT</span>
-            <span>COST$$</span>
+            <span>Estimated {costProceed}</span>
+            <span>${totalPrice}</span>
             <button>Confirm {transButton} Order</button>
           </div>
           <div className="stock-comp-portfolio-details">
