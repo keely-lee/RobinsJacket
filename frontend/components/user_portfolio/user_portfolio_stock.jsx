@@ -22,7 +22,7 @@ function UserPortfolioStock(props){
   const [buySell, setBuySell] = useState(0);
   const [transShares, setTransShares] = useState(0);
   
-  const totalPrice = formatNumber(transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))
+  const totalPrice = formatNumber(transShares * (Object.keys(stocks).length ? parseFloat(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(2)) : 0))
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
   
   // console.log(watching)
@@ -35,6 +35,8 @@ function UserPortfolioStock(props){
   //tab vars
   const transButton = buySell === 0 ? "Purchase" : "Sale";
   const costProceed = buySell === 0 ? "Cost" : "Proceeds";
+  const buyActive = buySell === 0 ? "active" : "";
+  const sellActive = buySell === 1 ? "active" : "";
   
   useEffect(() => {
     dispatch(grabPortfolio());
@@ -47,13 +49,16 @@ function UserPortfolioStock(props){
   }
 
   function handleSubmit(e){
+
   }
 
   function formatNumber(num){
-    const [dollar, cents] = num.toFixed(2).toString().split(".")
+    const [dollar, cents] = num.toString().split(".")
     const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     return (cents ? newDollar + "." + cents : newDollar)
   }
+
+  console.log(buySell)
 
   return (
     <div className="stock-comp-main-div">
@@ -79,8 +84,8 @@ function UserPortfolioStock(props){
           <UserHomeGraph
             currentUser={currentUser}
             stocks={stocks}
-            getStock={ticker => dispatch(displayStock(ticker))}
-            createWatch={stock => dispatch(createWatch(stock))}/>
+            getStock={ticker => dispatch(displayStock(ticker))}/>
+            {/* createWatch={stock => dispatch(createWatch(stock))}/> */}
           { watching ? null : 
             <button type="button" className="add-watchlist" onClick={updateUser}>
               Add to watchlist
@@ -93,8 +98,8 @@ function UserPortfolioStock(props){
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
             <h4>Transaction</h4>
             <div className="buy-sell-tabs">
-              <span>Buy</span>
-              <span>Sell</span>
+              <span className={`buy-tab ${buyActive}`} onClick={() => setBuySell(0)}>Buy</span>
+              {owned ? <span className={`sell-tab ${sellActive}`} onClick={() => setBuySell(1)}>Sell</span> : null}
             </div>
             <span>Current Shares Owned: {owned}</span>
           </div>
@@ -105,7 +110,7 @@ function UserPortfolioStock(props){
               onChange={(e) => setTransShares(e.currentTarget.value)}
             />
             {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
-            <span>Last: {Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4) : ""}</span>
+            <span>Last: {Object.keys(stocks).length ? formatNumber(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4)) : ""}</span>
           </div>
           <div className="stock-comp-trade-confirm">
             <span>Estimated {costProceed}</span>

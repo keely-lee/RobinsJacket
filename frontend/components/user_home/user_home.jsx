@@ -53,7 +53,8 @@ class UserHome extends React.Component {
             currentUser={currentUser}
             stocks={stocks} 
             getStock={getStock}
-            createWatch={this.props.createWatch}/>
+          />
+            {/* createWatch={this.props.createWatch}/> */}
           { !this.state.watched ? (
             <button type="button" className="add-watchlist" onClick={this.updateUser}>
               Add to watchlist
