@@ -77,7 +77,9 @@ class User < ApplicationRecord
    self.watchlist ||= Watchlist.create!(user_id: self.id)
  end
 
+#  require 'byebug'
  def portfolio_create
+  # debugger
   self.portfolio ||= Portfolio.create!(user_id: self.id)
  end
 
