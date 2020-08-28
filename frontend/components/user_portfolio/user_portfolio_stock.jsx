@@ -5,7 +5,7 @@ import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
 import { displayStock, displayByURL } from '../../actions/stock_actions';
 import { createWatch } from '../../actions/watchlist_actions';
-import { grabPortfolio } from '../../actions/portfolio_actions';
+import { grabPortfolio, createTransaction } from '../../actions/portfolio_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
@@ -13,22 +13,23 @@ function UserPortfolioStock(props){
   const { match } = props
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
-  const portfolio = useSelector(state => state.entities.portfolios);
+  const portfolio = useSelector(state => state.entities.portfolios); 
 
-  const owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((acc, add) => {
-    return (add.stock_id === parseInt(match.params.id)) ? acc + add.shares : acc + 0;
-  }, 0) : 0;
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
   const [buySell, setBuySell] = useState(0);
   const [transShares, setTransShares] = useState(0);
   
-  const totalPrice = formatNumber(transShares * (Object.keys(stocks).length ? parseFloat(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(2)) : 0))
+  const owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((acc, add) => {
+    return (add.stock_id === parseInt(match.params.id)) ? acc + add.shares : acc + 0;
+  }, 0) : 0;
+  const totalPrice = formatNumber( (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2) )
+
   // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
   
   // console.log(watching)
   // console.log(currentUser)
-  // console.log(stocks)
-  // console.log("currentUser LINE 16")
+  console.log(stocks)
+  console.log("currentUser LINE 16")
   // console.log(transShares);
   // console.log("transShares line 35");
   
@@ -49,7 +50,22 @@ function UserPortfolioStock(props){
   }
 
   function handleSubmit(e){
+    e.preventDefault();
 
+    const today = new Date();
+
+    console.log(today)
+    console.log(typeof today)
+    console.log("today")
+
+    dispatch(createTransaction({
+      transaction_date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
+      transaction_type: transButton.toLowerCase(),
+      shares: transShares,
+      price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
+      // portfolio_id: current
+      stock_id: match.params.id
+    }))
   }
 
   function formatNumber(num){
@@ -57,8 +73,6 @@ function UserPortfolioStock(props){
     const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     return (cents ? newDollar + "." + cents : newDollar)
   }
-
-  console.log(buySell)
 
   return (
     <div className="stock-comp-main-div">
@@ -85,7 +99,6 @@ function UserPortfolioStock(props){
             currentUser={currentUser}
             stocks={stocks}
             getStock={ticker => dispatch(displayStock(ticker))}/>
-            {/* createWatch={stock => dispatch(createWatch(stock))}/> */}
           { watching ? null : 
             <button type="button" className="add-watchlist" onClick={updateUser}>
               Add to watchlist
@@ -96,26 +109,28 @@ function UserPortfolioStock(props){
         <section className="ups-main-trans">
           <div className="stock-comp-options">
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
-            <h4>Transaction</h4>
+            <h4>TRADE {Object.keys(stocks).length ? Object.keys(stocks)[0] : ""} </h4>
             <div className="buy-sell-tabs">
               <span className={`buy-tab ${buyActive}`} onClick={() => setBuySell(0)}>Buy</span>
               {owned ? <span className={`sell-tab ${sellActive}`} onClick={() => setBuySell(1)}>Sell</span> : null}
             </div>
             <span>Current Shares Owned: {owned}</span>
           </div>
-          {/* IF SHARES OWNED (SELL TAB) LOGIC HERE::::: */}
           <div className="stock-comp-trade-details">
             <span>Quantity</span>
-            <input type="number" min="1" step="1" 
+            { owned && buySell === 1 ? <input type="number" min="1" max={owned} step="1"
               onChange={(e) => setTransShares(e.currentTarget.value)}
-            />
+            /> :
+            <input type="number" min="1" step="1"
+              onChange={(e) => setTransShares(e.currentTarget.value)}
+            /> }
             {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
             <span>Last: {Object.keys(stocks).length ? formatNumber(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4)) : ""}</span>
           </div>
           <div className="stock-comp-trade-confirm">
             <span>Estimated {costProceed}</span>
             <span>${totalPrice}</span>
-            <button>Confirm {transButton} Order</button>
+            <button onClick={(e) => handleSubmit(e)}>Confirm {transButton} Order</button>
           </div>
           <div className="stock-comp-portfolio-details">
             Cash Available

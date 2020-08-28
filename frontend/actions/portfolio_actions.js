@@ -1,4 +1,5 @@
 import * as PortfoliosUtil from "../util/portfolio_api_util";
+import * as TransactionsUtil from "../util/transactions_api_util";
 // import { receiveCurrentUser } from "./session_actions";
 
 export const RECEIVE_PORTFOLIO = "RECEIVE_PORTFOLIO";
@@ -17,7 +18,7 @@ export const grabPortfolio = () => dispatch => {
     // .fail()
 } 
 
-export const createTransaction = transaction => dispatch => {
-  return PortfoliosUtil.createTransaction(transaction)
-    // .then(portfolio => dispatch(receivePortfolio(portfolios)))
+export const createTransaction = trans => dispatch => {
+  return TransactionsUtil.createTransaction(trans)
+    .then(trans => dispatch(receivePortfolio(trans)))
 }

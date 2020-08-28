@@ -38,8 +38,8 @@ class UserHomeGraph extends React.Component {
           <YAxis type="number" tick={{ fill: 'white', fontSize: 12 }} 
             domain={[dataMin => {
               if (dataMin - 5 < 0) return 0;
-              else return parseFloat(dataMin.toFixed(2)) - 5;
-            }, dataMax => parseFloat(dataMax.toFixed(2)) + 5
+              else return Math.floor(dataMin) - 5;
+            }, dataMax => Math.ceil(dataMax) + 5
           ]}/>
 
           <Area type="monotone" dataKey="open" stroke="#ff9a7e" fillOpacity={1} fill="url(#colorOpen)"/>
