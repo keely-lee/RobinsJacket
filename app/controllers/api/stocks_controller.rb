@@ -1,5 +1,3 @@
-    require "byebug"
-
 class Api::StocksController < ApplicationController 
 
   # def index
