@@ -26,14 +26,14 @@ nyc = Watchlist.create!(user_id: buffett.id)
 cali = Watchlist.create!(user_id: gatsby.id)
 
 mixed = Portfolio.create!(user_id: carnegie.id)
-tech = Portfolio.create!(user_id: buffet.id)
+tech = Portfolio.create!(user_id: buffett.id)
 travel = Portfolio.create!(user_id: gatsby.id)
 
 one = StocksWatchlist.create!(stock_id: aapl.id, watchlist_id: big_five.id)
 two = StocksWatchlist.create!(stock_id: msft.id, watchlist_id: big_five.id)
 
 a = Transaction.create!(transaction_date: "2017-05-31", transaction_type: "purchase", shares: 16, price: 258.4125, portfolio_id: mixed.id, stock_id: tsla.id)
-b = Transaction.create!(transaction_date: "2018-01-25", transaction_type: "purchase", shares: 15, price: 362.2158, portfolio_id: mixed.id, stock_id: tlsa.id)
+b = Transaction.create!(transaction_date: "2018-01-25", transaction_type: "purchase", shares: 15, price: 362.2158, portfolio_id: mixed.id, stock_id: tsla.id)
 c = Transaction.create!(transaction_date: "2018-12-14", transaction_type: "purchase", shares: 9, price: 466.7201, portfolio_id: mixed.id, stock_id: tsla.id)
 d = Transaction.create!(transaction_date: "2017-05-31", transaction_type: "purchase", shares: 36, price: 117.235, portfolio_id: mixed.id, stock_id: msft.id)
 e = Transaction.create!(transaction_date: "2018-04-26", transaction_type: "purchase", shares: 4, price: 193.248, portfolio_id: mixed.id, stock_id: msft.id)
