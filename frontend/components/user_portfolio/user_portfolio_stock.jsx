@@ -5,7 +5,7 @@ import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
 import { displayStock, displayByURL } from '../../actions/stock_actions';
 import { createWatch } from '../../actions/watchlist_actions';
-import { grabPortfolio, createTransaction } from '../../actions/portfolio_actions';
+import { grabPortfolio, createTransaction, clearErrors } from '../../actions/portfolio_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function UserPortfolioStock(props){
       price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
       stock_id: match.params.id
     }))
-      .then(trans => completedTrans = trans);
+      .then(trans => {completedTrans = trans; console.log(trans)});
   }
 
   function formatNumber(num){
