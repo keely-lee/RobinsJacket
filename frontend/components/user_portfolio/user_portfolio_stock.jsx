@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';

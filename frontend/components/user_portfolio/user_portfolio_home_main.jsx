@@ -140,7 +140,7 @@ function UserPortfolioHomeMain(){
                 </tr>
 
                 {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
-                  if (!stocks[ticker]) return;
+                  if (!stocks[ticker]) return null;
 
                   const current = owned[ticker];
                   const market = stocks[ticker]["quote"];
