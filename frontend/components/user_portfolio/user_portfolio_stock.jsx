@@ -24,15 +24,8 @@ function UserPortfolioStock(props){
   }, 0) : 0;
   const totalPrice = formatNumber( (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2) )
 
-  // this.updateUser = this.updateUser.bind(this); //BIND FUNCS IN THE OPEN??
-  
-  // console.log(watching)
-  // console.log(currentUser)
-  console.log(stocks)
-  console.log("currentUser LINE 16")
-  // console.log(transShares);
-  // console.log("transShares line 35");
-  
+  let completedTrans;
+
   //tab vars
   const transButton = buySell === 0 ? "Purchase" : "Sale";
   const costProceed = buySell === 0 ? "Cost" : "Proceeds";
@@ -51,21 +44,16 @@ function UserPortfolioStock(props){
 
   function handleSubmit(e){
     e.preventDefault();
-
     const today = new Date();
-
-    console.log(today)
-    console.log(typeof today)
-    console.log("today")
 
     dispatch(createTransaction({
       transaction_date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
       transaction_type: transButton.toLowerCase(),
       shares: transShares,
       price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
-      // portfolio_id: current
       stock_id: match.params.id
     }))
+      .then(trans => completedTrans = trans);
   }
 
   function formatNumber(num){
@@ -106,6 +94,9 @@ function UserPortfolioStock(props){
           {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
         </section>
 
+        {completedTrans ? (
+          <div></div>
+        ) : (
         <section className="ups-main-trans">
           <div className="stock-comp-options">
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
@@ -135,7 +126,8 @@ function UserPortfolioStock(props){
           <div className="stock-comp-portfolio-details">
             Cash Available
           </div>
-        </section>
+        </section> 
+        )}
       </div>
     </div>
   );
