@@ -2,6 +2,8 @@ import * as PortfoliosUtil from "../util/portfolio_api_util";
 // import { receiveCurrentUser } from "./session_actions";
 
 export const RECEIVE_PORTFOLIO = "RECEIVE_PORTFOLIO";
+export const RECEIVE_TRANSACTION_ERRORS = "RECEIVE_TRANSACTION_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receivePortfolio = portfolio => {
   return {
@@ -9,6 +11,17 @@ const receivePortfolio = portfolio => {
     portfolio
   }
 }
+
+const receiveTransErrors = errors => {
+  return {
+    type: RECEIVE_TRANSACTION_ERRORS,
+    errors
+  }
+}
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS
+})
 
 export const grabPortfolio = () => dispatch => {
 // export const grabPortfolio = () => {
@@ -20,5 +33,5 @@ export const grabPortfolio = () => dispatch => {
 export const createTransaction = trans => dispatch => {
   return TransactionsUtil.createTransaction(trans)
     // .then(trans => dispatch(receivePortfolio(trans)))
-    // .fail()
+    .fail(err => dispatch(receiveTransErrors(err)))
 }

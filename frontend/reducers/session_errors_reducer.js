@@ -4,15 +4,13 @@ const sessionErrorsReducer = (errors = [], action) => {
   Object.freeze(errors);
   let newState = [];
 
-  switch (action.type) {
+  switch (action.type){
     case RECEIVE_CURRENT_USER:
-      newState = [];
       return newState;
     case RECEIVE_ERRORS:
       newState = Object.assign([], errors, action.errors)
       return newState;
     case CLEAR_ERRORS:
-      newState = [];
       return newState;
     default:
       return errors;
