@@ -19,7 +19,8 @@ class Api::TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params, portfolio_id: current_user.portfolio.id)
+    @transaction = Transaction.new(transaction_params.merge({portfolio_id: current_user.portfolio.id}))
+    # @transaction = Transaction.new(portfolio_id: current_user.portfolio.id, transaction_params)
     if @transaction.save
       render "/api/transactions/show"
     else
