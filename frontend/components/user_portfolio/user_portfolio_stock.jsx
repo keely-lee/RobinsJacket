@@ -15,6 +15,7 @@ function UserPortfolioStock(props){
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
   const portfolio = useSelector(state => state.entities.portfolios); 
+  const error = useSelector(state => state.errors.transaction);
 
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
   const [buySell, setBuySell] = useState(0);
@@ -23,9 +24,11 @@ function UserPortfolioStock(props){
   const owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((acc, add) => {
     return (add.stock_id === parseInt(match.params.id)) ? acc + add.shares : acc + 0;
   }, 0) : 0;
-  const totalPrice = formatNumber( (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2) )
+  const totalPrice = (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2); 
 
   let completedTrans;
+  const transError = error.length ? ( (error[0].startsWith("Shares") || error[0].startsWIth("Portfolio")) ?
+    error[0].split(" ").slice(1).join(" ") : error[0] ) : null;
 
   //tab vars
   const transButton = buySell === 0 ? "Purchase" : "Sale";
@@ -121,11 +124,12 @@ function UserPortfolioStock(props){
           </div>
           <div className="stock-comp-trade-confirm">
             <span>Estimated {costProceed}</span>
-            <span>${totalPrice}</span>
+            <span>${formatNumber(totalPrice)}</span>
             <button onClick={(e) => handleSubmit(e)}>Confirm {transButton} Order</button>
           </div>
           <div className="stock-comp-portfolio-details">
-            Cash Available
+            {buySell === 0 ? <p>Cash Available: ${formatNumber(Math.trunc(currentUser.funds_available - (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))))}</p>
+              : <p>Cash Balance: ${formatNumber(Math.trunc(currentUser.funds_available + (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))))}</p>}
           </div>
         </section> 
         )}

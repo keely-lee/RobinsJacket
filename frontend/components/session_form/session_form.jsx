@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-//ARRAY OF SAMPLE USERS FOR DEMO //
-
 class SessionForm extends React.Component {
   constructor(props){
     super(props);

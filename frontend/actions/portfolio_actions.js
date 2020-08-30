@@ -33,5 +33,5 @@ export const grabPortfolio = () => dispatch => {
 export const createTransaction = trans => dispatch => {
   return TransactionsUtil.createTransaction(trans)
     // .then(trans => dispatch(receivePortfolio(trans)))
-    .fail(err => dispatch(receiveTransErrors(err)))
+    .fail(err => dispatch(receiveTransErrors(err.responseJSON)))
 }
