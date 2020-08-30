@@ -39,11 +39,21 @@ function UserPortfolioStock(props){
   useEffect(() => {
     dispatch(grabPortfolio());
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
+  
+  useEffect(() => {
+    error.length ? dispatch(clearErrors()) : null;
+  }, [owned])
 
   function updateUser(){
     const stock = stocks[Object.keys(stocks)[0]].quote;
     dispatch(createWatch({ ticker: stock.symbol, company_name: stock.companyName }))
       .fail((err) => console.log(err.responseJSON[0]))
+  }
+
+  function formatNumber(num){
+    const [dollar, cents] = num.toString().split(".")
+    const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return (cents ? newDollar + "." + cents : newDollar)
   }
 
   function handleSubmit(e){
@@ -60,11 +70,6 @@ function UserPortfolioStock(props){
       .then(trans => {completedTrans = trans; console.log(trans)});
   }
 
-  function formatNumber(num){
-    const [dollar, cents] = num.toString().split(".")
-    const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    return (cents ? newDollar + "." + cents : newDollar)
-  }
 
   return (
     <div className="stock-comp-main-div">
@@ -106,8 +111,10 @@ function UserPortfolioStock(props){
             {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
             <h4>TRADE {Object.keys(stocks).length ? Object.keys(stocks)[0] : ""} </h4>
             <div className="buy-sell-tabs">
-              <span className={`buy-tab ${buyActive}`} onClick={() => setBuySell(0)}>Buy</span>
-              {owned ? <span className={`sell-tab ${sellActive}`} onClick={() => setBuySell(1)}>Sell</span> : null}
+              <span className={`buy-tab ${buyActive}`} onClick={() => { setBuySell(0);
+                error.length ? dispatch(clearErrors()) : null }}>Buy</span>
+              {owned ? <span className={`sell-tab ${sellActive}`} onClick={() => { setBuySell(1); 
+                error.length ? dispatch(clearErrors()) : null }}>Sell</span> : null}
             </div>
             <span>Current Shares Owned: {owned}</span>
           </div>
@@ -127,6 +134,9 @@ function UserPortfolioStock(props){
             <span>${formatNumber(totalPrice)}</span>
             <button onClick={(e) => handleSubmit(e)}>Confirm {transButton} Order</button>
           </div>
+
+          <p className="trans-error-msg">{transError}</p>
+
           <div className="stock-comp-portfolio-details">
             {buySell === 0 ? <p>Cash Available: ${formatNumber(Math.trunc(currentUser.funds_available - (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))))}</p>
               : <p>Cash Balance: ${formatNumber(Math.trunc(currentUser.funds_available + (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0))))}</p>}

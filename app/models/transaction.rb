@@ -15,6 +15,7 @@
 class Transaction < ApplicationRecord
   validates :transaction_date, :transaction_type, :shares, :price, :portfolio_id, :stock_id, presence: true
   validates :transaction_type, inclusion: { in: ['purchase', 'sale'] }
+  validates :shares, numericality: { greater_than: 0, message: "The Number of shares must be greater than 0" }
   validate :check_enough
   after_save :make_transaction
 
