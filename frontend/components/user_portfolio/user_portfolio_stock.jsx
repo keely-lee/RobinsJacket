@@ -60,6 +60,8 @@ function UserPortfolioStock(props){
     e.preventDefault();
     const today = new Date();
 
+    console.log(transButton.toLowerCase())
+
     dispatch(createTransaction({
       transaction_date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
       transaction_type: transButton.toLowerCase(),
