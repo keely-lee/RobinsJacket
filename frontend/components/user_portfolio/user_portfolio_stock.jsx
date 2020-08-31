@@ -59,8 +59,7 @@ function UserPortfolioStock(props){
   function handleSubmit(e){
     e.preventDefault();
     const today = new Date();
-
-    console.log(transButton.toLowerCase())
+    if (buySell === 1) setTransShares(transShares * -1); 
 
     dispatch(createTransaction({
       transaction_date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
