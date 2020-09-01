@@ -33,8 +33,10 @@ function UserPortfolioHomeMain(){
   useEffect(() => {
     dispatch(grabPortfolio());
     dispatch(displayStocks(Object.keys(owned).join(",")));
-  }, [1])
-  //}, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
+    stocks.length ? console.log(stocks["AA"].quote.latestPrice) : null
+    console.log("BLAH BLAH")
+  // }, [1])
+  }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
   
   function calcOwned(transactions){ //array of transactions
     let offSet = 0; //offSet = negShares (iterate backwards over array)
@@ -156,7 +158,6 @@ function UserPortfolioHomeMain(){
                     </tr>
                   )
                 }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" IF EMPTY*/}
-
               </tbody>
             </table>
           </section>
