@@ -16,27 +16,42 @@ function UserPortfolioHomeMain(){
 
   const owned = Object.keys(portfolio).length ? calcOwned(portfolio.portfolio) : {};
 
+  const [stateTotalGL, setTotalGL] = useState(0);
+  const [stateTodayGL, setTodayGL] = useState(0);
+  const [stateMarketValue, setMarketValue] = useState(0);
+
   //DIV VARS FOR RETURN
-  let totalGL; //class name for gain/loss
-  let todayGL; //class name for gain/loss
-  const uphPvDiff = stateTotalGL < 0 ? "uph-minus" : "uph-plus"
+  const totalGLDiff = stateTotalGL < 0 ? "uph-minus" : "uph-plus"; //class name for total gain/loss (color)
+  const uphPvDiff = stateTodayGL < 0 ? "uph-minus" : "uph-plus"; //class name for today gain/loss (color)
 
   //VARS FOR SUMMARY CALC
   let portfolioValue = currentUser.funds_available;
   let totalGLAmt = 0;
   let todayGLAmt = 0;
+  let totalMarketValue = 0;
 
-  const [stateTotalGL, setTotalGL] = useState(0)
-  const [stateTodayGL, setTodayGL] = useState(0)
-
+  console.log("I AM RENDERING")
   useEffect(() => {
     dispatch(grabPortfolio());
-    dispatch(displayStocks(Object.keys(owned).join(",")));
+    dispatch(displayStocks(Object.keys(owned).join(",")))
+      .then(res => {
+        if (Object.keys(owned).length){
+          Object.keys(res.stocks).forEach(ticker => {
+            const current = owned[ticker];
+            const market = res.stocks[ticker]["quote"];
 
-    setTotalGL(totalGLAmt);
-    setTodayGL(todayGLAmt);
+            totalGLAmt += (current["shares"] * market["latestPrice"] - current["cost"]);
+            todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
+            totalMarketValue += (current["shares"] * market["latestPrice"])
+          })
+
+          setTotalGL(totalGLAmt);
+          setTodayGL(todayGLAmt);
+          setMarketValue(totalMarketValue);
+        }
+      })
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
-
+  
   function calcOwned(transactions){ //array of transactions
     let offSet = 0; //offSet = negShares (iterate backwards over array)
     let lifoCost = 0;
@@ -83,9 +98,6 @@ function UserPortfolioHomeMain(){
     return ( cents ? newDollar + "." + cents : newDollar )
   }
 
-  console.log(owned)
-  console.log("owned")
-
   return (
     <div className="user-portfolio-home">
       <nav>
@@ -102,25 +114,23 @@ function UserPortfolioHomeMain(){
 
           <section className="user-portfolio-home-summary">
             <div className="uph-summary-1">
-              <span>
-                {currentUser.fname} {currentUser.lname} account value:
-              </span>
-              <span>$ {formatComma((portfolioValue + stateTotalGL).toFixed(2))}</span>
-              <span className={`uph-pv-diff ${uphPvDiff}`}>$ {formatComma(portfolioValue.toFixed(2))}</span>
+              <span>{currentUser.fname} {currentUser.lname} account value: </span>
+              <span>$ {formatComma((portfolioValue + stateMarketValue).toFixed(2))}</span> {/* cash available + stocks value (market) */}
+              <span className={`uph-pv-diff ${uphPvDiff}`}>from ${formatComma((portfolioValue + stateMarketValue - stateTodayGL).toFixed(2))}</span> {/* cash available + stocks value (market) + today's GL */}
             </div>
             <div className="uph-summary-2">
               <span>Stock Buying Power</span>
-              <span>$ {formatComma(currentUser.funds_available.toFixed(2))}</span>
+              <span>$ {formatComma(portfolioValue.toFixed(2))}</span> {/* cash available (user.funds_available) */} 
             </div>
             <div className="uph-summary-3">
               <span>total gain/loss</span>
-              <span className={totalGL}>$ {formatComma(stateTotalGL.toFixed(2))}</span>
+              <span className={totalGLDiff}>$ {formatComma(stateTotalGL.toFixed(2))}</span>
               {/* total_amt - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
             </div>
             <div className="uph-summary-4">
               <span>today's gain/loss</span>
-              <span className={todayGL}>$ {formatComma(stateTodayGL.toFixed(2))}</span>
-              {/* forEach stock owned -> (previous Day's closingPrice - currentMoment closingPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
+              <span className={uphPvDiff}>$ {formatComma(stateTodayGL.toFixed(2))}</span>
+              {/* forEach stock owned -> (previous Day's closingPrice - latestPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
             </div>
           </section>
 
@@ -132,32 +142,32 @@ function UserPortfolioHomeMain(){
                   <th>Symbol</th>
                   <th>Quantity</th>
                   <th>Mkt Price</th>
-                  <th>Change ($)</th>
+                  <th>Day Change ($)</th>
                   <th>Cost</th>
                   <th>Mkt Value</th>
-                  <th>Gain ($)</th>
-                  <th>Gain (%)</th>
+                  <th>Tot. Gain ($)</th>
+                  <th>Tot. Gain (%)</th>
                 </tr>
 
                 {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
-                  if (!stocks[ticker]) return;
-
+                  if (!stocks[ticker]) return null;
+                  
                   const current = owned[ticker];
                   const market = stocks[ticker]["quote"];
-
-                  totalGLAmt += (current["shares"] * market["latestPrice"] - current["cost"]);
-                  todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
+                  
+                  const dayGL = market["previousClose"] - market["latestPrice"] < 0 ? "uph-minus" : "uph-plus";
+                  const totGL = (current["shares"] * market["latestPrice"] - current["cost"]) < 0 ? "uph-minus" : "uph-plus";
 
                   return (
                     <tr className={`uph-tr-${idx}`}>
                       <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
                       <td>{current["shares"]}</td>
                       <td>{formatComma(market["latestPrice"])}</td>
-                      <td>{( market["previousClose"] - market["latestPrice"] ).toFixed(4)}</td>
+                      <td className={dayGL}>{( market["previousClose"] - market["latestPrice"] ).toFixed(4)}</td>
                       <td>{formatComma(current["cost"].toFixed(2))}</td>
                       <td>{formatComma((current["shares"] * market["latestPrice"]).toFixed(2))}</td>
-                      <td>{formatComma((current["shares"] * market["latestPrice"] - current["cost"]).toFixed(2))}</td>
-                      <td>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
+                      <td className={totGL}>{formatComma((current["shares"] * market["latestPrice"] - current["cost"]).toFixed(2))}</td> {/* total gain/loss for this stock */}
+                      <td className={totGL}>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
                     </tr>
                   )
                 }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" IF EMPTY*/}
@@ -166,6 +176,7 @@ function UserPortfolioHomeMain(){
           </section>
         </div>
       </div>
+      { console.log('FINAL BEFORE RENDER OVER')}
     </div>
   );
 }

@@ -59,7 +59,7 @@ class UserHomeNav extends React.Component {
     this.props.currPage ? this.props.getByURL(this.props.currPage) : this.props.getStock(this.state.ticker);
   }
 
-  updateField(field){
+  updateSearch(){
     return e => {
       this.setState({ ticker: e.currentTarget.value })
     }
@@ -82,7 +82,7 @@ class UserHomeNav extends React.Component {
             <i className="fa fa-search" aria-hidden="true"></i>
             {/* <input type="text" className="navbar-stock-search" placeholder="Search" */}
             <input type="text" className="navbar-stock-search" placeholder="Enter Ticker"
-            onChange={ this.updateField() }/>
+            onChange={ this.updateSearch() }/>
             <button className="home-nav-submit-button"><i className="fas fa-arrow-right"></i></button>
           </form>
         </div>

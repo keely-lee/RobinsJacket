@@ -15,7 +15,9 @@
 class Transaction < ApplicationRecord
   validates :transaction_date, :transaction_type, :shares, :price, :portfolio_id, :stock_id, presence: true
   validates :transaction_type, inclusion: { in: ['purchase', 'sale'] }
+  validates :shares, numericality: { greater_than: 0, message: "The Number of shares must be greater than 0" }
   validate :check_enough
+  before_save :check_sale
   after_save :make_transaction
 
   belongs_to :portfolio,
@@ -40,15 +42,16 @@ class Transaction < ApplicationRecord
     end
   end
 
+  def check_sale
+    if self.transaction_type == 'sale'
+      self.shares = self.shares.abs * -1
+    end
+  end
+
   #after save, deduct from user
   def make_transaction
-    if self.transaction_type == 'purchase'
-      owner.funds_available -= (self.shares * self.price)
-      owner.save!
-    else
-      owner.funds_available += (self.shares * self.price)
-      owner.save!
-    end
+    owner.funds_available -= (self.shares * self.price)
+    owner.save!
   end
   
 end
