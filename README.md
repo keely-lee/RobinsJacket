@@ -1,6 +1,6 @@
 # README
 
-RobinsJacket is a single page app clone of Robinhood Markets. On home, the user is greeted with a cloned splash page that displays products the benefits of choosing RobinsJacket!
+<a href="https://robins-jacket.herokuapp.com/#/">RobinsJacket</a> is a single page app clone of Robinhood Markets. On home, the user is greeted with a cloned splash page that displays products the benefits of choosing RobinsJacket!
 
 ![](./app/assets/images/RJ_Splash2.gif)
 
@@ -55,7 +55,6 @@ My intention is to continue to flesh out more features and functionality.
 Coming soon:
 - Watchlist update & design
 - User portfolio page that displays the list of stocks owned
-- Stock transaction page that allows user to buy/sell stock
 
 Future Endeavors:
 - Graph toggle that toggles 1D, 1M, 3M, 1Y, 2Y
