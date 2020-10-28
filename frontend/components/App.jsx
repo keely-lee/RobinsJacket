@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { AuthRoute } from "../util/route_util"
+import { AuthRoute, ProtectedRoute } from "../util/route_util"
 import Modal from './modal/modal';
 import GreetingContainer from './greeting/GreetingContainer';
 import LoginFormContainer from './session_form/login_form_container';
@@ -18,8 +18,8 @@ const App = () => {
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <Route exact path="/loremips" component={LoremIpsum} />
-        <Route path="/stock/:id" component={UserPortfolioStock} />
-        <Route exact path="/portfolio" component={UserPortfolioHomeMain} />
+        <ProtectedRoute path="/stock/:id" component={UserPortfolioStock} />
+        <ProtectedRoute exact path="/portfolio" component={UserPortfolioHomeMain} />
       </Switch>
     </div>
   );

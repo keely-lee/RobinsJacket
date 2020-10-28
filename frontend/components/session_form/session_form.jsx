@@ -25,7 +25,11 @@ class SessionForm extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     const user = Object.assign({}, this.state)
-    if (this.props.formType === "signup" && user.email === "hiringmanager@gmail.com") this.props.demoUser(user)
+
+    console.log(user)
+    console.log("user")
+    debugger
+    if (this.props.formType === "signup" && user.email === "acarnegie@gmail.com") this.props.demoUser(user)
     else this.props.processForm(user)
   }
 
@@ -36,7 +40,8 @@ class SessionForm extends React.Component {
   }
 
   demoUser(e){
-    const user = { email: "hiringmanager@gmail.com", password: "password4", funds_available: 99999999, fname: "Keely", lname: "Lee" }
+    const user = { email: "acarnegie@gmail.com", password: "password1" }
+    // , funds_available: 99999999, fname: "Keely", lname: "Lee" }
 
     return () => {
       this.setState(user)

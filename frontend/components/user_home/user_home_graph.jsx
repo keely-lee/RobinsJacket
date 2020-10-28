@@ -53,9 +53,6 @@ class UserHomeGraph extends React.Component {
   }
 
   render(){
-    console.log(this.props.stocks)
-    console.log("stocks USER HOME GRAPH LINE 55")
-
     if (!Object.keys(this.props.stocks).length) return null;
 
     let symbol = "";
