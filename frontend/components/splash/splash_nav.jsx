@@ -42,6 +42,7 @@ class SplashNav extends React.Component {
               Products {caret}</button> 
             <a href="https://www.linkedin.com/in/keely-lee1/" className="linkedin"><i className="fab fa-linkedin"></i></a>
             <a href="https://github.com/keely-lee" className="github"><i className="fab fa-github"></i></a>
+            <a href="https://keely-lee.github.io/" className="personal"><i class="fas fa-user-circle"></i></a>
           </div>
 
           <div className="navbar-right-links">

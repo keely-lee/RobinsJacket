@@ -90,9 +90,14 @@
   padding-right: 30px;
 }
 
-.linkedin:hover, .github:hover {
+.linkedin:hover, .github:hover, .personal:hover {
   color: #00C805;
   /* background-color: black; */
+}
+
+.personal {
+  color: darkgreen;
+  font-size: 40px;
 }
 
 .navbar-main > .navbar-right-links {
