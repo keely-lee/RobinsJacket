@@ -27,7 +27,7 @@
     "webpack": "webpack --watch --mode=development",
     "postinstall": "webpack"
   },
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description": "RobinsJacket is a single-page full-stack app clone of Robinhood Markets",
   "version": "1.0.0",
   "main": "webpack.config.js",
   "directories": {
