@@ -65,9 +65,6 @@ class WatchlistComp extends React.Component {
                   stock.chart[0].open < stock.chart[stock.chart.length - 1].close ? (val = "#00C805") : (val = "#ff0000");
                   stockId = this.state.watches[stock.quote.symbol]
 
-                  // console.log(this.state.watches)
-                  // console.log(stock)
-                  // console.log("WATCHLISTCOMP LINE 66")
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
                       <td>

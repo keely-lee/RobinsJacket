@@ -10,7 +10,6 @@ function Modal({ modal, closeModal }) {
   }
   let component;
   // debugger
-  console.log(modal)
   switch (modal) {
     case 'commissionsDisclosure':
       component = <CommissionsDisclosure closeModal={closeModal}/>;

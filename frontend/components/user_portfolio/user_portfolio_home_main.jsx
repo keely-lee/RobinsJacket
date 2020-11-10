@@ -30,7 +30,6 @@ function UserPortfolioHomeMain(){
   let todayGLAmt = 0;
   let totalMarketValue = 0;
 
-  console.log("I AM RENDERING")
   useEffect(() => {
     dispatch(grabPortfolio());
     dispatch(displayStocks(Object.keys(owned).join(",")))
@@ -176,7 +175,6 @@ function UserPortfolioHomeMain(){
           </section>
         </div>
       </div>
-      { console.log('FINAL BEFORE RENDER OVER')}
     </div>
   );
 }

@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.createUser = createUser;
   window.getPortfolio = receivePortfolio;
   window.logout = logoutUser;
-  // console.log("test")
-  // console.log()
-  // console.log("test")
 
   if (window.currentUser){
     const preloadedState = {

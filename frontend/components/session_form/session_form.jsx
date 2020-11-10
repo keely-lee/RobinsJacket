@@ -26,9 +26,6 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state)
 
-    console.log(user)
-    console.log("user")
-    debugger
     if (this.props.formType === "signup" && user.email === "acarnegie@gmail.com") this.props.demoUser(user)
     else this.props.processForm(user)
   }
@@ -41,7 +38,6 @@ class SessionForm extends React.Component {
 
   demoUser(e){
     const user = { email: "acarnegie@gmail.com", password: "password1" }
-    // , funds_available: 99999999, fname: "Keely", lname: "Lee" }
 
     return () => {
       this.setState(user)
@@ -196,7 +192,7 @@ class SessionForm extends React.Component {
               <div className="signup-after-vid">
                 <p className="video-text">We’ve cut the fat that makes other brokerages costly, like manual account management and hundreds of storefront locations, so we can offer zero commission trading.</p>
 
-                <button className="video-button link-sblue-only" type="button" onClick={() => {console.log("CLICK"); this.displayHidden()}}>View commission disclosures</button>
+                <button className="video-button link-sblue-only" type="button" onClick={() => {this.displayHidden()}}>View commission disclosures</button>
 
                 { this.state.displayHidden ? (
                   <p className="video-text-hidden">commission-free trading refers to $0 commissions for RobinsJacket Inc self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or the web. Relevant SEC <br/> &amp; FINRA fees may apply. Please <br/> see our <span className="link-sblue-only">Fee Schedule.</span></p>

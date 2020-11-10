@@ -17,8 +17,6 @@ class UserHome extends React.Component {
     if (prevProps.stocks !== this.props.stocks || prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
       this.toggleButton()
     }
-    console.log(prevProps)
-    console.log("prevProps")
   }
 
   updateUser(){

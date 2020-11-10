@@ -2,11 +2,11 @@
 
 <a href="https://robins-jacket.herokuapp.com/#/">RobinsJacket</a> is a single page app clone of Robinhood Markets. On home, the user is greeted with a cloned splash page that displays products the benefits of choosing RobinsJacket!
 
-![](./app/assets/images/RJ_Splash2.gif)
+![](https://media.giphy.com/media/utoJg2CkN9HD1j3FJQ/giphy.gif)
 
 When a user is signed in, they are greeted with a stock graph and trending news. The graph pulls live market data defaulted to a three month period (obtained by <a href="https://iexcloud.io/">IEX Cloud</a> )
 
-![](./app/assets/images/RJ_Graph.gif)
+![](https://media.giphy.com/media/OeEowxRxHvQCfd7gln/giphy.gif)
 
 
 Hurdles:

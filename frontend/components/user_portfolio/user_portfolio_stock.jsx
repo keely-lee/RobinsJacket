@@ -11,7 +11,7 @@ import { grabPortfolio, createTransaction, clearErrors } from '../../actions/por
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
   
-  const { match } = props
+  const { match } = props;
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
   const portfolio = useSelector(state => state.entities.portfolios); 
