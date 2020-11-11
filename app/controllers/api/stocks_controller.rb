@@ -16,6 +16,8 @@ class Api::StocksController < ApplicationController
 
   def show
     @stock = Stock.find_by_id(params[:id])
+    
+
     if @stock
       render :show
     else

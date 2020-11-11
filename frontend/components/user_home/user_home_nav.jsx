@@ -73,7 +73,7 @@ class UserHomeNav extends React.Component {
     e.preventDefault();
     this.props.getStock(this.state.ticker);
 
-    if(!this.props.ownProps) this.setState({ redirect: this.props.stocks })
+    if(!this.props.ownProps) this.setState({ redirect: this.props.stocks }) /////////// NEED TO HIT BACKEND: IF STOCK EXISTS, GRAB ID, ELSE CREATE NEW STOCK, GET ID
   }
 
 
