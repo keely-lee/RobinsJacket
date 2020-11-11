@@ -33,3 +33,8 @@ export const displayByURL = id => dispatch => {
     .then(stockTicker => StockAPIUtil.receiveStock(stockTicker.ticker))
     .then(stock => dispatch(receiveStock(stock)))
 }
+
+// TICKER IS CASE SENSITIVE, needs to be all caps
+export const displayByTicker = ticker => {
+  return StockAPIUtil.getTicker(ticker)
+}

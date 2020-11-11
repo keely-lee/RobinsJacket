@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { displayByTicker } from '../../actions/stock_actions'
 
 class UserHomeNav extends React.Component {
   constructor(props){
@@ -16,6 +17,7 @@ class UserHomeNav extends React.Component {
     this.handleCloseNavs = this.handleCloseNavs.bind(this);
     // this.handleSearch = this.handleSearch.bind(this);
     console.log(this.props.ownProps)
+    displayByTicker("TSLA").then(stock => {console.log("STOCKITY STOCK"); console.log(stock)})
     console.log("this.props.path")
   }
 
