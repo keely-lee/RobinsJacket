@@ -51,11 +51,6 @@ Technologies Used:
 
 
 My intention is to continue to flesh out more features and functionality.
-
-Coming soon:
-- Watchlist update & design
-- User portfolio page that displays the list of stocks owned
-
 Future Endeavors:
 - Graph toggle that toggles 1D, 1M, 3M, 1Y, 2Y
 - Update newsapi for user home

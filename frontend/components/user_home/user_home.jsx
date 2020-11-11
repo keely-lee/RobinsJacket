@@ -35,12 +35,14 @@ class UserHome extends React.Component {
     const currentUser = this.props.currentUser;
     const getStock = this.props.getStock;
     const stocks = this.props.stocks
+
     return (
       <div className="user-home-main">
         <nav>
           <UserHomeNav 
             currentUser={currentUser} 
             logout={this.props.logout} 
+            ownProps={this.props.ownProps}
             getStock={getStock}/>
         </nav>
 

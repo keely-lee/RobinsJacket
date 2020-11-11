@@ -6,7 +6,7 @@ import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { displayNews } from '../../actions/news_actions';
 import { createWatch, deleteWatch } from '../../actions/watchlist_actions';
 
-const mSTP = state => ({
+const mSTP = (state, ownProps) => ({
   currentUser: state.entities.users[state.session.currentUserId],
   stocks: state.entities.stocks,
   news: state.entities.news,

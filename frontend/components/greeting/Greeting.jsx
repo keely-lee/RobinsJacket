@@ -10,7 +10,7 @@ class Greeting extends React.Component {
 
   render(){
     return (
-      this.props.currentUser ? <UserHomeContainer/> : <SplashContainer/>
+      this.props.currentUser ? <UserHomeContainer ownProps={this.props.ownProps}/> : <SplashContainer/>
     )
   }
 }

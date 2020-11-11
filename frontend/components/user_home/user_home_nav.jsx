@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class UserHomeNav extends React.Component {
   constructor(props){
@@ -9,11 +9,14 @@ class UserHomeNav extends React.Component {
       messageDropdown: false,
       contact: false,
       ticker: "NDAQ",
+      redirect: null,
      };
 
     this.handleGraph = this.handleGraph.bind(this);
     this.handleCloseNavs = this.handleCloseNavs.bind(this);
     // this.handleSearch = this.handleSearch.bind(this);
+    console.log(this.props.ownProps)
+    console.log("this.props.path")
   }
 
   handleDropdown(dropdown){
@@ -60,6 +63,7 @@ class UserHomeNav extends React.Component {
   }
 
   updateSearch(){
+
     return e => {
       this.setState({ ticker: e.currentTarget.value })
     }
@@ -68,10 +72,13 @@ class UserHomeNav extends React.Component {
   handleGraph(e){
     e.preventDefault();
     this.props.getStock(this.state.ticker);
+
+    if(!this.props.ownProps) this.setState({ redirect: this.props.stocks })
   }
 
 
   render(){
+    if(this.state.redirect) return <Redirect to={this.state.redirect}/> //Redirect to stocks page if not on user home
 
     return (
       <div className="home-navbar-main">

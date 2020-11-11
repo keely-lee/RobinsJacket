@@ -331,12 +331,13 @@ a > td > p {
 }
 
 .watchlist-header {
-  width: 250px;
+  width: 285px;
   margin: auto;
   border-bottom: rgb(66, 73, 78);
   position: fixed;
   top: 96px;
   background-color: rgb(49, 49, 49);
+  z-index: 2;
 }
 
 .watchlist-header-title {
