@@ -34,7 +34,10 @@ export const displayByURL = id => dispatch => {
     .then(stock => dispatch(receiveStock(stock)))
 }
 
-// TICKER IS CASE SENSITIVE, needs to be all caps
 export const displayByTicker = ticker => {
   return StockAPIUtil.getTicker(ticker)
+}
+
+export const displayByNewTicker = stock => {
+  return StockAPIUtil.getNewTicker(stock)
 }

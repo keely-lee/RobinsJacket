@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { displayByTicker } from '../../actions/stock_actions'
+import { displayByTicker, displayByNewTicker } from '../../actions/stock_actions'
 
 class UserHomeNav extends React.Component {
   constructor(props){
@@ -74,6 +74,10 @@ class UserHomeNav extends React.Component {
         if(!this.props.ownProps) {
           displayByTicker(this.state.ticker.toUpperCase())
             .then(stock => this.setState({ redirect: stock.id }))
+            .fail(err => { 
+              displayByNewTicker({ticker: res.stock.quote.symbol, company_name: res.stock.quote.companyName}) 
+                .then(newStock => this.setState({ redirect: newStock.id}))
+            }) //create stock if not previously stored
         }
       })
   }

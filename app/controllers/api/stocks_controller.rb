@@ -8,7 +8,7 @@ class Api::StocksController < ApplicationController
   def create
     @stock = Stock.new(stock_params)
     if @stock.save
-      render json: @stock
+      render :show
     else
       render json: @stock.errors.full_messages, status: 422
     end
@@ -21,7 +21,8 @@ class Api::StocksController < ApplicationController
     if @stock
       render :show
     else
-      render json: @stock.errors.full_messages, status: 422
+      render json: ['Stock not currently in vault'], status: 422
+
     end
   end
 

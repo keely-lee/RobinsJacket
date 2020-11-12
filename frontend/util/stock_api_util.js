@@ -20,3 +20,11 @@ export const getTicker = id => {
     url: `/api/stocks/${id}`
   })
 }
+
+export const getNewTicker = stock => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/stocks`,
+    data: { stock }
+  })
+}
