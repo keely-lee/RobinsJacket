@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import WatchlistComp from './watchlist_comp'
 import UserHomeNav from './user_home_nav';
 import UserHomeGraph from './user_home_graph';
@@ -35,7 +36,9 @@ class UserHome extends React.Component {
     const currentUser = this.props.currentUser;
     const getStock = this.props.getStock;
     const stocks = this.props.stocks
-
+    console.log(stocks)
+    console.log(Object.keys(stocks))
+    console.log("stocks")
     return (
       <div className="user-home-main">
         <nav>
@@ -60,6 +63,9 @@ class UserHome extends React.Component {
               Add to watchlist
             </button> 
           ) : null }
+          <Link to={`/stock/${Object.keys(stocks)[0]}`} className="user-home-trade-link">
+            TRADE
+          </Link>
         </section>
         <section>
           <UserHomeNews 

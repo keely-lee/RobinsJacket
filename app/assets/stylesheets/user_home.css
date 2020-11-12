@@ -434,6 +434,19 @@ a > td > p {
   color: rgb(238, 103, 065)
 }
 
+.user-home-trade-link {
+  position: absolute;
+  top: 150px;
+  right: 40vw;
+  text-decoration: none;
+  font-weight: bold;
+  color: #00c805;
+  padding: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
 .company-name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
