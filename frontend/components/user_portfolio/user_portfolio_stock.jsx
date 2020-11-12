@@ -26,7 +26,7 @@ function UserPortfolioStock(props){
   }, 0) : 0;
   const totalPrice = (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2); 
 
-  let completedTrans;
+  const [completedTrans, createTrans] = useState({}); 
   const transError = error.length ? ( (error[0].startsWith("Shares") || error[0].startsWIth("Portfolio")) ?
     error[0].split(" ").slice(1).join(" ") : error[0] ) : null;
 
@@ -44,6 +44,10 @@ function UserPortfolioStock(props){
     error.length ? dispatch(clearErrors()) : null;
   }, [owned])
 
+  useEffect(() => {
+    createTrans({});
+  },[match.params.id])
+
   function updateUser(){
     const stock = stocks[Object.keys(stocks)[0]].quote;
     dispatch(createWatch({ ticker: stock.symbol, company_name: stock.companyName }))
@@ -59,18 +63,18 @@ function UserPortfolioStock(props){
   function handleSubmit(e){
     e.preventDefault();
     const today = new Date();
-    if (buySell === 1) setTransShares(transShares * -1); 
+    const finalTransShares = Math.abs(transShares); 
 
     dispatch(createTransaction({
       transaction_date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
       transaction_type: transButton.toLowerCase(),
-      shares: transShares,
+      shares: finalTransShares,
       price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
       stock_id: match.params.id
     }))
-      .then(trans => {completedTrans = trans; console.log(trans)});
-  }
+      .then(trans => createTrans(trans));
 
+  }
 
   return (
     <div className="stock-comp-main-div">
@@ -104,12 +108,18 @@ function UserPortfolioStock(props){
           {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
         </section>
 
-        {completedTrans ? (
-          <div></div>
+        {Object.keys(completedTrans).length ? (
+          <section className="ups-main-trans completed-main">
+            <div className="stock-comp-options">
+              <p>Transaction Successful!</p>
+              <p>{Object.keys(stocks)[0]} {completedTrans.transaction_type === "purchase" ? "purchased" : "sold"}: {Math.abs(completedTrans.shares)} shares @ {completedTrans.price}</p>
+              <p>Total {costProceed}: ${formatNumber(totalPrice)}</p>
+              <Link to="/portfolio" className="trans-complete-link">View Portfolio <i className="fas fa-arrow-right complete-arrow"></i></Link>
+            </div>
+          </section>
         ) : (
         <section className="ups-main-trans">
           <div className="stock-comp-options">
-            {/* NEED STOCK NAME FOR H4-TRADE $NAME */}
             <h4>TRADE {Object.keys(stocks).length ? Object.keys(stocks)[0] : ""} </h4>
             <div className="buy-sell-tabs">
               <span className={`buy-tab ${buyActive}`} onClick={() => { setBuySell(0);
