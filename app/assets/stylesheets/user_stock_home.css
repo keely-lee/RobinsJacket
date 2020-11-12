@@ -1,11 +1,13 @@
 /* stocks home */
 .stock-comp-main-div {
   background-color: rgb(30, 30, 30);
+  min-height: 100vh;
 }
 
 .stock-comp-main-div > h2 {
   padding-top: 100px;
-  margin: 0;
+  padding-bottom: 25px;
+  margin: 0 0 0 15vw;
   color: whitesmoke;
 }
 
