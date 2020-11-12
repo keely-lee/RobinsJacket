@@ -16,9 +16,6 @@ class UserHomeNav extends React.Component {
     this.handleGraph = this.handleGraph.bind(this);
     this.handleCloseNavs = this.handleCloseNavs.bind(this);
     // this.handleSearch = this.handleSearch.bind(this);
-    console.log(this.props.ownProps)
-    displayByTicker("TSLA").then(stock => {console.log("STOCKITY STOCK"); console.log(stock)})
-    console.log("this.props.path")
   }
 
   handleDropdown(dropdown){
@@ -65,7 +62,6 @@ class UserHomeNav extends React.Component {
   }
 
   updateSearch(){
-
     return e => {
       this.setState({ ticker: e.currentTarget.value })
     }
@@ -73,14 +69,18 @@ class UserHomeNav extends React.Component {
 
   handleGraph(e){
     e.preventDefault();
-    this.props.getStock(this.state.ticker);
-
-    if(!this.props.ownProps) this.setState({ redirect: this.props.stocks }) /////////// NEED TO HIT BACKEND: IF STOCK EXISTS, GRAB ID, ELSE CREATE NEW STOCK, GET ID
+    this.props.getStock(this.state.ticker)
+      .then(res => {
+        if(!this.props.ownProps) {
+          displayByTicker(this.state.ticker.toUpperCase())
+            .then(stock => this.setState({ redirect: stock.id }))
+        }
+      })
   }
 
 
   render(){
-    if(this.state.redirect) return <Redirect to={this.state.redirect}/> //Redirect to stocks page if not on user home
+    if(this.state.redirect && parseInt(this.props.currPage) !== this.state.redirect) return <Redirect to={`/stock/${this.state.redirect}`}/> //Redirect to stocks page if not on user home
 
     return (
       <div className="home-navbar-main">

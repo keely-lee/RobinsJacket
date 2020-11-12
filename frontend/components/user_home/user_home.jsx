@@ -41,8 +41,8 @@ class UserHome extends React.Component {
         <nav>
           <UserHomeNav 
             currentUser={currentUser} 
-            logout={this.props.logout} 
             ownProps={this.props.ownProps}
+            logout={this.props.logout} 
             getStock={getStock}/>
         </nav>
 
