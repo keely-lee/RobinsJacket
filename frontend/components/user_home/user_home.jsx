@@ -36,9 +36,7 @@ class UserHome extends React.Component {
     const currentUser = this.props.currentUser;
     const getStock = this.props.getStock;
     const stocks = this.props.stocks
-    console.log(stocks)
-    console.log(Object.keys(stocks))
-    console.log("stocks")
+    
     return (
       <div className="user-home-main">
         <nav>

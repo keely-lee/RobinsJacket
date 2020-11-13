@@ -4,25 +4,37 @@ import { Link } from 'react-router-dom';
 import UserHomeGraph from '../user_home/user_home_graph'
 import UserHomeNav from '../user_home/user_home_nav'
 import { logout } from '../../actions/session_actions';
-import { displayStock, displayByURL } from '../../actions/stock_actions';
+import { displayStock, displayByURL, displayByTicker, displayByNewTicker } from '../../actions/stock_actions';
 import { createWatch } from '../../actions/watchlist_actions';
 import { grabPortfolio, createTransaction, clearErrors } from '../../actions/portfolio_actions';
 
 function UserPortfolioStock(props){
   const dispatch = useDispatch();
-  
+
   const { match } = props;
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const stocks = useSelector(state => state.entities.stocks);
   const portfolio = useSelector(state => state.entities.portfolios); 
   const error = useSelector(state => state.errors.transaction);
-
+  
+  //grab stock id if url is ticker
+  const [mainId, setId] = useState(match.params.id);
+  if(!parseInt(match.params.id)) {
+    // setId(match.params.id);
+  // } else {
+    displayByTicker(match.params.id.toUpperCase())
+      .then(res => { setId(res.id); })
+      .fail(() => {  displayByNewTicker({ticker: Object.keys(stocks)[0].toUpperCase(), company_name: stocks[Object.keys(stocks)[0]].quote.companyName})
+                    .then(resTwo => { setId(resTwo.id) }) }
+      )
+  }
+  
   const watching = currentUser.watched_stocks.some(obj => obj.id === parseInt(match.params.id));
   const [buySell, setBuySell] = useState(0);
   const [transShares, setTransShares] = useState(0);
   
   const owned = Object.keys(portfolio).length ? portfolio.portfolio.reduce((acc, add) => {
-    return (add.stock_id === parseInt(match.params.id)) ? acc + add.shares : acc + 0;
+    return (add.stock_id === parseInt(mainId)) ? acc + add.shares : acc + 0;
   }, 0) : 0;
   const totalPrice = (transShares * (Object.keys(stocks).length ? stocks[Object.keys(stocks)[0]].quote.latestPrice : 0)).toFixed(2); 
 
@@ -35,7 +47,7 @@ function UserPortfolioStock(props){
   const costProceed = buySell === 0 ? "Cost" : "Proceeds";
   const buyActive = buySell === 0 ? "active" : "";
   const sellActive = buySell === 1 ? "active" : "";
-  
+
   useEffect(() => {
     dispatch(grabPortfolio());
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
@@ -70,10 +82,9 @@ function UserPortfolioStock(props){
       transaction_type: transButton.toLowerCase(),
       shares: finalTransShares,
       price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
-      stock_id: match.params.id
+      stock_id: mainId
     }))
       .then(trans => createTrans(trans));
-
   }
 
   return (

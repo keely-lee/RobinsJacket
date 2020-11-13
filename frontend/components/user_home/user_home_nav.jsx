@@ -74,7 +74,7 @@ class UserHomeNav extends React.Component {
         if(!this.props.ownProps) {
           displayByTicker(this.state.ticker.toUpperCase())
             .then(stock => this.setState({ redirect: stock.id }))
-            .fail(err => { 
+            .fail(err => {
               displayByNewTicker({ticker: res.stock.quote.symbol, company_name: res.stock.quote.companyName}) 
                 .then(newStock => this.setState({ redirect: newStock.id}))
             }) //create stock if not previously stored
