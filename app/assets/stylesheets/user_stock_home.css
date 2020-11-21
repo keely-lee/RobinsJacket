@@ -15,27 +15,53 @@
   display: flex;
 }
 
-.ups-main-stats {
+/* .ups-main-stats {
   display: flex;
   width: 300px;
   padding: 0 20px;
   position: relative;
   margin-left: 40px;
   margin-right: -10vw;
-}
+} */
+
 
 .ups-main-trans {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-left: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 [class*="stock-comp-"] > span {
   color: whitesmoke;
 }
 
+.buy-sell-tabs {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+
+.buy-sell-tabs span {
+  color: whitesmoke;
+  text-align: center;
+  width: 50%;
+  padding-bottom: 35px;
+  font-size: .9em;
+}
+
+.active {
+  font-weight: 900;
+  color: rgb(238, 103, 065) !important;
+}
+
+.ups-main-trans > div {
+  margin: 15px;
+}
 
 /* trade completed */
 .completed-main {

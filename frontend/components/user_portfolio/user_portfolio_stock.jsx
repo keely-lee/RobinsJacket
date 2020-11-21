@@ -102,17 +102,18 @@ function UserPortfolioStock(props){
       <h2>ONE STOP STOCK VIEW</h2>
 
       <div className="ups-main-div">
-        <section className="ups-main-stats">
+        {/* <section className="ups-main-stats">
           <span>ITEM ONE</span>
           <span>ITEM TWO</span>
+        </section> */}
           {/* https://storage.googleapis.com/iex/api/logos/TSLA.png */}
-        </section>
 
         <section className="ups-main-mid">
           <UserHomeGraph
             currentUser={currentUser}
             stocks={stocks}
             getStock={ticker => dispatch(displayStock(ticker))}/>
+            {/* DIDN'T SEE STATE FOR WATCHING TOGGLE */}
           { watching ? null : 
             <button type="button" className="add-watchlist" onClick={updateUser}>
               Add to watchlist
