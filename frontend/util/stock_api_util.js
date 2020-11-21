@@ -10,7 +10,7 @@ export const receiveStocks = (sym) => {
 export const receiveStock = ticker => {
   return $.ajax({
     method: "GET",
-    url: `https://sandbox.iexapis.com/stable/stock/${ticker}/batch?types=quote,chart&range=1m&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
+    url: `https://sandbox.iexapis.com/stable/stock/${ticker}/batch?types=company,quote,chart&range=1m&token=Tpk_5c8501bd14b844bd9703a6f94e1ba08d`,
   })
 };
 

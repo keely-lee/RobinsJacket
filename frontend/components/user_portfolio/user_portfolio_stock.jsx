@@ -102,10 +102,11 @@ function UserPortfolioStock(props){
       <h2>ONE STOP STOCK VIEW</h2>
 
       <div className="ups-main-div">
-        {/* <section className="ups-main-stats">
+        <section className="ups-main-stats">
           <span>ITEM ONE</span>
           <span>ITEM TWO</span>
-        </section> */}
+          {/* https://storage.googleapis.com/iex/api/logos/TSLA.png */}
+        </section>
 
         <section className="ups-main-mid">
           <UserHomeGraph
@@ -149,7 +150,7 @@ function UserPortfolioStock(props){
               onChange={(e) => setTransShares(e.currentTarget.value)}
             /> }
             {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
-            <span>Last: {Object.keys(stocks).length ? formatNumber(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4)) : ""}</span>
+            <br/><span>Last: {Object.keys(stocks).length ? formatNumber(stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(4)) : ""}</span>
           </div>
           <div className="stock-comp-trade-confirm">
             <span>Estimated {costProceed}</span>
