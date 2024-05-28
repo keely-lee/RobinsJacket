@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { displayByTicker, displayByNewTicker } from '../../actions/stock_actions'
 
 class UserHomeNav extends React.Component {
@@ -84,7 +84,7 @@ class UserHomeNav extends React.Component {
 
 
   render(){
-    if(this.state.redirect && parseInt(this.props.currPage) !== this.state.redirect) return <Redirect to={`/stock/${this.state.redirect}`}/> //Redirect to stocks page if not on user home
+    if(this.state.redirect && parseInt(this.props.currPage) !== this.state.redirect) return <Navigate to={`/stock/${this.state.redirect}`}/> //Redirect to stocks page if not on user home
 
     return (
       <div className="home-navbar-main">

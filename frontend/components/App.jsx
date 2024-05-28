@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from "../util/route_util"
 import Modal from './modal/modal';
 import GreetingContainer from './greeting/GreetingContainer';
@@ -13,14 +13,14 @@ const App = () => {
   return (
     <div>
       <Modal />
-      <Switch>
-        <Route exact path="/" component={GreetingContainer} />
-        <AuthRoute path="/login" component={LoginFormContainer} />
-        <AuthRoute path="/signup" component={SignupFormContainer} />
-        <Route exact path="/loremips" component={LoremIpsum} />
-        <ProtectedRoute path="/stock/:id" component={UserPortfolioStock} />
-        <ProtectedRoute exact path="/portfolio" component={UserPortfolioHomeMain} />
-      </Switch>
+      <Routes>
+        <Route exact path="/" Component={GreetingContainer} />
+        {/* <AuthRoute path="/login" Component={LoginFormContainer} />
+        <AuthRoute path="/signup" Component={SignupFormContainer} /> */}
+        <Route exact path="/loremips" Component={LoremIpsum} />
+        {/* <ProtectedRoute path="/stock/:id" Component={UserPortfolioStock} />
+        <ProtectedRoute exact path="/portfolio" Component={UserPortfolioHomeMain} /> */}
+      </Routes>
     </div>
   );
 }

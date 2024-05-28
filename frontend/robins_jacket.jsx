@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
 import configureStore from "./store/store"
 import Root from "./components/root"; 
@@ -13,7 +13,8 @@ import { receivePortfolio } from "./actions/portfolio_actions";
  
 
 document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("root");
+  const container = document.getElementById("root");
+  const root = ReactDOM.createRoot(container)
   let store; 
 
   window.createWatch = createWatch;
@@ -34,5 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
   } 
   else { store = configureStore(); }
 
-  ReactDOM.render(<Root store={store}/>, root)
+  root.render(<Root store={store}/>)
 })
