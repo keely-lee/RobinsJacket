@@ -14,10 +14,19 @@ const App = () => {
     <div>
       <Modal />
       <Routes>
-        <Route exact path="/" Component={GreetingContainer} />
-        {/* <AuthRoute path="/login" Component={LoginFormContainer} />
-        <AuthRoute path="/signup" Component={SignupFormContainer} /> */}
+        <Route path="/" Component={GreetingContainer} />
         <Route exact path="/loremips" Component={LoremIpsum} />
+
+        <Route element={<AuthRoute />}>
+          <Route path="/login" element={<LoginFormContainer />}/>
+          <Route path="/signup" element={<SignupFormContainer />}/>
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/stock/:id" element={<UserPortfolioStock />} />
+          <Route exact path="/portfolio" element={<UserPortfolioHomeMain />} /> 
+        </Route>
+
         {/* <ProtectedRoute path="/stock/:id" Component={UserPortfolioStock} />
         <ProtectedRoute exact path="/portfolio" Component={UserPortfolioHomeMain} /> */}
       </Routes>
