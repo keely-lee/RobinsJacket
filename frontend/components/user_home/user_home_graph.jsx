@@ -9,7 +9,8 @@ class UserHomeGraph extends React.Component {
   mapCharts(){
     if (Object.keys(this.props.stocks).length){
       const data = this.props.stocks[Object.keys(this.props.stocks)[0]].chart;
-
+      // EVALUATE. Current api doesn't have the weekly summary
+      // debugger
       return (
         <ResponsiveContainer width="100%" height = {300} >
         <AreaChart data={data}>
@@ -61,8 +62,10 @@ class UserHomeGraph extends React.Component {
 
     
     let stocks = this.props.stocks[Object.keys(this.props.stocks)[0]];
+    // debugger
     if (Object.values(stocks).length) {
-      diff = (stocks.quote.latestPrice - stocks.quote.previousClose).toFixed(2);
+      // KL NEED TO DEAL WITH MISSING FIELDS (EX: TSLS)
+      diff = (stocks.financialData?.currentPrice?.raw - stocks.summaryDetail?.previousClose?.raw).toFixed(2);
       if (diff > 0) {
         symbol = "+";
         change = "pos"
@@ -75,11 +78,11 @@ class UserHomeGraph extends React.Component {
       <div className="user-home-graph-container">
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
-          <span className="company-name">{stocks.quote.companyName} ({stocks.quote.symbol})</span>
-          <span className="current-price">${stocks.quote.latestPrice}</span>
+          <span className="company-name">{stocks.price.longName} ({stocks.symbol})</span>
+          <span className="current-price">${stocks.financialData.currentPrice.raw}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
           <div className="graph-div">
-            {this.mapCharts()}
+            {/* {this.mapCharts()} */}
           </div>
         </div>
         ) : null }

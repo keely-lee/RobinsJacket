@@ -1,30 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams, Outlet } from 'react-router-dom';
 
-const Auth = ({ component: Component, path, loggedIn, exact }) => {
-  return(
-    <Route
-      path={path}
-      exact={exact}
-      render={props => (
-        !loggedIn ? <Component {...props} /> : <Redirect to="/" /> 
-      )}
-    />
-  )
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+  return ComponentWithRouterProp;
+}
+
+const Auth = ({ loggedIn }) => {
+  return (
+    !loggedIn ? <Outlet /> : <Navigate to="/"/> 
+  );
 };
 
+const Protected = ({ loggedIn, props }) => {
+  return (
+    !loggedIn ? <Navigate to='/login' replace/> : <Outlet {...props} />
+  );
+}
 
-const Protected = ({ loggedIn, path, component: Component, exact }) => (
-  <Route
-    exact={exact}
-    path={path}
-    render={props => (
-      !loggedIn ? <Redirect to='/login' /> : <Component {...props} />
-    )}
-  />
-);
-
+// const Protected = ({ loggedIn, path, component: Component, exact }) => (
+//   <Route
+//     exact={exact}
+//     path={path}
+//     render={props => (
+//       !loggedIn ? <Navigate to='/login' replace/> : <Component {...props} />
+//     )}
+//   />
+// );
 
 const mapStateToProps = state => ({
   loggedIn: Boolean(state.session.currentUserId)

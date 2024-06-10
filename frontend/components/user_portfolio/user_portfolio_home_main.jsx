@@ -48,6 +48,7 @@ function UserPortfolioHomeMain(){
           setTodayGL(todayGLAmt);
           setMarketValue(totalMarketValue);
         }
+        debugger
       })
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
   
@@ -151,6 +152,7 @@ function UserPortfolioHomeMain(){
                 {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
                   if (!stocks[ticker]) return null;
                   
+
                   const current = owned[ticker];
                   const market = stocks[ticker]["quote"];
                   

@@ -21,13 +21,14 @@ class UserHome extends React.Component {
   }
 
   updateUser(){
-    let stock = this.props.stocks[Object.keys(this.props.stocks)[0]].quote;
-    this.props.createWatch({ ticker: stock.symbol, company_name: stock.companyName })
+    let stock = this.props.stocks[Object.keys(this.props.stocks)[0]];
+    debugger
+    this.props.createWatch({ ticker: stock.symbol, company_name: stock.price.longName })
       .fail((err) => console.log(err.responseJSON[0]))
   }
 
   toggleButton(){
-    let watching = this.props.currentUser.watched_stocks.some( obj => obj.ticker === this.props.stocks[Object.keys(this.props.stocks)[0]].quote.symbol )
+    let watching = this.props.currentUser.watched_stocks.some( obj => obj.ticker === this.props.stocks[Object.keys(this.props.stocks)[0]].symbol )
     if (watching) this.setState({ watched: true })
     else this.setState({ watched: false })
   }

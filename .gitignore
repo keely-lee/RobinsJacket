@@ -36,3 +36,5 @@ db/migrate/20200601183202_add_index_to_users.rb
 
 # Ignore application configuration
 /config/application.yml
+
+.env
