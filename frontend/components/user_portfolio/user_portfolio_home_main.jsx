@@ -5,10 +5,8 @@ import UserHomeNav from '../user_home/user_home_nav';
 import { logout } from '../../actions/session_actions';
 import { displayStocks, displayStock } from '../../actions/stock_actions';
 import { grabPortfolio } from '../../actions/portfolio_actions';
-// import { deleteWatch } from '../../actions/watchlist_actions';
 
 function UserPortfolioHomeMain(){
-
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
   const portfolio = useSelector(state => state.entities.portfolios);
@@ -48,7 +46,6 @@ function UserPortfolioHomeMain(){
           setTodayGL(todayGLAmt);
           setMarketValue(totalMarketValue);
         }
-        debugger
       })
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
   

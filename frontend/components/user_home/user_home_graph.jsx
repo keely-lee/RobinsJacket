@@ -6,11 +6,24 @@ class UserHomeGraph extends React.Component {
     super(props)
   } 
 
+  __mapData__(){
+    const data = Object.values(this.props.stocks)[0];
+    const mappedData = data.timestamp.map((dt, idx) => {
+      const prices = data.indicators.quote[0];
+      return {
+        date: new Date(dt * 1000).toLocaleDateString('en-US'), // dt -> epoch timestamp in seconds
+        open: prices.open[idx].toFixed(4),
+        close: prices.close[idx].toFixed(4),
+        high: prices.high[idx].toFixed(4),
+        low: prices.low[idx].toFixed(4),
+      }
+    })
+    return mappedData;
+  }
+
   mapCharts(){
     if (Object.keys(this.props.stocks).length){
-      const data = this.props.stocks[Object.keys(this.props.stocks)[0]].chart;
-      // EVALUATE. Current api doesn't have the weekly summary
-      // debugger
+      const data = this.__mapData__();
       return (
         <ResponsiveContainer width="100%" height = {300} >
         <AreaChart data={data}>
@@ -59,13 +72,10 @@ class UserHomeGraph extends React.Component {
     let symbol = "";
     let change = "pos";
     let diff = 0;
-
     
-    let stocks = this.props.stocks[Object.keys(this.props.stocks)[0]];
-    // debugger
+    let stocks = Object.values(this.props.stocks)[0];
     if (Object.values(stocks).length) {
-      // KL NEED TO DEAL WITH MISSING FIELDS (EX: TSLS)
-      diff = (stocks.financialData?.currentPrice?.raw - stocks.summaryDetail?.previousClose?.raw).toFixed(2);
+      diff = (stocks.meta?.regularMarketPrice - stocks.meta?.chartPreviousClose).toFixed(2);
       if (diff > 0) {
         symbol = "+";
         change = "pos"
@@ -78,18 +88,17 @@ class UserHomeGraph extends React.Component {
       <div className="user-home-graph-container">
         {(Object.values(stocks).length) ? (
         <div className="user-home-graph-wrapper">
-          <span className="company-name">{stocks.price.longName} ({stocks.symbol})</span>
-          <span className="current-price">${stocks.financialData.currentPrice.raw}</span>
+          <span className="company-name">{"TEMP LONG NAME PLACE HOLDER"} ({stocks.meta.symbol})</span>
+          <span className="current-price">${stocks.meta?.regularMarketPrice}</span>
           <span className={`${change}-prev-close`}>{symbol}{diff}</span>
           <div className="graph-div">
-            {/* {this.mapCharts()} */}
+            {this.mapCharts()}
           </div>
         </div>
         ) : null }
       </div>
     )
   }
-
 }
 
 export default UserHomeGraph;

@@ -17,7 +17,6 @@ export const receiveStock = (stock) => {
   }
 }
 
-
 export const displayStocks = (stocks) => dispatch => {
   return StockAPIUtil.receiveStocks(stocks)
     .then(stocks => dispatch(receiveStocks(stocks)))
@@ -25,7 +24,7 @@ export const displayStocks = (stocks) => dispatch => {
 
 export const displayStock = stockTicker => dispatch => {
   return StockAPIUtil.receiveStock(stockTicker)
-    .then(stock => dispatch(receiveStock(stock)))
+    .then(stock => dispatch(receiveStock(stock.chart.result[0])))
 }
 
 export const displayByURL = id => dispatch => {

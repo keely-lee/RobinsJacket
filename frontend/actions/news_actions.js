@@ -7,7 +7,7 @@ export const receiveNews = (news) => ({
   news
 });
 
-export const displayNews = () => dispatch => {
-  return NewsAPIUtil.receiveNews()
+export const displayNews = (ticker, snippetCount) => dispatch => {
+  return NewsAPIUtil.receiveNews(ticker, snippetCount)
     .then(news => dispatch(receiveNews(news)))
 }

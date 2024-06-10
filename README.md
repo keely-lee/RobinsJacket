@@ -44,8 +44,7 @@ Technologies Used:
 - Javascript
 - React / Redux
 - HTML / CSS
-- <a href="https://iexcloud.io/">IEX Cloud API</a>
-- <a href="https://newsapi.org/">NewsAPI</a>
+- <a href="https://rapidapi.com">Rapid API</a>
 - <a href="https://recharts.org/en-US/">Recharts</a>
 - <a href="https://fontawesome.com/">Font Awesome</a>
 
@@ -53,7 +52,6 @@ Technologies Used:
 My intention is to continue to flesh out more features and functionality.
 Future Endeavors:
 - Graph toggle that toggles 1D, 1M, 3M, 1Y, 2Y
-- Update newsapi for user home
 - User's transactions details
 - User's portfolio that provides detailed transaction history
 - Multi-step signup page prompting user to enter "financial info" and interests (for more targeted content on user home)

@@ -15,7 +15,7 @@ const mSTP = (state, ownProps) => ({
 const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
   getStock: (ticker) => dispatch(displayStock(ticker)),
-  getNews: () => dispatch(displayNews()),
+  getNews: (ticker, snippetCount) => dispatch(displayNews(ticker, snippetCount)),
   createWatch: (stock) => dispatch(createWatch(stock)),
   deleteWatch: (stockid) => dispatch(deleteWatch(stockid)),
 })
