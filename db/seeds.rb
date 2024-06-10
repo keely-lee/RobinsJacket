@@ -14,7 +14,7 @@ demo = User.create!(email: "hiringmanager@gmail.com", password: "password4", fna
 aapl = Stock.create!(ticker: "AAPL", company_name: "Apple, Inc.")
 msft = Stock.create!(ticker: "MSFT", company_name: "Microsoft Corp.")
 tsla = Stock.create!(ticker: "TSLA", company_name: "Tesla, Inc.")
-fb = Stock.create!(ticker: "FB", company_name: "Facebook, Inc.")
+fb = Stock.create!(ticker: "META", company_name: "Facebook, Inc.")
 amzn = Stock.create!(ticker: "AMZN", company_name: "Amazon.com, Inc.")
 nflx = Stock.create!(ticker: "NFLX", company_name: "Netflix, Inc.")
 
