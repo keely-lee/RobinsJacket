@@ -38,3 +38,5 @@ db/migrate/20200601183202_add_index_to_users.rb
 /config/application.yml
 
 .env
+
+.DS_Store
