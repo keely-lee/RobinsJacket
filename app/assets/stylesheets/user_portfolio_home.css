@@ -114,6 +114,10 @@
   background-color: #f2f2f2;
 }
 
+.uph-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
 .uph-table tr:hover {
   background-color: #edeec9;
 }
