@@ -21,7 +21,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        // test: /\.(js|jsx)$/,
+        test: /\.[jt]sx?$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
@@ -37,7 +38,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.browser': JSON.stringify(true),
       'process.env': {
-        // [TODO]: use reduce for keys
         'RAPID_API_KEY': JSON.stringify(process.env.RAPID_API_KEY),
         'RAPID_API_HOST': JSON.stringify(process.env.RAPID_API_HOST),
       }
