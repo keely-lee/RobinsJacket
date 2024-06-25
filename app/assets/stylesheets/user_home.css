@@ -17,17 +17,19 @@
   z-index: 10;
 }
 
- .home-logo { 
+.home-logo {
   /* current details from logo small on sessions page */
-  margin-left: 50px; 
+  margin-left: 50px;
   padding-bottom: 0;
   object-fit: contain;
   /* color: rgb(238, 103, 065); */
-  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg) brightness(96%) contrast(94%);
+  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg)
+    brightness(96%) contrast(94%);
 }
 
 .home-logo:hover {
-  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg) brightness(114%) contrast(92%);
+  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg)
+    brightness(114%) contrast(92%);
 }
 
 .home-navbar-right {
@@ -111,7 +113,7 @@
   color: white;
   padding-left: 55px;
   font-family: inherit;
-  font-size: 13px; 
+  font-size: 13px;
   /* padding-right:  */
 }
 
@@ -135,7 +137,8 @@
   color: white;
   text-decoration: none;
   margin-top: 5px;
-  margin-bottom: 5px;}
+  margin-bottom: 5px;
+}
 
 .contact-email:hover {
   color: rgb(238, 103, 065);
@@ -151,7 +154,7 @@
 
 .user-search-wrap {
   width: 480px;
-  height: 35px; 
+  height: 35px;
   border: 1px solid rgb(47, 47, 47);
   display: flex;
   color: lightgray;
@@ -169,7 +172,9 @@
   /* background-color: #F5F8FA; */
   background-color: rgb(49, 49, 49);
   box-shadow: 2px 1px 2px 4px rgb(52, 52, 52);
-  transition: border-color 300ms ease 0s, box-shadow 300ms ease 0s;
+  transition:
+    border-color 300ms ease 0s,
+    box-shadow 300ms ease 0s;
 }
 
 .user-search-wrap:focus {
@@ -192,7 +197,9 @@
   background-color: transparent;
 }
 
-.navbar-stock-search, select, textarea {
+.navbar-stock-search,
+select,
+textarea {
   color: whitesmoke;
 }
 
@@ -290,7 +297,6 @@
   margin-bottom: 10px;
 }
 
-
 /***********************************/
 /*  WATCHLIST COMPONENT  */
 
@@ -324,7 +330,7 @@ a > td > p {
   margin-top: 8px;
   margin-bottom: 8px;
   font-family: inherit;
-  font-size: 12px; 
+  font-size: 12px;
   margin-left: 0;
   margin-right: 0;
   color: whitesmoke;
@@ -357,10 +363,10 @@ a > td > p {
 }
 
 .fa-minus-button:hover {
-  color:  #ff0000;
+  color: #ff0000;
 }
 
-[class*='stock-col-name-'] {
+[class*="stock-col-name-"] {
   text-align: left;
   margin-right: auto;
   margin-top: auto;
@@ -368,13 +374,13 @@ a > td > p {
   width: 50%;
 }
 
-[class*='stock-col-graph-'] {
+[class*="stock-col-graph-"] {
   margin: auto;
   vertical-align: middle;
   width: 25%;
 }
 
-[class*='stock-col-fin'] {
+[class*="stock-col-fin"] {
   text-align: right;
   padding-left: 5px;
   width: 25%;
@@ -385,9 +391,8 @@ a > td > p {
 }
 
 [class*="stock-row-"]:hover {
-  background-color: rgb(31, 33, 36); 
+  background-color: rgb(31, 33, 36);
 }
-
 
 /******************************/
 /* GRAPH */
@@ -396,7 +401,7 @@ a > td > p {
   margin-left: 15vw;
   background-color: transparent;
   color: whitesmoke;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   padding-bottom: 30px;
   /* border-bottom: 3px solid whitesmoke; */
 }
@@ -408,7 +413,7 @@ a > td > p {
   margin-left: 15vw;
   font-size: 32px;
   font-weight: 700;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: whitesmoke;
   width: 680px;
 }
@@ -430,8 +435,10 @@ a > td > p {
   border: none;
   margin-top: 1px;
   margin-right: 1px;
-  transition: border-color 400ms ease-in-out 400ms, box-shadow 300ms ease 0s;
-  color: rgb(238, 103, 065)
+  transition:
+    border-color 400ms ease-in-out 400ms,
+    box-shadow 300ms ease 0s;
+  color: rgb(238, 103, 065);
 }
 
 .user-home-trade-link {
@@ -448,7 +455,7 @@ a > td > p {
 }
 
 .company-name {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 20px;
   padding-right: 8px;
   font-weight: 500;
@@ -461,7 +468,7 @@ a > td > p {
 }
 
 .pos-prev-close {
-  color: #00C805;
+  color: #00c805;
 }
 
 .neg-prev-close {
@@ -472,12 +479,11 @@ a > td > p {
   padding-top: 10px;
 }
 
-
 /***************************************/
 /* NEWS */
 
 .user-home-news-container > h1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 26;
   color: whitesmoke;
   width: 680px;
@@ -523,7 +529,7 @@ a > td > p {
 
 .user-news-left > h6 {
   margin: 0;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 [class*="source-name-"] {
@@ -551,4 +557,3 @@ a > td > p {
   height: auto;
   border-radius: 4px;
 }
-

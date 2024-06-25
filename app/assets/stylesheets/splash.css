@@ -12,20 +12,28 @@
 .navbar-main {
   display: flex;
   background-color: white;
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family:
+    "Capsule Sans Display",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
   height: 64px;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
 }
 
 .dropdown {
   position: absolute;
   top: 64px;
-  box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-dropdown-ul {
@@ -77,21 +85,24 @@
 }
 
 .navbar-dropdown:hover {
-  color: #00C805;
+  color: #00c805;
 }
 
 .navbar-dropdown:focus {
   outline: none;
 }
 
-.linkedin, .github {
+.linkedin,
+.github {
   font-size: 40px;
   color: black;
   padding-right: 30px;
 }
 
-.linkedin:hover, .github:hover, .personal:hover {
-  color: #00C805;
+.linkedin:hover,
+.github:hover,
+.personal:hover {
+  color: #00c805;
   /* background-color: black; */
 }
 
@@ -109,17 +120,16 @@
   padding-right: 24px;
   font-weight: 700;
   font-size: 18px;
-  letter-spacing: -.25px;
+  letter-spacing: -0.25px;
   line-height: 28px;
 }
-
 
 /* **************************** */
 /* SPLASH ONE */
 
 .splash-1 {
   display: flex;
-  background: rgba(195,245,60,1);
+  background: rgba(195, 245, 60, 1);
   max-height: 615px;
   width: 100%;
   /* border-bottom: 1px solid black; */
@@ -139,12 +149,12 @@
   /* padding-right: 128px; */
   margin-top: 83px;
   max-height: 700px;
-  
+
   position: absolute;
-  border-top: 5px solid rgba(195,245,60,1);
-  border-left: 10px solid rgba(195,245,60,1);
+  border-top: 5px solid rgba(195, 245, 60, 1);
+  border-left: 10px solid rgba(195, 245, 60, 1);
   margin-left: -10px;
-  border-right: 5px solid rgba(195,245,60,1); 
+  border-right: 5px solid rgba(195, 245, 60, 1);
   /* z-index: 2; */
   overflow: hidden;
 }
@@ -171,7 +181,15 @@
 }
 
 .splash-c1-left > p {
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family:
+    "Capsule Sans Display",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 500;
@@ -187,7 +205,15 @@
 
 .splash-c1-left > span {
   display: block;
-  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family:
+    "Capsule Sans Display",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -199,14 +225,21 @@
   margin-top: 40px;
 }
 
-
 /* **************************** */
 /* SPLASH TWO */
 
 .splash-2 {
   display: flex;
   justify-content: center;
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family:
+    "Capsule Sans Display",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
   min-height: 348px;
   border-bottom: 1px solid black;
   width: 100%;
@@ -250,10 +283,9 @@
   text-align: center;
   line-height: 24px;
   padding-bottom: 42px;
-    /* margin: 0;
+  /* margin: 0;
     text-decoration: unset; */
 }
-
 
 /* **************************** */
 /* SPLASH THREE */
@@ -276,7 +308,7 @@
   align-items: center;
   justify-content: end;
 }
-  
+
 .splash-comp-three-image > img {
   width: 375px;
   height: 440px;
@@ -301,20 +333,20 @@
   line-height: 44px;
   margin: 0px;
 
-    /* letter-spacing: -0.36px; */
-    /* color: rgb(4, 13, 20); */
-    /* text-decoration: unset; */
+  /* letter-spacing: -0.36px; */
+  /* color: rgb(4, 13, 20); */
+  /* text-decoration: unset; */
 }
 
 .splash-comp-three-left > span {
   display: block;
-  color: #6F787E;
+  color: #6f787e;
   font-size: 15px;
   font-style: normal;
   font-weight: normal;
   line-height: 24px;
   margin-top: 16px;
-  margin-bottom: 48px; 
+  margin-bottom: 48px;
   max-height: 40px;
 
   /* margin: 0;
@@ -334,7 +366,7 @@
 
 .splash-three-header {
   margin-top: 0px;
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -352,7 +384,7 @@
   font-weight: normal;
   line-height: 24px;
   display: block;
-    /* letter-spacing: -0.1px; */
+  /* letter-spacing: -0.1px; */
 }
 
 .add-email-form {
@@ -380,8 +412,8 @@
   min-width: 0;
   padding-left: 36px;
   width: 255px;
-  
-    /* letter-spacing: -0.1px;
+
+  /* letter-spacing: -0.1px;
     text-decoration: unset;
     flex-grow: 1; */
 }
@@ -396,8 +428,8 @@
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
-  margin-top: -.25px;
-  margin-bottom: -.25px;
+  margin-top: -0.25px;
+  margin-bottom: -0.25px;
   margin-left: -1px;
 
   /* outline-color: rgba(229, 151, 0, 255);
@@ -405,7 +437,7 @@
   outline: black;
   outline-style: auto;
   outline-width: 5px; */
-} 
+}
 
 /* input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
@@ -445,7 +477,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid black;
-  background-color: #FFFAFA;
+  background-color: #fffafa;
   width: 796px;
   height: 255px;
   display: flex;
@@ -464,7 +496,6 @@
 .commissions-disclose-div > h2 {
   margin-top: 60px;
 }
-
 
 /* **************************** */
 /* SPLASH FOUR */
@@ -498,8 +529,8 @@
 }
 
 [class*="splash-label"]:hover {
-  color: #00C805;
-  cursor: pointer; 
+  color: #00c805;
+  cursor: pointer;
 }
 
 .splash-label-current {
@@ -546,13 +577,11 @@
   padding-top: 115px;
 }
 
-
 /* **************************** */
 /* SPLASH SIX */
 
 .splash-6 {
   background-color: rgb(16, 16, 16);
-
 }
 
 .splash-six {
@@ -563,7 +592,8 @@
 
 .splash-comp-six-div {
   margin-left: auto;
-  margin-right: auto;  width: 1219px;
+  margin-right: auto;
+  width: 1219px;
   display: flex;
   flex-direction: column;
   background-color: transparent;
@@ -622,7 +652,7 @@
 }
 
 .splash-six-bottom-link-green:hover {
-  color: #00C805;
+  color: #00c805;
 }
 
 .splash-six-bottom-link-crypto {
@@ -640,7 +670,7 @@
 }
 
 .splash-six-bottom-link-crypto:hover {
-  color: rgb(239, 124, 153)
+  color: rgb(239, 124, 153);
 }
 
 .splash-comp-six-bottom {
@@ -660,7 +690,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-} 
+}
 
 .splash-comp-six-top-right-top > h4 {
   margin: 0;
@@ -672,8 +702,6 @@
   margin-top: 16px;
   margin-bottom: 13px;
 }
-
-
 
 .splash-six-top-link-green-right {
   text-align: right;
@@ -689,7 +717,6 @@
   padding-left: 0;
 }
 
-
 .splash-comp-six-right-buttons {
   display: flex;
   flex-direction: column;
@@ -701,9 +728,8 @@
 }
 
 .splash-six-top-link-green-right:hover {
-  color: #00C805;
+  color: #00c805;
 }
-
 
 /* splash-six-bottom */
 .splash-comp-six-bottom > p {
@@ -723,6 +749,3 @@
 .splash-comp-six-bottom > div {
   margin-bottom: 62px;
 }
-
-
-
