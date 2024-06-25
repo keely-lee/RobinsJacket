@@ -10,7 +10,7 @@ const NewsReducer = (oldState = {}, action) => {
       return newState;
     default:
       return oldState;
-  };
-}
+  }
+};
 
 export default NewsReducer;
