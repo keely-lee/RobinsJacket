@@ -5,7 +5,7 @@ module.exports = {
   transform: {
     "\\.[jt]sx?$": "babel-jest",
   },
-  moduleDirectories: ['./node_modules'],
-  transformIgnorePatterns: ['./node_modules/'],
+  moduleDirectories: ["./node_modules"],
+  transformIgnorePatterns: ["./node_modules/"],
   testEnvironment: "jsdom",
 };
