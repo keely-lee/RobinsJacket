@@ -19,7 +19,7 @@ class UserHomeNews extends React.Component {
       return news.map((article, _idx) => {
         const {id, content} = article;
         return (
-          <div className="user-news-div" key={`div1-${id}`}>
+          <div className="user-news-div" key={`div1-${id}`} data-testid={`news-${id}`}>
             <a href={content.clickThroughUrl?.url} className={`news-a-${id}`} key={`a-${id}`}>
               <div className="user-inner-news-div" key={`div2-${id}`}>
                 <section className="user-news-left" key={`sec1-${id}`}>
@@ -50,7 +50,6 @@ class UserHomeNews extends React.Component {
       </div>
     )
   }
-
 }
 
 export default UserHomeNews;
