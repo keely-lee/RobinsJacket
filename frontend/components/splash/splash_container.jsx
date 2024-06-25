@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import Splash from './splash'
 import { openModal } from '../../actions/modal_actions'
 
-const mSTP = state => ({
-
-});
+const mSTP = () => ({});
 
 const mDTP = dispatch => ({ 
   commissions: (

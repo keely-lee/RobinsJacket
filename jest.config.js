@@ -7,5 +7,5 @@ module.exports = {
   },
   moduleDirectories: ['./node_modules'],
   transformIgnorePatterns: ['./node_modules/'],
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
 };
