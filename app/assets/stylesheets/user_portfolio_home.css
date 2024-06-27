@@ -12,7 +12,7 @@
 }
 
 [class*="uph-"] {
-  font-family: 'Varta', sans-serif;  
+  font-family: "Varta", sans-serif;
 }
 
 .user-portfolio-home-div > h1 {
@@ -23,7 +23,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .user-portfolio-home-summary {
   display: flex;
@@ -55,15 +54,13 @@
   font-weight: bold;
 }
 
-
 [class*="uph-summary-"] > span {
-  font-family: 'Varta', sans-serif;  
+  font-family: "Varta", sans-serif;
 }
 
 .uph-pv-diff {
   font-size: 13px;
   font-weight: bold;
-  
 }
 
 .uph-plus {
@@ -72,7 +69,7 @@
 }
 
 .uph-minus {
-  color: #ef6351 
+  color: #ef6351;
 }
 
 .user-portfolio-home-chart {
@@ -91,13 +88,13 @@
   background-color: #98c9a3;
   border: 1px solid #ddd;
   padding: 7px 6px 6px 20px;
-  font-family: 'Varta', sans-serif;  
+  font-family: "Varta", sans-serif;
   font-size: 14px;
   font-weight: bolder;
 }
 
 .uph-table > tbody > tr > td {
-  font-family: 'Varta', sans-serif;  
+  font-family: "Varta", sans-serif;
   font-size: 14px;
   padding: 7px 6px 6px 20px;
   border: 1px solid #ddd;
@@ -105,7 +102,7 @@
 }
 
 .uph-table > tbody > tr > td > a {
-  font-family: 'Varta', sans-serif;  
+  font-family: "Varta", sans-serif;
   font-size: 14px;
   color: black;
 }

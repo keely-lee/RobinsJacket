@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { LineChart, Line, XAxis, YAxis, ReferenceDot } from 'recharts';
-import { receiveStocks } from '../../util/stock_api_util';
+import React from "react";
+import { Link } from "react-router-dom";
+import { LineChart, Line, XAxis, YAxis, ReferenceDot } from "recharts";
+import { receiveStocks } from "../../util/stock_api_util";
 
 class WatchlistComp extends React.Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class WatchlistComp extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentUser.watched_stocks !== this.props.currentUser.watched_stocks){
+    if (
+      prevProps.currentUser.watched_stocks !==
+      this.props.currentUser.watched_stocks
+    ) {
       this.grabTickers();
     }
   }
@@ -33,7 +36,7 @@ class WatchlistComp extends React.Component {
 
       //alphabetize
       receiveStocks(tickers).then((res) =>
-        this.setState({ stocks: res }, () => console.log(this.state))
+        this.setState({ stocks: res }, () => console.log(this.state)),
       );
     }
   }
@@ -62,25 +65,31 @@ class WatchlistComp extends React.Component {
                 </tr>
 
                 {watchedStocks.map((stock, idx) => {
-                  stock.chart[0].open < stock.chart[stock.chart.length - 1].close ? (val = "#00C805") : (val = "#ff0000");
-                  stockId = this.state.watches[stock.quote.symbol]
+                  stock.chart[0].open <
+                  stock.chart[stock.chart.length - 1].close
+                    ? (val = "#00C805")
+                    : (val = "#ff0000");
+                  stockId = this.state.watches[stock.quote.symbol];
 
                   return (
                     <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
                       <td>
-                        <button onClick={() => this.deleteWatch(stock.quote.symbol)} className="fa-minus-button">
+                        <button
+                          onClick={() => this.deleteWatch(stock.quote.symbol)}
+                          className="fa-minus-button"
+                        >
                           {/* <i className="fas fa-eye-slash"></i> */}
                           <i className="far fa-eye-slash"></i>
                         </button>
                       </td>
-                      
-                      <Link to={`/stock/${stockId}`}>
-                      <td className={`stock-col-name-${idx}`}>
-                        <p>{stock.quote.symbol}</p>
-                        <p>{stock.quote.companyName}</p>
-                      </td>
 
-                      <td className={`stock-col-graph-${idx}`}>
+                      <Link to={`/stock/${stockId}`}>
+                        <td className={`stock-col-name-${idx}`}>
+                          <p>{stock.quote.symbol}</p>
+                          <p>{stock.quote.companyName}</p>
+                        </td>
+
+                        <td className={`stock-col-graph-${idx}`}>
                           <LineChart width={65} height={35} data={stock.chart}>
                             <YAxis
                               width={0}
@@ -97,14 +106,16 @@ class WatchlistComp extends React.Component {
                               dot={false}
                             />
                           </LineChart>
-                      </td>
+                        </td>
 
-                      <td className={`stock-col-fin-${idx}`}>
-                        <p className="currPrice">${stock.quote.latestPrice}</p>
-                        <p className="marketCap">
-                          ${(stock.quote.marketCap / 1000000000).toFixed(2)}B
-                        </p>
-                      </td>
+                        <td className={`stock-col-fin-${idx}`}>
+                          <p className="currPrice">
+                            ${stock.quote.latestPrice}
+                          </p>
+                          <p className="marketCap">
+                            ${(stock.quote.marketCap / 1000000000).toFixed(2)}B
+                          </p>
+                        </td>
                       </Link>
                     </tr>
                   );

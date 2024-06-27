@@ -1,10 +1,10 @@
 // Mocks for Jest Tests
 
-import React from 'react';
-import { render } from '@testing-library/react';
-import { HashRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import configStore from '../../store/store';
+import React from "react";
+import { render } from "@testing-library/react";
+import { HashRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import configStore from "../../store/store";
 
 // export const renderWithProviders = ({}) => {
 
@@ -17,38 +17,42 @@ export function renderWithProviders(
     store = configStore(preloadedState),
     // Automatically create a store instance if no store was passed in
     ...renderOptions
-  } = {}
+  } = {},
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}><HashRouter>{children}</HashRouter></Provider>
+    return (
+      <Provider store={store}>
+        <HashRouter>{children}</HashRouter>
+      </Provider>
+    );
   }
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
 
-export function renderUserWithProviders(ui, ...renderOptions){
+export function renderUserWithProviders(ui, ...renderOptions) {
   const preloadedState = {
     entities: { users: { [mockCurrentUser.id]: mockCurrentUser } },
     session: { currentUserId: mockCurrentUser.id },
   };
-  
-  return renderWithProviders(ui, {preloadedState}, ...renderOptions)
+
+  return renderWithProviders(ui, { preloadedState }, ...renderOptions);
 }
 
 export const mockWatchlist = [
   {
-    'company_name': 'Apple, Inc.',
-    'id': 1,
-    'ticker': 'AAPL'
+    company_name: "Apple, Inc.",
+    id: 1,
+    ticker: "AAPL",
   },
   {
-    'company_name': 'Microsoft Corp.',
-    'id': 2,
-    'ticker': 'MSFT'
+    company_name: "Microsoft Corp.",
+    id: 2,
+    ticker: "MSFT",
   },
   {
-    'company_name': 'Amazon.com Inc.',
-    'id': 3,
-    'ticker': 'AMZN'
+    company_name: "Amazon.com Inc.",
+    id: 3,
+    ticker: "AMZN",
   },
 ];
 
@@ -60,83 +64,80 @@ export const mockNews = {
           id: 1,
           content: {
             clickThroughUrl: {
-              url: 'https://www.mockurl.com'
+              url: "https://www.mockurl.com",
             },
-            pubDate: '01/04/2000',
+            pubDate: "01/04/2000",
             provider: {
-              displayName: 'NY Times',
+              displayName: "NY Times",
             },
-            title: 'Mock Stock News 1',
+            title: "Mock Stock News 1",
             thumbnail: {
               resolutions: [
                 {
-                  url: 'mockimgurl.com'
-                }
-              ]
-            }
-          }
+                  url: "mockimgurl.com",
+                },
+              ],
+            },
+          },
         },
         {
           id: 2,
           content: {
-            pubDate: 'Dec 25, 2020',
+            pubDate: "Dec 25, 2020",
             provider: {
-              displayName: 'BBC News',
+              displayName: "BBC News",
             },
-            title: 'Mock Stock News 2 - No Thumbnail',
-          }
+            title: "Mock Stock News 2 - No Thumbnail",
+          },
         },
         {
           id: 3,
           content: {
             clickThroughUrl: {
-              url: 'https://www.finance.yahoo.com'
+              url: "https://www.finance.yahoo.com",
             },
-            pubDate: '01/01/2000',
+            pubDate: "01/01/2000",
             provider: {
-              displayName: 'Yahoo Finance',
+              displayName: "Yahoo Finance",
             },
-            title: 'Mock Stock News 3',
+            title: "Mock Stock News 3",
             thumbnail: {
               resolutions: [
                 {
-                  url: 'yahooimgurl.com'
-                }
-              ]
-            }
-          }
+                  url: "yahooimgurl.com",
+                },
+              ],
+            },
+          },
         },
-      ]
-    }
-  }
+      ],
+    },
+  },
 };
 
-export const mockCurrentUser = { 
-  'id': 1,
-  'fname': 'Rick',
-  'lname': 'Sanchez',
-  'email': 'randm@hulu.com',
-  'funds_available': 1000000,
-  'watched_stocks': mockWatchlist,
-  'portfolio': { id: 1, user_id: 1 }, // create mock portfolio
+export const mockCurrentUser = {
+  id: 1,
+  fname: "Rick",
+  lname: "Sanchez",
+  email: "randm@hulu.com",
+  funds_available: 1000000,
+  watched_stocks: mockWatchlist,
+  portfolio: { id: 1, user_id: 1 }, // create mock portfolio
 };
 
-export const mockStocks = {
-  
-}
+export const mockStocks = {};
 
-
-    // jest.mock("../user_home/watchlist_comp.jsx", () => ({
-    //   // __esModule: true,
-    //   // default: jest.fn(),
-    //   // receiveStocks: jest.fn().mockImplementation(() => {
-    //   //   const fakeResponse = {
-    //   //     id: 1,
-    //   //     name: "All",
-    //   //     value: "Dummy Data"
-    //   //   };
-    //   //   return Promise.resolve(fakeResponse)
-    //   // }),
-    //   receiveStocks: jest.fn(() => Promise.resolve(mockStocks)),
-    //   grabTickers: jest.fn()
-    // }));
+// jest.mock("../user_home/watchlist_comp.jsx", () => ({
+//   // __esModule: true,
+//   // default: jest.fn(),
+//   // receiveStocks: jest.fn().mockImplementation(() => {
+//   //   const fakeResponse = {
+//   //     id: 1,
+//   //     name: "All",
+//   //     value: "Dummy Data"
+//   //   };
+//   //   return Promise.resolve(fakeResponse)
+//   // }),
+//   receiveStocks: jest.fn(() => Promise.resolve(mockStocks)),
+//   grabTickers: jest.fn()
+// }));

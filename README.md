@@ -8,7 +8,6 @@ When a user is signed in, they are greeted with a stock graph and trending news.
 
 ![](https://media.giphy.com/media/OeEowxRxHvQCfd7gln/giphy.gif)
 
-
 Hurdles:
 During the initial week of app creation, I was able to significantly solidify my understanding of the React/Redux cycle and was able to create modals and various widgets that would enhance the user view, while keeping code DRY and readable. A quick snippet of the toggle feature on the splash page.
 
@@ -30,15 +29,15 @@ During the initial week of app creation, I was able to significantly solidify my
       this.setState({selected: this.state.selected + direction});
   }
 
-  interval(){ 
+  interval(){
     this.intervalId = setInterval( () => {
       this.toggle(1);
     }, 4000 )
   }
-  ```
-
+```
 
 Technologies Used:
+
 - Ruby on Rails
 - PostgreSQL
 - Javascript
@@ -48,9 +47,9 @@ Technologies Used:
 - <a href="https://recharts.org/en-US/">Recharts</a>
 - <a href="https://fontawesome.com/">Font Awesome</a>
 
-
 My intention is to continue to flesh out more features and functionality.
 Future Endeavors:
+
 - Graph toggle that toggles 1D, 1M, 3M, 1Y, 2Y
 - User's transactions details
 - User's portfolio that provides detailed transaction history

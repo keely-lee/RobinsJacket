@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-import UserHomeNav from '../user_home/user_home_nav';
-import { logout } from '../../actions/session_actions';
-import { displayStocks, displayStock } from '../../actions/stock_actions';
-import { grabPortfolio } from '../../actions/portfolio_actions';
+import { Link } from "react-router-dom";
+import UserHomeNav from "../user_home/user_home_nav";
+import { logout } from "../../actions/session_actions";
+import { displayStocks, displayStock } from "../../actions/stock_actions";
+import { grabPortfolio } from "../../actions/portfolio_actions";
 
-function UserPortfolioHomeMain(){
+function UserPortfolioHomeMain() {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.entities.users[state.session.currentUserId]);
-  const portfolio = useSelector(state => state.entities.portfolios);
-  const stocks = useSelector(state => state.entities.stocks);
+  const currentUser = useSelector(
+    (state) => state.entities.users[state.session.currentUserId],
+  );
+  const portfolio = useSelector((state) => state.entities.portfolios);
+  const stocks = useSelector((state) => state.entities.stocks);
 
-  const owned = Object.keys(portfolio).length ? calcOwned(portfolio.portfolio) : {};
+  const owned = Object.keys(portfolio).length
+    ? calcOwned(portfolio.portfolio)
+    : {};
 
   const [stateTotalGL, setTotalGL] = useState(0);
   const [stateTodayGL, setTodayGL] = useState(0);
@@ -30,42 +34,47 @@ function UserPortfolioHomeMain(){
 
   useEffect(() => {
     dispatch(grabPortfolio());
-    dispatch(displayStocks(Object.keys(owned).join(",")))
-      .then(res => {
-        if (Object.keys(owned).length){
-          Object.keys(res.stocks).forEach(ticker => {
-            const current = owned[ticker];
-            const market = res.stocks[ticker]["quote"];
+    dispatch(displayStocks(Object.keys(owned).join(","))).then((res) => {
+      if (Object.keys(owned).length) {
+        Object.keys(res.stocks).forEach((ticker) => {
+          const current = owned[ticker];
+          const market = res.stocks[ticker]["quote"];
 
-            totalGLAmt += (current["shares"] * market["latestPrice"] - current["cost"]);
-            todayGLAmt += (current["shares"] * (market["previousClose"] - market["latestPrice"]));
-            totalMarketValue += (current["shares"] * market["latestPrice"])
-          })
+          totalGLAmt +=
+            current["shares"] * market["latestPrice"] - current["cost"];
+          todayGLAmt +=
+            current["shares"] *
+            (market["previousClose"] - market["latestPrice"]);
+          totalMarketValue += current["shares"] * market["latestPrice"];
+        });
 
-          setTotalGL(totalGLAmt);
-          setTodayGL(todayGLAmt);
-          setMarketValue(totalMarketValue);
-        }
-      })
+        setTotalGL(totalGLAmt);
+        setTodayGL(todayGLAmt);
+        setMarketValue(totalMarketValue);
+      }
+    });
   }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
-  
-  function calcOwned(transactions){ //array of transactions
+
+  function calcOwned(transactions) {
+    //array of transactions
     let offSet = 0; //offSet = negShares (iterate backwards over array)
     let lifoCost = 0;
     const currOwned = {};
 
     for (let i = transactions.length - 1; i >= 0; i--) {
       //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
-      if (transactions[i].trans_type === 'sale') {
+      if (transactions[i].trans_type === "sale") {
         lifoCost = 0;
-        offSet += transactions[i].shares
+        offSet += transactions[i].shares;
       } else {
         //......PURCHASES
         if (offSet < 0) {
           if (offSet < transactions[i].shares) {
-            lifoCost = (transactions[i].shares + offSet) * transactions[i].price;
+            lifoCost =
+              (transactions[i].shares + offSet) * transactions[i].price;
             offSet = 0;
-          } else {  //.....(offSet is greater than purchased shares)
+          } else {
+            //.....(offSet is greater than purchased shares)
             lifoCost = 0;
             offSet += shares;
           }
@@ -81,18 +90,18 @@ function UserPortfolioHomeMain(){
         currOwned[transactions[i].ticker] = {
           shares: transactions[i].shares,
           cost: lifoCost,
-          id: transactions[i].stock_id
-        }
+          id: transactions[i].stock_id,
+        };
       }
     }
 
     return currOwned;
   }
 
-  function formatComma(num){
-    const [dollar, cents] = num.toString().split(".")
-    const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    return ( cents ? newDollar + "." + cents : newDollar )
+  function formatComma(num) {
+    const [dollar, cents] = num.toString().split(".");
+    const newDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return cents ? newDollar + "." + cents : newDollar;
   }
 
   return (
@@ -111,22 +120,38 @@ function UserPortfolioHomeMain(){
 
           <section className="user-portfolio-home-summary">
             <div className="uph-summary-1">
-              <span>{currentUser.fname} {currentUser.lname} account value: </span>
-              <span>$ {formatComma((portfolioValue + stateMarketValue).toFixed(2))}</span> {/* cash available + stocks value (market) */}
-              <span className={`uph-pv-diff ${uphPvDiff}`}>from ${formatComma((portfolioValue + stateMarketValue - stateTodayGL).toFixed(2))}</span> {/* cash available + stocks value (market) + today's GL */}
+              <span>
+                {currentUser.fname} {currentUser.lname} account value:{" "}
+              </span>
+              <span>
+                $ {formatComma((portfolioValue + stateMarketValue).toFixed(2))}
+              </span>{" "}
+              {/* cash available + stocks value (market) */}
+              <span className={`uph-pv-diff ${uphPvDiff}`}>
+                from $
+                {formatComma(
+                  (portfolioValue + stateMarketValue - stateTodayGL).toFixed(2),
+                )}
+              </span>{" "}
+              {/* cash available + stocks value (market) + today's GL */}
             </div>
             <div className="uph-summary-2">
               <span>Stock Buying Power</span>
-              <span>$ {formatComma(portfolioValue.toFixed(2))}</span> {/* cash available (user.funds_available) */} 
+              <span>$ {formatComma(portfolioValue.toFixed(2))}</span>{" "}
+              {/* cash available (user.funds_available) */}
             </div>
             <div className="uph-summary-3">
               <span>total gain/loss</span>
-              <span className={totalGLDiff}>$ {formatComma(stateTotalGL.toFixed(2))}</span>
+              <span className={totalGLDiff}>
+                $ {formatComma(stateTotalGL.toFixed(2))}
+              </span>
               {/* total_amt - (shares owned * today's market price) DEAL WITH WHEN WORK OUT INDIVIDUAL STOCK NUMBERS*/}
             </div>
             <div className="uph-summary-4">
               <span>today's gain/loss</span>
-              <span className={uphPvDiff}>$ {formatComma(stateTodayGL.toFixed(2))}</span>
+              <span className={uphPvDiff}>
+                $ {formatComma(stateTodayGL.toFixed(2))}
+              </span>
               {/* forEach stock owned -> (previous Day's closingPrice - latestPrice) PUT IN A NOTE ABOUT TIME DELAY FOR PRICE REPORTING */}
             </div>
           </section>
@@ -145,30 +170,66 @@ function UserPortfolioHomeMain(){
                   <th>Tot. Gain ($)</th>
                   <th>Tot. Gain (%)</th>
                 </tr>
+                {Object.keys(owned).length && Object.keys(stocks).length
+                  ? Object.keys(owned).map((ticker, idx) => {
+                      if (!stocks[ticker]) return null;
 
-                {Object.keys(owned).length && Object.keys(stocks).length ? Object.keys(owned).map((ticker, idx) => {
-                  if (!stocks[ticker]) return null;
-                  
+                      const current = owned[ticker];
+                      const market = stocks[ticker]["quote"];
 
-                  const current = owned[ticker];
-                  const market = stocks[ticker]["quote"];
-                  
-                  const dayGL = market["previousClose"] - market["latestPrice"] < 0 ? "uph-minus" : "uph-plus";
-                  const totGL = (current["shares"] * market["latestPrice"] - current["cost"]) < 0 ? "uph-minus" : "uph-plus";
+                      const dayGL =
+                        market["previousClose"] - market["latestPrice"] < 0
+                          ? "uph-minus"
+                          : "uph-plus";
+                      const totGL =
+                        current["shares"] * market["latestPrice"] -
+                          current["cost"] <
+                        0
+                          ? "uph-minus"
+                          : "uph-plus";
 
-                  return (
-                    <tr className={`uph-tr-${idx}`}>
-                      <td><Link to={`/stock/${current.id}`}>{ticker}</Link></td>
-                      <td>{current["shares"]}</td>
-                      <td>{formatComma(market["latestPrice"])}</td>
-                      <td className={dayGL}>{( market["previousClose"] - market["latestPrice"] ).toFixed(4)}</td>
-                      <td>{formatComma(current["cost"].toFixed(2))}</td>
-                      <td>{formatComma((current["shares"] * market["latestPrice"]).toFixed(2))}</td>
-                      <td className={totGL}>{formatComma((current["shares"] * market["latestPrice"] - current["cost"]).toFixed(2))}</td> {/* total gain/loss for this stock */}
-                      <td className={totGL}>{(((current["shares"] * market["latestPrice"] - current["cost"]) / (current["shares"] * market["latestPrice"])) * 100).toFixed(2) + "%"}</td>
-                    </tr>
-                  )
-                }) : console.log("EMPTY")} {/* INSERT LINK "LET'S START TRADING" IF EMPTY*/}
+                      return (
+                        <tr className={`uph-tr-${idx}`}>
+                          <td>
+                            <Link to={`/stock/${current.id}`}>{ticker}</Link>
+                          </td>
+                          <td>{current["shares"]}</td>
+                          <td>{formatComma(market["latestPrice"])}</td>
+                          <td className={dayGL}>
+                            {(
+                              market["previousClose"] - market["latestPrice"]
+                            ).toFixed(4)}
+                          </td>
+                          <td>{formatComma(current["cost"].toFixed(2))}</td>
+                          <td>
+                            {formatComma(
+                              (
+                                current["shares"] * market["latestPrice"]
+                              ).toFixed(2),
+                            )}
+                          </td>
+                          <td className={totGL}>
+                            {formatComma(
+                              (
+                                current["shares"] * market["latestPrice"] -
+                                current["cost"]
+                              ).toFixed(2),
+                            )}
+                          </td>{" "}
+                          {/* total gain/loss for this stock */}
+                          <td className={totGL}>
+                            {(
+                              ((current["shares"] * market["latestPrice"] -
+                                current["cost"]) /
+                                (current["shares"] * market["latestPrice"])) *
+                              100
+                            ).toFixed(2) + "%"}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : console.log("EMPTY")}{" "}
+                {/* INSERT LINK "LET'S START TRADING" IF EMPTY*/}
               </tbody>
             </table>
           </section>
