@@ -1,8 +1,7 @@
-import React from 'react';
-import { closeModal } from '../../actions/modal_actions';
-import { connect } from 'react-redux';
-import { CommissionsDisclosure, 
-          FractionalDisclosure } from './splash_modals';
+import React from "react";
+import { closeModal } from "../../actions/modal_actions";
+import { connect } from "react-redux";
+import { CommissionsDisclosure, FractionalDisclosure } from "./splash_modals";
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -11,10 +10,10 @@ function Modal({ modal, closeModal }) {
   let component;
   // debugger
   switch (modal) {
-    case 'commissionsDisclosure':
-      component = <CommissionsDisclosure closeModal={closeModal}/>;
+    case "commissionsDisclosure":
+      component = <CommissionsDisclosure closeModal={closeModal} />;
       break;
-    case 'fractionalDisclosure':
+    case "fractionalDisclosure":
       component = <FractionalDisclosure closeModal={closeModal} />;
       break;
     default:
@@ -22,19 +21,19 @@ function Modal({ modal, closeModal }) {
   }
   return (
     <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
+      <div className="modal-child" onClick={(e) => e.stopPropagation()}>
         {component}
       </div>
     </div>
   );
 }
 
-const mSTP = state => ({
-  modal: state.ui.modal
-})
+const mSTP = (state) => ({
+  modal: state.ui.modal,
+});
 
-const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeModal())
+const mDTP = (dispatch) => ({
+  closeModal: () => dispatch(closeModal()),
 });
 
 export default connect(mSTP, mDTP)(Modal);
