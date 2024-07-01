@@ -1,14 +1,14 @@
-export const postWatch = stock => {
+export const postWatch = (stock) => {
   return $.ajax({
     method: "POST",
     url: "/api/stocks_watchlists",
-    data: { stock }
-  })
-}
+    data: { stock },
+  });
+};
 
-export const deleteWatch = stockid => {
+export const deleteWatch = (stockid) => {
   return $.ajax({
     method: "DELETE",
     url: `/api/stocks_watchlists/${stockid}`,
-  })
-}
+  });
+};
