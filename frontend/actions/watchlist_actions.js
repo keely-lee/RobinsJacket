@@ -22,6 +22,6 @@ export const createWatch = (stock) => (dispatch) => {
 
 export const deleteWatch = (stockid) => (dispatch) => {
   return StocksWatchlistUtil.deleteWatch(stockid)
-    .then((user) => dispatch(receiveCurrentUser(user)))
+    .then((user) => dispatch(receiveCurrentUser(user))) // doesn't refresh watchlist bc user ref remains the same
     .fail((err) => dispatch(receiveErrors(err)));
 };

@@ -26,5 +26,4 @@ const mDTP = (dispatch) => ({
   closeModal: () => dispatch(closeModal()),
 });
 
-const SplashContainer = connect(mSTP, mDTP)(Splash);
-export default SplashContainer;
+export default SplashContainer = connect(mSTP, mDTP)(Splash);
