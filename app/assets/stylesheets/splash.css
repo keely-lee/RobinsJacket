@@ -93,7 +93,8 @@
 }
 
 .linkedin,
-.github {
+.github,
+.angellist {
   font-size: 40px;
   color: black;
   padding-right: 30px;
@@ -101,6 +102,7 @@
 
 .linkedin:hover,
 .github:hover,
+.angellist:hover,
 .personal:hover {
   color: #00c805;
   /* background-color: black; */

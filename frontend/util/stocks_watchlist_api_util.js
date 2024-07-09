@@ -6,9 +6,10 @@ export const postWatch = (stock) => {
   });
 };
 
-export const deleteWatch = (stockid) => {
+// Fix naming, don't need delete by ID?
+export const deleteWatch = (tickerOrStockid) => {
   return $.ajax({
     method: "DELETE",
-    url: `/api/stocks_watchlists/${stockid}`,
+    url: `/api/stocks_watchlists/${tickerOrStockid}`,
   });
 };

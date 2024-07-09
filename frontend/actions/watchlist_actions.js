@@ -1,27 +1,29 @@
 import * as StocksWatchlistUtil from "../util/stocks_watchlist_api_util";
 import { receiveCurrentUser } from "./session_actions";
 
-// import { updateUser } from "../util/session_api_util";
-// export const update = user => dispatch => {
-//   return updateUser(user)
-//     .then(user => dispatch(receiveCurrentUser(user)))
-// }
+// consolidate all the "receive errors later, implement clear errors"
+export const receiveErrors = errors => ({
+  type: RECEIVE_ERRORS,
+  errors
+})
 
-// export const receiveErrors = err => {
-//   type: RECEIVE
-// }
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS,
+  };
+};
 
+// POST & DESTROY doesn't refresh watchlist bc user ref remains the same
 export const createWatch = (stock) => (dispatch) => {
   return (
     StocksWatchlistUtil.postWatch(stock)
       .then((user) => dispatch(receiveCurrentUser(user)))
-      // .fail(err => dispatch(receiveErrors(err)))
-      .fail((err) => console.log(err))
+      .fail(err => dispatch(receiveErrors(err)))
   );
 };
 
-export const deleteWatch = (stockid) => (dispatch) => {
-  return StocksWatchlistUtil.deleteWatch(stockid)
-    .then((user) => dispatch(receiveCurrentUser(user))) // doesn't refresh watchlist bc user ref remains the same
+export const deleteWatch = (tickerOrStockid) => (dispatch) => {
+  return StocksWatchlistUtil.deleteWatch(tickerOrStockid)
+    .then((user) => dispatch(receiveCurrentUser(user)))
     .fail((err) => dispatch(receiveErrors(err)));
 };
