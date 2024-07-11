@@ -21,16 +21,18 @@ class WatchlistComp extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // don't do this for delete watch, save an api call
+    // Need to fix for complete accuracy. For now skip this for delete watch, save an api call.
     if (
-      prevProps.currentUser.watched_stocks !==
-      this.props.currentUser.watched_stocks
+      prevProps.currentUser.watched_stocks.length <
+      this.props.currentUser.watched_stocks.length
     ) {
       this.grabTickers();
     }
   }
 
   grabTickers() {
+    // TODO KL: Modify watched_stocks for easy ticker search. Needed for this + user_home
+    // watched_stocks -> [{ticker: "AAPL", company_name: "Apple, Inc.", id: 1}, {...}, ...]
     const symbols = this.props.currentUser.watched_stocks.reduce((acc, stock) => {
       acc.push(stock.ticker);
       return acc;
@@ -46,7 +48,6 @@ class WatchlistComp extends React.Component {
     delete updatedList[ticker];
     this.props.deleteWatch(ticker)
     .then(this.setState({ stocks: updatedList }));
-    // needed? comp did update should reset the list
   }
 
   handleGetStocks() {

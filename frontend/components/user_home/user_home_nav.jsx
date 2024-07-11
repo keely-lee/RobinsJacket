@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class UserHomeNav extends React.Component {
+class UserHomeNav extends React.PureComponent {
   /*
     This component is shared by:
       - Home: "/" (general stock info)

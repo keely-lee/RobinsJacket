@@ -8,7 +8,6 @@ function Modal({ modal, closeModal }) {
     return null;
   }
   let component;
-  // debugger
   switch (modal) {
     case "commissionsDisclosure":
       component = <CommissionsDisclosure closeModal={closeModal} />;

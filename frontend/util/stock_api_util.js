@@ -2,8 +2,6 @@ import {
   RAPID_API_KEY,
   RAPID_API_HOST,
   rapid_base_url,
-  TEMP_BASE_URL,
-  TEMP_STOCKS_HOST,
   multiBaseUrl,
   multiHost,
 } from './util';
