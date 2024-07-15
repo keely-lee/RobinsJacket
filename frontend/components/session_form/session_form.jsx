@@ -40,7 +40,7 @@ class SessionForm extends React.Component {
   }
 
   demoUser(e) {
-    const user = { email: "acarnegie@gmail.com", password: "password1" };
+    const user = { email: "acarnegie@gmail.com", password: "password1", fname: "Andrew", lname: "Carnegie" };
 
     return () => {
       this.setState(user);
@@ -83,7 +83,6 @@ class SessionForm extends React.Component {
     if (this.props.formType === "login") {
       otherLink = "signup";
       sessionHeader = "Welcome to RobinsJacket";
-
       submitButton = "Sign In";
       baseColor = "lgreen";
       labelEmail = "Email or username";
