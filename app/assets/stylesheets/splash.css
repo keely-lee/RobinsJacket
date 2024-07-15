@@ -356,36 +356,31 @@
 
 .splash-comp-three-spans {
   display: flex;
-}
 
-.splash-comp-three-spans > [class^="section"] {
-  margin-right: 20px;
-  margin-bottom: 40px;
-  width: 253px;
-  padding-right: 33px;
-}
+  & section {
+    margin-right: 20px;
+    margin-bottom: 40px;
+    width: 253px;
+    padding-right: 33px;
+  }
 
-.splash-three-header {
-  margin-top: 0px;
-  margin-bottom: 8px;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-  width: 180px;
+  & p {
+    margin-top: 0px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    width: 180px;
+  }
 
-  /* letter-spacing: -0.1px;
-  text-decoration: unset; */
-}
-
-.splash-three-blurb {
-  /* margin: 0; */
-  font-size: 15px;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 24px;
-  display: block;
-  /* letter-spacing: -0.1px; */
+  & span {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 24px;
+    display: block;
+  }
 }
 
 .add-email-form {
@@ -611,29 +606,44 @@
 .splash-comp-six-top-left {
   display: flex;
   padding-top: 58px;
-  /* flex-direction: column; */
-}
 
-.splash-comp-six-buttons {
-  display: flex;
-  flex-direction: column;
-  width: 185px;
-  margin-left: 9px;
-  margin-right: 9px;
-}
+  & section {
+    display: flex;
+    flex-direction: column;
+    width: 185px;
+    margin-left: 9px;
+    margin-right: 9px;
+  }
 
-.splash-six-bottom-link-green {
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  font-family: inherit;
-  font-size: 17.5px;
-  font-weight: bold;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  color: whitesmoke;
-  cursor: pointer;
-  padding-left: 0;
+  & button {
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    font-family: inherit;
+    font-size: 17.5px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    color: whitesmoke;
+    cursor: pointer;
+    padding-left: 0;
+
+    &.crypto {
+      color: rgb(237, 102, 136);
+    }
+
+    &.crypto:hover {
+      color: rgb(239, 124, 153);
+    }
+  }
+
+  & button:focus {
+    outline: none;
+  }
+
+  & button:hover {
+    color: #00c805;
+  }
 }
 
 .add-email-form-dark {
@@ -646,32 +656,6 @@
   height: 64px;
   padding-right: 12px;
   background: #272829;
-}
-
-.splash-six-bottom-link-green:focus {
-  outline: none;
-}
-
-.splash-six-bottom-link-green:hover {
-  color: #00c805;
-}
-
-.splash-six-bottom-link-crypto {
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  font-family: inherit;
-  font-size: 17.5px;
-  font-weight: bold;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: rgb(237, 102, 136);
-  cursor: pointer;
-  padding-left: 0;
-}
-
-.splash-six-bottom-link-crypto:hover {
-  color: rgb(239, 124, 153);
 }
 
 .splash-comp-six-bottom {
@@ -704,19 +688,6 @@
   margin-bottom: 13px;
 }
 
-.splash-six-top-link-green-right {
-  text-align: right;
-  border: none;
-  background-color: transparent;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: bold;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  color: whitesmoke;
-  cursor: pointer;
-  padding-left: 0;
-}
 
 .splash-comp-six-right-buttons {
   display: flex;
@@ -726,10 +697,24 @@
   margin-right: 0;
   margin-top: 13px;
   padding-top: 28px;
-}
 
-.splash-six-top-link-green-right:hover {
-  color: #00c805;
+  & button {
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    color: whitesmoke;
+    cursor: pointer;
+    padding-left: 0;
+  }
+
+  & button:hover {
+    color: #00c805;
+  }
 }
 
 /* splash-six-bottom */

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 class SplashNav extends React.Component {
@@ -6,31 +7,13 @@ class SplashNav extends React.Component {
     super(props);
     this.state = { productDropdown: false };
     this.handleProductDropdown = this.handleProductDropdown.bind(this);
-    // this.handleProductRemove = this.handleProductRemove.bind(this);
   }
 
   handleProductDropdown() {
-    if (this.state.productDropdown === false) {
-      this.setState({ productDropdown: true });
-    } else {
-      this.setState({ productDropdown: false });
-    }
+    this.setState({ productDropdown: !this.state.productDropdown})
   }
 
-  // handleProductRemove(){
-  //   if (this.state.productDropdown) {
-  //     this.setState({ productDropdown: false })
-  //   }
-  // }
-
   render() {
-    let caret;
-    if (this.state.productDropdown) {
-      caret = <i className="fa fa-angle-up" aria-hidden="true"></i>;
-    } else {
-      caret = <i className="fa fa-angle-down" aria-hidden="true"></i>;
-    }
-
     return (
       <div className="splash">
         <nav className="navbar-main cf">
@@ -41,9 +24,13 @@ class SplashNav extends React.Component {
             <button
               type="button"
               className="navbar-dropdown"
-              onClick={() => this.handleProductDropdown()}
+              onClick={this.handleProductDropdown}
             >
-              Products {caret}
+              Products {<i aria-hidden="true"
+                className={classNames({
+                  "fa fa-angle-up": this.state.productDropdown,
+                  "fa fa-angle-down": !this.state.productDropdown,
+                })}></i>}
             </button>
             <a href="https://www.linkedin.com/in/keely-lee1/" className="linkedin" target="_blank"><i className="fab fa-linkedin"></i></a>
             <a href="https://github.com/keely-lee" className="github" target="_blank"><i className="fab fa-github"></i></a>

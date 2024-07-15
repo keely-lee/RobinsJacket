@@ -41,7 +41,7 @@ function intervalReducer(state, action) {
   }
 }
 
-function SplashCompFour(props) {
+function SplashCompFour(_props) {
   const [state, dispatch] = useReducer(intervalReducer, { selected: 0 });
 
   useEffect(() => {
@@ -52,14 +52,12 @@ function SplashCompFour(props) {
   }, [])
 
   const { blurb, header, imgName } = panes[state.selected];
-
   return (
     <div className="splash-comp-four">
       <div className="splash-comp-four-inside">
         <ul className="splash-four-ul">
-          <h3 onClick={() => dispatch({ type: "up" })} className="splash-label">
-            {"\u2191"}
-          </h3>
+          <h3 onClick={() => dispatch({ type: "up" })} className="splash-label">{"\u2191"}</h3>
+
           {
             panes.map(( {benefit, pdispatch}, _idx) => (
               <h3 
@@ -70,9 +68,8 @@ function SplashCompFour(props) {
               </h3>
             ))
           }
-          <h3 onClick={() => dispatch({ type: "down" })} className={`splash-label`}>
-            {"\u2193"}
-          </h3>
+          
+          <h3 onClick={() => dispatch({ type: "down" })} className={`splash-label`}>{"\u2193"}</h3>
         </ul>
 
         <div className="splash-four-right">

@@ -12,7 +12,6 @@ class SplashCompTwo extends React.Component {
           cost.
         </span>
         {this.props.disclosure}
-        {/* FEE SCHEDULE is a LINK. Refactor later*/}
       </section>
     );
   }

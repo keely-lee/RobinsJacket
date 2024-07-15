@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import SplashCompOne from "../splash/splash_comp_one";
 import SplashCompTwo from "../splash/splash_comp_two";
@@ -24,7 +23,6 @@ class Splash extends React.Component {
         </div>
         <div className="splash-2">
           <SplashCompTwo
-            // disclosure={this.props.otherForm}
             disclosure={this.props.commissions}
             closeModal={this.props.closeModal}
           />
