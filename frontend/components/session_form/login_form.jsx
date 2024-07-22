@@ -6,11 +6,9 @@ const initialUser = {
   password: "",
 }
 
-function LoginForm ({formType, processForm, errors, clearErrors}, props) {
+function LoginForm ({processForm, errors, clearErrors}) {
   const [user, setUser] = useState(initialUser);
   useEffect(() => clearErrors, []);
-
-  const baseColor = "lgreen"; // fix this later
 
   function handleInput(field) {
     return function(e) {
@@ -32,75 +30,60 @@ function LoginForm ({formType, processForm, errors, clearErrors}, props) {
 
   function displayErrors() {
     return (
-      <ul className={`${formType}-error-list`}>
+      <ul className='login-error-list'>
         {errors.map((error, idx) => (
           <li key={`error-${idx}`} id={`error-${idx}`}>{error}</li>
         ))}
       </ul>
-    );
+    )
   }
 
-  // all CSS and div/sections need to be fixed
   return (
-    <div className={`${formType}-main-div`}>
-      <form onSubmit={handleSubmit} className={`${formType}-form-tag`}>
-        <div className={`div-other-${formType}`}>
-          <div className={`div-inside-${formType}`}>
-            <h2 className={`${formType}-header`}>Welcome to RobinsJacket</h2>
-            <p className={`${formType}-labelEmail`}>Email or username</p>
-            <input
-              type="text"
-              value={user.email}
-              onChange={handleInput("email")}
-              className={`${formType}-input ${formType}-email`}
-            />
+    <div className="login-main-div"> 
+      <form onSubmit={handleSubmit}>
+        <div className='login-form-div'>
+          <h2>Welcome to RobinsJacket</h2>
+          <p>Email or username</p>
+          <input
+            type="text"
+            value={user.email}
+            onChange={handleInput("email")}
+          />
 
-            <p className={`${formType}-labelPW`}>Password</p>
-            <input
-              type="password"
-              value={user.password}
-              onChange={handleInput("password")}
-              className={`${formType}-input ${formType}-password`}
-            />
+          <p>Password</p>
+          <input
+            type="password"
+            value={user.password}
+            onChange={handleInput("password")}
+          />
 
-            <Link to="/" className={`link-${baseColor}-only forgot`}>
-              Forgot your username or password?
-            </Link>
+          <Link to="/" className='forgot'>
+            Forgot your username or password?
+          </Link>
 
-            <div className={`session-${formType}-buttons`}>
-              <button className={`button-${baseColor} ${formType}-submit`}>
-                Sign In
-              </button>
-              <button className={`button-${baseColor}`} onClick={demoUser}>
-                Demo User
-              </button>
-            </div>
+          <div className='login-buttons'>
+            <button>Sign In</button>
+            <button onClick={demoUser}>Demo User</button>
+          </div>
 
-            <div className={`${formType}-errors-div`}>
-              {errors ? displayErrors() : ""}
-            </div>
-            <div className="other-link-div">
-              <span className="other-link-text">Get started </span>
-              <Link
-                to={"/signup"}
-                className={`link-${baseColor}-only other-link`}
-              >
-                Create an account today
-              </Link>
-            </div>
+          <div>
+            {errors ? displayErrors() : ""}
+          </div>
+          <div className="other-link-div">
+            <span>Get started </span>
+            <Link to={"/signup"}>Create an account today</Link>
           </div>
         </div>
-
-        <div className={`${formType}-img`}>
-          <img
-            src={window.login_page}
-            draggable="false"
-            className={`${formType}-image`}
-          />
-        </div>
       </form>
+
+      <div className='login-img'>
+        <img
+          src={window.login_page}
+          draggable="false"
+        />
+      </div>
     </div>
   )
-};
+}
 
-export default LoginForm
+export default LoginForm;
