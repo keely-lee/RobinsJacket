@@ -13,7 +13,7 @@ module.exports = {
     filename: "bundle.js",
   },
   resolve: {
-    extensions: [".js", ".jsx", "*"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", "*"],
     fallback: {
       "readable-stream": require.resolve("readable-stream"),
     },
@@ -27,7 +27,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
           },
         },
       },
