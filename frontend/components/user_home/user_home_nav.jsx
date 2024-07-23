@@ -1,11 +1,14 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import {
-  displayByTicker,
-  displayByNewTicker,
-} from "../../actions/stock_actions";
+import { Link } from "react-router-dom";
 
-class UserHomeNav extends React.Component {
+class UserHomeNav extends React.PureComponent {
+  /*
+    This component is shared by:
+      - Home: "/" (general stock info)
+      - Portfolio Home: "/portfolio"
+          * Submitting ticker search navigates to portfolio stock page
+      - Portfolio Stock: "/stock/:id" (user's stock transactions)
+  */
   constructor(props) {
     super(props);
     this.state = {
@@ -13,20 +16,30 @@ class UserHomeNav extends React.Component {
       messageDropdown: false,
       contact: false,
       ticker: "NDAQ",
-      redirect: null,
     };
 
-    this.handleGraph = this.handleGraph.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleDropdown = this.handleDropdown.bind(this);
     this.handleCloseNavs = this.handleCloseNavs.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
+    this.renderContact = this.renderContact.bind(this);
   }
 
+  updateSearch(e) {
+    this.setState({ ticker: e.currentTarget.value });
+  }
+
+  handleSearch(e) {
+    e.preventDefault();
+    this.props.getStock(this.state.ticker);
+  }
+
+  // TODO KL: smartSearch dropdown stocks list
+  // smartSearch() {}
+
   handleDropdown(dropdown) {
-    if (this.state[dropdown] === false) {
-      this.setState({ [dropdown]: true });
-    } else {
-      this.setState({ [dropdown]: false });
-    }
+    // TODO KL: clean this up. Add renderContact to this fn
+    this.setState({ [dropdown]: !this.state[dropdown] })
 
     // this.handleClose(dropdown);
     if (dropdown === "accountDropdown") {
@@ -51,49 +64,11 @@ class UserHomeNav extends React.Component {
   }
 
   renderContact() {
-    if (this.state.contact === false) this.setState({ contact: true });
-    else this.setState({ contact: false });
-  }
-
-  //handleSearch dropdown stocks
-  // handleSearch(){
-  // }
-
-  componentDidMount() {
-    this.props.currPage
-      ? this.props.getByURL(this.props.currPage)
-      : this.props.getStock(this.state.ticker);
-  }
-
-  updateSearch() {
-    return (e) => {
-      this.setState({ ticker: e.currentTarget.value });
-    };
-  }
-
-  handleGraph(e) {
-    e.preventDefault();
-    this.props.getStock(this.state.ticker).then((res) => {
-      if (!this.props.ownProps) {
-        displayByTicker(this.state.ticker.toUpperCase())
-          .then((stock) => this.setState({ redirect: stock.id }))
-          .fail((err) => {
-            displayByNewTicker({
-              ticker: res.stock.quote.symbol,
-              company_name: res.stock.quote.companyName,
-            }).then((newStock) => this.setState({ redirect: newStock.id }));
-          }); //create stock if not previously stored
-      }
-    });
+    // TODO KL: add this fn to handleDropdown
+    this.setState({ contact: !this.state.contact })
   }
 
   render() {
-    if (
-      this.state.redirect &&
-      parseInt(this.props.currPage) !== this.state.redirect
-    )
-      return <Navigate to={`/stock/${this.state.redirect}`} />; //Redirect to stocks page if not on user home
-
     return (
       <div className="home-navbar-main">
         <Link to="/" className="home-logo-link">
@@ -105,14 +80,13 @@ class UserHomeNav extends React.Component {
         </Link>
 
         <div className="user-search-wrap">
-          <form onSubmit={this.handleGraph}>
+          <form onSubmit={this.handleSearch}>
             <i className="fa fa-search" aria-hidden="true"></i>
-            {/* <input type="text" className="navbar-stock-search" placeholder="Search" */}
             <input
               type="text"
               className="navbar-stock-search"
               placeholder="Enter Ticker"
-              onChange={this.updateSearch()}
+              onChange={this.updateSearch}
             />
             <button className="home-nav-submit-button">
               <i className="fas fa-arrow-right"></i>
@@ -128,7 +102,6 @@ class UserHomeNav extends React.Component {
           >
             Portfolio
           </Link>
-          {/* <button type="button" className="home-nav-button home-nav-cash" onClick={() => this.handleCloseNavs()}>Cash</button> */}
           <button
             type="button"
             className="home-nav-button home-nav-messages"
@@ -177,7 +150,7 @@ class UserHomeNav extends React.Component {
                 >
                   More Info
                 </a>
-                {/* MAKE RESUME MODAL*/}
+                {/* TODO: make resume modal */}
               </div>
             ) : null}
 

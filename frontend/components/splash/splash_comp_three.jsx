@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 class SplashCompThree extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  //may need state for email input
-  //need state for modal
 
   handleSubmit(e) {
     e.preventDefault();
@@ -22,23 +19,23 @@ class SplashCompThree extends React.Component {
           <span>Invest in thousands of stocks with just $1.</span>
 
           <div className="splash-comp-three-spans">
-            <section className="section-one">
+            <section>
               <p className="splash-three-header">Invest Any Amount</p>
-              <span className="splash-three-blurb">
+              <span>
                 Choose how much you want to invest, and we’ll convert from
                 dollars to shares
               </span>
             </section>
-            <section className="section-two">
+            <section>
               <p className="splash-three-header">Build Your Portfolio</p>
-              <span className="splash-three-blurb">
+              <span>
                 Customize your portfolio, allocate assets from aggressive to
                 passive.
               </span>
             </section>
-            <section className="section-three">
+            <section>
               <p className="splash-three-header">Trade in Real Time</p>
-              <span className="splash-three-blurb">
+              <span>
                 Trades placed during market hours are executed in real time, so
                 you’ll always know the share price.
               </span>
@@ -58,14 +55,11 @@ class SplashCompThree extends React.Component {
               </Link>
             </form>
           </div>
-
           {this.props.disclosure}
         </section>
 
         <div className="splash-comp-three-image">
           <img src={window.splash_shapes} draggable="false" />
-
-          {/* {/https://cdn.robinhood.com/assets/robinhood/brand/0fb7985440ef7ab6794b97c64814f049-1x.png)} */}
         </div>
       </div>
     );

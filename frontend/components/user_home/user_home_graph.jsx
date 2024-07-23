@@ -4,20 +4,24 @@ import {
   Area,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  linearGradient,
   ResponsiveContainer,
+  CartesianGrid,
+  linearGradient,
 } from "recharts";
 
-class UserHomeGraph extends React.Component {
+class UserHomeGraph extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this.mapCharts = this.mapCharts.bind(this);
+    this.__mapData__ = this.__mapData__.bind(this);
   }
 
   __mapData__() {
     const data = Object.values(this.props.stocks)[0];
-    const mappedData = data.timestamp.map((dt, idx) => {
+    const historic = data?.timestamp || [];
+    const mappedData = historic.map((dt, idx) => {
       const prices = data.indicators.quote[0];
       return {
         date: new Date(dt * 1000).toLocaleDateString("en-US"), // dt -> epoch timestamp in seconds
@@ -31,111 +35,111 @@ class UserHomeGraph extends React.Component {
   }
 
   mapCharts() {
-    if (Object.keys(this.props.stocks).length) {
-      const data = this.__mapData__();
-      return (
-        <ResponsiveContainer width="100%" height={300}>
-          <AreaChart data={data}>
-            <defs>
-              <linearGradient id="colorOpen" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#ff9a7e" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#ff9a7e" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorHigh" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#9adaf7" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#9adaf7" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorLow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#ee6741" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#ee6741" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorClose" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#64bfe8" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#64bfe8" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            {/* <CartesianGrid strokeDasharray="3 3" /> */}
-            <Tooltip className="tooltip" />
+    const data = this.__mapData__();
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <AreaChart data={data}>
+          <defs>
+            <linearGradient id="colorOpen" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#ff9a7e" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ff9a7e" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorHigh" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#9adaf7" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#9adaf7" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorLow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#ee6741" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ee6741" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorClose" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#64bfe8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#64bfe8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <Tooltip className="tooltip" />
 
-            <XAxis dataKey="date" tick={{ fill: "white", fontSize: 12 }} />
-            <YAxis
-              type="number"
-              tick={{ fill: "white", fontSize: 12 }}
-              domain={[
-                (dataMin) => {
-                  if (dataMin - 5 < 0) return 0;
-                  else return Math.floor(dataMin) - 5;
-                },
-                (dataMax) => Math.ceil(dataMax) + 5,
-              ]}
-            />
+          <XAxis dataKey="date" tick={{ fill: "white", fontSize: 12 }} />
+          <YAxis
+            type="number"
+            tick={{ fill: "white", fontSize: 12 }}
+            domain={[
+              (dataMin) => {
+                if (dataMin - 5 < 0) return 0;
+                else return Math.floor(dataMin) - 5;
+              },
+              (dataMax) => Math.ceil(dataMax) + 5,
+            ]}
+          />
 
-            <Area
-              type="monotone"
-              dataKey="open"
-              stroke="#ff9a7e"
-              fillOpacity={1}
-              fill="url(#colorOpen)"
-            />
-            <Area
-              type="monotone"
-              dataKey="high"
-              stroke="#9adaf7"
-              fillOpacity={1}
-              fill="url(#colorHigh)"
-            />
-            <Area
-              type="monotone"
-              dataKey="low"
-              stroke="#ee6741"
-              fillOpacity={1}
-              fill="url(#colorLow)"
-            />
-            <Area
-              type="monotone"
-              dataKey="close"
-              stroke="#64bfe8"
-              fillOpacity={1}
-              fill="url(#colorClose)"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      );
-    }
+          <Area
+            type="monotone"
+            dataKey="open"
+            stroke="#ff9a7e"
+            fillOpacity={1}
+            fill="url(#colorOpen)"
+          />
+          <Area
+            type="monotone"
+            dataKey="high"
+            stroke="#9adaf7"
+            fillOpacity={1}
+            fill="url(#colorHigh)"
+          />
+          <Area
+            type="monotone"
+            dataKey="low"
+            stroke="#ee6741"
+            fillOpacity={1}
+            fill="url(#colorLow)"
+          />
+          <Area
+            type="monotone"
+            dataKey="close"
+            stroke="#64bfe8"
+            fillOpacity={1}
+            fill="url(#colorClose)"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    );
   }
 
   render() {
-    if (!Object.keys(this.props.stocks).length) return null;
+    const stock = Object.values(this.props.stocks)[0];
+    if (!stock?.meta) return null;
 
-    let symbol = "";
+    const { symbol, regularMarketPrice, chartPreviousClose } = stock.meta;
+
+    let sign = "";
     let change = "pos";
     let diff = 0;
 
-    let stocks = Object.values(this.props.stocks)[0];
-    if (Object.values(stocks).length) {
-      diff = (
-        stocks.meta?.regularMarketPrice - stocks.meta?.chartPreviousClose
-      ).toFixed(2);
-      if (diff > 0) {
-        symbol = "+";
-        change = "pos";
-      } else {
-        change = "neg";
-      }
+    diff = (
+      regularMarketPrice - chartPreviousClose
+    ).toFixed(2);
+    if (diff > 0) {
+      sign = "+";
+      change = "pos";
+    } else {
+      change = "neg";
     }
 
+    // TEMP fix for company name, need diff endpoint
+    const name = this.props.news.quotes?.[0]?.shortname || "";
     return (
       <div className="user-home-graph-container">
-        {Object.values(stocks).length ? (
+        {stock ? (
           <div className="user-home-graph-wrapper">
             <span className="company-name">
-              {"TEMP LONG NAME PLACE HOLDER"} ({stocks.meta.symbol})
+              {name} ({symbol})
             </span>
             <span className="current-price">
-              ${stocks.meta?.regularMarketPrice}
+              ${regularMarketPrice}
             </span>
             <span className={`${change}-prev-close`}>
-              {symbol}
+              {sign}
               {diff}
             </span>
             <div className="graph-div">{this.mapCharts()}</div>

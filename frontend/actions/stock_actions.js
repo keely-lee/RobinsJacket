@@ -1,4 +1,5 @@
 import * as StockAPIUtil from "../util/stock_api_util";
+import { setTickersFormat } from "../util/util";
 
 export const RECEIVE_STOCKS = "RECEIVE_STOCKS";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
@@ -19,13 +20,15 @@ export const receiveStock = (stock) => {
 
 export const displayStocks = (stocks) => (dispatch) => {
   return StockAPIUtil.receiveStocks(stocks).then((stocks) =>
-    dispatch(receiveStocks(stocks)),
+    dispatch(
+      receiveStocks(setTickersFormat(stocks.quoteResponse.result, "symbol")),
+    ),
   );
 };
 
 export const displayStock = (stockTicker) => (dispatch) => {
-  return StockAPIUtil.receiveStock(stockTicker).then((stock) =>
-    dispatch(receiveStock(stock.chart.result[0])),
+  return StockAPIUtil.receiveStock(stockTicker.toUpperCase()).then((stock) =>
+    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol"))),
   );
 };
 
@@ -40,5 +43,5 @@ export const displayByTicker = (ticker) => {
 };
 
 export const displayByNewTicker = (stock) => {
-  return StockAPIUtil.getNewTicker(stock);
+  return StockAPIUtil.postNewTicker(stock);
 };

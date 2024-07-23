@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 class SplashCompSix extends React.Component {
   constructor(props) {
     super(props);
-    //EVENTUAL STATE FOR LAST MODAL
   }
 
   render() {
@@ -13,47 +12,24 @@ class SplashCompSix extends React.Component {
         <div className="splash-comp-six-div">
           <section className="splash-comp-six-top">
             <div className="splash-comp-six-top-left">
-              <section className="splash-comp-six-buttons">
-                <button type="button" className="splash-six-bottom-link-green">
-                  Stocks &amp; Funds
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Options
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Gold
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Cash Management
-                </button>
-                <button type="button" className="splash-six-bottom-link-crypto">
+              <section>
+                <button type="button">Stocks &amp; Funds</button>
+                <button type="button">Options</button>
+                <button type="button">Gold</button>
+                <button type="button">Cash Management</button>
+                <button type="button" className="crypto">
                   Crypto
                 </button>
               </section>
-              <section className="splash-comp-six-buttons">
-                <button type="button" className="splash-six-bottom-link-green">
-                  Learn
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Support
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Snacks
-                </button>
+              <section>
+                <button type="button">Learn</button>
+                <button type="button">Support</button>
+                <button type="button">Snacks</button>
               </section>
-              <section className="splash-comp-six-buttons">
-                <button type="button" className="splash-six-bottom-link-green">
-                  About Us
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Careers
-                </button>
-                <button type="button" className="splash-six-bottom-link-green">
-                  Company News
-                </button>
-                <div className="splash-comp-six-icon-buttons">
-                  {/* ICON BUTTONS NEED TO BE ADDED */}
-                </div>
+              <section>
+                <button type="button">About Us</button>
+                <button type="button">Careers</button>
+                <button type="button">Company News</button>
               </section>
             </div>
 
@@ -64,7 +40,6 @@ class SplashCompSix extends React.Component {
                   The 3-minute newsletter with fresh takes on the financial news
                   you need to start your day.
                 </p>
-
                 <form
                   onClick={this.handleSubmit}
                   className="add-email-form-dark"
@@ -82,30 +57,14 @@ class SplashCompSix extends React.Component {
               </section>
 
               <section className="splash-comp-six-right-buttons">
-                <button
-                  type="button"
-                  className="splash-six-top-link-green-right"
-                >
+                <button type="button">
                   Check the background of the firm on FINRA’s Broker Check
                 </button>
-                <button
-                  type="button"
-                  className="splash-six-top-link-green-right"
-                >
+                <button type="button">
                   RobinsJacket Terms &amp; Conditions
                 </button>
-                <button
-                  type="button"
-                  className="splash-six-top-link-green-right"
-                >
-                  Disclosure Library
-                </button>
-                <button
-                  type="button"
-                  className="splash-six-top-link-green-right"
-                >
-                  Privacy
-                </button>
+                <button type="button">Disclosure Library</button>
+                <button type="button">Privacy</button>
               </section>
             </div>
           </section>
@@ -133,7 +92,7 @@ class SplashCompSix extends React.Component {
               <button type="button">
                 {"\u24D8"} View Important Disclosures
               </button>
-              {/* CHANGE BUTTON TO MODAL */}
+              {/* TODO: change button to modal */}
             </div>
           </section>
         </div>

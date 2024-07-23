@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2020_11_18_004145) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_08_173033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,7 +49,9 @@ ActiveRecord::Schema[7.1].define(version: 2020_11_18_004145) do
   create_table "stocks_watchlists", force: :cascade do |t|
     t.bigint "stock_id"
     t.bigint "watchlist_id"
+    t.string "ticker"
     t.index ["stock_id"], name: "index_stocks_watchlists_on_stock_id"
+    t.index ["ticker"], name: "index_stocks_watchlists_on_ticker"
     t.index ["watchlist_id"], name: "index_stocks_watchlists_on_watchlist_id"
   end
 

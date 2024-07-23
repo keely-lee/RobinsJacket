@@ -492,6 +492,7 @@ a > td > p {
 
 .user-news-div {
   height: 156px;
+  /* height: 10em */
   border-top: 1px solid rgb(66, 73, 78);
   border-bottom: 1px solid rgb(66, 73, 78);
   display: flex;
@@ -542,10 +543,12 @@ a > td > p {
   font-weight: normal;
 }
 
+/*
+-- not part of news api 2024 --
 [class*="news-des-"] {
   font-size: 12px;
   font-weight: normal;
-}
+} */
 
 .user-news-right {
   display: flex;

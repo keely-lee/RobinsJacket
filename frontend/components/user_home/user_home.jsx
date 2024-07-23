@@ -10,41 +10,51 @@ class UserHome extends React.Component {
     super(props);
     this.state = { watched: false };
 
-    this.updateUser = this.updateUser.bind(this);
-    this.toggleButton = this.toggleButton.bind(this);
+    this.handleNavSearch = this.handleNavSearch.bind(this);
+    this.handleWatch = this.handleWatch.bind(this);
+    this.toggleWatchButton = this.toggleWatchButton.bind(this);
+  }
+
+  componentDidMount() {
+    // UPDATE TO PREVIOUS/TOP MARKET vs NDAQ?
+    this.props.getStock('NDAQ');
+    this.props.getNews('NDAQ');
   }
 
   componentDidUpdate(prevProps) {
+    // TODO KL: optimize this
     if (
       prevProps.stocks !== this.props.stocks ||
       prevProps.currentUser.watched_stocks !==
-        this.props.currentUser.watched_stocks
-    ) {
-      this.toggleButton();
+      this.props.currentUser.watched_stocks
+      ) {
+      this.toggleWatchButton();
     }
   }
 
-  updateUser() {
-    let stock = this.props.stocks[Object.keys(this.props.stocks)[0]];
-    debugger;
-    this.props
-      .createWatch({ ticker: stock.symbol, company_name: stock.price.longName })
+  handleNavSearch(input) {
+    // add error handling
+    this.props.getStock(input);
+    this.props.getNews(input);
+  }
+
+  handleWatch() {
+    // TODO KL: temporary fix for stock name, need a diff stock api
+    const companyName = this.props.news.news?.quotes?.[0]?.shortname || "";
+    this.props.createWatch({ ticker: Object.keys(this.props.stocks)[0], company_name: companyName })
       .fail((err) => console.log(err.responseJSON[0]));
   }
 
-  toggleButton() {
-    let watching = this.props.currentUser.watched_stocks.some(
-      (obj) =>
-        obj.ticker ===
-        this.props.stocks[Object.keys(this.props.stocks)[0]].symbol,
+  toggleWatchButton() {
+    // TODO KL: eventually modify watched for a faster search option. Used by this & watchlist
+    const watching = this.props.currentUser.watched_stocks.some(
+      ({ ticker }) => ticker === Object.keys(this.props.stocks)[0]
     );
-    if (watching) this.setState({ watched: true });
-    else this.setState({ watched: false });
+    this.setState({ watched: watching });
   }
 
   render() {
     const currentUser = this.props.currentUser;
-    const getStock = this.props.getStock;
     const stocks = this.props.stocks;
 
     return (
@@ -52,26 +62,21 @@ class UserHome extends React.Component {
         <nav>
           <UserHomeNav
             currentUser={currentUser}
-            ownProps={this.props.ownProps}
             logout={this.props.logout}
-            getStock={getStock}
+            getStock={this.handleNavSearch}
           />
         </nav>
 
         <h2>Welcome to RobinsJacket!</h2>
 
         <section>
-          <UserHomeGraph
-            currentUser={currentUser}
-            stocks={stocks}
-            getStock={getStock}
-          />
-          {/* createWatch={this.props.createWatch}/> */}
+          {/* Remove news when new endpoint has company name */}
+          <UserHomeGraph stocks={stocks} news={this.props.news}/>
           {!this.state.watched ? (
             <button
               type="button"
               className="add-watchlist"
-              onClick={this.updateUser}
+              onClick={this.handleWatch}
             >
               Add to watchlist
             </button>
@@ -84,8 +89,7 @@ class UserHome extends React.Component {
           </Link>
         </section>
         <section>
-          <UserHomeNews news={this.props.news} getNews={this.props.getNews} />
-          {/* BONUS: Add getStock for stock specific news */}
+          <UserHomeNews news={this.props.news}/>
         </section>
         <aside>
           <WatchlistComp

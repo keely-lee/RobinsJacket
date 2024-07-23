@@ -1,3 +1,9 @@
+:root {
+  --splash-green: rgb(0, 199, 7);
+  --login-green: rgb(164, 194, 182);
+  --signup-blue: rgb(77, 143, 220);
+}
+
 /* Set Mains ?
 
 Navbar link Colors: Black
@@ -89,15 +95,6 @@ body {
   background-color: darkgreen;
 }
 
-.link-plain {
-  color: black;
-  text-decoration: none;
-}
-
-.link-plain:hover {
-  color: green;
-}
-
 .link-green-only {
   color: #00c805;
 }
@@ -129,4 +126,16 @@ body {
 .disclosure-modal > button:hover {
   color: #00c805;
   cursor: pointer;
+}
+
+.logo-small {
+  /* display: block; */
+  max-height: 48px;
+  max-width: 48px;
+  /* max-height: 90%;
+    max-width: 90%; */
+  object-fit: contain;
+  padding-bottom: 20px;
+  margin-left: 5px;
+  /* align-self: center; */
 }

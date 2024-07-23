@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 class SplashNav extends React.Component {
@@ -6,64 +7,42 @@ class SplashNav extends React.Component {
     super(props);
     this.state = { productDropdown: false };
     this.handleProductDropdown = this.handleProductDropdown.bind(this);
-    // this.handleProductRemove = this.handleProductRemove.bind(this);
   }
 
   handleProductDropdown() {
-    if (this.state.productDropdown === false) {
-      this.setState({ productDropdown: true });
-    } else {
-      this.setState({ productDropdown: false });
-    }
+    this.setState({ productDropdown: !this.state.productDropdown });
   }
 
-  // handleProductRemove(){
-  //   if (this.state.productDropdown) {
-  //     this.setState({ productDropdown: false })
-  //   }
-  // }
-
   render() {
-    let caret;
-    if (this.state.productDropdown) {
-      caret = <i className="fa fa-angle-up" aria-hidden="true"></i>;
-    } else {
-      caret = <i className="fa fa-angle-down" aria-hidden="true"></i>;
-    }
-
     return (
       <div className="splash">
         <nav className="navbar-main cf">
-          <div className="navbar-splash">
+          <div className="navbar-external">
             <Link to="/">
-              <img src={window.logo} className="main-logo" />
+              <img src={window.logo} />
             </Link>
-            <button
-              type="button"
-              className="navbar-dropdown"
-              onClick={() => this.handleProductDropdown()}
-            >
-              Products {caret}
+            <button type="button" onClick={this.handleProductDropdown}>
+              Products{" "}
+              {
+                <i
+                  aria-hidden="true"
+                  className={classNames({
+                    "fa fa-angle-up": this.state.productDropdown,
+                    "fa fa-angle-down": !this.state.productDropdown,
+                  })}
+                ></i>
+              }
             </button>
-            <a
-              href="https://www.linkedin.com/in/keely-lee1/"
-              className="linkedin"
-              target="_blank"
-            >
+            <a href="https://www.linkedin.com/in/keely-lee1/" target="_blank">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a
-              href="https://github.com/keely-lee"
-              className="github"
-              target="_blank"
-            >
+            <a href="https://github.com/keely-lee" target="_blank">
               <i className="fab fa-github"></i>
             </a>
-            <a
-              href="https://keely-lee.github.io/"
-              className="personal"
-              target="_blank"
-            >
+            <a href="https://angel.co/u/keely-lee" target="_blank">
+              <i className="fab fa-angellist"></i>
+            </a>
+            <a href="https://keely-lee.github.io/" target="_blank">
               <i className="fas fa-user-circle"></i>
             </a>
           </div>
@@ -78,13 +57,13 @@ class SplashNav extends React.Component {
           </div>
 
           {this.state.productDropdown ? (
-            <div className="navbar-main dropdown">
-              <ul className="navbar-dropdown-ul">
-                <a className="navbar-stocks navbar-list">Stocks &amp; Funds</a>
-                <a className="navbar-options navbar-list">Options</a>
-                <a className="navbar-gold navbar-list">Gold</a>
-                <a className="navbar-cash navbar-list">Cash Management</a>
-                <a className="navbar-crypto navbar-list">Crypto</a>
+            <div className="navbar-main products-dropdown">
+              <ul>
+                <a>Stocks &amp; Funds</a>
+                <a>Options</a>
+                <a>Gold</a>
+                <a>Cash Management</a>
+                <a>Crypto</a>
               </ul>
             </div>
           ) : null}

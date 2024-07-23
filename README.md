@@ -4,36 +4,35 @@
 
 ![](https://media.giphy.com/media/utoJg2CkN9HD1j3FJQ/giphy.gif)
 
-When a user is signed in, they are greeted with a stock graph and trending news. The graph pulls live market data defaulted to a three month period (obtained by <a href="https://iexcloud.io/">IEX Cloud</a> )
+When a user is signed in, they are greeted with a stock graph and trending news. The graph pulls live market data defaulted to a three month period (obtained by <a href="https://rapidapi.com">Rapid</a> )
 
 ![](https://media.giphy.com/media/OeEowxRxHvQCfd7gln/giphy.gif)
 
-Hurdles:
-During the initial week of app creation, I was able to significantly solidify my understanding of the React/Redux cycle and was able to create modals and various widgets that would enhance the user view, while keeping code DRY and readable. A quick snippet of the toggle feature on the splash page.
-
 ```Javascript
-  componentWillUnmount(){
-    clearInterval(this.intervalId)
+function intervalReducer(state, action) {
+  let selected;
+  switch (action.type) {
+    case "choice":
+      return { selected: action.choice };
+    case "up":
+      selected = state.selected === 0 ? 2 : state.selected - 1;
+      return { selected };
+    case "down":
+      selected = state.selected === 2 ? 0 : state.selected + 1;
+      return { selected };
+    default:
+      return { selected: state.selected };
   }
+}
 
-  chooseBenefit(choice) {
-    this.setState({selected: choice})
-  }
+const [state, dispatch] = useReducer(intervalReducer, { selected: 0 });
 
-  toggle(direction){
-    if (this.state.selected === 2 && direction === 1)
-      this.setState({selected: 0})
-    else if (this.state.selected === 0 && direction === -1)
-      this.setState({selected: 2})
-    else
-      this.setState({selected: this.state.selected + direction});
-  }
-
-  interval(){
-    this.intervalId = setInterval( () => {
-      this.toggle(1);
-    }, 4000 )
-  }
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    dispatch({ type: "down" });
+  }, 4000);
+  return () => clearInterval(intervalId)
+}, [])
 ```
 
 Technologies Used:

@@ -1,32 +1,32 @@
 //Grab user for new, session login, session logout
 
-export const createUser = user => {
-  return $.ajax ({
+export const createUser = (user) => {
+  return $.ajax({
     method: "POST",
     url: "/api/users",
-    data: { user }
-  })
+    data: { user },
+  });
 };
 
-export const loginUser = user => {  
-  return $.ajax ({
+export const loginUser = (user) => {
+  return $.ajax({
     method: "POST",
     url: "/api/session",
-    data: { user }
-  })
-}
+    data: { user },
+  });
+};
 
 export const logoutUser = () => {
-  return $.ajax ({
+  return $.ajax({
     method: "DELETE",
-    url: "/api/session"
-  })
-}
+    url: "/api/session",
+  });
+};
 
-export const updateUser = user => {
-  return $.ajax ({
+export const updateUser = (user) => {
+  return $.ajax({
     method: "PATCH",
     url: `/api/user/${user.id}`,
-    data: { user }
-  })
-} 
+    data: { user },
+  });
+};

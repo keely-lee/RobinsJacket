@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import SplashCompOne from "../splash/splash_comp_one";
 import SplashCompTwo from "../splash/splash_comp_two";
@@ -16,7 +15,7 @@ class Splash extends React.Component {
   render() {
     return (
       <div>
-        <nav className="splash-nav">
+        <nav>
           <SplashNav />
         </nav>
         <div className="splash-1">
@@ -24,7 +23,6 @@ class Splash extends React.Component {
         </div>
         <div className="splash-2">
           <SplashCompTwo
-            // disclosure={this.props.otherForm}
             disclosure={this.props.commissions}
             closeModal={this.props.closeModal}
           />
@@ -38,7 +36,7 @@ class Splash extends React.Component {
         <div className="splash-4">
           <SplashCompFour />
         </div>
-        {/* SPLASH COMP FIVE */}
+        {/* splash-5 */}
         <div className="splash-6">
           <SplashCompSix />
         </div>

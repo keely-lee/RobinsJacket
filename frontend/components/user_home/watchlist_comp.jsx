@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LineChart, Line, XAxis, YAxis, ReferenceDot } from "recharts";
 import { receiveStocks } from "../../util/stock_api_util";
+import { setTickersFormat } from "../../util/util";
+// import { LineChart, Line, XAxis, YAxis, ReferenceDot } from "recharts";
 
 class WatchlistComp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      watches: {},
+      stocks: {}, // stocks: { ticker: { symbol: '', shortName: '', regularMarketPrice: ... } }
     };
+
+    this.grabTickers = this.grabTickers.bind(this);
+    this.deleteWatch = this.deleteWatch.bind(this);
+    this.handleGetStocks = this.handleGetStocks.bind(this);
   }
 
   componentDidMount() {
@@ -16,116 +21,77 @@ class WatchlistComp extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // Need to fix for complete accuracy. For now skip this for delete watch, save an api call.
     if (
-      prevProps.currentUser.watched_stocks !==
-      this.props.currentUser.watched_stocks
+      prevProps.currentUser.watched_stocks.length <
+      this.props.currentUser.watched_stocks.length
     ) {
       this.grabTickers();
     }
   }
 
   grabTickers() {
-    if (this.props.currentUser.watched_stocks.length) {
-      let tickers = "";
-      let watches = {};
-      this.props.currentUser.watched_stocks.map((stock) => {
-        tickers = tickers + stock.ticker + ",";
-        watches[stock.ticker] = stock.id;
-      });
-      this.setState({ watches });
+    // TODO KL: Modify watched_stocks for easy ticker search. Needed for this + user_home
+    // watched_stocks -> [{ticker: "AAPL", company_name: "Apple, Inc.", id: 1}, {...}, ...]
+    const symbols = this.props.currentUser.watched_stocks.reduce((acc, stock) => {
+      acc.push(stock.ticker);
+      return acc;
+    }, []);
 
-      //alphabetize
-      receiveStocks(tickers).then((res) =>
-        this.setState({ stocks: res }, () => console.log(this.state)),
-      );
+    if (symbols.length) {
+      receiveStocks(symbols.join()).then(stocks => this.setState({ stocks: setTickersFormat(stocks.quoteResponse.result, 'symbol') }));
     }
   }
 
   deleteWatch(ticker) {
     let updatedList = this.state.stocks;
     delete updatedList[ticker];
-    return this.props
-      .deleteWatch(this.state.watches[ticker])
-      .then(this.setState({ stocks: updatedList }));
+    this.props.deleteWatch(ticker)
+    .then(this.setState({ stocks: updatedList }));
   }
 
   handleGetStocks() {
-    let val; //graph color
-    let stockId;
+    return (
+      <div className="watchlist">
+        <table className="watchlist-table">
+          <tbody>
+            <tr className="watchlist-header">
+              <th className="watchlist-header-title">Watchlist</th>
+            </tr>
 
-    if (this.props.currentUser.watched_stocks.length && this.state.stocks) {
-      const watchedStocks = Object.values(this.state.stocks);
-      if (watchedStocks) {
-        return (
-          <div className="watchlist">
-            <table className="watchlist-table">
-              <tbody>
-                <tr className="watchlist-header">
-                  <th className="watchlist-header-title">Watchlist</th>
+            {Object.values(this.state.stocks).map((stock, _idx) => {
+              const { symbol, shortName, regularMarketPrice, marketCap } = stock;
+              return (
+                <tr className={`stock-row-${symbol}`} key={`row-${symbol}`}>
+                  <td>
+                    <button
+                      className="fa-minus-button"
+                      data-testid={`del-watch-${symbol}`}
+                      onClick={() => this.deleteWatch(symbol)} >
+                      <i className="far fa-eye-slash"></i>
+                    </button>
+                  </td>
+
+                  <Link to={`/stock/${symbol}`}>
+                    <td className={`stock-col-name-${symbol}`}>
+                      <p>{symbol}</p>
+                      <p>{shortName}</p>
+                    </td>
+                    <td className={`stock-col-fin-${symbol}`}>
+                      <p className="currPrice">${regularMarketPrice}</p>
+                      <p className="marketCap">
+                        ${(marketCap / 1000000000).toFixed(2)}B
+                      </p>
+                      {/* ANY HISTORIC CHART DATA? */}
+                    </td>
+                  </Link>
                 </tr>
-
-                {watchedStocks.map((stock, idx) => {
-                  stock.chart[0].open <
-                  stock.chart[stock.chart.length - 1].close
-                    ? (val = "#00C805")
-                    : (val = "#ff0000");
-                  stockId = this.state.watches[stock.quote.symbol];
-
-                  return (
-                    <tr className={`stock-row-${idx}`} key={`row-${idx}`}>
-                      <td>
-                        <button
-                          onClick={() => this.deleteWatch(stock.quote.symbol)}
-                          className="fa-minus-button"
-                        >
-                          {/* <i className="fas fa-eye-slash"></i> */}
-                          <i className="far fa-eye-slash"></i>
-                        </button>
-                      </td>
-
-                      <Link to={`/stock/${stockId}`}>
-                        <td className={`stock-col-name-${idx}`}>
-                          <p>{stock.quote.symbol}</p>
-                          <p>{stock.quote.companyName}</p>
-                        </td>
-
-                        <td className={`stock-col-graph-${idx}`}>
-                          <LineChart width={65} height={35} data={stock.chart}>
-                            <YAxis
-                              width={0}
-                              type="number"
-                              domain={["dataMin", "dataMax"]}
-                              tick={false}
-                              axisLine={false}
-                            />
-                            <Line
-                              type="monotone"
-                              dataKey="close"
-                              stroke={val}
-                              strokeWidth={1}
-                              dot={false}
-                            />
-                          </LineChart>
-                        </td>
-
-                        <td className={`stock-col-fin-${idx}`}>
-                          <p className="currPrice">
-                            ${stock.quote.latestPrice}
-                          </p>
-                          <p className="marketCap">
-                            ${(stock.quote.marketCap / 1000000000).toFixed(2)}B
-                          </p>
-                        </td>
-                      </Link>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        );
-      }
-    }
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 
   render() {

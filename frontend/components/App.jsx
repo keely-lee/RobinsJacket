@@ -23,12 +23,9 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/stock/:id" element={<UserPortfolioStock />} />
+          <Route path="/stock/:ticker" element={<UserPortfolioStock />} />
           <Route exact path="/portfolio" element={<UserPortfolioHomeMain />} />
         </Route>
-
-        {/* <ProtectedRoute path="/stock/:id" Component={UserPortfolioStock} />
-        <ProtectedRoute exact path="/portfolio" Component={UserPortfolioHomeMain} /> */}
       </Routes>
     </div>
   );
