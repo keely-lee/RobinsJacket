@@ -48,8 +48,8 @@
 
   p {
     height: 1.3rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     margin: 0;
     font-size: 0.8rem;
   }
@@ -101,7 +101,7 @@
       font-size: 0.8125rem;
       /* letter-spacing: -1px; */
     }
-  
+
     button:hover {
       cursor: pointer;
       background-color: rgb(127, 164, 128);
@@ -113,9 +113,8 @@
   }
 }
 
-
 /******** shared ********/
-[class*="-error-list"] { 
+[class*="-error-list"] {
   list-style: none;
   padding-left: 0;
 
@@ -135,7 +134,7 @@
   font-size: 1rem;
   font-weight: 5;
   font-family: Verdana, Geneva, sans-serif;
-  
+
   > * {
     padding: 1.25rem 0.625rem 0 0;
     margin-top: 1.5rem;
@@ -153,7 +152,6 @@
 }
 /* ************************ */
 
-
 /* signup */
 .signup-main-div {
   display: flex;
@@ -162,12 +160,12 @@
   margin-top: 2.5rem;
   padding-top: 0.625rem;
 
-  a, .signup-blue-link {
+  a,
+  .signup-blue-link {
     color: var(--signup-blue);
     text-decoration: none;
     cursor: pointer;
   }
-
 
   /* nav */
   .signup-nav-bar {
@@ -178,9 +176,10 @@
     height: 5rem;
 
     img:hover {
-      filter: invert(61%) sepia(12%) saturate(6556%) hue-rotate(189deg) brightness(88%) contrast(95%);
+      filter: invert(61%) sepia(12%) saturate(6556%) hue-rotate(189deg)
+        brightness(88%) contrast(95%);
     }
-    
+
     .signup-nav-text {
       display: flex;
       justify-content: space-evenly;
@@ -200,7 +199,7 @@
       }
     }
   }
-  
+
   /* footer */
   .signup-footer {
     width: 65rem;

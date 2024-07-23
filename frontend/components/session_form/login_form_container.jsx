@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import LoginForm from "./login_form";
 import { login, clearErrors } from "../../actions/session_actions";
 
-const mapStateToProps = ({errors}) => ({
+const mapStateToProps = ({ errors }) => ({
   errors: errors.session,
 });
 

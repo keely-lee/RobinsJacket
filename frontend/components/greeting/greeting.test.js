@@ -26,16 +26,20 @@ describe("Test for proper auth routing", () => {
     rechartWrap();
 
     const mockReceiveStocks = jest.spyOn(stockApiUtil, "receiveStocks");
-    const mockResponse = { "quoteResponse": {
-      "result": Object.values(mockStocksMultiple)
-    }};
+    const mockResponse = {
+      quoteResponse: {
+        result: Object.values(mockStocksMultiple),
+      },
+    };
     mockReceiveStocks.mockResolvedValue(mockResponse);
 
     const mockReceiveStock = jest.spyOn(stockApiUtil, "receiveStock");
-    mockReceiveStock.mockResolvedValue({"chart": { "result": Object.values(mockStock) } });
+    mockReceiveStock.mockResolvedValue({
+      chart: { result: Object.values(mockStock) },
+    });
 
     const mockReceiveNews = jest.spyOn(newsApiUtil, "receiveNews");
-    mockReceiveNews.mockResolvedValue(mockNews)
+    mockReceiveNews.mockResolvedValue(mockNews);
 
     const { queryByText } = renderUserWithProviders(<GreetingContainer />);
 

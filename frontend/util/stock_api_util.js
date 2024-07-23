@@ -4,20 +4,20 @@ import {
   rapid_base_url,
   multiBaseUrl,
   multiHost,
-} from './util';
-
+} from "./util";
 
 export const receiveStocks = (sym) => {
   let tickers =
-    sym || "AAL, AAPL, AMZN, BA, BABA, DIS, DKNG, META, GE, GOOGL, JBLU, JPM, LYFT, MSFT, NFLX, NIO, NKE, NVDA, NYMT, SBUX, TSLA, TWTR, TXMD, UAL, UBER, WORK, XOM, ZM";
-  tickers = tickers.split(' ').join('');
+    sym ||
+    "AAL, AAPL, AMZN, BA, BABA, DIS, DKNG, META, GE, GOOGL, JBLU, JPM, LYFT, MSFT, NFLX, NIO, NKE, NVDA, NYMT, SBUX, TSLA, TWTR, TXMD, UAL, UBER, WORK, XOM, ZM";
+  tickers = tickers.split(" ").join("");
 
   return $.ajax({
     method: "GET",
     url: `${multiBaseUrl}/market/v2/get-quotes`,
     data: {
       symbols: tickers,
-      region: 'US'
+      region: "US",
     },
     headers: {
       "X-RapidAPI-Key": process.env[RAPID_API_KEY],
@@ -48,14 +48,16 @@ export const receiveStock = (ticker, interval = "1d", range = "1mo") => {
   });
 };
 
-export const getTicker = (id) => { // DEPRECATED. swapped for ticker vs id
+export const getTicker = (id) => {
+  // DEPRECATED. swapped for ticker vs id
   return $.ajax({
     method: "GET",
     url: `/api/stocks/${id}`,
   });
 };
 
-export const postNewTicker = (stock) => { // DEPRECATED. swapped for ticker vs id
+export const postNewTicker = (stock) => {
+  // DEPRECATED. swapped for ticker vs id
   return $.ajax({
     method: "POST",
     url: `/api/stocks`,

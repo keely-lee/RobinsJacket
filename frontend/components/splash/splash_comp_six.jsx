@@ -17,7 +17,9 @@ class SplashCompSix extends React.Component {
                 <button type="button">Options</button>
                 <button type="button">Gold</button>
                 <button type="button">Cash Management</button>
-                <button type="button" className="crypto">Crypto</button>
+                <button type="button" className="crypto">
+                  Crypto
+                </button>
               </section>
               <section>
                 <button type="button">Learn</button>
@@ -55,8 +57,12 @@ class SplashCompSix extends React.Component {
               </section>
 
               <section className="splash-comp-six-right-buttons">
-                <button type="button">Check the background of the firm on FINRA’s Broker Check</button>
-                <button type="button">RobinsJacket Terms &amp; Conditions</button>
+                <button type="button">
+                  Check the background of the firm on FINRA’s Broker Check
+                </button>
+                <button type="button">
+                  RobinsJacket Terms &amp; Conditions
+                </button>
                 <button type="button">Disclosure Library</button>
                 <button type="button">Privacy</button>
               </section>

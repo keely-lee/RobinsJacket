@@ -10,7 +10,7 @@ class SplashNav extends React.Component {
   }
 
   handleProductDropdown() {
-    this.setState({ productDropdown: !this.state.productDropdown})
+    this.setState({ productDropdown: !this.state.productDropdown });
   }
 
   render() {
@@ -18,21 +18,33 @@ class SplashNav extends React.Component {
       <div className="splash">
         <nav className="navbar-main cf">
           <div className="navbar-external">
-            <Link to="/"><img src={window.logo}/></Link>
-            <button
-              type="button"
-              onClick={this.handleProductDropdown}
-            >
-              Products {<i aria-hidden="true"
-                className={classNames({
-                  "fa fa-angle-up": this.state.productDropdown,
-                  "fa fa-angle-down": !this.state.productDropdown,
-                })}></i>}
+            <Link to="/">
+              <img src={window.logo} />
+            </Link>
+            <button type="button" onClick={this.handleProductDropdown}>
+              Products{" "}
+              {
+                <i
+                  aria-hidden="true"
+                  className={classNames({
+                    "fa fa-angle-up": this.state.productDropdown,
+                    "fa fa-angle-down": !this.state.productDropdown,
+                  })}
+                ></i>
+              }
             </button>
-            <a href="https://www.linkedin.com/in/keely-lee1/" target="_blank"><i className="fab fa-linkedin"></i></a>
-            <a href="https://github.com/keely-lee" target="_blank"><i className="fab fa-github"></i></a>
-            <a href="https://angel.co/u/keely-lee" target="_blank"><i className="fab fa-angellist"></i></a>
-            <a href="https://keely-lee.github.io/" target="_blank"><i className="fas fa-user-circle"></i></a>
+            <a href="https://www.linkedin.com/in/keely-lee1/" target="_blank">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/keely-lee" target="_blank">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://angel.co/u/keely-lee" target="_blank">
+              <i className="fab fa-angellist"></i>
+            </a>
+            <a href="https://keely-lee.github.io/" target="_blank">
+              <i className="fas fa-user-circle"></i>
+            </a>
           </div>
 
           <div className="navbar-right-links">

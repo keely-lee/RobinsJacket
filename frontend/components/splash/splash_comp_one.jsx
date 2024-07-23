@@ -7,8 +7,8 @@ const SplashCompOne = () => (
       <p>Investing for </p>
       <p>All</p>
       <span>
-        RobinsJacket, a leader in commission-free investing, offers you
-        infinite ways to make your money work for you
+        RobinsJacket, a leader in commission-free investing, offers you infinite
+        ways to make your money work for you
       </span>
       <Link to={"/signup"} className="button-black">
         Sign Up
