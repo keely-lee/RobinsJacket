@@ -17,13 +17,10 @@ class SplashNav extends React.Component {
     return (
       <div className="splash">
         <nav className="navbar-main cf">
-          <div className="navbar-splash">
-            <Link to="/">
-              <img src={window.logo} className="main-logo" />
-            </Link>
+          <div className="navbar-external">
+            <Link to="/"><img src={window.logo}/></Link>
             <button
               type="button"
-              className="navbar-dropdown"
               onClick={this.handleProductDropdown}
             >
               Products {<i aria-hidden="true"
@@ -32,10 +29,10 @@ class SplashNav extends React.Component {
                   "fa fa-angle-down": !this.state.productDropdown,
                 })}></i>}
             </button>
-            <a href="https://www.linkedin.com/in/keely-lee1/" className="linkedin" target="_blank"><i className="fab fa-linkedin"></i></a>
-            <a href="https://github.com/keely-lee" className="github" target="_blank"><i className="fab fa-github"></i></a>
-            <a href="https://angel.co/u/keely-lee" className="angellist" target="_blank"><i className="fab fa-angellist"></i></a>
-            <a href="https://keely-lee.github.io/" className="personal" target="_blank"><i className="fas fa-user-circle"></i></a>
+            <a href="https://www.linkedin.com/in/keely-lee1/" target="_blank"><i className="fab fa-linkedin"></i></a>
+            <a href="https://github.com/keely-lee" target="_blank"><i className="fab fa-github"></i></a>
+            <a href="https://angel.co/u/keely-lee" target="_blank"><i className="fab fa-angellist"></i></a>
+            <a href="https://keely-lee.github.io/" target="_blank"><i className="fas fa-user-circle"></i></a>
           </div>
 
           <div className="navbar-right-links">
@@ -48,13 +45,13 @@ class SplashNav extends React.Component {
           </div>
 
           {this.state.productDropdown ? (
-            <div className="navbar-main dropdown">
-              <ul className="navbar-dropdown-ul">
-                <a className="navbar-stocks navbar-list">Stocks &amp; Funds</a>
-                <a className="navbar-options navbar-list">Options</a>
-                <a className="navbar-gold navbar-list">Gold</a>
-                <a className="navbar-cash navbar-list">Cash Management</a>
-                <a className="navbar-crypto navbar-list">Crypto</a>
+            <div className="navbar-main products-dropdown">
+              <ul>
+                <a>Stocks &amp; Funds</a>
+                <a>Options</a>
+                <a>Gold</a>
+                <a>Cash Management</a>
+                <a>Crypto</a>
               </ul>
             </div>
           ) : null}

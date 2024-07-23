@@ -15,7 +15,7 @@ class Splash extends React.Component {
   render() {
     return (
       <div>
-        <nav className="splash-nav">
+        <nav>
           <SplashNav />
         </nav>
         <div className="splash-1">
@@ -36,7 +36,7 @@ class Splash extends React.Component {
         <div className="splash-4">
           <SplashCompFour />
         </div>
-        {/* SPLASH COMP FIVE */}
+        {/* splash-5 */}
         <div className="splash-6">
           <SplashCompSix />
         </div>

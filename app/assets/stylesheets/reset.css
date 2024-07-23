@@ -1,4 +1,5 @@
 :root {
+  --splash-green: rgb(0, 199, 7);
   --login-green: rgb(164, 194, 182);
   --signup-blue: rgb(77, 143, 220);
 }
@@ -93,15 +94,6 @@ body {
 
 .button-green:hover {
   background-color: darkgreen;
-}
-
-.link-plain {
-  color: black;
-  text-decoration: none;
-}
-
-.link-plain:hover {
-  color: green;
 }
 
 .link-green-only {
