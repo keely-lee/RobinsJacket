@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 import WatchlistComp from "./watchlist_comp";
 import UserHomeNav from "./user_home_nav";
 import UserHomeGraph from "./user_home_graph";
@@ -17,16 +18,16 @@ class UserHome extends React.Component {
 
   componentDidMount() {
     // UPDATE TO PREVIOUS/TOP MARKET vs NDAQ?
-    this.props.getStock('NDAQ');
-    this.props.getNews('NDAQ');
+    this.props.getStock("NDAQ");
+    this.props.getNews("NDAQ");
   }
 
   componentDidUpdate(prevProps) {
-    // TODO KL: optimize this
+    const prevWatches = Object.keys(prevProps.currentUser.watched_stocks);
+    const currWatches = Object.keys(this.props.currentUser.watched_stocks);
     if (
       prevProps.stocks !== this.props.stocks ||
-      prevProps.currentUser.watched_stocks !==
-      this.props.currentUser.watched_stocks
+      _.xor(prevWatches, currWatches).length
       ) {
       this.toggleWatchButton();
     }
@@ -40,17 +41,19 @@ class UserHome extends React.Component {
 
   handleWatch() {
     // TODO KL: temporary fix for stock name, need a diff stock api
-    const companyName = this.props.news.news?.quotes?.[0]?.shortname || "";
-    this.props.createWatch({ ticker: Object.keys(this.props.stocks)[0], company_name: companyName })
+    const companyName = this.props.news.quotes?.[0]?.shortname || "";
+    this.props
+      .createWatch({
+        ticker: Object.keys(this.props.stocks)[0],
+        company_name: companyName,
+      })
       .fail((err) => console.log(err.responseJSON[0]));
   }
 
   toggleWatchButton() {
-    // TODO KL: eventually modify watched for a faster search option. Used by this & watchlist
-    const watching = this.props.currentUser.watched_stocks.some(
-      ({ ticker }) => ticker === Object.keys(this.props.stocks)[0]
-    );
-    this.setState({ watched: watching });
+    const ticker = Object.keys(this.props.stocks)[0];
+    const watching = this.props.currentUser.watched_stocks[ticker]
+    this.setState({ watched: !!watching });
   }
 
   render() {
@@ -71,7 +74,7 @@ class UserHome extends React.Component {
 
         <section>
           {/* Remove news when new endpoint has company name */}
-          <UserHomeGraph stocks={stocks} news={this.props.news}/>
+          <UserHomeGraph stocks={stocks} news={this.props.news} />
           {!this.state.watched ? (
             <button
               type="button"
@@ -89,7 +92,7 @@ class UserHome extends React.Component {
           </Link>
         </section>
         <section>
-          <UserHomeNews news={this.props.news}/>
+          <UserHomeNews news={this.props.news} />
         </section>
         <aside>
           <WatchlistComp

@@ -39,7 +39,7 @@ class UserHomeNav extends React.PureComponent {
 
   handleDropdown(dropdown) {
     // TODO KL: clean this up. Add renderContact to this fn
-    this.setState({ [dropdown]: !this.state[dropdown] })
+    this.setState({ [dropdown]: !this.state[dropdown] });
 
     // this.handleClose(dropdown);
     if (dropdown === "accountDropdown") {
@@ -65,7 +65,7 @@ class UserHomeNav extends React.PureComponent {
 
   renderContact() {
     // TODO KL: add this fn to handleDropdown
-    this.setState({ contact: !this.state.contact })
+    this.setState({ contact: !this.state.contact });
   }
 
   render() {
@@ -123,7 +123,7 @@ class UserHomeNav extends React.PureComponent {
         {this.state.accountDropdown ? (
           <div className={`account-dropdown`}>
             <span className="account-dropdown-user">
-              {this.props.currentUser.fname} {this.props.currentUser.lname}
+              {this.props.currentUser.first_name} {this.props.currentUser.last_name}
             </span>
             <button type="button">
               <i className="far fa-question-circle home-icon"></i> Help Center

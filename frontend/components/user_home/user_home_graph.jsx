@@ -116,9 +116,7 @@ class UserHomeGraph extends React.PureComponent {
     let change = "pos";
     let diff = 0;
 
-    diff = (
-      regularMarketPrice - chartPreviousClose
-    ).toFixed(2);
+    diff = (regularMarketPrice - chartPreviousClose).toFixed(2);
     if (diff > 0) {
       sign = "+";
       change = "pos";
@@ -127,7 +125,7 @@ class UserHomeGraph extends React.PureComponent {
     }
 
     // TEMP fix for company name, need diff endpoint
-    const name = this.props.news.quotes?.[0]?.shortname || "";
+    const name = this.props.news?.quotes?.[0]?.shortname || "";
     return (
       <div className="user-home-graph-container">
         {stock ? (
@@ -135,9 +133,7 @@ class UserHomeGraph extends React.PureComponent {
             <span className="company-name">
               {name} ({symbol})
             </span>
-            <span className="current-price">
-              ${regularMarketPrice}
-            </span>
+            <span className="current-price">${regularMarketPrice}</span>
             <span className={`${change}-prev-close`}>
               {sign}
               {diff}

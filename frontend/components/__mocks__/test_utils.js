@@ -260,7 +260,7 @@ export const rechartWrap = () =>
     };
   }));
 
-// jest.mock("../user_home/watchlist_comp.jsx", () => ({
+// jest.mock("../user_home/watchlist_comp.tsx", () => ({
 //   // __esModule: true,
 //   // default: jest.fn(),
 //   // receiveStocks: jest.fn().mockImplementation(() => {

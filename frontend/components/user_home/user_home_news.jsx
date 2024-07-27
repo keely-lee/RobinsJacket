@@ -11,23 +11,20 @@ class UserHomeNews extends React.PureComponent {
   mapNews() {
     const news = this.props.news.news || [];
     return news.map((article, _idx) => {
-      const { uuid, title, publisher, link, providerPublishTime, thumbnail } = article;
+      const { uuid, title, publisher, link, providerPublishTime, thumbnail } =
+        article;
       return (
         <div
           className="user-news-div"
           key={`div1-${uuid}`}
           data-testid={`news-${uuid}`}
         >
-          <a
-            href={link}
-            className={`news-a-${uuid}`}
-            key={`a-${uuid}`}
-          >
+          <a href={link} className={`news-a-${uuid}`} key={`a-${uuid}`}>
             <div className="user-inner-news-div" key={`div2-${uuid}`}>
               <section className="user-news-left" key={`sec1-${uuid}`}>
                 <h6 className={`news-date-${uuid}`} key={`date-${uuid}`}>
                   {/* date -> epoch timestamp in seconds */}
-                  {new Date(providerPublishTime * 1000).toDateString("en-US")} 
+                  {new Date(providerPublishTime * 1000).toDateString("en-US")}
                 </h6>
                 <h6 className={`source-name-${uuid}`} key={`name-${uuid}`}>
                   {publisher}
