@@ -1,15 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 import { receiveStocks } from "../../util/stock_api_util";
 import { setTickersFormat } from "../../util/util";
-// import { LineChart, Line, XAxis, YAxis, ReferenceDot } from "recharts";
+import { MarketStock } from "../../interfaces";
 
-class WatchlistComp extends React.Component {
+interface MyProps {
+  currentUser: any;
+  deleteWatch: Function;
+}
+
+interface MyState {
+  stocks: {
+    ticker?: MarketStock,
+  },
+}
+
+class WatchlistComp extends React.Component <MyProps, MyState> {
   constructor(props) {
     super(props);
     this.state = {
-      stocks: {}, // stocks: { ticker: { symbol: '', shortName: '', regularMarketPrice: ... } }
-    };
+      stocks: {},
+    }
 
     this.grabTickers = this.grabTickers.bind(this);
     this.deleteWatch = this.deleteWatch.bind(this);
@@ -20,54 +32,51 @@ class WatchlistComp extends React.Component {
     this.grabTickers();
   }
 
-  componentDidUpdate(prevProps) {
-    // Need to fix for complete accuracy. For now skip this for delete watch, save an api call.
-    if (
-      prevProps.currentUser.watched_stocks.length <
-      this.props.currentUser.watched_stocks.length
-    ) {
+  componentDidUpdate() {
+    if (_.difference(
+        Object.keys(this.props.currentUser.watched_stocks),
+        Object.keys(this.state.stocks)
+      ).length) {
       this.grabTickers();
     }
   }
 
   grabTickers() {
-    // TODO KL: Modify watched_stocks for easy ticker search. Needed for this + user_home
-    // watched_stocks -> [{ticker: "AAPL", company_name: "Apple, Inc.", id: 1}, {...}, ...]
-    const symbols = this.props.currentUser.watched_stocks.reduce((acc, stock) => {
-      acc.push(stock.ticker);
-      return acc;
-    }, []);
-
-    if (symbols.length) {
-      receiveStocks(symbols.join()).then(stocks => this.setState({ stocks: setTickersFormat(stocks.quoteResponse.result, 'symbol') }));
-    }
+    const symbols: string = Object.keys(this.props.currentUser.watched_stocks).join();
+    receiveStocks(symbols).then((stocks) =>
+      this.setState({
+        stocks: setTickersFormat(stocks.quoteResponse.result, "symbol"),
+      }),
+    );
   }
 
   deleteWatch(ticker) {
-    let updatedList = this.state.stocks;
-    delete updatedList[ticker];
-    this.props.deleteWatch(ticker)
-    .then(this.setState({ stocks: updatedList }));
+    const updatedStocks = Object.assign({}, this.state.stocks);
+    delete updatedStocks[ticker];
+    this.props.deleteWatch(ticker).then(this.setState({ stocks: updatedStocks }));
   }
 
   handleGetStocks() {
+    const tickers = Object.keys(this.props.currentUser.watched_stocks).sort()
     return (
-      <div className="watchlist">
+      <div className="watchlist-main">
         <table className="watchlist-table">
           <tbody>
             <tr className="watchlist-header">
               <th className="watchlist-header-title">Watchlist</th>
             </tr>
 
-            {Object.values(this.state.stocks).map((stock, _idx) => {
-              const { symbol, shortName, regularMarketPrice, marketCap } = stock;
+            {tickers.map((ticker, _idx) => {
+              const { symbol, shortName, regularMarketPrice, marketCap } = this.state.stocks[ticker] || {};
+              if (!symbol || !shortName || !regularMarketPrice || !marketCap) return null;
               return (
                 <tr className={`stock-row-${symbol}`} key={`row-${symbol}`}>
                   <td>
                     <button
                       className="fa-minus-button"
                       data-testid={`del-watch-${symbol}`}
-                      onClick={() => this.deleteWatch(symbol)} >
+                      onClick={() => this.deleteWatch(symbol)}
+                    >
                       <i className="far fa-eye-slash"></i>
                     </button>
                   </td>

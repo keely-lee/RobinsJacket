@@ -1,3 +1,2 @@
-#json.partial ! "api/stocks/stock", stocks: @stocks
-
-json.array! @watchlist, :stock_ids, :tickers
+# json.partial! "api/watchlists/watchlist", stocks: @stocks
+# json.array! @watchlist, :tickers

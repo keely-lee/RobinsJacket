@@ -300,7 +300,7 @@ textarea {
 /***********************************/
 /*  WATCHLIST COMPONENT  */
 
-.watchlist {
+.watchlist-main {
   position: fixed;
   right: 10vw;
   top: 94px;
@@ -314,12 +314,12 @@ textarea {
   background-color: rgb(49, 49, 49);
   z-index: 2;
   overflow: auto;
-}
 
-.watchlist-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 48px;
+  .watchlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 48px;
+  }
 }
 
 tr {

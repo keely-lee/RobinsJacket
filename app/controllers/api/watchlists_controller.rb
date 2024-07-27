@@ -16,8 +16,8 @@ class Api::WatchlistsController < ApplicationController
     @watchlist = current_user.watchlist
 
     if @watchlist
-      render "/api/watchlists/show"
-      #render json: @watchlist
+      # render "/api/watchlists/show"
+      render json: @watchlist
     else
       render json: @watchlist.errors.full_messages, status: 422
     end
