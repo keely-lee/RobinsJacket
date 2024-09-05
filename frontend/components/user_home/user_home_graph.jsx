@@ -6,8 +6,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
-  linearGradient,
 } from "recharts";
 
 class UserHomeGraph extends React.PureComponent {

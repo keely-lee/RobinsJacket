@@ -49,7 +49,7 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Install node modules
-COPY --link package.json package-lock.json ./
+COPY --link package.json package-lock.json webpack.config.js ./
 RUN npm install
 
 # Copy application code

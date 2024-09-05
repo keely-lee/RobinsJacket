@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import _ from "lodash";
+import get from "lodash/get";
 
 export const RAPID_API_KEY = "RAPID_API_KEY";
 export const RAPID_API_HOST = "RAPID_API_HOST";
@@ -14,7 +14,7 @@ export const multiHost = "yh-finance.p.rapidapi.com";
 
 export const setTickersFormat = (stocks, tickerPath) =>
   stocks.reduce((acc, stock) => {
-    const ticker = _.get(stock, tickerPath, "");
+    const ticker = get(stock, tickerPath, "");
     acc[ticker] = stock;
     return acc;
   }, {});

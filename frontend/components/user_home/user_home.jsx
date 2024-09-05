@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import _ from "lodash";
+import xor from "lodash/xor";
 import WatchlistComp from "./watchlist_comp";
 import UserHomeNav from "./user_home_nav";
 import UserHomeGraph from "./user_home_graph";
@@ -27,7 +27,7 @@ class UserHome extends React.Component {
     const currWatches = Object.keys(this.props.currentUser.watched_stocks);
     if (
       prevProps.stocks !== this.props.stocks ||
-      _.xor(prevWatches, currWatches).length
+      xor(prevWatches, currWatches).length
       ) {
       this.toggleWatchButton();
     }

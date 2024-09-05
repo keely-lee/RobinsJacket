@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import _ from "lodash";
+import difference from "lodash/difference";
 import { receiveStocks } from "../../util/stock_api_util";
 import { setTickersFormat } from "../../util/util";
 import { MarketStock } from "../../interfaces";
@@ -33,7 +33,7 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
   }
 
   componentDidUpdate() {
-    if (_.difference(
+    if (difference(
         Object.keys(this.props.currentUser.watched_stocks),
         Object.keys(this.state.stocks)
       ).length) {
