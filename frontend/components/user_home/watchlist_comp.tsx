@@ -12,12 +12,12 @@ interface MyProps {
 
 interface MyState {
   stocks: {
-    ticker?: MarketStock,
+    ticker?: MarketStock | any,
   },
 }
 
 class WatchlistComp extends React.Component <MyProps, MyState> {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       stocks: {},
@@ -50,8 +50,8 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
     );
   }
 
-  deleteWatch(ticker) {
-    const updatedStocks = Object.assign({}, this.state.stocks);
+  deleteWatch(ticker: keyof MyState["stocks"]) {
+    const updatedStocks: any = Object.assign({}, this.state.stocks);
     delete updatedStocks[ticker];
     this.props.deleteWatch(ticker).then(this.setState({ stocks: updatedStocks }));
   }
@@ -67,6 +67,7 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
             </tr>
 
             {tickers.map((ticker, _idx) => {
+              // @ts-ignore
               const { symbol, shortName, regularMarketPrice, marketCap } = this.state.stocks[ticker] || {};
               if (!symbol || !shortName || !regularMarketPrice || !marketCap) return null;
               return (

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "**/node_modules/**",
+    "**/assets/images/**",
+    "**.git**",
+    ".dist**"
+  ]
+}
