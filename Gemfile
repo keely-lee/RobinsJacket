@@ -43,7 +43,6 @@ gem 'jquery-rails'
 
 # Gem for stocks
 gem 'figaro'
-gem 'iex-ruby-client'
 gem 'pusher'
 
 # aws

@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   context: __dirname,
@@ -32,6 +33,11 @@ module.exports = {
       },
     ],
   },
+  stats: {
+    modules: true,
+    errorDetails: true,
+    children: true
+  },
   plugins: [
     new NodePolyfillPlugin(),
     new webpack.DefinePlugin({
@@ -41,6 +47,7 @@ module.exports = {
         RAPID_API_HOST: JSON.stringify(process.env.RAPID_API_HOST),
       },
     }),
+    // new BundleAnalyzerPlugin()
   ],
   devtool: "eval-source-map",
 };
