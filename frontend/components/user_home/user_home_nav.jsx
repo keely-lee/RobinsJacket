@@ -174,7 +174,7 @@ class UserHomeNav extends React.PureComponent {
             <button type="button" className="home-msg-button">
               <div className="home-msg">
                 <img
-                  src={window.home_msg}
+                  src="https://robins-jacket-dev.s3.amazonaws.com/images/home_msg.png"
                   draggable="false"
                   className="home-msg-img"
                 />

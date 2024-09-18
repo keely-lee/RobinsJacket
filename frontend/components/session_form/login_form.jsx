@@ -77,7 +77,7 @@ function LoginForm({ processForm, errors, clearErrors }) {
       </form>
 
       <div className="login-img">
-        <img src={window.login_page} draggable="false" />
+        <img src="https://robins-jacket-dev.s3.amazonaws.com/images/login_page.jpg" draggable="false" />
       </div>
     </div>
   );

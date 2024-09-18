@@ -5,7 +5,7 @@ const panes = [
   {
     benefit: "Learn",
     pdispatch: { type: "choice", choice: 0 },
-    imgName: "splashlearn",
+    imgName: "splash_learn",
     header: "Learn As You Grow",
     blurb:
       "Our goal at RobinsJacket is to make investing in financial markets \n more affordable, more intuitive, and more fun, no matter how much \n experience you have (or don’t have).",
@@ -13,7 +13,7 @@ const panes = [
   {
     benefit: "Manage",
     pdispatch: { type: "choice", choice: 1 },
-    imgName: "splashmanage",
+    imgName: "splash_roar",
     header: "Manage Your Portfolio",
     blurb:
       "Manage your portfolio in your pocket. Everything you need to \n increase your assets is available in a single app.",
@@ -21,7 +21,7 @@ const panes = [
   {
     benefit: "Customize",
     pdispatch: { type: "choice", choice: 2 },
-    imgName: "splashcustomize",
+    imgName: "splash_customize",
     header: "Keep An Eye on Your Money",
     blurb:
       "Setting up customized news and notifications to stay on top of \n your assets has never been easier! Controlling the flow of info is \n up to you.",
@@ -85,7 +85,7 @@ function SplashCompFour(_props) {
 
         <div className="splash-four-right">
           <div className="splash-four-img-div">
-            <img src={window[imgName]} className="splash-four-img" />
+            <img src={`https://robins-jacket-dev.s3.amazonaws.com/images/${imgName}.png`} className="splash-four-img" />
           </div>
           <div className="splash-four-text-div">
             <h2 className="splash-four-header">{header}</h2>

@@ -132,7 +132,7 @@ function SignupForm({ demoUser, processForm, errors, clearErrors }, _props) {
             width="315"
             height="175"
           >
-            <source src={window.signup_video} type="video/mp4"></source>
+            <source src="https://robins-jacket-dev.s3.amazonaws.com/videos/signup_video.mp4" type="video/mp4"></source>
           </video>
 
           <div className="signup-below-vid">
