@@ -40,3 +40,5 @@ db/migrate/20200601183202_add_index_to_users.rb
 .env
 
 .DS_Store
+/app/assets/builds/*
+!/app/assets/builds/.keep

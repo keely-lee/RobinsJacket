@@ -31,6 +31,28 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          },
+        ]
+      },
+      {
+        test: /\.scss/,
+        use: [
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          },
+        ]
+      },
     ],
   },
   stats: {
@@ -45,6 +67,8 @@ module.exports = {
       "process.env": {
         RAPID_API_KEY: JSON.stringify(process.env.RAPID_API_KEY),
         RAPID_API_HOST: JSON.stringify(process.env.RAPID_API_HOST),
+        aws_access_key_id: JSON.stringify(process.env.aws_access_key_id),
+        aws_secret_access_key: JSON.stringify(process.env.aws_secret_access_key),
       },
     }),
     // new BundleAnalyzerPlugin()
