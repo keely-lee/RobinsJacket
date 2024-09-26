@@ -17,12 +17,12 @@ Rails.application.configure do
   
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = false  # [TODO KL]
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  config.public_file_server.enabled = true
+  config.public_file_server.enabled = true  # [TODO KL]
 
   # Compress JavaScripts and CSS.
   config.assets.configure do |env|
@@ -31,14 +31,13 @@ Rails.application.configure do
   end
   # config.assets.js_compressor = Uglifier.new(harmony: true)
   # https://github.com/lautis/uglifier/issues/185
-
-
   # config.assets.css_compressor = :sass
+
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.serve_static_assets = true 
-  config.assets.compile = false
-  # config.assets.compile = true
+  # config.assets.compile = false
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
