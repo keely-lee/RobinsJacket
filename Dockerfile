@@ -49,12 +49,12 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Install node modules
-COPY --link package.json package-lock.json webpack.config.js ./
+COPY --link package.json package-lock.json webpack.config.js webpack.prod.js ./
 
 # Copy application code
 COPY --link . .
 
-RUN npm install
+RUN npm install && npm run build && npm prune --production
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/

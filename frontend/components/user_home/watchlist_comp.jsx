@@ -3,21 +3,9 @@ import { Link } from "react-router-dom";
 import difference from "lodash/difference";
 import { receiveStocks } from "../../util/stock_api_util";
 import { setTickersFormat } from "../../util/util";
-import { MarketStock } from "../../interfaces";
 
-interface MyProps {
-  currentUser: any;
-  deleteWatch: Function;
-}
-
-interface MyState {
-  stocks: {
-    ticker?: MarketStock | any,
-  },
-}
-
-class WatchlistComp extends React.Component <MyProps, MyState> {
-  constructor(props: any) {
+class WatchlistComp extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       stocks: {},
@@ -42,7 +30,7 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
   }
 
   grabTickers() {
-    const symbols: string = Object.keys(this.props.currentUser.watched_stocks).join();
+    const symbols = Object.keys(this.props.currentUser.watched_stocks).join();
     receiveStocks(symbols).then((stocks) =>
       this.setState({
         stocks: setTickersFormat(stocks.quoteResponse.result, "symbol"),
@@ -50,8 +38,8 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
     );
   }
 
-  deleteWatch(ticker: keyof MyState["stocks"]) {
-    const updatedStocks: any = Object.assign({}, this.state.stocks);
+  deleteWatch(ticker) {
+    const updatedStocks = Object.assign({}, this.state.stocks);
     delete updatedStocks[ticker];
     this.props.deleteWatch(ticker).then(this.setState({ stocks: updatedStocks }));
   }
@@ -67,7 +55,6 @@ class WatchlistComp extends React.Component <MyProps, MyState> {
             </tr>
 
             {tickers.map((ticker, _idx) => {
-              // @ts-ignore
               const { symbol, shortName, regularMarketPrice, marketCap } = this.state.stocks[ticker] || {};
               if (!symbol || !shortName || !regularMarketPrice || !marketCap) return null;
               return (

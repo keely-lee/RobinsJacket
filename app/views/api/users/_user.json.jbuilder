@@ -8,12 +8,13 @@ json.set! :user, user.id
   json.funds_available user.funds_available
   json.portfolio user.portfolio
 
+  json.watched_stocks({})
   json.watched_stocks do
-    user.watched_stocks.each do |stock|
-      json.set! stock.ticker do
-        json.ticker stock.ticker
-        json.id stock.id
-        json.company_name stock.company_name
+      user.watched_stocks.each do |stock|
+        json.set! stock.ticker do
+          json.ticker stock.ticker
+          json.id stock.id
+          json.company_name stock.company_name
+        end
       end
-    end
   end
