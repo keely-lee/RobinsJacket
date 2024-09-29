@@ -16,6 +16,8 @@ import {
   clearErrors,
 } from "../../actions/portfolio_actions";
 
+// NEED A USE EFFECT FOR IF TICKER DOES NOT EXIST AS A STOCK
+
 function UserPortfolioStock() {
   const dispatch = useDispatch();
   const params = useParams("/stock");

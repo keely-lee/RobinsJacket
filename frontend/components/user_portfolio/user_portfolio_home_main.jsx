@@ -191,7 +191,7 @@ function UserPortfolioHomeMain() {
                       return (
                         <tr className={`uph-tr-${idx}`}>
                           <td>
-                            <Link to={`/stock/${current.id}`}>{ticker}</Link>
+                            <Link to={`/stock/${ticker}`}>{ticker}</Link>
                           </td>
                           <td>{current["shares"]}</td>
                           <td>{formatComma(regularMarketPrice)}</td>

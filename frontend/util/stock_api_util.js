@@ -29,7 +29,6 @@ export const receiveStocks = (sym) => {
 // [TODO KL]: params spread, cleanup
 export const receiveStock = (ticker, endpt, region = "US" ) => {
   const userHomeParams = {
-    endpt: "stock/v3/get-chart",
     symbol: ticker,
     interval: "1d", 
     range: "1mo",
@@ -38,13 +37,12 @@ export const receiveStock = (ticker, endpt, region = "US" ) => {
     includeAdjustedClose: "true",
     events: "capitalGain,div,split",
   }
-  const params = endpt ? {
-    symbols: ticker,
-  } : userHomeParams;
+  const params = endpt ? { symbols: ticker } : userHomeParams;
 
+  const endpoint = endpt || "stock/v3/get-chart";
   return $.ajax({
     method: "GET",
-    url: `${rapid_base_url}/${endpt}`,
+    url: `${rapid_base_url}/${endpoint}`,
     data: {
       region,
       ...params
@@ -67,7 +65,6 @@ export const getTicker = (id) => {
 export const postNewTicker = (stock) => {
   // DEPRECATED. swapped for ticker vs id
   // using in stock portfolio actions until schema is updated
-  debugger
   return $.ajax({
     method: "POST",
     url: `/api/stocks`,

@@ -3,6 +3,7 @@ import { setTickersFormat } from "../util/util";
 
 export const RECEIVE_STOCKS = "RECEIVE_STOCKS";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
+export const CLEAR_STOCKS = "CLEAR_STOCKS"
 
 export const receiveStocks = (stocks) => {
   return {
@@ -17,6 +18,8 @@ export const receiveStock = (stock) => {
     stock,
   };
 };
+
+export const clearStock = () => ({ type: CLEAR_STOCKS });
 
 export const displayStocks = (stocks) => (dispatch) => {
   return StockAPIUtil.receiveStocks(stocks).then((stocks) =>
@@ -33,9 +36,9 @@ export const displayStock = (ticker, endpt) => (dispatch) => {
     dispatch(receiveStock(setTickersFormat(stock.quoteResponse.result, "symbol"))),
     );
   } else {
-    return StockAPIUtil.receiveStock(ticker.toUpperCase()).then((stock) =>
-    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol"))),
-    );
+    return StockAPIUtil.receiveStock(ticker.toUpperCase()).then((stock) => {
+    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol")))
+    })
   }
 };
 
