@@ -1,4 +1,4 @@
-import { RECEIVE_STOCKS, RECEIVE_STOCK } from "../actions/stock_actions";
+import { RECEIVE_STOCKS, RECEIVE_STOCK, CLEAR_STOCKS } from "../actions/stock_actions";
 
 const StocksReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -11,6 +11,8 @@ const StocksReducer = (oldState = {}, action) => {
     case RECEIVE_STOCK:
       newState = action.stock;
       return newState;
+    case CLEAR_STOCKS:
+      return {};
     default:
       return oldState;
   }

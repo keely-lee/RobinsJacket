@@ -3,6 +3,7 @@ import { setTickersFormat } from "../util/util";
 
 export const RECEIVE_STOCKS = "RECEIVE_STOCKS";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
+export const CLEAR_STOCKS = "CLEAR_STOCKS"
 
 export const receiveStocks = (stocks) => {
   return {
@@ -18,6 +19,8 @@ export const receiveStock = (stock) => {
   };
 };
 
+export const clearStock = () => ({ type: CLEAR_STOCKS });
+
 export const displayStocks = (stocks) => (dispatch) => {
   return StockAPIUtil.receiveStocks(stocks).then((stocks) =>
     dispatch(
@@ -26,16 +29,17 @@ export const displayStocks = (stocks) => (dispatch) => {
   );
 };
 
-export const displayStock = (stockTicker) => (dispatch) => {
-  return StockAPIUtil.receiveStock(stockTicker.toUpperCase()).then((stock) =>
-    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol"))),
-  );
-};
-
-export const displayByURL = (id) => (dispatch) => {
-  return StockAPIUtil.getTicker(id)
-    .then((stockTicker) => StockAPIUtil.receiveStock(stockTicker.ticker))
-    .then((stock) => dispatch(receiveStock(stock)));
+export const displayStock = (ticker, endpt) => (dispatch) => {
+  // [TODO KL]: fix this
+  if (endpt) {
+    return StockAPIUtil.receiveStock(ticker, endpt).then((stock) =>
+    dispatch(receiveStock(setTickersFormat(stock.quoteResponse.result, "symbol"))),
+    );
+  } else {
+    return StockAPIUtil.receiveStock(ticker.toUpperCase()).then((stock) => {
+    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol")))
+    })
+  }
 };
 
 export const displayByTicker = (ticker) => {

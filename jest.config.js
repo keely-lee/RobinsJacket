@@ -1,11 +1,15 @@
+// /** @type {import('ts-jest').JestConfigWithTsJest} **/
 module.exports = {
-  // clearMocks: true,
-  // verbose: true,
-  coverageDirectory: "coverage",
+  testEnvironment: "jsdom",
+  // testEnvironment: "node",
   transform: {
-    "\\.[jt]sx?$": "babel-jest",
+    // // "/\.[jt]sx?$/": ["ts-jest",{}],
+    // "^.+.tsx?$": ["ts-jest",{}],
+    "\\.[j]sx?$": "babel-jest",
   },
+  coverageDirectory: "coverage",
   moduleDirectories: ["./node_modules"],
   transformIgnorePatterns: ["./node_modules/"],
-  testEnvironment: "jsdom",
+  verbose: true,
 };
+

@@ -3,6 +3,7 @@ import * as TransactionsUtil from "../util/transactions_api_util";
 // import { receiveCurrentUser } from "./session_actions";
 
 export const RECEIVE_PORTFOLIO = "RECEIVE_PORTFOLIO";
+export const CLEAR_PORTFOLIOS = "CLEAR_PORTFOLIOS";
 export const RECEIVE_TRANSACTION_ERRORS = "RECEIVE_TRANSACTION_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
@@ -12,6 +13,8 @@ const receivePortfolio = (portfolio) => {
     portfolio,
   };
 };
+
+export const clearPortfolios = () => ({ type: CLEAR_PORTFOLIOS })
 
 const receiveTransErrors = (errors) => {
   return {

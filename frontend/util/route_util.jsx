@@ -22,8 +22,8 @@ const Auth = ({ loggedIn }) => {
   return !loggedIn ? <Outlet /> : <Navigate to="/" />;
 };
 
-const Protected = ({ loggedIn, props }) => {
-  return !loggedIn ? <Navigate to="/login" replace /> : <Outlet {...props} />;
+const Protected = ({ loggedIn }) => {
+  return !loggedIn ? <Navigate to="/login" replace /> : <Outlet />;
 };
 
 // const Protected = ({ loggedIn, path, component: Component, exact }) => (
@@ -34,10 +34,9 @@ const Protected = ({ loggedIn, props }) => {
 //   />
 // );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   loggedIn: Boolean(state.session.currentUserId),
 });
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
-
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));

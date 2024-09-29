@@ -16,7 +16,7 @@ const SplashCompOne = () => (
     </div>
     <div className="splash-c1-right">
       <video
-        src={window.splash_vid}
+        src="https://robins-jacket-dev.s3.amazonaws.com/videos/splash_vid.mp4"
         draggable="false"
         className="splash-video"
         autoPlay
@@ -27,7 +27,7 @@ const SplashCompOne = () => (
         preload="auto"
       />
       <img
-        src={window.splash_phone}
+        src="https://robins-jacket-dev.s3.amazonaws.com/images/splash_phone.png"
         draggable="false"
         alt="RJ"
         className="splash-phone"

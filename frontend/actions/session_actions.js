@@ -1,4 +1,7 @@
 import * as APIUtil from "../util/session_api_util";
+import { clearNews } from "./news_actions";
+import { clearPortfolios } from "./portfolio_actions";
+import { clearStock } from "./stock_actions";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -40,7 +43,13 @@ export const login = (user) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   return APIUtil.logoutUser()
-    .then(() => dispatch(logoutCurrentUser()))
+    .then(() => {
+      dispatch(logoutCurrentUser())
+      dispatch(clearPortfolios())
+      dispatch(clearStock())
+      dispatch(clearNews())
+      dispatch(clearErrors())
+    })
     .fail((err) => dispatch(receiveErrors(err.responseJSON)));
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import reduce from "lodash/reduce";
 import UserHomeNav from "../user_home/user_home_nav";
 import { logout } from "../../actions/session_actions";
 import { displayStocks, displayStock } from "../../actions/stock_actions";
@@ -22,59 +23,56 @@ function UserPortfolioHomeMain() {
   const [stateTodayGL, setTodayGL] = useState(0);
   const [stateMarketValue, setMarketValue] = useState(0);
 
-  //DIV VARS FOR RETURN
-  const totalGLDiff = stateTotalGL < 0 ? "uph-minus" : "uph-plus"; //class name for total gain/loss (color)
-  const uphPvDiff = stateTodayGL < 0 ? "uph-minus" : "uph-plus"; //class name for today gain/loss (color)
-
-  //VARS FOR SUMMARY CALC
-  let portfolioValue = currentUser.funds_available;
-  let totalGLAmt = 0;
-  let todayGLAmt = 0;
-  let totalMarketValue = 0;
-
+  const totalGLDiff = stateTotalGL < 0 ? "uph-minus" : "uph-plus"; // class name for total gain/loss (color)
+  const uphPvDiff = stateTodayGL < 0 ? "uph-minus" : "uph-plus"; // class name for today gain/loss (color)
+  const portfolioValue = currentUser.funds_available;
+  
   useEffect(() => {
     dispatch(grabPortfolio());
     dispatch(displayStocks(Object.keys(owned).join(","))).then((res) => {
       if (Object.keys(owned).length) {
-        Object.keys(res.stocks).forEach((ticker) => {
+        const totals = reduce(res.stocks, (acc, stock, ticker) => {
           const current = owned[ticker];
-          const market = res.stocks[ticker]["quote"];
+          const { regularMarketPrice, regularMarketPreviousClose } = stock;
+          // [TODO KL]: handle updated ticker changes
+          if (!regularMarketPrice || !regularMarketPreviousClose) return acc;
+          acc["totalGLAmt"] += current["shares"] * regularMarketPrice - current["cost"];
+          acc["todayGLAmt"] += current["shares"] * (regularMarketPreviousClose - regularMarketPrice);
+          acc["totalMarketValue"] += current["shares"] * regularMarketPrice;
+          return acc;
+        }, {
+          totalGLAmt: 0,
+          todayGLAmt: 0,
+          totalMarketValue: 0
+        })
 
-          totalGLAmt +=
-            current["shares"] * market["latestPrice"] - current["cost"];
-          todayGLAmt +=
-            current["shares"] *
-            (market["previousClose"] - market["latestPrice"]);
-          totalMarketValue += current["shares"] * market["latestPrice"];
-        });
-
-        setTotalGL(totalGLAmt);
-        setTodayGL(todayGLAmt);
-        setMarketValue(totalMarketValue);
+        setTotalGL(totals["totalGLAmt"]);
+        setTodayGL(totals["todayGLAmt"]);
+        setMarketValue(totals["totalMarketValue"]);
       }
     });
-  }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
+  }, [Object.values(stocks).length]); // temporary fix to stop infinite compDidMount
 
   function calcOwned(transactions) {
-    //array of transactions
-    let offSet = 0; //offSet = negShares (iterate backwards over array)
+    // array of transactions
+    let offSet = 0; // offSet = negShares (iterate backwards over array)
     let lifoCost = 0;
     const currOwned = {};
 
     for (let i = transactions.length - 1; i >= 0; i--) {
-      //calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
+      // calc notes: transactions must be sorted by stock_id, then date-ascending (iterate backwards)
       if (transactions[i].trans_type === "sale") {
         lifoCost = 0;
         offSet += transactions[i].shares;
       } else {
-        //......PURCHASES
+        // ......PURCHASES
         if (offSet < 0) {
           if (offSet < transactions[i].shares) {
             lifoCost =
               (transactions[i].shares + offSet) * transactions[i].price;
             offSet = 0;
           } else {
-            //.....(offSet is greater than purchased shares)
+            // .....(offSet is greater than purchased shares)
             lifoCost = 0;
             offSet += shares;
           }
@@ -175,14 +173,16 @@ function UserPortfolioHomeMain() {
                       if (!stocks[ticker]) return null;
 
                       const current = owned[ticker];
-                      const market = stocks[ticker]["quote"];
+                      const regularMarketPrice = stocks[ticker]["regularMarketPrice"] || 0.0001;
+                      const regularMarketPreviousClose = stocks[ticker]["regularMarketPreviousClose"] || 0.0001;
+                      // [TODO KL]: handle updated ticker changes
 
-                      const dayGL =
-                        market["previousClose"] - market["latestPrice"] < 0
+                      const dayGL = 
+                        regularMarketPreviousClose - regularMarketPrice < 0
                           ? "uph-minus"
                           : "uph-plus";
                       const totGL =
-                        current["shares"] * market["latestPrice"] -
+                        current["shares"] * regularMarketPrice -
                           current["cost"] <
                         0
                           ? "uph-minus"
@@ -191,27 +191,27 @@ function UserPortfolioHomeMain() {
                       return (
                         <tr className={`uph-tr-${idx}`}>
                           <td>
-                            <Link to={`/stock/${current.id}`}>{ticker}</Link>
+                            <Link to={`/stock/${ticker}`}>{ticker}</Link>
                           </td>
                           <td>{current["shares"]}</td>
-                          <td>{formatComma(market["latestPrice"])}</td>
+                          <td>{formatComma(regularMarketPrice)}</td>
                           <td className={dayGL}>
                             {(
-                              market["previousClose"] - market["latestPrice"]
+                              regularMarketPreviousClose - regularMarketPrice
                             ).toFixed(4)}
                           </td>
                           <td>{formatComma(current["cost"].toFixed(2))}</td>
                           <td>
                             {formatComma(
                               (
-                                current["shares"] * market["latestPrice"]
+                                current["shares"] * regularMarketPrice
                               ).toFixed(2),
                             )}
                           </td>
                           <td className={totGL}>
                             {formatComma(
                               (
-                                current["shares"] * market["latestPrice"] -
+                                current["shares"] * regularMarketPrice -
                                 current["cost"]
                               ).toFixed(2),
                             )}
@@ -219,9 +219,9 @@ function UserPortfolioHomeMain() {
                           {/* total gain/loss for this stock */}
                           <td className={totGL}>
                             {(
-                              ((current["shares"] * market["latestPrice"] -
+                              ((current["shares"] * regularMarketPrice -
                                 current["cost"]) /
-                                (current["shares"] * market["latestPrice"])) *
+                                (current["shares"] * regularMarketPrice)) *
                               100
                             ).toFixed(2) + "%"}
                           </td>

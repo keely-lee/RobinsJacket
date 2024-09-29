@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   context: __dirname,
@@ -26,11 +27,27 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+            presets: ["@babel/preset-env", "@babel/preset-react"], // "@babel/preset-typescript"
           },
         },
       },
+      {
+        test: /\.(sc|c)ss$/,
+        use: [
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          },
+        ]
+      },
     ],
+  },
+  stats: {
+    modules: true,
+    errorDetails: true,
+    children: true
   },
   plugins: [
     new NodePolyfillPlugin(),
@@ -39,8 +56,11 @@ module.exports = {
       "process.env": {
         RAPID_API_KEY: JSON.stringify(process.env.RAPID_API_KEY),
         RAPID_API_HOST: JSON.stringify(process.env.RAPID_API_HOST),
+        aws_access_key_id: JSON.stringify(process.env.aws_access_key_id),
+        aws_secret_access_key: JSON.stringify(process.env.aws_secret_access_key),
       },
     }),
+    // new BundleAnalyzerPlugin()
   ],
   devtool: "eval-source-map",
 };

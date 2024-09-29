@@ -1,4 +1,4 @@
-import { RECEIVE_PORTFOLIO } from "../actions/portfolio_actions";
+import { CLEAR_ERRORS, RECEIVE_PORTFOLIO } from "../actions/portfolio_actions";
 
 const PortfoliosReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -8,6 +8,8 @@ const PortfoliosReducer = (oldState = {}, action) => {
     case RECEIVE_PORTFOLIO:
       newState = action.portfolio;
       return newState;
+    case CLEAR_ERRORS:
+      return {};
     default:
       return oldState;
   }

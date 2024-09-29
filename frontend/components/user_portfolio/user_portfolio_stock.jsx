@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+// const UserHomeGraph = lazy(() => import("../user_home/user_home_graph"));
 import UserHomeGraph from "../user_home/user_home_graph";
 import UserHomeNav from "../user_home/user_home_nav";
 import { logout } from "../../actions/session_actions";
 import {
-  displayStock,
-  displayByURL,
-  displayByTicker,
   displayByNewTicker,
+  displayStock,
 } from "../../actions/stock_actions";
 import { createWatch } from "../../actions/watchlist_actions";
 import {
@@ -17,10 +16,12 @@ import {
   clearErrors,
 } from "../../actions/portfolio_actions";
 
-function UserPortfolioStock(props) {
-  const dispatch = useDispatch();
+// NEED A USE EFFECT FOR IF TICKER DOES NOT EXIST AS A STOCK
 
-  const { match } = props;
+function UserPortfolioStock() {
+  const dispatch = useDispatch();
+  const params = useParams("/stock");
+  const ticker = params.ticker.toUpperCase();
   const currentUser = useSelector(
     (state) => state.entities.users[state.session.currentUserId],
   );
@@ -28,40 +29,20 @@ function UserPortfolioStock(props) {
   const portfolio = useSelector((state) => state.entities.portfolios);
   const error = useSelector((state) => state.errors.transaction);
 
-  //grab stock id if url is ticker
-  const [mainId, setId] = useState(match.params.id);
-  if (!parseInt(match.params.id)) {
-    // setId(match.params.id);
-    // } else {
-    displayByTicker(match.params.id.toUpperCase())
-      .then((res) => {
-        setId(res.id);
-      })
-      .fail(() => {
-        displayByNewTicker({
-          ticker: Object.keys(stocks)[0].toUpperCase(),
-          company_name: stocks[Object.keys(stocks)[0]].quote.companyName,
-        }).then((resTwo) => {
-          setId(resTwo.id);
-        });
-      });
-  }
-
-  const watching = currentUser.watched_stocks.some(
-    (obj) => obj.id === parseInt(match.params.id),
-  );
   const [buySell, setBuySell] = useState(0);
   const [transShares, setTransShares] = useState(0);
+  const [watching, setWatching] = useState(!!currentUser.watched_stocks[ticker]);
+  const [mainId, setMainId] = useState(null)
 
   const owned = Object.keys(portfolio).length
     ? portfolio.portfolio.reduce((acc, add) => {
-        return add.stock_id === parseInt(mainId) ? acc + add.shares : acc + 0;
+        return add.ticker.toUpperCase() === ticker.toUpperCase() ? acc + add.shares : acc + 0;
       }, 0)
     : 0;
   const totalPrice = (
     transShares *
-    (Object.keys(stocks).length
-      ? stocks[Object.keys(stocks)[0]].quote.latestPrice
+    (stocks[ticker]
+      ? stocks[ticker]["regularMarketPrice"]
       : 0)
   ).toFixed(2);
 
@@ -72,7 +53,7 @@ function UserPortfolioStock(props) {
       : error[0]
     : null;
 
-  //tab vars
+  // tab vars
   const transButton = buySell === 0 ? "Purchase" : "Sale";
   const costProceed = buySell === 0 ? "Cost" : "Proceeds";
   const buyActive = buySell === 0 ? "active" : "";
@@ -80,21 +61,28 @@ function UserPortfolioStock(props) {
 
   useEffect(() => {
     dispatch(grabPortfolio());
-  }, [Object.values(stocks).length]); //temporary fix to stop infinite compDidMount
+  }, [Object.values(stocks).length]); // temporary fix to stop infinite compDidMount
 
   useEffect(() => {
     error.length ? dispatch(clearErrors()) : null;
   }, [owned]);
 
   useEffect(() => {
-    createTrans({});
-  }, [match.params.id]);
+    dispatch(displayStock(ticker, "market/v2/get-quotes"))
+      .then(({stock}) => displayByNewTicker({
+        ticker: stock[ticker].symbol, 
+        company_name: stock[ticker].shortName
+      }))
+      .then(({id}) => setMainId(id))
+  }, [ticker]);
 
-  function updateUser() {
-    const stock = stocks[Object.keys(stocks)[0]].quote;
+  function addWatch() {
+    const { shortName, symbol } = stocks[ticker];
     dispatch(
-      createWatch({ ticker: stock.symbol, company_name: stock.companyName }),
-    ).fail((err) => console.log(err.responseJSON[0]));
+      createWatch({ ticker: symbol, company_name: shortName })
+    )
+      .then(() => setWatching(true))
+      .fail((err) => console.log(err.responseJSON[0]));
   }
 
   function formatNumber(num) {
@@ -115,10 +103,10 @@ function UserPortfolioStock(props) {
           "-" +
           (today.getMonth() + 1) +
           "-" +
-          today.getDate(),
+          today.getDate(), // change this to date.now
         transaction_type: transButton.toLowerCase(),
         shares: finalTransShares,
-        price: stocks[Object.keys(stocks)[0]].quote.latestPrice,
+        price: stocks[ticker]["regularMarketPrice"],
         stock_id: mainId,
       }),
     ).then((trans) => createTrans(trans));
@@ -129,8 +117,7 @@ function UserPortfolioStock(props) {
       <nav>
         <UserHomeNav
           currentUser={currentUser}
-          currPage={match.params.id}
-          getByURL={(id) => dispatch(displayByURL(id))}
+          getByURL={() => dispatch(displayStock(id))}
           logout={() => dispatch(logout())}
           getStock={(ticker) => dispatch(displayStock(ticker))}
         />
@@ -146,17 +133,15 @@ function UserPortfolioStock(props) {
         {/* https://storage.googleapis.com/iex/api/logos/TSLA.png */}
 
         <section className="ups-main-mid">
-          <UserHomeGraph
+          {/* <UserHomeGraph
             currentUser={currentUser}
             stocks={stocks}
-            getStock={(ticker) => dispatch(displayStock(ticker))}
-          />
-          {/* DIDN'T SEE STATE FOR WATCHING TOGGLE */}
+          /> */}
           {watching ? null : (
             <button
               type="button"
               className="add-watchlist"
-              onClick={updateUser}
+              onClick={addWatch}
             >
               Add to watchlist
             </button>
@@ -189,7 +174,7 @@ function UserPortfolioStock(props) {
           <section className="ups-main-trans">
             <div className="stock-comp-options">
               <h4>
-                TRADE {Object.keys(stocks).length ? Object.keys(stocks)[0] : ""}{" "}
+                TRADE { stocks[ticker] && stocks[ticker]["shortName"] || "" }{" "}{ ticker }
               </h4>
               <div className="buy-sell-tabs">
                 <span
@@ -237,9 +222,9 @@ function UserPortfolioStock(props) {
               <br />
               <span>
                 Last:{" "}
-                {Object.keys(stocks).length
+                {stocks[ticker]
                   ? formatNumber(
-                      stocks[Object.keys(stocks)[0]].quote.latestPrice.toFixed(
+                      stocks[ticker]["regularMarketPrice"].toFixed(
                         4,
                       ),
                     )
@@ -262,10 +247,8 @@ function UserPortfolioStock(props) {
                   Cash Available: $
                   {formatNumber(
                     Math.trunc(
-                      currentUser.funds_available -
-                        transShares *
-                          (Object.keys(stocks).length
-                            ? stocks[Object.keys(stocks)[0]].quote.latestPrice
+                      currentUser.funds_available - transShares *
+                          (stocks["ticker"] ? stocks[ticker]["regularMarketPrice"]
                             : 0),
                     ),
                   )}
@@ -277,8 +260,8 @@ function UserPortfolioStock(props) {
                     Math.trunc(
                       currentUser.funds_available +
                         transShares *
-                          (Object.keys(stocks).length
-                            ? stocks[Object.keys(stocks)[0]].quote.latestPrice
+                          (stocks[ticker]
+                            ? stocks[ticker]["regularMarketPrice"]
                             : 0),
                     ),
                   )}

@@ -3,7 +3,7 @@ import {
   LOGOUT_CURRENT_USER,
 } from "../actions/session_actions";
 
-//this reducer keeps track of current_user
+// this reducer keeps track of current_user
 
 const SessionReducer = (oldState = { currentUserId: null }, action) => {
   Object.freeze(oldState);

@@ -6,28 +6,31 @@ class Api::StocksController < ApplicationController
   # end
 
   def create
-    @stock = Stock.new(stock_params)
-    if @stock.save
+    # [TODO KL]: fix better find/new
+    @stock = Stock.find_by(ticker: stock_params[:ticker])
+    if @stock
       render :show
     else
-      render json: @stock.errors.full_messages, status: 422
+      @stock = Stock.new(stock_params)
+      if @stock.save
+        render :show
+      else
+        render json: @stock.errors.full_messages, status: 422
+      end
     end
   end
 
   def show
-    @stock = Stock.find_by_id(params[:id])
-    @stock ||= Stock.find_by(ticker: params[:id])
-
+    @stock = Stock.find_by(ticker: stock_params[:ticker])
     if @stock
       render :show
     else
       render json: ['Stock not currently in vault'], status: 422
-
     end
   end
 
   def destroy
-    @stock = Stock.find_by(ticker: params[:ticker])
+    @stock = Stock.find_by(ticker: stock_params[:ticker])
     @stock.destroy
     render json: @stock
   end

@@ -22,24 +22,30 @@ export const receiveStocks = (sym) => {
     headers: {
       "X-RapidAPI-Key": process.env[RAPID_API_KEY],
       "X-RapidAPI-Host": multiHost,
-      // "X-RapidAPI-Host": process.env[RAPID_API_HOST],
     },
   });
 };
 
-export const receiveStock = (ticker, interval = "1d", range = "1mo") => {
+// [TODO KL]: params spread, cleanup
+export const receiveStock = (ticker, endpt, region = "US" ) => {
+  const userHomeParams = {
+    symbol: ticker,
+    interval: "1d", 
+    range: "1mo",
+    includePrePost: "false",
+    useYfid: "true",
+    includeAdjustedClose: "true",
+    events: "capitalGain,div,split",
+  }
+  const params = endpt ? { symbols: ticker } : userHomeParams;
+
+  const endpoint = endpt || "stock/v3/get-chart";
   return $.ajax({
     method: "GET",
-    url: `${rapid_base_url}/stock/v3/get-chart`,
+    url: `${rapid_base_url}/${endpoint}`,
     data: {
-      symbol: ticker,
-      interval,
-      range,
-      region: "US",
-      includePrePost: "false",
-      useYfid: "true",
-      includeAdjustedClose: "true",
-      events: "capitalGain,div,split",
+      region,
+      ...params
     },
     headers: {
       "X-RapidAPI-Key": process.env[RAPID_API_KEY],
@@ -58,6 +64,7 @@ export const getTicker = (id) => {
 
 export const postNewTicker = (stock) => {
   // DEPRECATED. swapped for ticker vs id
+  // using in stock portfolio actions until schema is updated
   return $.ajax({
     method: "POST",
     url: `/api/stocks`,

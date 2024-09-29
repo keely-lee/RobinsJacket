@@ -1,6 +1,4 @@
-import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_STOCKS } from "../actions/stock_actions";
-import { useReducer } from "react";
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const UsersReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -11,6 +9,8 @@ const UsersReducer = (oldState = {}, action) => {
         [action.currentUser.id]: action.currentUser,
       });
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return oldState;
   }

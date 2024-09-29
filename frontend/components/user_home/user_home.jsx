@@ -1,8 +1,9 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Link } from "react-router-dom";
-import _ from "lodash";
+import xor from "lodash/xor";
 import WatchlistComp from "./watchlist_comp";
 import UserHomeNav from "./user_home_nav";
+// const UserHomeGraph = lazy(() => import("./user_home_graph"));
 import UserHomeGraph from "./user_home_graph";
 import UserHomeNews from "./user_home_news";
 
@@ -27,7 +28,7 @@ class UserHome extends React.Component {
     const currWatches = Object.keys(this.props.currentUser.watched_stocks);
     if (
       prevProps.stocks !== this.props.stocks ||
-      _.xor(prevWatches, currWatches).length
+      xor(prevWatches, currWatches).length
       ) {
       this.toggleWatchButton();
     }
