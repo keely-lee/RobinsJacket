@@ -4,12 +4,6 @@
   --signup-blue: rgb(77, 143, 220);
 }
 
-/* Set Mains ?
-
-Navbar link Colors: Black
-
-*/
-
 body {
   margin: 0;
 }
@@ -26,17 +20,48 @@ body {
     sans-serif;
 }
 
-/* [class^="splash"] {
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-} */
-
+/* currently used by splash nav */
 .cf:after {
   content: "";
   display: block;
   clear: both;
 }
 
-/* grid css?? */
+/* logo w/ name used in splash nav || w/o name used signup & userhome nav */
+/* .home-logo classname (logo w/ name) used in userhome nav */
+/* .logo-small classname (logo w/o name) used in signup & userhome nav  */
+
+/* combine, potentially not being used except userhome nav */
+.home-logo {
+  margin-left: 3.125rem;
+  padding-bottom: 0;
+  object-fit: contain;
+  /* color: rgb(238, 103, 065); */
+  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg) brightness(96%) contrast(94%);
+}
+
+.home-logo:hover {
+  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg) brightness(114%) contrast(92%);
+}
+
+.logo-small {
+  max-height: 3rem;
+  max-width: 3rem;
+  object-fit: contain;
+  padding-bottom: 1.25rem;
+  margin-left: 0.3125rem;
+}
+
+
+
+/* 
+potentials?
+background-color: white;
+*/
+
+
+/*
+grid css?? 
 .col-1-2 {
   display: flex;
   width: 50%;
@@ -46,96 +71,4 @@ body {
   display: flex;
   width: 50%;
 }
-
-/* button css?? */
-.button-black {
-  display: inline-flex;
-  align-items: center;
-  /* box-sizing: border-box; */
-  justify-content: center;
-  text-align: center;
-  height: 48px;
-  width: 144px;
-  background-color: black;
-  text-decoration: none;
-  color: white;
-  border-radius: 24px;
-  font: inherit;
-  font-weight: bold;
-  /* position: static; */
-  /* white-space: nowrap; */
-  /* cursor: pointer; */
-}
-
-.button-black:hover {
-  background-color: darkslategray;
-}
-
-.button-green {
-  display: inline-flex;
-  margin-left: 30px;
-  background-color: #00c805;
-  color: black;
-  border-radius: 24px;
-  height: 48px;
-  min-width: 144px;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -0.25px;
-  line-height: 28px;
-
-  /* white-space: nowrap; */
-}
-
-.button-green:hover {
-  background-color: darkgreen;
-}
-
-.link-green-only {
-  color: #00c805;
-}
-
-/* Modals?? */
-.disclosure-modal {
-  display: inline-flex;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.disclosure-modal > button {
-  border: none;
-  background: none;
-  font-family: inherit;
-  font-size: 19px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
-  color: rgb(111, 120, 126);
-
-  /* letter-spacing: -0.25px;
-  margin: 0px;
-  text-decoration: unset; */
-}
-
-.disclosure-modal > button:hover {
-  color: #00c805;
-  cursor: pointer;
-}
-
-.logo-small {
-  /* display: block; */
-  max-height: 48px;
-  max-width: 48px;
-  /* max-height: 90%;
-    max-width: 90%; */
-  object-fit: contain;
-  padding-bottom: 20px;
-  margin-left: 5px;
-  /* align-self: center; */
-}
+*/

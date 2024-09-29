@@ -46,7 +46,7 @@ function UserPortfolioStock() {
       : 0)
   ).toFixed(2);
 
-  const [completedTrans, createTrans] = useState({});
+  const [completedTrans, setCompletedTrans] = useState({});
   const transError = error.length
     ? error[0].startsWith("Shares") || error[0].startsWIth("Portfolio")
       ? error[0].split(" ").slice(1).join(" ")
@@ -109,7 +109,7 @@ function UserPortfolioStock() {
         price: stocks[ticker]["regularMarketPrice"],
         stock_id: mainId,
       }),
-    ).then((trans) => createTrans(trans));
+    ).then((trans) => setCompletedTrans(trans));
   }
 
   return (

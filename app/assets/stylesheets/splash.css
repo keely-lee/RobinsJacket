@@ -4,32 +4,29 @@
   background-color: white;
 }
 
-/* ** navbar **/
+/* ** navbar ** */
 .navbar-main {
   display: flex;
-  background-color: white;
-  font-family:
-    "Capsule Sans Display",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Helvetica,
-    Arial,
-    sans-serif;
+  background-color: inherit;
+  font-family: inherit;
   height: 4rem;
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
+  width: 97%;
+  padding: 0 1.5%;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
+
+  button, a {
+    color: black;
+    text-decoration: none;
+  }
 
   /* external links */
   .navbar-external {
     display: flex;
     align-items: center;
-    margin-left: 1.25rem;
 
     img {
       height: 4rem;
@@ -38,24 +35,19 @@
 
     > button {
       border: none;
-      color: black;
-      background-color: white;
+      background-color: inherit;
       font-family: inherit;
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 700;
-      width: 150px;
+      width: 9.375rem;
+      margin-right: 0.625rem;
       text-align: center;
-      margin-right: 10px;
       position: relative;
     }
 
-    > button:focus {
-      outline: none;
-    }
-
     > a:not(:nth-of-type(1)) {
+      /* skip logo link */
       font-size: 2.5rem;
-      color: black;
       padding-right: 1.875rem;
     }
 
@@ -69,14 +61,29 @@
     }
   }
 
+  /* session links */
+  .navbar-right-links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.25px;
+  }
+
+  .link-plain:hover {
+    color: green;
+  }
+
   /* dropdown */
   .products-dropdown {
     position: absolute;
     top: 4rem;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
 
     ul {
-      padding-left: 18.125rem;
+      padding-left: 17.125rem;
 
       a {
         padding-right: 1.625rem;
@@ -86,41 +93,13 @@
         color: var(--splash-green);
         cursor: pointer;
       }
-
-      a:nth-last-of-type(-n + 2) {
-        padding-right: 0;
-      }
-
       a:last-of-type {
         color: rgb(240, 128, 156);
-        padding-left: 13px;
-        margin-left: 13px;
+        padding-left: 0.8125rem;
+        margin-left: -0.8125rem;
         border-left: 1px solid black;
       }
     }
-  }
-
-  /* session links */
-  .navbar-right-links {
-    width: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: right;
-    padding-right: 1.5rem;
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: -0.25px;
-  }
-
-  .link-plain {
-    /* move to reset if any more elements with this class */
-    color: black;
-    text-decoration: none;
-  }
-
-  .link-plain:hover {
-    color: green;
   }
 }
 

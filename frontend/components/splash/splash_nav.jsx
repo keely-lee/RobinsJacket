@@ -48,11 +48,11 @@ class SplashNav extends React.Component {
           </div>
 
           <div className="navbar-right-links">
-            <Link className="button-green" to={"/signup"}>
-              Sign Up
-            </Link>
             <Link className="link-plain" to={"/login"}>
               Sign In
+            </Link>
+            <Link className="button-green" to={"/signup"}>
+              Sign Up
             </Link>
           </div>
 
