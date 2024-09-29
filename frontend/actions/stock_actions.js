@@ -26,16 +26,17 @@ export const displayStocks = (stocks) => (dispatch) => {
   );
 };
 
-export const displayStock = (stockTicker) => (dispatch) => {
-  return StockAPIUtil.receiveStock(stockTicker.toUpperCase()).then((stock) =>
+export const displayStock = (ticker, endpt) => (dispatch) => {
+  // [TODO KL]: fix this
+  if (endpt) {
+    return StockAPIUtil.receiveStock(ticker, endpt).then((stock) =>
+    dispatch(receiveStock(setTickersFormat(stock.quoteResponse.result, "symbol"))),
+    );
+  } else {
+    return StockAPIUtil.receiveStock(ticker.toUpperCase()).then((stock) =>
     dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol"))),
-  );
-};
-
-export const displayByURL = (id) => (dispatch) => {
-  return StockAPIUtil.getTicker(id)
-    .then((stockTicker) => StockAPIUtil.receiveStock(stockTicker.ticker))
-    .then((stock) => dispatch(receiveStock(stock)));
+    );
+  }
 };
 
 export const displayByTicker = (ticker) => {
