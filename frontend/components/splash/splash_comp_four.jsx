@@ -57,9 +57,9 @@ function SplashCompFour(_props) {
   const { blurb, header, imgName } = panes[state.selected];
   return (
     <div className="splash-comp-four">
-      <div className="splash-comp-four-inside">
-        <ul className="splash-four-ul">
-          <h3 onClick={() => dispatch({ type: "up" })} className="splash-label">
+      <div className="splash-c4-inner">
+        <ul>
+          <h3 onClick={() => dispatch({ type: "up" })}>
             {"\u2191"}
           </h3>
 
@@ -67,29 +67,22 @@ function SplashCompFour(_props) {
             <h3
               key={benefit}
               onClick={() => dispatch(pdispatch)}
-              className={classNames("splash-label", {
-                current: state.selected === pdispatch.choice,
-              })}
+              className={classNames({ current: state.selected === pdispatch.choice })}
             >
               {benefit}
             </h3>
           ))}
 
-          <h3
-            onClick={() => dispatch({ type: "down" })}
-            className={`splash-label`}
-          >
+          <h3 onClick={() => dispatch({ type: "down" })}>
             {"\u2193"}
           </h3>
         </ul>
 
-        <div className="splash-four-right">
-          <div className="splash-four-img-div">
-            <img src={`https://robins-jacket-dev.s3.amazonaws.com/images/${imgName}.png`} className="splash-four-img" />
-          </div>
-          <div className="splash-four-text-div">
-            <h2 className="splash-four-header">{header}</h2>
-            <p className="splash-four-p">{blurb}</p>
+        <div className="splash-c4-right">
+          <img src={`https://robins-jacket-dev.s3.amazonaws.com/images/${imgName}.png`} />
+          <div>
+            <h2>{header}</h2>
+            <p>{blurb}</p>
           </div>
         </div>
       </div>

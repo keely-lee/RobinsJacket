@@ -20,6 +20,36 @@ body {
     sans-serif;
 }
 
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+
+/*** MODAL DEFAULTS ***/
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background-color: #fffafa;
+  width: 50rem;
+  height: 16rem;
+  display: flex;
+  justify-content: center;
+}
+
 /* currently used by splash nav */
 .cf:after {
   content: "";
@@ -52,13 +82,10 @@ body {
   margin-left: 0.3125rem;
 }
 
-
-
 /* 
 potentials?
 background-color: white;
 */
-
 
 /*
 grid css?? 

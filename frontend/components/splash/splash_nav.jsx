@@ -15,7 +15,7 @@ class SplashNav extends React.Component {
 
   render() {
     return (
-      <div className="splash">
+      <div className="splash-nav">
         <nav className="navbar-main cf">
           <div className="navbar-external">
             <Link to="/">
