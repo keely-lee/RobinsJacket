@@ -19,7 +19,7 @@ class SplashNav extends React.Component {
         <nav className="navbar-main cf">
           <div className="navbar-external">
             <Link to="/">
-              <img src={window.logo} />
+              <img src={window.logo_extended} />
             </Link>
             <button type="button" onClick={this.handleProductDropdown}>
               Products{" "}

@@ -50,35 +50,17 @@ button:hover {
   justify-content: center;
 }
 
-/* currently used by splash nav */
 .cf:after {
+  /* splash nav */
   content: "";
   display: block;
   clear: both;
 }
 
-/* logo w/ name used in splash nav || w/o name used signup & userhome nav */
-/* .home-logo classname (logo w/ name) used in userhome nav */
-/* .logo-small classname (logo w/o name) used in signup & userhome nav  */
-
-/* combine, potentially not being used except userhome nav */
-.home-logo {
-  margin-left: 3.125rem;
-  padding-bottom: 0;
-  object-fit: contain;
-  /* color: rgb(238, 103, 065); */
-  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg) brightness(96%) contrast(94%);
-}
-
-.home-logo:hover {
-  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg) brightness(114%) contrast(92%);
-}
-
+/* other */
 .logo-small {
+  /* uhn, signup */
   max-height: 3rem;
-  max-width: 3rem;
-  object-fit: contain;
-  padding-bottom: 1.25rem;
   margin-left: 0.3125rem;
 }
 
