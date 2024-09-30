@@ -317,10 +317,10 @@ textarea {
     border-collapse: collapse;
     margin-top: 48px;
   }
-}
 
-tr {
-  border-bottom: 1px solid rgb(66, 73, 78);
+  tr {
+    border-bottom: 1px solid rgb(66, 73, 78);
+  }
 }
 
 a > td > p {
