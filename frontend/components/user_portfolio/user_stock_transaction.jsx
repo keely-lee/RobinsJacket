@@ -18,7 +18,7 @@ import {
 
 // NEED A USE EFFECT FOR IF TICKER DOES NOT EXIST AS A STOCK
 
-function UserPortfolioStock() {
+function UserStockTransaction() {
   const dispatch = useDispatch();
   const params = useParams("/stock");
   const ticker = params.ticker.toUpperCase();
@@ -275,4 +275,4 @@ function UserPortfolioStock() {
   );
 }
 
-export default UserPortfolioStock;
+export default UserStockTransaction;
