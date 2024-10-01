@@ -2,8 +2,12 @@
   /* temp for nav */
   .home-navbar-main {
     background-color: whitesmoke;
+
+    .small-logo:hover {
+      color: darkgray
+    }
     .home-nav-submit-button {
-      background-color: darkgray;
+      background-color: black;
     }
     .user-search-wrap {
       color: black;
