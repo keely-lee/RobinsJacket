@@ -1,19 +1,21 @@
 /* stocks transaction home */
+
 .stock-comp-main-div {
-  background-color: rgb(30, 30, 30);
+  background-color: rgb(77, 77, 77);
   min-height: 100vh;
+  font-family: var(--session-font);
+
+  h2 {
+    padding: 6rem 0 1.5rem 15%;
+    color: whitesmoke;
+  }
+
 }
 
-.stock-comp-main-div > h2 {
-  padding-top: 100px;
-  padding-bottom: 25px;
-  margin: 0 0 0 15vw;
-  color: whitesmoke;
-}
 
-.ups-main-div {
-  display: flex;
-}
+
+
+
 
 /* .ups-main-stats {
   display: flex;

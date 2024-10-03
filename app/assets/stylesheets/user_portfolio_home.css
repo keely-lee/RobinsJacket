@@ -27,7 +27,7 @@
 
 [class*="uph-"] {
   /* TODO */
-  font-family: "Varta", sans-serif;
+  font-family: var(--uph-font);
 }
 
 .uph-plus {
@@ -85,7 +85,7 @@
       }
 
       span {
-        font-family: "Varta", sans-serif;
+        font-family: var(--uph-font);
       }
       span:first-of-type {
         font-weight: bold;
@@ -103,7 +103,7 @@
     tr {
       background-color: #ffffff;
       text-align: right;
-      font-family: "Varta", sans-serif;
+      font-family: var(--uph-font);
 
       &:nth-child(even) {
         background-color: #f2f2f2;

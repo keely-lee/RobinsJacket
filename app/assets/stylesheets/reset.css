@@ -2,10 +2,19 @@
   --splash-green: rgb(0, 199, 7);
   --login-green: rgb(164, 194, 182);
   --signup-blue: rgb(77, 143, 220);
+
+  --splash-font: Georgia, "Times New Roman", Times, serif;
+  --uph-font: "Varta", sans-serif;
+  --session-font: Verdana, Geneva, sans-serif;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   margin: 0;
+  min-height: 100%;
 }
 
 * {
