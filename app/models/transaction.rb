@@ -8,12 +8,13 @@
 #  shares           :integer          not null
 #  price            :float            not null
 #  portfolio_id     :integer          not null
+#  ticker           :string           not null
 #  stock_id         :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
 class Transaction < ApplicationRecord
-  validates :transaction_date, :transaction_type, :shares, :price, :portfolio_id, :stock_id, presence: true
+  validates :transaction_date, :transaction_type, :shares, :price, :portfolio_id, :ticker, :stock_id, presence: true
   validates :transaction_type, inclusion: { in: ['purchase', 'sale'] }
   validates :shares, numericality: { greater_than: 0, message: "The Number of shares must be greater than 0" }
   validate :check_enough

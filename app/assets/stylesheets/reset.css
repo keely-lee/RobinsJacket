@@ -2,16 +2,19 @@
   --splash-green: rgb(0, 199, 7);
   --login-green: rgb(164, 194, 182);
   --signup-blue: rgb(77, 143, 220);
+
+  --splash-font: Georgia, "Times New Roman", Times, serif;
+  --uph-font: "Varta", sans-serif;
+  --session-font: Verdana, Geneva, sans-serif;
 }
 
-/* Set Mains ?
-
-Navbar link Colors: Black
-
-*/
+html {
+  height: 100%;
+}
 
 body {
   margin: 0;
+  min-height: 100%;
 }
 
 * {
@@ -26,17 +29,57 @@ body {
     sans-serif;
 }
 
-/* [class^="splash"] {
-  font-family: "Capsule Sans Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-} */
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+
+/*** MODAL DEFAULTS ***/
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background-color: #fffafa;
+  width: 50rem;
+  height: 16rem;
+  display: flex;
+  justify-content: center;
+}
 
 .cf:after {
+  /* splash nav */
   content: "";
   display: block;
   clear: both;
 }
 
-/* grid css?? */
+/* other */
+.logo-small {
+  /* uhn, signup */
+  max-height: 3rem;
+  margin-left: 0.3125rem;
+}
+
+/* 
+potentials?
+background-color: white;
+*/
+
+/*
+grid css?? 
 .col-1-2 {
   display: flex;
   width: 50%;
@@ -46,96 +89,4 @@ body {
   display: flex;
   width: 50%;
 }
-
-/* button css?? */
-.button-black {
-  display: inline-flex;
-  align-items: center;
-  /* box-sizing: border-box; */
-  justify-content: center;
-  text-align: center;
-  height: 48px;
-  width: 144px;
-  background-color: black;
-  text-decoration: none;
-  color: white;
-  border-radius: 24px;
-  font: inherit;
-  font-weight: bold;
-  /* position: static; */
-  /* white-space: nowrap; */
-  /* cursor: pointer; */
-}
-
-.button-black:hover {
-  background-color: darkslategray;
-}
-
-.button-green {
-  display: inline-flex;
-  margin-left: 30px;
-  background-color: #00c805;
-  color: black;
-  border-radius: 24px;
-  height: 48px;
-  min-width: 144px;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -0.25px;
-  line-height: 28px;
-
-  /* white-space: nowrap; */
-}
-
-.button-green:hover {
-  background-color: darkgreen;
-}
-
-.link-green-only {
-  color: #00c805;
-}
-
-/* Modals?? */
-.disclosure-modal {
-  display: inline-flex;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.disclosure-modal > button {
-  border: none;
-  background: none;
-  font-family: inherit;
-  font-size: 19px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
-  color: rgb(111, 120, 126);
-
-  /* letter-spacing: -0.25px;
-  margin: 0px;
-  text-decoration: unset; */
-}
-
-.disclosure-modal > button:hover {
-  color: #00c805;
-  cursor: pointer;
-}
-
-.logo-small {
-  /* display: block; */
-  max-height: 48px;
-  max-width: 48px;
-  /* max-height: 90%;
-    max-width: 90%; */
-  object-fit: contain;
-  padding-bottom: 20px;
-  margin-left: 5px;
-  /* align-self: center; */
-}
+*/

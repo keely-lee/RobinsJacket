@@ -7,18 +7,16 @@ const mSTP = () => ({});
 
 const mDTP = (dispatch) => ({
   commissions: (
-    <div className="disclosure-modal">
+    <div className="splash-modal">
       <button onClick={() => dispatch(openModal("commissionsDisclosure"))}>
         {"\u24D8"} Commissions Disclosure
       </button>
     </div>
   ),
   fractional: (
-    <div className="disclosure-modal shift-left">
+    <div className="splash-modal">
       <button
-        onClick={() => dispatch(openModal("fractionalDisclosure"))}
-        className="fractional-button"
-      >
+        onClick={() => dispatch(openModal("fractionalDisclosure"))}>
         {"\u24D8"} Fractional Shares Disclosure
       </button>
     </div>

@@ -15,11 +15,11 @@ class SplashNav extends React.Component {
 
   render() {
     return (
-      <div className="splash">
+      <div className="splash-nav">
         <nav className="navbar-main cf">
           <div className="navbar-external">
             <Link to="/">
-              <img src={window.logo} />
+              <img src={window.logo_extended} />
             </Link>
             <button type="button" onClick={this.handleProductDropdown}>
               Products{" "}
@@ -48,11 +48,11 @@ class SplashNav extends React.Component {
           </div>
 
           <div className="navbar-right-links">
-            <Link className="button-green" to={"/signup"}>
-              Sign Up
-            </Link>
             <Link className="link-plain" to={"/login"}>
               Sign In
+            </Link>
+            <Link className="button-green" to={"/signup"}>
+              Sign Up
             </Link>
           </div>
 

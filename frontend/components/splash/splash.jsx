@@ -15,31 +15,18 @@ class Splash extends React.Component {
   render() {
     return (
       <div>
-        <nav>
-          <SplashNav />
-        </nav>
-        <div className="splash-1">
-          <SplashCompOne />
-        </div>
-        <div className="splash-2">
-          <SplashCompTwo
-            disclosure={this.props.commissions}
-            closeModal={this.props.closeModal}
-          />
-        </div>
-        <div className="splash-3">
-          <SplashCompThree
-            disclosure={this.props.fractional}
-            closeModal={this.props.closeModal}
-          />
-        </div>
-        <div className="splash-4">
-          <SplashCompFour />
-        </div>
-        {/* splash-5 */}
-        <div className="splash-6">
-          <SplashCompSix />
-        </div>
+        <SplashNav />
+        <SplashCompOne />
+        <SplashCompTwo
+          disclosure={this.props.commissions}
+          closeModal={this.props.closeModal}
+        />
+        <SplashCompThree
+          disclosure={this.props.fractional}
+          closeModal={this.props.closeModal}
+        />
+        <SplashCompFour />
+        <SplashCompSix />
       </div>
     );
   }

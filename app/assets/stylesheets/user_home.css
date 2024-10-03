@@ -3,7 +3,7 @@
 }
 
 /***********************************/
-/* NAVBAR */
+/* NAVBAR (logos in reset) */
 
 .home-navbar-main {
   display: flex;
@@ -15,21 +15,18 @@
   border-bottom: 1px solid white;
   background-color: rgb(30, 30, 30);
   z-index: 10;
-}
 
-.home-logo {
-  /* current details from logo small on sessions page */
-  margin-left: 50px;
-  padding-bottom: 0;
-  object-fit: contain;
-  /* color: rgb(238, 103, 065); */
-  filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg)
-    brightness(96%) contrast(94%);
-}
+  /* .logo-small in reset, used in signup & uhnav  */
+  .home-logo {
+    margin-left: 3.125rem;
+    padding-bottom: 0;
+    /* color: rgb(238, 103, 065); */
+    filter: invert(56%) sepia(74%) saturate(2965%) hue-rotate(334deg) brightness(96%) contrast(94%);
+  }
 
-.home-logo:hover {
-  filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg)
-    brightness(114%) contrast(92%);
+  .home-logo:hover {
+    filter: invert(99%) sepia(2%) saturate(65%) hue-rotate(340deg) brightness(114%) contrast(92%);
+  }
 }
 
 .home-navbar-right {
@@ -320,10 +317,10 @@ textarea {
     border-collapse: collapse;
     margin-top: 48px;
   }
-}
 
-tr {
-  border-bottom: 1px solid rgb(66, 73, 78);
+  tr {
+    border-bottom: 1px solid rgb(66, 73, 78);
+  }
 }
 
 a > td > p {

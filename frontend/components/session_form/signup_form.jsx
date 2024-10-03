@@ -42,7 +42,7 @@ function SignupForm({ demoUser, processForm, errors, clearErrors }, _props) {
     return (
       <ul className="signup-error-list">
         {errors.map((error, idx) => (
-          <li key={`error-${idx}`} id={`error-${idx}`}>
+          <li key={`error-${idx}`}>
             {error}
           </li>
         ))}
@@ -55,12 +55,12 @@ function SignupForm({ demoUser, processForm, errors, clearErrors }, _props) {
       <div className="signup-nav-bar">
         <Link to="/">
           <img
-            src={window.small_logo}
+            src={window.logo_icon}
             className="logo-small"
             draggable="false"
           />
         </Link>
-        <div className="signup-nav-text">
+        <div>
           <span>Account</span>
           <span>Basic Info</span>
           <span>Identity</span>
@@ -98,14 +98,12 @@ function SignupForm({ demoUser, processForm, errors, clearErrors }, _props) {
               value={user.email}
               placeholder="Email"
               onChange={handleInput("email")}
-              className="signup-input"
             />
             <input
               type="password"
               value={user.password}
               placeholder="Password (min. 8 characters)"
               onChange={handleInput("password")}
-              className="signup-input"
             />
 
             <div className="signup-buttons">
@@ -135,7 +133,7 @@ function SignupForm({ demoUser, processForm, errors, clearErrors }, _props) {
             <source src="https://robins-jacket-dev.s3.amazonaws.com/videos/signup_video.mp4" type="video/mp4"></source>
           </video>
 
-          <div className="signup-below-vid">
+          <div>
             <p>
               We&apos;ve cut the fat that makes other brokerages costly, like
               manual account management and hundreds of storefront locations, so

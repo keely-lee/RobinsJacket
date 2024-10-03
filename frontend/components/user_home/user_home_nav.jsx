@@ -71,9 +71,9 @@ class UserHomeNav extends React.PureComponent {
   render() {
     return (
       <div className="home-navbar-main">
-        <Link to="/" className="home-logo-link">
+        <Link to="/">
           <img
-            src={window.small_logo}
+            src={window.logo_icon}
             className="logo-small home-logo"
             draggable="false"
           />

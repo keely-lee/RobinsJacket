@@ -32,7 +32,7 @@ function LoginForm({ processForm, errors, clearErrors }) {
     return (
       <ul className="login-error-list">
         {errors.map((error, idx) => (
-          <li key={`error-${idx}`} id={`error-${idx}`}>
+          <li key={`error-${idx}`}>
             {error}
           </li>
         ))}
@@ -42,8 +42,8 @@ function LoginForm({ processForm, errors, clearErrors }) {
 
   return (
     <div className="login-main-div">
-      <form onSubmit={handleSubmit}>
-        <div className="login-form-div">
+      <div className="login-form-div">
+        <form onSubmit={handleSubmit}>
           <h2>Welcome to RobinsJacket</h2>
           <p>Email or username</p>
           <input
@@ -59,7 +59,7 @@ function LoginForm({ processForm, errors, clearErrors }) {
             onChange={handleInput("password")}
           />
 
-          <Link to="/" className="forgot">
+          <Link to="/">
             Forgot your username or password?
           </Link>
 
@@ -73,8 +73,8 @@ function LoginForm({ processForm, errors, clearErrors }) {
             <span>Get started </span>
             <Link to={"/signup"}>Create an account today</Link>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
 
       <div className="login-img">
         <img src="https://robins-jacket-dev.s3.amazonaws.com/images/login_page.jpg" draggable="false" />

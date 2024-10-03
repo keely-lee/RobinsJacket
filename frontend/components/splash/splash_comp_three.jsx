@@ -14,7 +14,7 @@ class SplashCompThree extends React.Component {
   render() {
     return (
       <div className="splash-comp-three">
-        <section className="splash-comp-three-left">
+        <section className="splash-c3-left">
           <h2>Introducing Fractional Shares</h2>
           <span>Invest in thousands of stocks with just $1.</span>
 
@@ -47,10 +47,9 @@ class SplashCompThree extends React.Component {
               {/* add on change eventually for email submit */}
               <input
                 type="text"
-                className="add-email-input"
                 placeholder="name@email.com"
               />
-              <Link className="button-green access-button" to={""}>
+              <Link className="button-green" to={""}>
                 Get Access Now
               </Link>
             </form>
@@ -58,7 +57,7 @@ class SplashCompThree extends React.Component {
           {this.props.disclosure}
         </section>
 
-        <div className="splash-comp-three-image">
+        <div className="splash-c3-img">
           <img src="https://robins-jacket-dev.s3.amazonaws.com/images/splash_shapes.png" draggable="false" />
         </div>
       </div>

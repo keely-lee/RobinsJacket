@@ -8,10 +8,10 @@ class SplashCompSix extends React.Component {
 
   render() {
     return (
-      <div className="splash-comp-six">
-        <div className="splash-comp-six-div">
-          <section className="splash-comp-six-top">
-            <div className="splash-comp-six-top-left">
+      <div className="splash-c6">
+        <div className="splash-c6-inner">
+          <section className="splash-c6-top">
+            <div className="splash-c6-top-left">
               <section>
                 <button type="button">Stocks &amp; Funds</button>
                 <button type="button">Options</button>
@@ -33,8 +33,8 @@ class SplashCompSix extends React.Component {
               </section>
             </div>
 
-            <div className="splash-comp-six-top-right">
-              <section className="splash-comp-six-top-right-top">
+            <div className="splash-c6-top-right">
+              <section>
                 <h4>RobinSnacks</h4>
                 <p>
                   The 3-minute newsletter with fresh takes on the financial news
@@ -42,21 +42,20 @@ class SplashCompSix extends React.Component {
                 </p>
                 <form
                   onClick={this.handleSubmit}
-                  className="add-email-form-dark"
+                  className="add-email-form"
                 >
                   {/* add on change eventually for email submit */}
                   <input
                     type="text"
-                    className="add-email-input"
                     placeholder="name@email.com"
                   />
-                  <Link className="button-green access-button" to={""}>
+                  <Link className="button-green" to={""}>
                     Subscribe
                   </Link>
                 </form>
               </section>
 
-              <section className="splash-comp-six-right-buttons">
+              <section>
                 <button type="button">
                   Check the background of the firm on FINRA’s Broker Check
                 </button>
@@ -69,7 +68,7 @@ class SplashCompSix extends React.Component {
             </div>
           </section>
 
-          <section className="splash-comp-six-bottom">
+          <section className="splash-c6-bottom">
             <p>© March 2020 RobinsJacket. All rights reserved.</p>
             <p>
               RobinsJacket means RobinsMarkets, Inc. and its in-application and
@@ -81,14 +80,14 @@ class SplashCompSix extends React.Component {
               All investments involve risks, including the possible loss of
               capital.
             </p>
-            <span>
+            <p>
               Securities trading is offered to self-directed customers by
               RobinsJacket Financial. RobinsJacket Financial is a member of the{" "}
-            </span>
-            <Link to="/loremips" className="link-green-only">
-              Financial Industry Regulatory Authority (FINRA).
-            </Link>
-            <div className="disclosure-modal shift-left">
+              <Link to="/loremips" className="link-green">
+                Financial Industry Regulatory Authority (FINRA).
+              </Link>
+            </p>
+            <div className="splash-modal">
               <button type="button">
                 {"\u24D8"} View Important Disclosures
               </button>
