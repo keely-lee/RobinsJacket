@@ -2,11 +2,10 @@ import React, { useState, useEffect, useLayoutEffect, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 // const UserHomeGraph = lazy(() => import("../user_home/user_home_graph"));
-import UserHomeGraph from "../user_home/user_home_graph";
+// import UserHomeGraph from "../user_home/user_home_graph";
 import UserHomeNav from "../user_home/user_home_nav";
 import { logout } from "../../actions/session_actions";
 import {
-  displayByNewTicker,
   displayStock,
 } from "../../actions/stock_actions";
 import { createWatch } from "../../actions/watchlist_actions";
@@ -32,7 +31,6 @@ function UserStockTransaction() {
   const [buySell, setBuySell] = useState(0);
   const [transShares, setTransShares] = useState(0);
   const [watching, setWatching] = useState(!!currentUser.watched_stocks[ticker]);
-  const [mainId, setMainId] = useState(null)
 
   const owned = Object.keys(portfolio).length
     ? portfolio.portfolio.reduce((acc, add) => {
@@ -69,11 +67,6 @@ function UserStockTransaction() {
 
   useEffect(() => {
     dispatch(displayStock(ticker, "market/v2/get-quotes"))
-      .then(({stock}) => displayByNewTicker({
-        ticker: stock[ticker].symbol, 
-        company_name: stock[ticker].shortName
-      }))
-      .then(({id}) => setMainId(id))
   }, [ticker]);
 
   function addWatch() {
@@ -107,169 +100,164 @@ function UserStockTransaction() {
         transaction_type: transButton.toLowerCase(),
         shares: finalTransShares,
         price: stocks[ticker]["regularMarketPrice"],
-        stock_id: mainId,
+        company_name: stocks[ticker]["shortName"],
+        ticker
       }),
     ).then((trans) => setCompletedTrans(trans));
   }
 
   return (
-    <div className="stock-comp-main-div">
-      <nav>
-        <UserHomeNav
-          currentUser={currentUser}
-          getByURL={() => dispatch(displayStock(id))}
-          logout={() => dispatch(logout())}
-          getStock={(ticker) => dispatch(displayStock(ticker))}
-        />
-      </nav>
-
-      <h2>ONE STOP STOCK VIEW</h2>
-
-      <div className="ups-main-div">
-        {/* <section className="ups-main-stats">
-          <span>ITEM ONE</span>
-          <span>ITEM TWO</span>
-        </section> */}
-        {/* https://storage.googleapis.com/iex/api/logos/TSLA.png */}
-
-        <section className="ups-main-mid">
-          {/* <UserHomeGraph
+    <div>
+      <div className="stock-comp-main-div">
+        <nav>
+          <UserHomeNav
             currentUser={currentUser}
-            stocks={stocks}
-          /> */}
-          {watching ? null : (
-            <button
-              type="button"
-              className="add-watchlist"
-              onClick={addWatch}
-            >
-              Add to watchlist
-            </button>
-          )}
-          {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
-        </section>
+            getByURL={() => dispatch(displayStock(id))}
+            logout={() => dispatch(logout())}
+            getStock={(ticker) => dispatch(displayStock(ticker))}
+          />
+        </nav>
 
-        {Object.keys(completedTrans).length ? (
-          <section className="ups-main-trans completed-main">
-            <div className="stock-comp-options">
-              <p>Transaction Successful!</p>
-              <p>
-                {Object.keys(stocks)[0]}{" "}
-                {completedTrans.transaction_type === "purchase"
-                  ? "purchased"
-                  : "sold"}
-                : {Math.abs(completedTrans.shares)} shares @{" "}
-                {completedTrans.price}
-              </p>
-              <p>
-                Total {costProceed}: ${formatNumber(totalPrice)}
-              </p>
-              <Link to="/portfolio" className="trans-complete-link">
-                View Portfolio{" "}
-                <i className="fas fa-arrow-right complete-arrow"></i>
-              </Link>
-            </div>
+        <h2>ONE STOP STOCK VIEW</h2>
+
+        <div>
+          {/* <section className="ups-main-stats">
+            <span>ITEM ONE</span>
+            <span>ITEM TWO</span>
+          </section> */}
+          {/* https://storage.googleapis.com/iex/api/logos/TSLA.png */}
+
+          <section className="ups-main-mid">
+            {/* <UserHomeGraph
+              currentUser={currentUser}
+              stocks={stocks}
+            /> */}
+            {watching ? null : (
+              // not working
+              <button
+                type="button"
+                className="add-watchlist"
+                onClick={addWatch}
+              >
+                Add to watchlist
+              </button>
+            )}
+            {/* {toggleWatched ? <span className="watch-added"><i className="fas fa-check"></i></span> : null} */}
           </section>
-        ) : (
-          <section className="ups-main-trans">
-            <div className="stock-comp-options">
-              <h4>
-                TRADE { stocks[ticker] && stocks[ticker]["shortName"] || "" }{" "}{ ticker }
-              </h4>
-              <div className="buy-sell-tabs">
-                <span
-                  className={`buy-tab ${buyActive}`}
-                  onClick={() => {
-                    setBuySell(0);
-                    error.length ? dispatch(clearErrors()) : null;
-                  }}
-                >
-                  Buy
-                </span>
-                {owned ? (
+
+          {Object.keys(completedTrans).length ? (
+            <section className="ups-main-trans completed-main">
+              <div className="stock-comp-options">
+                <p>Transaction Successful!</p>
+                <p>
+                  {Object.keys(stocks)[0]}{" "}
+                  {completedTrans.transaction_type === "purchase"
+                    ? "purchased"
+                    : "sold"}
+                  : {Math.abs(completedTrans.shares)} shares @{" "}
+                  {completedTrans.price}
+                </p>
+                <p>
+                  Total {costProceed}: ${formatNumber(totalPrice)}
+                </p>
+                <Link to="/portfolio" className="trans-complete-link">
+                  View Portfolio{" "}
+                  <i className="fas fa-arrow-right complete-arrow"></i>
+                </Link>
+              </div>
+            </section>
+          ) : (
+
+            <section className="ups-main-trans">
+              <div className="stock-comp-options">
+                <h4>
+                  TRADE { stocks[ticker] && stocks[ticker]["shortName"] || "" }{" "}({ ticker })
+                </h4>
+                <div className="buy-sell-tabs">
                   <span
-                    className={`sell-tab ${sellActive}`}
+                    className={`buy-tab ${buyActive}`}
                     onClick={() => {
-                      setBuySell(1);
+                      setBuySell(0);
                       error.length ? dispatch(clearErrors()) : null;
                     }}
                   >
-                    Sell
+                    Buy
                   </span>
-                ) : null}
+                  {owned ? (
+                    <span
+                      className={`sell-tab ${sellActive}`}
+                      onClick={() => {
+                        setBuySell(1);
+                        error.length ? dispatch(clearErrors()) : null;
+                      }}
+                    >
+                      Sell
+                    </span>
+                  ) : null}
+                </div>
+                <span>Current Shares Owned: {owned}</span>
               </div>
-              <span>Current Shares Owned: {owned}</span>
-            </div>
-            <div className="stock-comp-trade-details">
-              <span>Quantity</span>
-              {owned && buySell === 1 ? (
-                <input
-                  type="number"
-                  min="1"
-                  max={owned}
-                  step="1"
-                  onChange={(e) => setTransShares(e.currentTarget.value)}
-                />
-              ) : (
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  onChange={(e) => setTransShares(e.currentTarget.value)}
-                />
-              )}
-              {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
-              <br />
-              <span>
-                Last:{" "}
-                {stocks[ticker]
-                  ? formatNumber(
-                      stocks[ticker]["regularMarketPrice"].toFixed(
-                        4,
-                      ),
-                    )
-                  : ""}
-              </span>
-            </div>
-            <div className="stock-comp-trade-confirm">
-              <span>Estimated {costProceed}</span>
-              <span>${formatNumber(totalPrice)}</span>
-              <button onClick={(e) => handleSubmit(e)}>
-                Confirm {transButton} Order
-              </button>
-            </div>
+              <div className="stock-comp-trade-details">
+                <span>Quantity</span>
+                {owned && buySell === 1 ? (
+                  <input
+                    type="number"
+                    min="1"
+                    max={owned}
+                    step="1"
+                    onChange={(e) => setTransShares(e.currentTarget.value)}
+                  />
+                ) : (
+                  <input
+                    type="number"
+                    min="1"
+                    step="1"
+                    onChange={(e) => setTransShares(e.currentTarget.value)}
+                  />
+                )}
+                {/* ADDRESS TRANSACTION TIME CONSTRAINTS LATER 9:30AM - 5PM */}
+                <br />
+                <span>
+                  Last:{" "}
+                  {stocks[ticker] ? formatNumber(
+                    stocks[ticker]["regularMarketPrice"].toFixed(4)
+                  ) : ""}
+                </span>
+              </div>
+              <div className="stock-comp-trade-confirm">
+                <span>Estimated {costProceed}</span>
+                <span>${formatNumber(totalPrice)}</span>
+                <button onClick={(e) => handleSubmit(e)}>
+                  Confirm {transButton} Order
+                </button>
+              </div>
 
-            <p className="trans-error-msg">{transError}</p>
+              <p className="trans-error-msg">{transError}</p>
 
-            <div className="stock-comp-portfolio-details">
-              {buySell === 0 ? (
-                <p>
-                  Cash Available: $
-                  {formatNumber(
-                    Math.trunc(
-                      currentUser.funds_available - transShares *
-                          (stocks["ticker"] ? stocks[ticker]["regularMarketPrice"]
-                            : 0),
-                    ),
-                  )}
-                </p>
-              ) : (
-                <p>
-                  Cash Balance: $
-                  {formatNumber(
-                    Math.trunc(
-                      currentUser.funds_available +
-                        transShares *
-                          (stocks[ticker]
-                            ? stocks[ticker]["regularMarketPrice"]
-                            : 0),
-                    ),
-                  )}
-                </p>
-              )}
-            </div>
-          </section>
-        )}
+              <div className="stock-comp-portfolio-details">
+                {buySell === 0 ? (
+                  <p>
+                    Cash Available: $
+                    {formatNumber(
+                      Math.trunc(currentUser.funds_available - transShares *
+                        (stocks["ticker"] ? stocks[ticker]["regularMarketPrice"] : 0)
+                      )
+                    )}
+                  </p>
+                ) : (
+                  <p>
+                    Cash Balance: $
+                    {formatNumber(
+                      Math.trunc(currentUser.funds_available + transShares *
+                        (stocks[ticker] ? stocks[ticker]["regularMarketPrice"] : 0),
+                      )
+                    )}
+                  </p>
+                )}
+              </div>
+            </section>
+          )}
+        </div>
       </div>
     </div>
   );

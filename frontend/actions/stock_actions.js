@@ -33,19 +33,21 @@ export const displayStock = (ticker, endpt) => (dispatch) => {
   // [TODO KL]: fix this
   if (endpt) {
     return StockAPIUtil.receiveStock(ticker, endpt).then((stock) =>
-    dispatch(receiveStock(setTickersFormat(stock.quoteResponse.result, "symbol"))),
+      dispatch(receiveStock(setTickersFormat(stock.quoteResponse.result, "symbol")))
     );
   } else {
     return StockAPIUtil.receiveStock(ticker.toUpperCase()).then((stock) => {
-    dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol")))
-    })
+      dispatch(receiveStock(setTickersFormat(stock.chart.result, "meta.symbol")))
+    });
   }
 };
 
 export const displayByTicker = (ticker) => {
+  // deprecated
   return StockAPIUtil.getTicker(ticker);
 };
 
 export const displayByNewTicker = (stock) => {
+  // deprecated
   return StockAPIUtil.postNewTicker(stock);
 };

@@ -64,7 +64,6 @@ export const getTicker = (id) => {
 
 export const postNewTicker = (stock) => {
   // DEPRECATED. swapped for ticker vs id
-  // using in stock portfolio actions until schema is updated
   return $.ajax({
     method: "POST",
     url: `/api/stocks`,
